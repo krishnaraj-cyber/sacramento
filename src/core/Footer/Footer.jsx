@@ -15,27 +15,27 @@ function Footer() {
               </div>
               <div className='space-y-2'>
                 <div>
-                  <Link to='/about'>
+                  <Link to='/board-members'>
                     <p className='hover:underline'>Board Members</p>
                   </Link>
                 </div>
                 <div>
-                  <Link to='/goal'>
+                  <Link to='/goals'>
                     <p className='hover:underline'>Goals</p>
                   </Link>
                 </div>
                 <div>
-                  <Link to='/'>
+                  <Link to='/laws'>
                     <p className='hover:underline'>By Laws</p>
                   </Link>
                 </div>
                 <div>
-                  <Link to='/financial'>
+                  <Link to='/financial-summary'>
                     <p className='hover:underline'>Financial Summary</p>
                   </Link>
                 </div>
                 <div>
-                  <Link to='/youth'>
+                  <Link to='/youth-forum'>
                     <p className='hover:underline'>Youth Forum</p>
                   </Link>
                 </div>

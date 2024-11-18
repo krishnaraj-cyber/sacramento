@@ -35,50 +35,38 @@ function Header() {
                 Home
               </Link>
               <Link onMouseEnter={() => setIsHovered(true)} onMouseLeave={() => setIsHovered(false)}
-                className={`p-3 ps-px sm:px-3 md:py-2 2xl:text-lg group text-[#5E0000] text-sm relative hover:text-white hover:bg-[#0470BC] ${isActive('/about') || isActive('/goal') || isActive('/laws') || isActive('/financial') || isActive('/youth') ? 'text-white bg-[#0470BC]' : 'text-[#E91E31]'}`}>
+                className={`p-3 ps-px sm:px-3 md:py-2 2xl:text-lg group text-[#5E0000] text-sm relative hover:text-white hover:bg-[#0470BC] ${isActive('/board-members') || isActive('/goals') || isActive('/laws') || isActive('/financial-summary') || isActive('/youth-forum') ? 'text-white bg-[#0470BC]' : 'text-[#E91E31]'}`}>
                 About Us
-                <i className={`fi fi-rr-angle-small-down text-red-500 group-hover:text-white relative top-1  ${isActive('/about') || isActive('/goal') || isActive('/laws') || isActive('/financial') || isActive('/youth') ? 'text-white bg-[#0470BC]' : 'text-[#E91E31]'
+                <i className={`fi fi-rr-angle-small-down text-red-500 group-hover:text-white relative top-1  ${isActive('/board-members') || isActive('/goals') || isActive('/laws') || isActive('/financial-summary') || isActive('/youth-forum') ? 'text-white bg-[#0470BC]' : 'text-[#E91E31]'
                   }${isHovered ? 'rotate-180' : 'rotate-0'}`}
                 ></i>
                 {isHovered && (
                   <div className="absolute left-0  mt-[6.5px] bg-white border rounded shadow-lg w-60">
-                    <Link to="/about" className={`block px-4 py-2 text-[#E91E31] hover:bg-[#0470BC] hover:text-white ${isActive('/about') ? 'text-white bg-[#0470BC]' : 'text-[#E91E31]'}`}>
+                    <Link to="/board-members" className={`block px-4 py-2 text-[#E91E31] hover:bg-[#0470BC] hover:text-white ${isActive('/board-members') ? 'text-white bg-[#0470BC]' : 'text-[#E91E31]'}`}>
                       Board Members
                     </Link>
-                    <Link to="/goal" className={`block px-4 py-2 text-[#E91E31] hover:bg-[#0470BC] hover:text-white ${isActive('/goal') ? 'text-white bg-[#0470BC]' : 'text-[#E91E31]'}`}>
+                    <Link to="/goals" className={`block px-4 py-2 text-[#E91E31] hover:bg-[#0470BC] hover:text-white ${isActive('/goals') ? 'text-white bg-[#0470BC]' : 'text-[#E91E31]'}`}>
                       Goals
                     </Link>
                     <Link to="/laws" className={`block px-4 py-2 text-[#E91E31] hover:bg-[#0470BC] hover:text-white ${isActive('/laws') ? 'text-white bg-[#0470BC]' : 'text-[#E91E31]'}`}>
                       By Laws
                     </Link>
-                    <Link to="/financial" className={`block px-4 py-2 text-[#E91E31] hover:bg-[#0470BC] hover:text-white ${isActive('/financial') ? 'text-white bg-[#0470BC]' : 'text-[#E91E31]'}`}>
+                    <Link to="/financial-summary" className={`block px-4 py-2 text-[#E91E31] hover:bg-[#0470BC] hover:text-white ${isActive('/financial-summary') ? 'text-white bg-[#0470BC]' : 'text-[#E91E31]'}`}>
                       Financial Summary
                     </Link>
-                    <Link to="/youth" className={`block px-4 py-2 text-[#E91E31] hover:bg-[#0470BC] hover:text-white ${isActive('/youth') ? 'text-white bg-[#0470BC]' : 'text-[#E91E31]'}`}>
+                    <Link to="/youth-forum" className={`block px-4 py-2 text-[#E91E31] hover:bg-[#0470BC] hover:text-white ${isActive('/youth-forum') ? 'text-white bg-[#0470BC]' : 'text-[#E91E31]'}`}>
                       Youth Forum
                     </Link>
                   </div>
                 )}
               </Link>
-              <Link
-                to="/gallery"
-                className={`p-3 ps-px sm:px-3 md:py-2 2xl:text-lg text-sm hover:text-white hover:bg-[#0470BC] ${isActive('/gallery') ? 'text-white bg-[#0470BC]' : 'text-[#E91E31]'
-                  }`}
-              >
+              <Link to="/gallery" className={`p-3 ps-px sm:px-3 md:py-2 2xl:text-lg text-sm hover:text-white hover:bg-[#0470BC] ${isActive('/gallery') ? 'text-white bg-[#0470BC]' : 'text-[#E91E31]'}`}  >
                 Gallery
               </Link>
-              <Link
-                to="/events"
-                className={`p-3 ps-px sm:px-3 md:py-2 2xl:text-lg text-sm hover:text-white hover:bg-[#0470BC] ${isActive('/events') ? 'text-white bg-[#0470BC]' : 'text-[#E91E31]'
-                  }`}
-              >
+              <Link to="/events" className={`p-3 ps-px sm:px-3 md:py-2 2xl:text-lg text-sm hover:text-white hover:bg-[#0470BC] ${isActive('/events') ? 'text-white bg-[#0470BC]' : 'text-[#E91E31]'}`}  >
                 Events
               </Link>
-              <Link
-                to="/tamilschools"
-                className={`p-3 ps-px sm:px-3 md:py-2 2xl:text-lg text-sm hover:text-white hover:bg-[#0470BC] ${isActive('/tamilschools') ? 'text-white bg-[#0470BC]' : 'text-[#E91E31]'
-                  }`}
-              >
+              <Link to="/tamil-schools" className={`p-3 ps-px sm:px-3 md:py-2 2xl:text-lg text-sm hover:text-white hover:bg-[#0470BC] ${isActive('/tamil-schools') ? 'text-white bg-[#0470BC]' : 'text-[#E91E31]'}`}  >
                 Tamil Schools
               </Link>
             </div>
@@ -96,59 +84,41 @@ function Header() {
           </button>
         </div>
         <nav className="mt-5 space-y-6">
-          <Link
-            to="/"
-            className={`block text-lg hover:underline ${isActive('/') ? 'text-white' : 'text-[#f4e316]'}`}
-            onClick={handleLinkClick}
-          >
+          <Link to="/" className={`block text-lg hover:underline ${isActive('/') ? 'text-white' : 'text-[#f4e316]'}`} onClick={handleLinkClick} >
             Home
           </Link>
           <div  >
             <button onClick={() => setIsAboutOpen(!isAboutOpen)} className="block text-lg   w-full text-[#f4e316] ">
               About Us
-              <i
-                className={`fi fi-rr-angle-small-down text-[#f4e316] group-hover:text-white relative top-1 ${isActive('/about') ? '  bg-[#0470BC]' : 'text-[#E91E31]'
-                  }`} ></i>
+              <i className={`fi fi-rr-angle-small-down text-[#f4e316] group-hover:text-white relative top-1 ${isActive('/about') ? '  bg-[#0470BC]' : 'text-[#E91E31]'}`} ></i>
             </button>
             {isAboutOpen && (
               <div className=" bg-[#59b2f1] mt-3 space-y-4 rounded-lg py-3">
-                <Link to="/about" className={`block text-[#f4e316] hover:underline ${isActive('/about') ? 'text-white' : 'text-[#f4e316]'}`} onClick={() => setOpen(false)}>
+                <Link to="/board-members" className={`block text-[#f4e316] hover:underline ${isActive('/board-members') ? 'text-white' : 'text-[#f4e316]'}`} onClick={() => setOpen(false)}>
                   Board Members
                 </Link>
-                <Link to="/goal" className={`block text-[#f4e316] hover:underline ${isActive('/goal') ? 'text-white' : 'text-[#f4e316]'}`} onClick={() => setOpen(false)}>
+                <Link to="/goals" className={`block text-[#f4e316] hover:underline ${isActive('/goals') ? 'text-white' : 'text-[#f4e316]'}`} onClick={() => setOpen(false)}>
                   Goals
                 </Link>
                 <Link to="/laws" className={`block text-[#f4e316] hover:underline ${isActive('/laws') ? 'text-white' : 'text-[#f4e316]'}`} onClick={() => setOpen(false)}>
                   By Laws
                 </Link>
-                <Link to="/financial" className={`block text-[#f4e316] hover:underline ${isActive('/financial') ? 'text-white' : 'text-[#f4e316]'}`} onClick={() => setOpen(false)}>
+                <Link to="/financial-summary" className={`block text-[#f4e316] hover:underline ${isActive('/financial-summary') ? 'text-white' : 'text-[#f4e316]'}`} onClick={() => setOpen(false)}>
                   Financial Summary
                 </Link>
-                <Link to="/youth" className={`block text-[#f4e316] hover:underline ${isActive('/youth') ? 'text-white' : 'text-[#f4e316]'}`} onClick={() => setOpen(false)}>
+                <Link to="/youth-forum" className={`block text-[#f4e316] hover:underline ${isActive('/youth-forum') ? 'text-white' : 'text-[#f4e316]'}`} onClick={() => setOpen(false)}>
                   Youth Forum
                 </Link>
               </div>
             )}
           </div>
-          <Link
-            to="/gallery"
-            className={`block text-lg hover:underline ${isActive('/gallery') ? 'text-white' : 'text-[#f4e316]'}`}
-            onClick={handleLinkClick}
-          >
+          <Link to="/gallery" className={`block text-lg hover:underline ${isActive('/gallery') ? 'text-white' : 'text-[#f4e316]'}`} onClick={handleLinkClick}  >
             Gallery
           </Link>
-          <Link
-            to="/events"
-            className={`block text-lg hover:underline ${isActive('/events') ? 'text-white' : 'text-[#f4e316]'}`}
-            onClick={handleLinkClick}
-          >
+          <Link to="/events" className={`block text-lg hover:underline ${isActive('/events') ? 'text-white' : 'text-[#f4e316]'}`} onClick={handleLinkClick}  >
             Events
           </Link>
-          <Link
-            to="/tamilschools"
-            className={`block text-lg hover:underline ${isActive('/tamilschools') ? 'text-white' : 'text-[#f4e316]'}`}
-            onClick={handleLinkClick}
-          >
+          <Link to="/tamil-schools" className={`block text-lg hover:underline ${isActive('/tamil-schools') ? 'text-white' : 'text-[#f4e316]'}`} onClick={handleLinkClick}   >
             Tamil Schools
           </Link>
         </nav>

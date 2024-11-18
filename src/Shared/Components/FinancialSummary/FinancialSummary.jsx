@@ -36,7 +36,7 @@ function FinancialSummary(props) {
                     <div className="bg-white p-5 rounded-lg shadow-lg max-w-md w-full">
                         <div className="p-4 bg-gray-50">   {accordionItems.find((item) => item.id === selectedId)?.content}
                         </div>
-                        <button className="mt-4 px-4 py-2 bg-blue-500 text-white rounded" onClick={() => { setIsOpen(false); setSelectedId(null); }}  >
+                        <button className="mt-4 px-4 py-2 bg-[#E52E3D] hover:bg-[#882a32] text-white rounded" onClick={() => { setIsOpen(false); setSelectedId(null); }}  >
                             Close
                         </button>
                     </div>

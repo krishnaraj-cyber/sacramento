@@ -13,7 +13,7 @@ function Events() {
                         </div>
                     </div>
                     <div>
-                        <CountdownTimer bgColor="#fff" textColor="#E91E31"   texColor="#FFD900" />
+                        <CountdownTimer bgColor="#fff" textColor="#E91E31" texColor="#FFD900" />
                     </div>
                 </div>
             </section>

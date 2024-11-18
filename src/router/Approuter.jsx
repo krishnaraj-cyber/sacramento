@@ -17,13 +17,13 @@ function Approuter() {
             <Routes >
                 <Route element={<Main />}>
                     <Route path="/" element={<Home />} />
-                    <Route path="/about" element={<About />} />
-                    <Route path="/goal" element={<GoalPage />} />
-                    <Route path="/financial" element={<FinancialPage />} />
-                    <Route path="/youth" element={<YouthPage />} />
+                    <Route path="/board-members" element={<About />} />
+                    <Route path="/goals" element={<GoalPage />} />
+                    <Route path="/financial-summary" element={<FinancialPage />} />
+                    <Route path="/youth-forum" element={<YouthPage />} />
                     <Route path="/gallery" element={<GalleryPage />} />
                     <Route path="/events" element={<EventsPage />} />
-                    <Route path="/tamilschools" element={<TamilSchoolPage />} />
+                    <Route path="/tamil-schools" element={<TamilSchoolPage />} />
                     <Route path="/laws" element={<ByLawsPage />} />
                 </Route>
             </Routes>
