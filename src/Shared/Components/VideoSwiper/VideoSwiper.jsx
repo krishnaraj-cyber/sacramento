@@ -11,7 +11,7 @@ function VideoSwiper() {
     const videoNextStepRef = useRef(null);
     return (
         <>
-            <div className='  max-w-[78rem] mx-auto my-20 space-y-5'>
+            <div className='  max-w-[78rem] mx-auto my-20 space-y-5 cursor-pointer '>
                 <section className="flex flex-col items-center relative  px-10">
                     <Swiper
                         slidesPerView={1}

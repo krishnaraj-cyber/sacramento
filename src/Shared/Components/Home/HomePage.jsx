@@ -35,15 +35,12 @@ function HomePage(props) {
                         </div>
                         <div className='lg:ml-auto'>
                             <h2 className="text-2xl font-bold text-center text-red-600 md:mb-5 archivo-black-regular">OUR SPONSORS</h2>
-                            <section className="flex flex-col items-center relative py-7 xl:h-[615px] lg:h-[500px]  ">
+                            <section className="flex flex-col items-center relative py-7 xl:h-[615px] lg:h-[500px] cursor-pointer ">
                                 <Swiper
                                     slidesPerView={1}
                                     spaceBetween={10}
                                     loop={true}
-                                    autoplay={{
-                                        delay: 3000,
-                                        disableOnInteraction: false,
-                                    }}
+                                    autoplay={{ delay: 3000, disableOnInteraction: false, }}
                                     breakpoints={{
                                         0: {
                                             slidesPerView: 1,
@@ -60,8 +57,7 @@ function HomePage(props) {
                                     }}
                                     navigation={{ nextEl: '.swiper-button-nextdeal', prevEl: '.swiper-button-prevdeal' }}
                                     modules={[Pagination, Navigation, Autoplay]}
-                                    className="w-full max-w-5xl"
-                                >
+                                    className="w-full max-w-5xl" >
                                     {Sponsor.map((sponsor, index) => (
                                         <SwiperSlide key={index} className="flex justify-center">
                                             <div>
@@ -73,21 +69,13 @@ function HomePage(props) {
                                         </SwiperSlide>
                                     ))}
                                 </Swiper>
-                                <div
-                                    ref={prevRef}
-                                    className="absolute lg:top-0 lg:left-1/2 lg:transform lg:-translate-x-1/2      -left-10   lg:rotate-0   -rotate-90 top-1/2    lg:-translate-y-1/2 z-10 cursor-pointer"
-                                >
+                                <div ref={prevRef} className="absolute lg:top-0 lg:left-1/2 lg:transform lg:-translate-x-1/2      -left-10   lg:rotate-0   -rotate-90 top-1/2    lg:-translate-y-1/2 z-10 cursor-pointer"  >
                                     <img className="swiper-button-prevdeal px-2" src="/assets/images/Hero-Section/Top.png" alt="Previous" />
                                 </div>
-                                <div
-                                    ref={nextRef}
-                                    className="absolute  lg:-bottom-4   lg:left-1/2 lg:transform  lg:block hidden lg:-translate-x-1/2   lg:-translate-y-1/2  z-10     -rotate-90  lg:rotate-0  cursor-pointer" >
+                                <div ref={nextRef} className="absolute  lg:-bottom-4   lg:left-1/2 lg:transform  lg:block hidden lg:-translate-x-1/2  lg:-translate-y-1/2  z-10   -rotate-90  lg:rotate-0  cursor-pointer" >
                                     <img className="swiper-button-nextdeal px-2" src="/assets/images/Hero-Section/Bottom.png" alt="Next" />
                                 </div>
-                                <div
-                                    ref={mobileNextRef}
-                                    className="absolute    z-10  lg:hidden block  -right-10 top-1/2 -rotate-90  cursor-pointer"
-                                >
+                                <div ref={mobileNextRef} className="absolute    z-10  lg:hidden block  -right-10 top-1/2 -rotate-90  cursor-pointer" >
                                     <img className="swiper-button-nextdeal px-2" src="/assets/images/Hero-Section/Bottom.png" alt="Next" />
                                 </div>
                             </section>

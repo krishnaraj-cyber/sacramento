@@ -35,9 +35,9 @@ function Header() {
                 Home
               </Link>
               <Link onMouseEnter={() => setIsHovered(true)} onMouseLeave={() => setIsHovered(false)}
-                className={`p-3 ps-px sm:px-3 md:py-2 2xl:text-lg group text-[#5E0000] text-sm relative hover:text-white hover:bg-[#0470BC] ${isActive('/about') || isActive('/goal') || isActive('/financial') || isActive('/youth') ? 'text-white bg-[#0470BC]' : 'text-[#E91E31]'}`}>
+                className={`p-3 ps-px sm:px-3 md:py-2 2xl:text-lg group text-[#5E0000] text-sm relative hover:text-white hover:bg-[#0470BC] ${isActive('/about') || isActive('/goal') || isActive('/laws') || isActive('/financial') || isActive('/youth') ? 'text-white bg-[#0470BC]' : 'text-[#E91E31]'}`}>
                 About Us
-                <i className={`fi fi-rr-angle-small-down text-red-500 group-hover:text-white relative top-1  ${isActive('/about') || isActive('/goal') || isActive('/financial') || isActive('/youth') ? 'text-white bg-[#0470BC]' : 'text-[#E91E31]'
+                <i className={`fi fi-rr-angle-small-down text-red-500 group-hover:text-white relative top-1  ${isActive('/about') || isActive('/goal') || isActive('/laws') || isActive('/financial') || isActive('/youth') ? 'text-white bg-[#0470BC]' : 'text-[#E91E31]'
                   }${isHovered ? 'rotate-180' : 'rotate-0'}`}
                 ></i>
                 {isHovered && (
@@ -79,7 +79,7 @@ function Header() {
                 className={`p-3 ps-px sm:px-3 md:py-2 2xl:text-lg text-sm hover:text-white hover:bg-[#0470BC] ${isActive('/tamilschools') ? 'text-white bg-[#0470BC]' : 'text-[#E91E31]'
                   }`}
               >
-                TamilSchools
+                Tamil Schools
               </Link>
             </div>
             <div className="bg-[#0470BC] px-5 py-7 lg:block hidden text-white font-bold cursor-pointer">Donate</div>

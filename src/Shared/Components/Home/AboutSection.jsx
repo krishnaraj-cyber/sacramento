@@ -9,7 +9,7 @@ function AboutSection() {
                     <div>
                         <p className=" text-2xl  concert-one-regular text-center  md:text-4xl text-[#E91E31]">WHAT WE DO</p>
                     </div>
-                    <div className='grid md:grid-cols-2  grid-cols-2 gap-3 md:text-base text-sm'>
+                    <div className='grid md:grid-cols-2  grid-cols-2 gap-3 md:text-base vietnam  text-sm'>
                         <div className='bg-[#E91E31] text-center p-2 md:px-10 text-white font-semibold rounded-tl-3xl rounded-bl-3xl '>
                             <p className="">Serving</p>
                             <p className=""> Sacramento Tamils</p>
@@ -54,18 +54,20 @@ function AboutSection() {
                                 <div key={index} className="  ">
                                     <img src={item.imgSrc} />
                                     <div className='border   mx-3 md:text-base text-sm  rounded-bl-lg rounded-br-lg bg-[#FFE134]'>
-                                        <p className="text-[#E91E31] text-sm"> {item.name}</p>
-                                        <p className=""> {item.role}</p>
+                                        <p className="text-[#E91E31] md:text-lg text-base baumans-regular"> {item.name}</p>
+                                        <p className="vietnam text-sm"> {item.role}</p>
                                     </div>
                                 </div>
                             ))}
                         </div>
                         <div>
-                            <Link to='/about'>
-                                <div className=' concert-one-regular cursor-pointer  text-[#E91E31] rounded-lg px-3 hover:bg-[#E91E31] hover:text-white duration-200 bg-white p-2 w-fit mx-auto'>
+
+                            <div className=' concert-one-regular cursor-pointer  text-[#E91E31] rounded-lg px-3 hover:bg-[#E91E31] hover:text-white duration-200 bg-white p-2 w-fit mx-auto'>
+                                <Link to='/about'>
                                     VIEW ALL
-                                </div>
-                            </Link>
+                                </Link>
+                            </div>
+
                         </div>
                     </div>
                 </div>

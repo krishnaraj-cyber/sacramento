@@ -29,7 +29,7 @@ function Feedback(props) {
                                 <label htmlFor=" " className='text-lg'>Feedback</label>
                                 <input type="text" name="" id="" className='p-2 rounded-md' />
                             </div>
-                            <button className='bg-[#E91E31] hover:text-[#E91E31] py-2 px-3  mt-7  hover:bg-white duration-200 text-white  rounded-md'>
+                            <button className='bg-[#E91E31] hover:text-[#E91E31] py-2 px-3  mt-7 concert-one-regular hover:bg-white duration-200 text-white  rounded-md'>
                                 SEND
                             </button>
                         </div>
@@ -57,11 +57,7 @@ function Feedback(props) {
                                     <button
                                         key={status}
                                         onClick={() => setActiveStatus(status)}
-                                        className={`px-4 py-2 rounded-md  whitespace-nowrap font-semibold text-sm   ${activeStatus === status
-                                            ? 'bg-[#0571BC] text-white'
-                                            : 'bg-[#FFE134]  '
-                                            }`}
-                                    >
+                                        className={`px-4 py-2 rounded-md  whitespace-nowrap font-semibold text-sm   ${activeStatus === status ? 'bg-[#0571BC] text-white' : 'bg-[#FFE134]  '}`}  >
                                         {status}
                                     </button>
                                 ))}

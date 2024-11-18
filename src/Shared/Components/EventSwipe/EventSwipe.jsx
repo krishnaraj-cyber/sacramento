@@ -15,7 +15,7 @@ function EventSwipe(props) {
                         <section className="flex flex-col items-center relative  px-14 ">
                             <Swiper
                                 slidesPerView={1}
-                                
+
                                 loop={true}
                                 autoplay={{ delay: 3000, disableOnInteraction: false, }}
                                 breakpoints={{
@@ -31,8 +31,7 @@ function EventSwipe(props) {
                                 }}
                                 navigation={{ nextEl: '.swiper-button-nextdeals', prevEl: '.swiper-button-prevdeals' }}
                                 modules={[Pagination, Navigation, Autoplay]}
-                                className="w-full "
-                            >
+                                className="w-full "  >
                                 {Events.map((sponsor, index) => (
                                     <SwiperSlide key={index} className="flex justify-center">
                                         <div>
