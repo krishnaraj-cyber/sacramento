@@ -9,7 +9,7 @@ function Header() {
   const [isAboutOpen, setIsAboutOpen] = useState(false);
   const handleLinkClick = () => {
     setOpen(false);
-    setIsAboutOpen(false);  
+    setIsAboutOpen(false);
   };
   return (
     <>
@@ -31,21 +31,14 @@ function Header() {
               <Hamburger toggled={isOpen} toggle={setOpen} />
             </div>
             <div className="text-[#f4e316] lg:block hidden space-x-2">
-              <Link
-                to="/"
-                className={`p-3 ps-px sm:px-3 md:py-2 2xl:text-lg text-sm hover:text-white hover:bg-[#0470BC] ${isActive('/') ? 'text-white bg-[#0470BC]' : 'text-[#E91E31]'
-                  }`}
-              >
+              <Link to="/" className={`p-3 ps-px sm:px-3 md:py-2 2xl:text-lg text-sm hover:text-white hover:bg-[#0470BC] ${isActive('/') ? 'text-white bg-[#0470BC]' : 'text-[#E91E31]'}`}  >
                 Home
               </Link>
-              <Link
-                onMouseEnter={() => setIsHovered(true)}
-                onMouseLeave={() => setIsHovered(false)}
+              <Link onMouseEnter={() => setIsHovered(true)} onMouseLeave={() => setIsHovered(false)}
                 className={`p-3 ps-px sm:px-3 md:py-2 2xl:text-lg group text-[#5E0000] text-sm relative hover:text-white hover:bg-[#0470BC] ${isActive('/about') || isActive('/goal') || isActive('/financial') || isActive('/youth') ? 'text-white bg-[#0470BC]' : 'text-[#E91E31]'}`}>
                 About Us
-                <i
-                  className={`fi fi-rr-angle-small-down text-red-500 group-hover:text-white relative top-1 ${isActive('/about') || isActive('/goal') || isActive('/financial') || isActive('/youth') ? 'text-white bg-[#0470BC]' : 'text-[#E91E31]'
-                    }`}
+                <i className={`fi fi-rr-angle-small-down text-red-500 group-hover:text-white relative top-1  ${isActive('/about') || isActive('/goal') || isActive('/financial') || isActive('/youth') ? 'text-white bg-[#0470BC]' : 'text-[#E91E31]'
+                  }${isHovered ? 'rotate-180' : 'rotate-0'}`}
                 ></i>
                 {isHovered && (
                   <div className="absolute left-0  mt-[6.5px] bg-white border rounded shadow-lg w-60">

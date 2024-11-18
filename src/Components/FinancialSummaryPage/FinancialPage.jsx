@@ -4,9 +4,7 @@ import AboutUs from '../../Shared/Components/About/AboutUs';
 import SponsorSwiper from '../../Shared/Components/SponsorSwiper/SponsorSwiper';
 function FinancialPage() {
     const [isOpen, setIsOpen] = useState(false);
-    const openModal = () => {
-        setIsOpen(true);
-    };
+    const [selectedId, setSelectedId] = useState(null);
     const accordionItems = [
         { id: 2023, content: 'Financial data for 2023' },
         { id: 2022, content: 'Financial data for 2022' },
@@ -27,7 +25,7 @@ function FinancialPage() {
     return (
         <>
             <AboutUs title="FINANCIAL SUMMARY" />
-            <FinancialSummary openAccordions={openAccordions} isOpen={isOpen} openModal={openModal} accordionItems={accordionItems} toggleAccordion={toggleAccordion} setOpenAccordions={setOpenAccordions} />
+            <FinancialSummary openAccordions={openAccordions} selectedId={selectedId} setSelectedId={setSelectedId} isOpen={isOpen} setIsOpen={setIsOpen} accordionItems={accordionItems} toggleAccordion={toggleAccordion} setOpenAccordions={setOpenAccordions} />
             <SponsorSwiper />
         </>
     )
