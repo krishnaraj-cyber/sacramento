@@ -7,20 +7,16 @@ import 'swiper/css/pagination';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Pagination, Autoplay } from 'swiper/modules';
 function VideoSwiper() {
-    const mobilePreviousRef = useRef(null);
-    const mobileNextStepRef = useRef(null);
+    const videoRef = useRef(null);
+    const videoNextStepRef = useRef(null);
     return (
         <>
             <div className='  max-w-[78rem] mx-auto my-20 space-y-5'>
-                
-                 <section className="flex flex-col items-center relative  px-10">
+                <section className="flex flex-col items-center relative  px-10">
                     <Swiper
                         slidesPerView={1}
                         loop={true}
-                        autoplay={{
-                            delay: 3000,
-                            disableOnInteraction: false,
-                        }}
+
                         breakpoints={{
                             0: {
                                 slidesPerView: 1,
@@ -32,33 +28,33 @@ function VideoSwiper() {
                                 slidesPerView: 1,
                             },
                         }}
-                        navigation={{ nextEl: '.swiper-button-nextdeal', prevEl: '.swiper-button-prevdeal' }}
+                        navigation={{ nextEl: '.swiper-video-nextdeal', prevEl: '.swiper-video-prevdeal' }}
                         modules={[Pagination, Navigation, Autoplay]}
-                        className=" w-full   "
-                    >
+                        className=" w-full   "  >
                         {Video.map((sponsor, index) => (
                             <SwiperSlide key={index} className="flex justify-center">
-                                <div>
-                                    <h3 className="text-xl font-semibold mb-2">{sponsor.tier}</h3>
-                                    <div className="flex items-center space-x-4">
-                                        <img src={sponsor.imgSrc} className="bg-no-repeat" />
-                                    </div>
-                                </div>
+                                <video controls className="w-full h-auto rounded-lg px-5"  >
+                                    <source src={sponsor.videoSrc} type="video/mp4" />
+                                    Your browser does not support the video tag.
+                                </video>
                             </SwiperSlide>
                         ))}
                     </Swiper>
                     <div
-                        ref={mobileNextStepRef}
+                        ref={videoNextStepRef}
                         className="absolute  right-0   top-[47%]   z-40 cursor-pointer"  >
-                        <img className=" swiper-button-nextdeal px-2 w-14" src="/assets/images/Pagination/Next page.png" alt="Previous" />
+                        <img className=" swiper-video-nextdeal px-2 w-14" src="/assets/images/Pagination/Next page.png" alt="Previous" />
                     </div>
                     <div
-                        ref={mobilePreviousRef}
+                        ref={videoRef}
                         className="absolute  left-0 top-[47%]   z-40 cursor-pointer">
-                        <img className=" swiper-button-prevdeal px-2 w-14" src="/assets/images/Pagination/Next page (1).png" alt="Next" />
+                        <img className=" swiper-video-prevdeal px-2 w-14" src="/assets/images/Pagination/Next page (1).png" alt="Next" />
                     </div>
                 </section>
             </div>
+ 
+    
+
         </>
     )
 }

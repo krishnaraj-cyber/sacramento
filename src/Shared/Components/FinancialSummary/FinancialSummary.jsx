@@ -23,10 +23,7 @@ function FinancialSummary(props) {
                         </button>
                         <div className={`overflow-hidden transition-all duration-500 ease-in-out ${openAccordions[item.id] ? 'max-h-96' : 'max-h-0'}`}   >
                             {openAccordions[item.id] && (
-                                <div
-                                    className="p-4 bg-gray-50 cursor-pointer"
-                                    onClick={() => { setSelectedId(item.id); setIsOpen(true); }}  >
-                                    {item.content}
+                                <div className="p-4 bg-gray-50 cursor-pointer" onClick={() => { setSelectedId(item.id); setIsOpen(true); }}  >   {item.content}
                                 </div>
                             )}
                         </div>
@@ -35,14 +32,11 @@ function FinancialSummary(props) {
             </section>
 
             {isOpen && (
-                <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center px-5">
+                <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center px-5 z-50">
                     <div className="bg-white p-5 rounded-lg shadow-lg max-w-md w-full">
                         <div className="p-4 bg-gray-50">   {accordionItems.find((item) => item.id === selectedId)?.content}
                         </div>
-                        <button
-                            className="mt-4 px-4 py-2 bg-blue-500 text-white rounded"
-                            onClick={() => { setIsOpen(false); setSelectedId(null); }}
-                        >
+                        <button className="mt-4 px-4 py-2 bg-blue-500 text-white rounded" onClick={() => { setIsOpen(false); setSelectedId(null); }}  >
                             Close
                         </button>
                     </div>
