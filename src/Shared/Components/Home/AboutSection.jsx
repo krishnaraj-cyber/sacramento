@@ -61,7 +61,6 @@ function AboutSection() {
                             ))}
                         </div>
                         <div>
-
                             <div className=' concert-one-regular cursor-pointer  text-[#E91E31] rounded-lg px-3 hover:bg-[#E91E31] hover:text-white duration-200 bg-white p-2 w-fit mx-auto'>
                                 <Link to='/about'>
                                     VIEW ALL
