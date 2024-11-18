@@ -1,18 +1,18 @@
 import React from 'react'
-import { Sponsor } from '../../../../public/assets/Json/Swiper'
+import { Video } from '../../../../public/assets/Json/VideoSwiper'
 import { useRef } from 'react';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Pagination, Autoplay } from 'swiper/modules';
-function SponsorSwiper() {
+function VideoSwiper() {
     const mobilePreviousRef = useRef(null);
     const mobileNextStepRef = useRef(null);
     return (
         <>
             <div className='  max-w-[78rem] mx-auto my-20 space-y-5'>
-                <h2 className=" text-2xl md:text-3xl font-bold text-center text-red-600  concert-one-regular">OUR SPONSORS</h2>
+                
                  <section className="flex flex-col items-center relative  px-10">
                     <Swiper
                         slidesPerView={1}
@@ -26,17 +26,17 @@ function SponsorSwiper() {
                                 slidesPerView: 1,
                             },
                             768: {
-                                slidesPerView: 2,
+                                slidesPerView: 1,
                             },
                             1024: {
-                                slidesPerView: 3,
+                                slidesPerView: 1,
                             },
                         }}
                         navigation={{ nextEl: '.swiper-button-nextdeal', prevEl: '.swiper-button-prevdeal' }}
                         modules={[Pagination, Navigation, Autoplay]}
                         className=" w-full   "
                     >
-                        {Sponsor.map((sponsor, index) => (
+                        {Video.map((sponsor, index) => (
                             <SwiperSlide key={index} className="flex justify-center">
                                 <div>
                                     <h3 className="text-xl font-semibold mb-2">{sponsor.tier}</h3>
@@ -62,4 +62,4 @@ function SponsorSwiper() {
         </>
     )
 }
-export default SponsorSwiper
+export default VideoSwiper

@@ -48,6 +48,9 @@ function Header() {
                     <Link to="/goal" className={`block px-4 py-2 text-[#E91E31] hover:bg-[#0470BC] hover:text-white ${isActive('/goal') ? 'text-white bg-[#0470BC]' : 'text-[#E91E31]'}`}>
                       Goals
                     </Link>
+                    <Link to="/laws" className={`block px-4 py-2 text-[#E91E31] hover:bg-[#0470BC] hover:text-white ${isActive('/laws') ? 'text-white bg-[#0470BC]' : 'text-[#E91E31]'}`}>
+                      By Laws
+                    </Link>
                     <Link to="/financial" className={`block px-4 py-2 text-[#E91E31] hover:bg-[#0470BC] hover:text-white ${isActive('/financial') ? 'text-white bg-[#0470BC]' : 'text-[#E91E31]'}`}>
                       Financial Summary
                     </Link>
@@ -114,6 +117,9 @@ function Header() {
                 </Link>
                 <Link to="/goal" className={`block text-[#f4e316] hover:underline ${isActive('/goal') ? 'text-white' : 'text-[#f4e316]'}`} onClick={() => setOpen(false)}>
                   Goals
+                </Link>
+                <Link to="/laws" className={`block text-[#f4e316] hover:underline ${isActive('/laws') ? 'text-white' : 'text-[#f4e316]'}`} onClick={() => setOpen(false)}>
+                  By Laws
                 </Link>
                 <Link to="/financial" className={`block text-[#f4e316] hover:underline ${isActive('/financial') ? 'text-white' : 'text-[#f4e316]'}`} onClick={() => setOpen(false)}>
                   Financial Summary

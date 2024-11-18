@@ -7,10 +7,11 @@ function FinancialSummary(props) {
 
     return (
         <>
-            <section className="max-w-[50rem] mx-auto px-5 my-10">
+            <section className="max-w-[50rem] mx-auto px-5 my-10  ">
+                <p className="text-center text-[#E52E3D] md:text-3xl text-2xl concert-one-regular my-5">YEARS</p>
                 {accordionItems.map((item) => (
                     <div key={item.id} className="">
-                        <button className="flex items-center w-full justify-between bg-gray-100 border-b-2 p-2" onClick={() => toggleAccordion(item.id)}   >
+                        <button className="flex items-center w-full justify-between bg-gray-100 border-b-2 p-2 text-[#0571BC] font-bold" onClick={() => toggleAccordion(item.id)}   >
                             {item.id}
                             <span className="ml-2">
                                 {openAccordions[item.id] ? (
@@ -24,11 +25,7 @@ function FinancialSummary(props) {
                             {openAccordions[item.id] && (
                                 <div
                                     className="p-4 bg-gray-50 cursor-pointer"
-                                    onClick={() => {
-                                        setSelectedId(item.id);
-                                        setIsOpen(true);
-                                    }}
-                                >
+                                    onClick={() => { setSelectedId(item.id); setIsOpen(true); }}  >
                                     {item.content}
                                 </div>
                             )}
