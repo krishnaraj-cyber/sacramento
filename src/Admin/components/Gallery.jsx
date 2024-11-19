@@ -176,11 +176,15 @@ export default function Gallery() {
   const handleupdate=async (e)=>{
     e.preventDefault();
     setLoading(true)
-    await updateGallerys(formdata)
+    await updateGallerys(formdata,(progressEvent) => {
+      const percentCompleted = Math.round((progressEvent.loaded * 100) / progressEvent.total);
+      setProgress(percentCompleted);
+    })
     toast.success("Sucessfully updated")
     getallGallery()
     setVisible(false);
     setLoading(false);
+    setProgress(0)
     setDataUrl(null)
   }
 

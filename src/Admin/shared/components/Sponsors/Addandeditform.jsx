@@ -33,7 +33,7 @@ export default function Addandeditform(props) {
                                     <p className="mb-2 text-sm text-gray-500 dark:text-gray-400">
                                         <span className="font-semibold">Click to upload</span>
                                     </p>
-                                    <input type="file" name="Image" multiple onChange={handlechange} className="hidden" />
+                                    <input type="file" name="Image" multiple required onChange={handlechange} className="hidden" />
                                 </div>
                             )}
                         </label>
