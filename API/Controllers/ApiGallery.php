@@ -185,33 +185,22 @@ public function updateGallery() {
             throw new Exception("No data provided for update.");
         }
 
-        if (!empty($_FILES['Image']['tmp_name'])) {
-            $folderName = 'Upload/gallery/images';
-            if (!file_exists($folderName)) {
-                mkdir($folderName, 0777, true);
-            }
-
-            // Handle multiple files (if applicable)
-            if (is_array($_FILES['Image']['tmp_name'])) {
-                $filePaths = [];
-                foreach ($_FILES['Image']['tmp_name'] as $index => $tmpName) {
-                    $fileName = time() . '_' . $_FILES['Image']['name'][$index];
-                    $destination = "$folderName/$fileName";
-                    if (move_uploaded_file($tmpName, $destination)) {
-                        $filePaths[] = $destination;
-                    }
-                }
-                // Assign the file paths to reqdata if multiple files
-                $reqdata['Image'] = implode(',', $filePaths); // Storing paths as comma-separated values for multiple files
-            } else {
-                // Single file upload
-                $destination = "$folderName/" . time() . '_' . $_FILES['Image']['name'];
-                if (move_uploaded_file($_FILES['Image']['tmp_name'], $destination)) {
-                    $reqdata['Image'] = $destination;
+        $folderName = 'Upload/gallery/images';
+        if (!file_exists($folderName)) {
+            mkdir($folderName, 0777, true);
+        }
+        if (!empty($_FILES['Image']['tmp_name'][0])) {
+            $uploadedImages = [];
+            foreach ($_FILES['Image']['tmp_name'] as $key => $tmpName) {
+                $fileName = time() . '_' . $_FILES['Image']['name'][$key];
+                $destination = "$folderName/$fileName";
+                if (move_uploaded_file($tmpName, $destination)) {
+                    $uploadedImages[] = $destination;
                 }
             }
-        } elseif (isset($reqdata['Image'])) {
-            $reqdata['Image'] = $reqdata['Image'];
+            $reqdata['Image'] = implode(',', $uploadedImages);
+        } elseif (isset($_POST['ExistingImages']) && is_array($_POST['ExistingImages'])) {
+            $reqdata['Image'] = implode(',', $_POST['ExistingImages']);
         } else {
             $reqdata['Image'] = '';
         }
@@ -229,6 +218,7 @@ public function updateGallery() {
         echo json_encode(["error" => $e->getMessage()]);
     }
 }
+
 
 
     public function getGallerybyid(){
