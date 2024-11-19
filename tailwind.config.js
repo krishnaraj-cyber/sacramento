@@ -1,19 +1,29 @@
 /** @type {import('tailwindcss').Config} */
+import { nextui } from '@nextui-org/react'
+
 export default {
   content: [
     "./index.html",
-    "./src/**/*.{js,jsx,ts,tsx}",
+    "./src/**/*.{js,ts,jsx,tsx}",
     'node_modules/preline/dist/*.js',
+    "./node_modules/@nextui-org/theme/dist/**/*.{js,ts,jsx,tsx}"
   ],
   theme: {
     extend: {
-      backgroundImage: {
-        'home-page': "url('/Images/final-image.jpeg')",
-        'about-page': "url('/Images/about.png')",
-        'mobile': "url('/Images/mobile1.jpg')",
+      colors:{
+        "primary":"#195593",
+        "secondary":"#288043"
+      },
+      backgroundImage:{
+        "wall1":"url('/assets/images/Wallpaper/Wall_02.jpg')",
+        "wall2":"url('/assets/images/Wallpaper/Wall_04.png')"
       },
     },
   },
-  plugins: [    require('preline/plugin' , 'tailwindcss-animated'),
+  plugins: [
+    nextui(),
+    require('preline/plugin'),
+    require('tailwindcss-animated')
   ],
 }
+

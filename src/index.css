@@ -6,10 +6,18 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+
 body{
     font-family: "Poppins", sans-serif;
 }
-  
+
+
+html {
+    scroll-behavior: smooth;
+}
+
 .text-outline-yellow {
   text-shadow: 2px 2px 0 #FFD700, -2px -2px 0 #FFD700, 2px -2px 0 #FFD700, -2px 2px 0 #FFD700;
 }

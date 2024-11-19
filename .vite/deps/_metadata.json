@@ -1,4 +1,12 @@
 {
+<<<<<<< HEAD
+  "hash": "9b208b0d",
+  "configHash": "bfa10fd5",
+  "lockfileHash": "e3b0c442",
+  "browserHash": "f73a76f6",
+  "optimized": {},
+  "chunks": {}
+=======
   "hash": "8eef9e1f",
   "configHash": "4afec9fa",
   "lockfileHash": "98099a48",
@@ -67,4 +75,5 @@
       "file": "chunk-5WRI5ZAA.js"
     }
   }
+>>>>>>> yuvaraj-front
 }

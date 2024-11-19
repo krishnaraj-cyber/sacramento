@@ -1,7 +1,9 @@
 import React from 'react'
 import { Member } from '../../../assets/Json/BoardMember'
 import { Link } from 'react-router-dom'
-function AboutSection() {
+import apiurl from '../../../shared/services/apiendpoint/apiendpoint';
+function AboutSection(props) {
+    const { boardmem } = props;
     return (
         <>
             <section className="bg-[url('/assets/images/Main/Main-section.png')]   space-y-20   md:py-20 md:pt-0  lg:pt-20 md:mb-0     w-full">
@@ -50,12 +52,12 @@ function AboutSection() {
                     <div className='bg-[#0571BC] space-y-6 rounded-2xl p-5 '>
                         <p className="text-[#FFE134] text-center md:text-4xl text-2xl concert-one-regular" >BOARD MEMBERS</p>
                         <div className='flex justify-evenly flex-wrap gap-6 text-center'>
-                            {Member.map((item, index) => (
-                                <div key={index} className="  ">
-                                    <img src={item.imgSrc} />
+                            {boardmem.slice(0, 3).map((item, index) => (
+                                <div key={index} className=" min-w-[250px] ">
+                                    <img className='w-full mx-auto' src={`${apiurl()}/${item.Image}`} />
                                     <div className='border   mx-3 md:text-base text-sm  rounded-bl-lg rounded-br-lg bg-[#FFE134]'>
-                                        <p className="text-[#E91E31] md:text-lg text-base baumans-regular"> {item.name}</p>
-                                        <p className="vietnam text-sm"> {item.role}</p>
+                                        <p className="text-[#E91E31] md:text-lg text-base baumans-regular"> {item.Name}</p>
+                                        <p className="vietnam text-sm"> {item.Designation}</p>
                                     </div>
                                 </div>
                             ))}
