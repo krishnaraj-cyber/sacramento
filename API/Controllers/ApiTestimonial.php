@@ -51,16 +51,15 @@ class Controllerstestimonial extends Controller {
     }
     public function updaTetestimonial(){
         try {
-           $verify = Authentication::verifyJWT();
-           if ($verify == "Unauthorized") {
+            $verify = Authentication::verifyJWT();
+            if ($verify == "Unauthorized") {
                http_response_code(401);
                echo json_encode(array("error" => "Unauthorized"));
-           } else {
-        
+            }
+            else {
                 $postdata = file_get_contents("php://input");
                 $reqdata = json_decode($postdata, true);
                 $datas=$_POST;
-
                 
                 $resdata = (new ModelsTestimonial)->Update($reqdata,$reqdata['id']);
                 $this->response->sendStatus(200);

@@ -42,6 +42,10 @@ final class PDO {
 
     }
     
+
+    public function prepare($sql) {
+        return $this->pdo->prepare($sql);  // Forward the call to PDO's prepare method
+    }
     /**
      * exec query statement
      */

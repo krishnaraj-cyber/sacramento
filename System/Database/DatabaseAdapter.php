@@ -54,4 +54,8 @@ class DatabaseAdapter {
     public function getLastId() {
         return $this->dbConnection->getLastId();
     }
+
+    public function prepare($query) {
+        return $this->dbConnection->prepare($query);
+    }
 }

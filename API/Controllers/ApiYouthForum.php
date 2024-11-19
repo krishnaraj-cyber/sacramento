@@ -1,62 +1,32 @@
 <?php
-require './API/Models/sponsor.php';
+require './API/Models/YouthForum.php';
 use Auth\Authentication;
-use Models\ModelsSponsor;
+use Models\ModelsYouthForum;
 use MVC\Controller;
-class ControllersSponsor extends Controller {
-    public function getSponsorbyid(){
+class ControllersYouthForum extends Controller {
+    public function getYouthForumbyid(){
         try {
                $id=$this->request->get('id');
-               $blog=new ModelsSponsor();
-               $resdata =$blog->lastrecord($id);
+               $studentachivement=new ModelsYouthForum();
+               $resdata =$studentachivement->lastrecord($id);
+               $this->response->sendStatus(200);
+               $this->response->setContent($resdata);
+            } catch (Exception $e) {
+            echo 'Error Message: ' . $e->getMessage();
+        } 
+    }public function getallYouthForum(){
+        try {
+               $id=$this->request->get();
+               $studentachivement=new ModelsYouthForum();
+               $resdata =$studentachivement->getall();
                $this->response->sendStatus(200);
                $this->response->setContent($resdata);
             } catch (Exception $e) {
             echo 'Error Message: ' . $e->getMessage();
         } 
     }
-    public function getallsponsor(){
-        try {
-                $id=$this->request->get();
-                $blog=new ModelsSponsor();
-                $resdata =$blog->getall();
-                if($resdata) {
-                $this->response->sendStatus(200);
-                $this->response->setContent($resdata);
-            } else {
-                $this->response->sendStatus(404);
-                $this->response->setContent(['message' => 'No sponsors found']);
-            }
-            } catch (Exception $e) {
-            echo 'Error Message: ' . $e->getMessage();
-        } 
-    }
 
-    // public function savesponsor()
-    // {
-    //     try {
-    //        $verify = Authentication::verifyJWT();
-    //        if ($verify == "Unauthorized") {
-    //            http_response_code(401);
-    //            echo json_encode(array("error" => "Unauthorized"));
-    //        } else {
-      
-    //             $postdata = file_get_contents("php://input");
-    //             $reqdata = json_decode($postdata, true);
-                                
-
-    //              $blog=new ModelsSponsor();
-    //              $resdata =$blog->save($reqdata);
-    //              $this->response->sendStatus(200);
-    //              $this->response->setContent($resdata);
-    //        }
-            
-    //     } catch (Exception $e) {
-    //         echo 'Error Message: ' . $e->getMessage();
-    //     }
-    // }
-
-    public function savesponsor() {
+    public function saveYouthForum() {
         try {
             if (Authentication::verifyJWT() === "Unauthorized") {
                 http_response_code(401);
@@ -71,7 +41,7 @@ class ControllersSponsor extends Controller {
             }
 
             if (!empty($_FILES['Image']['tmp_name'])) {
-                $folderName = 'Upload/sponsor';
+                $folderName = 'Upload/youthforum';
                 if (!file_exists($folderName)) mkdir($folderName, 0777, true);
                 $destination = "$folderName/" . time() . '_' . $_FILES['Image']['name'];
                 move_uploaded_file($_FILES['Image']['tmp_name'], $destination);
@@ -82,7 +52,7 @@ class ControllersSponsor extends Controller {
                 $reqdata['Image'] = '';
             }
     
-            $faculties = new ModelsSponsor();
+            $faculties = new ModelsYouthForum();
             $resdata = $faculties->save($reqdata);
     
             $this->response->sendStatus(200);
@@ -92,9 +62,8 @@ class ControllersSponsor extends Controller {
             echo 'Error Message: ' . $e->getMessage();
         }
     }
-    
-    
-    public function updatesponsor() {
+
+    public function updateYouthForum() {
         try {
             $verify = Authentication::verifyJWT();
             if ($verify == "Unauthorized") {
@@ -110,7 +79,7 @@ class ControllersSponsor extends Controller {
             }
     
             if (!empty($_FILES['Image']['tmp_name'])) {
-                $folderName = 'Upload/sponsor';
+                $folderName = 'Upload/youthforum';
                 if (!file_exists($folderName)) mkdir($folderName, 0777, true);
                 $destination = "$folderName/" . time() . '_' . $_FILES['Image']['name'];
                 move_uploaded_file($_FILES['Image']['tmp_name'], $destination);
@@ -125,7 +94,7 @@ class ControllersSponsor extends Controller {
             if (!$id) {
                 throw new Exception("Missing ID parameter.");
             }
-            $resdata = (new ModelsSponsor)->update($reqdata, $id);
+            $resdata = (new ModelsYouthForum)->update($reqdata, $id);
             $this->response->sendStatus(200);
             $this->response->setContent($resdata);
         } catch (Exception $e) {
@@ -135,23 +104,22 @@ class ControllersSponsor extends Controller {
     }
 
 
-    public function deletesponsor(){
+    public function deleteYouthForum(){
         try {
            $verify = Authentication::verifyJWT();
            if ($verify == "Unauthorized") {
                http_response_code(401);
                echo json_encode(array("error" => "Unauthorized"));
-           }  if (isset($_GET['id'])) {
-            error_log("Deleting sponsor with ID: " . $_GET['id']);
-            $blog = new ModelsSponsor();
-            $blog->Delete($_GET['id']);
-            $this->response->sendStatus(200);
-            $this->response->setContent("Deleted successfully");
-        } else {
-            error_log("ID parameter missing in request");
-            $this->response->sendStatus(400);
-            echo json_encode(["error" => "ID parameter missing"]);
-        }
+           } else {
+           
+                $reqdata = $this->request->input();
+                $studentachivement=new ModelsYouthForum();
+            
+        
+                $studentachivement->Delete($_GET['id']);
+                $this->response->sendStatus(200);
+                $this->response->setContent('Deleted successfully');
+           }
             
         } catch (Exception $e) {
             echo 'Error Message: ' . $e->getMessage();

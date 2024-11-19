@@ -24,19 +24,27 @@ class ModelsBoardmembers extends Model {
         $fdata=$this->lastrecord($id);
         return $fdata;
     }
-    public function Update($data,$id) {
-        if(array_key_exists("id",$data))
-        {
-           unset($data['id']);
+   
+    public function Update($data, $id) {
+        if (array_key_exists("id", $data)) {
+            unset($data['id']);
         }
-        $cols = array();
+        $cols = [];
+        $values = [];
         foreach ($data as $key => $val) {
-            $cols[] = "$key = '$val'";
+            $cols[] = "$key = ?";
+            $values[] = $val;
         }
-        $query = $this->db->query("UPDATE " . DB_PREFIX . "boardmembers SET " . implode(', ', $cols) . " WHERE id=" . $id);
-        $fdata = $this->lastrecord($id);
-        return $fdata;
+        $query = "UPDATE " . DB_PREFIX . "boardmembers SET " . implode(', ', $cols) . " WHERE id = ?";
+        $values[] = (int)$id; 
+        $stmt = $this->db->prepare($query); 
+        if ($stmt->execute($values)) {
+            return $this->lastRecord($id);
+        } else {
+            throw new Exception("Failed to update record.");
+        }
     }
+
     public function Delete($id) {
         $query = $this->db->query("DELETE FROM " . DB_PREFIX ."boardmembers WHERE id=".$id);
         return $id;

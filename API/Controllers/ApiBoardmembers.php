@@ -111,43 +111,38 @@ public function updateBoardmembers() {
         $verify = Authentication::verifyJWT();
         if ($verify == "Unauthorized") {
             http_response_code(401);
-            echo json_encode(array("error" => "Unauthorized"));
+            echo json_encode(["error" => "Unauthorized"]);
             return;
-        } else {
-            $reqdata = json_decode(file_get_contents("php://input"), true);
-            $destination = ''; 
-            if (isset($_FILES['Image']) && !empty($_FILES['Image']['tmp_name'])) {
-                $uploadedFile = $_FILES['Image']['tmp_name'];
-                $folderName = 'Upload/boardmembersimg';
-                if (!file_exists($folderName)) {
-                    mkdir($folderName, 0777, true);
-                }
-
-                $destination = $folderName . '/' . time() . '_' . $_FILES['Image']['name'];
-
-                if (move_uploaded_file($uploadedFile, $destination)) {
-                    $reqdata['Image'] = $destination;
-                }
-            }
-
-            if (!isset($reqdata['id']) || empty($reqdata['id'])) {
-                if (!isset($_GET['id']) || empty($_GET['id'])) {
-                    throw new Exception("Missing 'id' for update operation.");
-                }
-                $reqdata['id'] = $_GET['id'];
-            }
-
-            if (!isset($reqdata['Image']) || empty($reqdata['Image'])) {
-                $existingRecord = (new ModelsBoardmembers)->lastrecord($reqdata['id']); 
-                $reqdata['Image'] = isset($existingRecord['Image']) ? $existingRecord['Image'] : '';
-            }
-            $resdata = (new ModelsBoardmembers)->Update($reqdata, $reqdata['id']);
-
-            $this->response->sendStatus(200);
-            $this->response->setContent($resdata);
         }
-    } catch (\Exception $e) {
-        echo 'Error Message: ' . $e->getMessage();
+        $reqdata = $_POST;
+        $files = $_FILES;
+
+        if (empty($reqdata)) {
+            throw new Exception("No data provided for update.");
+        }
+
+        if (!empty($_FILES['Image']['tmp_name'])) {
+            $folderName = 'Upload/boardmembersimg';
+            if (!file_exists($folderName)) mkdir($folderName, 0777, true);
+            $destination = "$folderName/" . time() . '_' . $_FILES['Image']['name'];
+            move_uploaded_file($_FILES['Image']['tmp_name'], $destination);
+            $reqdata['Image'] = $destination;
+        } elseif (isset($reqdata['Image'])) {
+            $reqdata['Image'] = $reqdata['Image'];
+        } else {
+            $reqdata['Image'] = '';
+        }
+
+        $id = $_GET['id'] ?? null;
+        if (!$id) {
+            throw new Exception("Missing ID parameter.");
+        }
+        $resdata = (new ModelsBoardmembers)->update($reqdata, $id);
+        $this->response->sendStatus(200);
+        $this->response->setContent($resdata);
+    } catch (Exception $e) {
+        http_response_code(400); 
+        echo json_encode(["error" => $e->getMessage()]);
     }
 }
 
