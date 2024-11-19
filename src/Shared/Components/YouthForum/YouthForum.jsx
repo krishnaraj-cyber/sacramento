@@ -1,5 +1,5 @@
 import React from 'react'
-import { Youthforum } from '../../../../public/assets/Json/YouthForum'
+import { Youthforum } from '../../../assets/Json/YouthForum'
 function YouthForum() {
     return (
         <>

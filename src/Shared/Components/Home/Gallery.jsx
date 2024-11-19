@@ -1,5 +1,5 @@
 import React from 'react'
-import { GallerySec } from '../../../../public/assets/Json/Gallery'
+import { GallerySec } from '../../../assets/Json/Gallery'
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';

@@ -1,5 +1,5 @@
 import React from 'react'
-import { Events } from '../../../../public/assets/Json/NewEvent'
+import { Events } from '../../../assets/Json/NewEvent'
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';

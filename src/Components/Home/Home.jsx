@@ -16,7 +16,7 @@ function Home() {
   return (
     <>
       <HomePage prevRef={prevRef} nextRef={nextRef} />
-        <AboutSection />
+      <AboutSection />
       <Gallery mobilePreviousRef={mobilePreviousRef} mobileNextstepRef={mobileNextstepRef} />
       <Event mobilePrevRef={mobilePrevRef} mobileNextRef={mobileNextRef} />
       <Feedback activeStatus={activeStatus} setActiveStatus={setActiveStatus} statuses={statuses} />

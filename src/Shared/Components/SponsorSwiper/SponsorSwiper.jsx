@@ -1,5 +1,5 @@
 import React from 'react'
-import { Sponsor } from '../../../../public/assets/Json/Swiper'
+import { Sponsor } from '../../../assets/Json/Swiper'
 import { useRef } from 'react';
 import 'swiper/css';
 import 'swiper/css/navigation';

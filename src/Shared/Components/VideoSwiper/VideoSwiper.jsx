@@ -1,5 +1,5 @@
 import React from 'react'
-import { Video } from '../../../../public/assets/Json/VideoSwiper'
+import { Video } from '../../../assets/Json/VideoSwiper'
 import { useRef } from 'react';
 import 'swiper/css';
 import 'swiper/css/navigation';

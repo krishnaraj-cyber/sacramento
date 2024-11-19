@@ -1,6 +1,6 @@
 import React from 'react'
 import AboutUs from './AboutUs'
-import { allMember } from '../../../../public/assets/Json/AllMember'
+import { allMember } from '../../../assets/Json/AllMember'
 import SponsorSwiper from '../SponsorSwiper/SponsorSwiper'
 function Aboutt() {
     return (

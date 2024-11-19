@@ -1,5 +1,5 @@
 import React from 'react'
-import { Member } from '../../../../public/assets/Json/BoardMember'
+import { Member } from '../../../assets/Json/BoardMember'
 import { Link } from 'react-router-dom'
 function AboutSection() {
     return (
