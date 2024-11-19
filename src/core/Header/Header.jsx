@@ -23,7 +23,7 @@ function Header() {
                 </div>
                 <div>
                   <p className="text-[#5E0000] md:text-xl text-sm font-bold">SACRAMENTO</p>
-                  <p className="text-[#0571BC] md:text-base text-sm font-semibold">TAMIL MANDRAM</p>
+                  <p className="text-[#0571BC] md:text-base text-sm font-semibold">TAMIL MANDRUM</p>
                 </div>
               </div>
             </Link>

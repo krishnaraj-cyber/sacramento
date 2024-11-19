@@ -1,0 +1,70 @@
+{
+  "hash": "8eef9e1f",
+  "configHash": "4afec9fa",
+  "lockfileHash": "98099a48",
+  "browserHash": "2536446c",
+  "optimized": {
+    "react": {
+      "src": "../../node_modules/react/index.js",
+      "file": "react.js",
+      "fileHash": "fe4f003f",
+      "needsInterop": true
+    },
+    "react-dom/client": {
+      "src": "../../node_modules/react-dom/client.js",
+      "file": "react-dom_client.js",
+      "fileHash": "9483fe5d",
+      "needsInterop": true
+    },
+    "react-hot-toast": {
+      "src": "../../node_modules/react-hot-toast/dist/index.mjs",
+      "file": "react-hot-toast.js",
+      "fileHash": "27977944",
+      "needsInterop": false
+    },
+    "react-router-dom": {
+      "src": "../../node_modules/react-router-dom/dist/index.js",
+      "file": "react-router-dom.js",
+      "fileHash": "fe658aff",
+      "needsInterop": false
+    },
+    "hamburger-react": {
+      "src": "../../node_modules/hamburger-react/dist-esm/index.js",
+      "file": "hamburger-react.js",
+      "fileHash": "dae83104",
+      "needsInterop": false
+    },
+    "swiper/react": {
+      "src": "../../node_modules/swiper/swiper-react.mjs",
+      "file": "swiper_react.js",
+      "fileHash": "938e40fa",
+      "needsInterop": false
+    },
+    "swiper/modules": {
+      "src": "../../node_modules/swiper/modules/index.mjs",
+      "file": "swiper_modules.js",
+      "fileHash": "733aee80",
+      "needsInterop": false
+    },
+    "react-icons/fa": {
+      "src": "../../node_modules/react-icons/fa/index.mjs",
+      "file": "react-icons_fa.js",
+      "fileHash": "28626870",
+      "needsInterop": false
+    }
+  },
+  "chunks": {
+    "chunk-HCGKX5ED": {
+      "file": "chunk-HCGKX5ED.js"
+    },
+    "chunk-GP5W2EX5": {
+      "file": "chunk-GP5W2EX5.js"
+    },
+    "chunk-WNPTCGAH": {
+      "file": "chunk-WNPTCGAH.js"
+    },
+    "chunk-5WRI5ZAA": {
+      "file": "chunk-5WRI5ZAA.js"
+    }
+  }
+}

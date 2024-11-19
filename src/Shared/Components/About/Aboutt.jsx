@@ -39,7 +39,7 @@ function Aboutt() {
                 </div>
             </section>
             <section className='max-w-[95rem] mx-auto px-5 my-20'>
-                <div className='flex flex-wrap justify-center items-center  gap-10  '>
+                <div className='flex flex-wrap justify-center items-center  md:gap-10 gap-5  '>
                     {allMember.map((item, index) => (
                         <div key={index} className="h-96  w-56 text-center">
                             <img className=' '

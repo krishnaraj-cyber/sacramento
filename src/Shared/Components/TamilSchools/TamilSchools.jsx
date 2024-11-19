@@ -4,7 +4,7 @@ const VideoGallery = (props) => {
 
     return (
         <div className="max-w-[70rem] mx-auto px-5 my-10 space-y-5 ">
-            <div className="">
+            <div className="cursor-pointer">
                 <video key={currentVideo.id} src={currentVideo.src} controls autoPlay className="w-full  rounded-lg shadow-lg" />
             </div>
             <div className="grid md:grid-cols-2 grid-cols-1 gap-4">

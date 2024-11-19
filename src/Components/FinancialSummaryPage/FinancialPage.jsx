@@ -1,15 +1,12 @@
 import React, { useState } from 'react'
 import FinancialSummary from '../../Shared/Components/FinancialSummary/FinancialSummary'
 import AboutUs from '../../Shared/Components/About/AboutUs';
+import { accordionItems } from '../../assets/Json/FinancialSummary';
 import SponsorSwiper from '../../Shared/Components/SponsorSwiper/SponsorSwiper';
 function FinancialPage() {
     const [isOpen, setIsOpen] = useState(false);
     const [selectedId, setSelectedId] = useState(null);
-    const accordionItems = [
-        { id: 2023, content: 'Financial data for 2023' },
-        { id: 2022, content: 'Financial data for 2022' },
-        { id: 2021, content: 'Financial data for 2021' },
-    ];
+    const selectedItem = accordionItems.find((item) => item.id === selectedId);
     const [openAccordions, setOpenAccordions] = useState(() => {
         const initialState = {};
         if (accordionItems.length > 0) {
@@ -25,7 +22,7 @@ function FinancialPage() {
     return (
         <>
             <AboutUs title="FINANCIAL SUMMARY" />
-            <FinancialSummary openAccordions={openAccordions} selectedId={selectedId} setSelectedId={setSelectedId} isOpen={isOpen} setIsOpen={setIsOpen} accordionItems={accordionItems} toggleAccordion={toggleAccordion} setOpenAccordions={setOpenAccordions} />
+            <FinancialSummary openAccordions={openAccordions} selectedId={selectedId} selectedItem={selectedItem} setSelectedId={setSelectedId} isOpen={isOpen} accordionItems={accordionItems} setIsOpen={setIsOpen}   toggleAccordion={toggleAccordion} setOpenAccordions={setOpenAccordions} />
             <SponsorSwiper />
         </>
     )

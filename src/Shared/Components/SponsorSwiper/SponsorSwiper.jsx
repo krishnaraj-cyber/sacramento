@@ -11,9 +11,9 @@ function SponsorSwiper() {
     const mobileNextStepRef = useRef(null);
     return (
         <>
-            <div className='  max-w-[78rem] mx-auto my-20 space-y-5'>
+            <div className='max-w-[78rem] mx-auto md:my-20 my-10 space-y-5'>
                 <h2 className=" text-2xl md:text-3xl font-bold text-center text-red-600  concert-one-regular">OUR SPONSORS</h2>
-                 <section className="flex flex-col items-center relative  px-10">
+                <section className="flex flex-col items-center relative  px-10">
                     <Swiper
                         slidesPerView={1}
                         loop={true}
@@ -34,11 +34,10 @@ function SponsorSwiper() {
                         }}
                         navigation={{ nextEl: '.swiper-button-nextdeal', prevEl: '.swiper-button-prevdeal' }}
                         modules={[Pagination, Navigation, Autoplay]}
-                        className=" w-full   "
-                    >
+                        className=" w-full">
                         {Sponsor.map((sponsor, index) => (
                             <SwiperSlide key={index} className="flex justify-center">
-                                <div>
+                                <div className='cursor-pointer'>
                                     <h3 className="text-xl font-semibold mb-2">{sponsor.tier}</h3>
                                     <div className="flex items-center space-x-4">
                                         <img src={sponsor.imgSrc} className="bg-no-repeat" />

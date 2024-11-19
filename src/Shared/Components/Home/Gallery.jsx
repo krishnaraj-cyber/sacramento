@@ -39,7 +39,7 @@ function Gallery(props) {
               >
                 {GallerySec.map((sponsor, index) => (
                   <SwiperSlide key={index} className="flex justify-center">
-                    <div>
+                    <div className='cursor-pointer'>
                       <div className="flex items-center space-x-4">
                         <img src={sponsor.imgSrc} className="bg-no-repeat" />
                       </div>
