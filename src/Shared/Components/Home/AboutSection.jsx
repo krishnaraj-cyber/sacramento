@@ -53,21 +53,21 @@ function AboutSection(props) {
                         <p className="text-[#FFE134] text-center md:text-4xl text-2xl concert-one-regular" >BOARD MEMBERS</p>
                         <div className='flex justify-evenly flex-wrap gap-6 text-center'>
                             {boardmem.slice(0, 3).map((item, index) => (
-                                <div key={index} className=" min-w-[250px] ">
-                                    <img className='w-full mx-auto' src={`${apiurl()}/${item.Image}`} />
+                                <div key={index} className="      ">
+                                    <img className='  mx-auto border-2 rounded-tr-xl rounded-tl-xl w-60' src={`${apiurl()}/${item.Image}`} />
                                     <div className='border   mx-3 md:text-base text-sm  rounded-bl-lg rounded-br-lg bg-[#FFE134]'>
-                                        <p className="text-[#E91E31] md:text-lg text-base baumans-regular"> {item.Name}</p>
+                                        <p className="text-[#E91E31] md:text-lg text-base baumans-regular "> {item.Name}</p>
                                         <p className="vietnam text-sm"> {item.Designation}</p>
                                     </div>
                                 </div>
                             ))}
                         </div>
                         <div>
-                            <Link to='/board-members'>
-                                <div className=' concert-one-regular cursor-pointer  text-[#E91E31] rounded-lg px-3 hover:bg-[#E91E31] hover:text-white duration-200 bg-white p-2 w-fit mx-auto'>
+                            <div className=' concert-one-regular cursor-pointer  text-[#E91E31] rounded-lg px-3 hover:bg-[#E91E31] hover:text-white duration-200 bg-white p-2 w-fit mx-auto'>
+                                <Link to='/board-members'>
                                     VIEW ALL
-                                </div>
-                            </Link>
+                                </Link>
+                            </div>
                         </div>
                     </div>
                 </div>

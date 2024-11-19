@@ -1,15 +1,13 @@
 
 import './App.css'
-// import Routers from './Router/Router';
 import { PrimeReactProvider } from 'primereact/api';
-import {NextUIProvider} from "@nextui-org/react";
+import { NextUIProvider } from "@nextui-org/react";
 import { Toaster } from 'react-hot-toast';
-
 import "primereact/resources/themes/lara-light-cyan/theme.css";
 import 'react-quill/dist/quill.snow.css';
-import Approuter from './Router/Approuter';
+import Approuter from './router/Approuter';
 
- export default function App() {
+export default function App() {
   window.onbeforeunload = function () {
     window.scrollTo(0, 0);
   }
@@ -17,27 +15,10 @@ import Approuter from './Router/Approuter';
     <>
       <PrimeReactProvider>
         <NextUIProvider>
-          {/* <Routers/> */}
-      <Approuter/>
+          <Approuter />
         </NextUIProvider>
-       <Toaster position="top-right" reverseOrder={false} />
+        <Toaster position="top-right" reverseOrder={false} />
       </PrimeReactProvider>
     </>
   )
 }
- 
-
-// function App() {
-//   window.onbeforeunload = function () {
-//     window.scrollTo(0, 0);
-//   }
-//   return (
-//     <>
-       
-//           <Approuter/>
-        
-     
-//     </>
-//   )
-// }
-// export default App
