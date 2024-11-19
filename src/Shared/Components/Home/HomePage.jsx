@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
 import { Sponsor } from '../../../assets/Json/Swiper'
 import 'swiper/css';
 import 'swiper/css/navigation';
@@ -7,8 +7,14 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Pagination, Autoplay } from 'swiper/modules';
 import { EventProgram } from '../../../assets/Json/Event'
 import CountdownTimer from './CountdownTimer';
+import apiurl from '../../../shared/services/apiendpoint/apiendpoint';
+
 function HomePage(props) {
-    const { prevRef, nextRef, mobileNextRef } = props;
+    const { prevRef, nextRef, mobileNextRef ,sponsors } = props;
+   
+
+      
+
     return (
         <>
             <section className="bg-[url('/assets/images/Header/Hero-sec.png')] bg-cover bg-no-repeat lg:my-0 my-10  flex items-center justify-center    lg:h-[100vh]   w-full">
@@ -58,12 +64,12 @@ function HomePage(props) {
                                     navigation={{ nextEl: '.swiper-button-nextdeal', prevEl: '.swiper-button-prevdeal' }}
                                     modules={[Pagination, Navigation, Autoplay]}
                                     className="w-full max-w-5xl" >
-                                    {Sponsor.map((sponsor, index) => (
+                                    {sponsors.map((sponsor, index) => (
                                         <SwiperSlide key={index} className="flex justify-center">
                                             <div>
-                                                <h3 className="text-xl font-semibold mb-2">{sponsor.tier}</h3>
+                                                {/* <h3 className="text-xl font-semibold mb-2">{sponsor.tier}</h3> */}
                                                 <div className="flex items-center space-x-4">
-                                                    <img src={sponsor.imgSrc} className="bg-no-repeat" />
+                                                    <img src={`${apiurl()}/${sponsor.Image}`} className="bg-no-repeat" />
                                                 </div>
                                             </div>
                                         </SwiperSlide>
