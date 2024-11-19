@@ -2,7 +2,9 @@ import React from 'react'
 import AboutUs from './AboutUs'
 import { allMember } from '../../../assets/Json/AllMember'
 import SponsorSwiper from '../SponsorSwiper/SponsorSwiper'
-function Aboutt() {
+import apiurl from '../../services/apiendpoint/apiendpoint';
+function Aboutt(props) {
+    const {boardmem} = props;
     return (
         <>
             <section>
@@ -38,16 +40,16 @@ function Aboutt() {
                     </div>
                 </div>
             </section>
-            <section className='max-w-[95rem] mx-auto px-5 my-20'>
-                <div className='flex flex-wrap justify-center items-center  md:gap-10 gap-5  '>
-                    {allMember.map((item, index) => (
-                        <div key={index} className="h-96  w-56 text-center">
-                            <img className=' '
-                                src={item.imgSrc}
+            <section className='max-w-[90rem] mx-auto px-5 my-20'>
+                <div className='grid xl:grid-cols-5 md:grid-cols-3 justify-center items-center  md:gap-10 gap-5  '>
+                    {boardmem.map((item, index) => (
+                        <div key={index} className="text-center">
+                            <img className='  w-72 border-2 border-[#0571BC] rounded-t-xl '
+                                src={`${apiurl()}/${item.Image}`}
                             />
                             <div className='  flex flex-col justify-center items-center mx-2  h-24  rounded-bl-lg  rounded-br-lg bg-[#0571BC]'>
-                                <p className="  text-base text-[#FFD900]"> {item.name}</p>
-                                <p className=" text-white  text-xs"> {item.role}</p>
+                                <p className="  text-base text-[#FFD900]"> {item.Name}</p>
+                                <p className=" text-white  text-xs md:text-sm"> {item.Designation}</p>
                             </div>
                         </div>
                     ))}

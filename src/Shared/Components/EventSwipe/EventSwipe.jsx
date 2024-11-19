@@ -5,8 +5,9 @@ import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Pagination, Autoplay } from 'swiper/modules';
+import apiurl from '../../../shared/services/apiendpoint/apiendpoint';
 function EventSwipe(props) {
-    const { mobileNextRef, mobilePrevRef } = props;
+    const { mobileNextRef, mobilePrevRef , event } = props;
     return (
         <>
             <section className=' max-w-[80rem] mx-auto  my-10 md:my-20 '>
@@ -16,6 +17,7 @@ function EventSwipe(props) {
                             <Swiper
                                 slidesPerView={1}
                                 loop={true}
+                                spaceBetween={20}
                                 breakpoints={{
                                     0: { slidesPerView: 1, },
                                     768: { slidesPerView: 2, },
@@ -24,10 +26,10 @@ function EventSwipe(props) {
                                 navigation={{ nextEl: '.swiper-button-nextdeals', prevEl: '.swiper-button-prevdeals' }}
                                 modules={[Pagination, Navigation, Autoplay]}
                                 className="w-full "  >
-                                {Events.map((sponsor, index) => (
+                                {event ?. map((sponsor, index) => (
                                     <SwiperSlide key={index} className="flex justify-center">
                                         <div className="relative group cursor-pointer">
-                                            <img src={sponsor.imgSrc} className="w-full h-full object-cover" />
+                                            <img src={`${apiurl()}/${sponsor.Image}`} className="w-full h-full object-cover" />
                                             <div className="absolute inset-0 bg-black bg-opacity-50 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                                                 <div className="flex items-center justify-center h-full">
                                                     <button className="text-[#E91E31] hover:bg-[#E91E31] hover:text-white duration-200 bg-white px-4 py-2 concert-one-regular rounded">Apply Now</button>

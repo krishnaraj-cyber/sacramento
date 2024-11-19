@@ -1,5 +1,5 @@
 import React from 'react'
-import CountdownTimer from '../Home/CountdownTimer'
+import CountdownTimer from '../../../shared/components/Home/CountdownTimer'
 function Events() {
     return (
         <>
