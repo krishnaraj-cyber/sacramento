@@ -16,7 +16,7 @@ export default function Login(props) {
                         <div className="relative z-0 p-10 overflow-hidden border rounded-xl">
                             <div className="mb-10">
                                 {/* <h1 className="text-2xl font-semibold text-secondary">Login In</h1> */}
-                                <img src="/assets/Images/Logo/logoo.png" />
+                                <img src="/assets/images/Logo/logoo.png" />
                             </div>
                             <form className="space-y-5" onSubmit={handlelogin}>
                                 <div>

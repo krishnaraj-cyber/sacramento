@@ -1,5 +1,5 @@
 .home-bg{
-    background: linear-gradient(rgba(255, 255, 255, 0.205),white), url('/assets/Images/Wallpaper/Wall_02.jpg');
+    background: linear-gradient(rgba(255, 255, 255, 0.205),white), url('/assets/images/Wallpaper/Wall_02.jpg');
     background-size: cover;
 }
 
@@ -159,14 +159,14 @@
 }
 
 .grid .slik-contain{
-    background-image: url('/assets/Images/PNG/Rectangle.png');
+    background-image: url('/assets/images/PNG/Rectangle.png');
     background-size: 100% 90%;
     background-position: center;
     background-repeat: no-repeat;
 }
 
 .slick-current div:has(div.slik-contain),.slick-current div:has(a.slik-contain){
-    background-image: url('/assets/Images/PNG/Rectangle.png');
+    background-image: url('/assets/images/PNG/Rectangle.png');
     background-size: 100% 90%;
     background-position: center;
     background-repeat: no-repeat;

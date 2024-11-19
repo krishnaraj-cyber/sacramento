@@ -55,7 +55,7 @@ export default function Footer() {
       <div className='py-10 max-w-[90rem] w-full mx-auto px-4'>
           <div className="md:grid md:grid-cols-12 ">
             <div className="md:col-span-3 mb-4 flex justify-center items-start">
-              <img src="/assets/Images/Logo/Logo1.png" className='w-[150px]' alt="" srcSet="" />
+              <img src="/assets/images/Logo/Logo1.png" className='w-[150px]' alt="" srcSet="" />
             </div>
 
             <div className="md:col-span-3 text-white text-xl font-semibold mb-5 text-center md:text-start">
@@ -77,7 +77,7 @@ export default function Footer() {
               <div className='text-2xl font-semibold text-[#ffd800] mb-3 text-center md:text-start'>Gallery</div>
               <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
                 <div className="flex flex-col bg-white border shadow-sm rounded-xl dark:bg-neutral-900 dark:border-neutral-700 dark:shadow-neutral-700/70">
-                  <img className="w-full h-auto rounded-t-xl" src="/assets/Images/Gallery/1.jpg" alt="Image Description" />
+                  <img className="w-full h-auto rounded-t-xl" src="/assets/images/Gallery/1.jpg" alt="Image Description" />
                   <div className="p-4 md:py-1 text-center">
                     <h3 className="text-base font-bold text-primary dark:text-white">
                       2016
@@ -86,7 +86,7 @@ export default function Footer() {
                 </div>
 
                 <div className="flex flex-col bg-white border shadow-sm rounded-xl dark:bg-neutral-900 dark:border-neutral-700 dark:shadow-neutral-700/70">
-                  <img className="w-full h-auto rounded-t-xl" src="/assets/Images/Gallery/1.jpg" alt="Image Description" />
+                  <img className="w-full h-auto rounded-t-xl" src="/assets/images/Gallery/1.jpg" alt="Image Description" />
                   <div className="p-4 md:py-1 text-center">
                     <h3 className="text-base font-bold text-primary dark:text-white">
                       2017
@@ -95,7 +95,7 @@ export default function Footer() {
                 </div>
 
                 <div className="flex flex-col bg-white border shadow-sm rounded-xl dark:bg-neutral-900 dark:border-neutral-700 dark:shadow-neutral-700/70">
-                  <img className="w-full h-auto rounded-t-xl" src="/assets/Images/Gallery/1.jpg" alt="Image Description" />
+                  <img className="w-full h-auto rounded-t-xl" src="/assets/images/Gallery/1.jpg" alt="Image Description" />
                   <div className="p-4 md:py-1 text-center">
                     <h3 className="text-base font-bold text-primary dark:text-white">
                       2018
@@ -104,7 +104,7 @@ export default function Footer() {
                 </div>
 
                 <div className="flex flex-col bg-white border shadow-sm rounded-xl dark:bg-neutral-900 dark:border-neutral-700 dark:shadow-neutral-700/70">
-                  <img className="w-full h-auto rounded-t-xl" src="/assets/Images/Gallery/1.jpg" alt="Image Description" />
+                  <img className="w-full h-auto rounded-t-xl" src="/assets/images/Gallery/1.jpg" alt="Image Description" />
                   <div className="p-4 md:py-1 text-center">
                     <h3 className="text-base font-bold text-primary dark:text-white">
                       2019
@@ -113,7 +113,7 @@ export default function Footer() {
                 </div>
 
                 <div className="flex flex-col bg-white border shadow-sm rounded-xl dark:bg-neutral-900 dark:border-neutral-700 dark:shadow-neutral-700/70">
-                  <img className="w-full h-auto rounded-t-xl" src="/assets/Images/Gallery/1.jpg" alt="Image Description" />
+                  <img className="w-full h-auto rounded-t-xl" src="/assets/images/Gallery/1.jpg" alt="Image Description" />
                   <div className="p-4 md:py-1 text-center">
                     <h3 className="text-base font-bold text-primary dark:text-white">
                       2020
@@ -122,7 +122,7 @@ export default function Footer() {
                 </div>
 
                 <div className="flex flex-col bg-white border shadow-sm rounded-xl dark:bg-neutral-900 dark:border-neutral-700 dark:shadow-neutral-700/70">
-                  <img className="w-full h-auto rounded-t-xl" src="/assets/Images/Gallery/1.jpg" alt="Image Description" />
+                  <img className="w-full h-auto rounded-t-xl" src="/assets/images/Gallery/1.jpg" alt="Image Description" />
                   <div className="p-4 md:py-1 text-center">
                     <h3 className="text-base font-bold text-primary dark:text-white">
                       2021
@@ -131,7 +131,7 @@ export default function Footer() {
                 </div>
 
                 <div className="flex flex-col bg-white border shadow-sm rounded-xl dark:bg-neutral-900 dark:border-neutral-700 dark:shadow-neutral-700/70">
-                  <img className="w-full h-auto rounded-t-xl" src="/assets/Images/Gallery/1.jpg" alt="Image Description" />
+                  <img className="w-full h-auto rounded-t-xl" src="/assets/images/Gallery/1.jpg" alt="Image Description" />
                   <div className="p-4 md:py-1 text-center">
                     <h3 className="text-base font-bold text-primary dark:text-white">
                       2022
@@ -140,7 +140,7 @@ export default function Footer() {
                 </div>
 
                 <div className="flex flex-col bg-white border shadow-sm rounded-xl dark:bg-neutral-900 dark:border-neutral-700 dark:shadow-neutral-700/70">
-                  <img className="w-full h-auto rounded-t-xl" src="/assets/Images/Gallery/1.jpg" alt="Image Description" />
+                  <img className="w-full h-auto rounded-t-xl" src="/assets/images/Gallery/1.jpg" alt="Image Description" />
                   <div className="p-4 md:py-1 text-center">
                     <h3 className="text-base font-bold text-primary dark:text-white">
                       2024

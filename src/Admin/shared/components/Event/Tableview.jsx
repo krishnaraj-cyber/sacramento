@@ -38,7 +38,7 @@ const Tableview = (props) =>{
       {rowData.Image&&rowData.Image?
         (<div className="flex gap-4 ">
           <img src={`${apiurl()}/${rowData['Image']}`}  className='h-[100px] w-[70px] rounded-lg object-cover' />
-        </div> ):( <div className="flex gap-4 "><img src="/assets/Images/Gallery/noimg.png" alt="No image available" className="h-[100px] w-[70px] rounded-lg object-cover" /></div> )
+        </div> ):( <div className="flex gap-4 "><img src="/assets/images/Gallery/noimg.png" alt="No image available" className="h-[100px] w-[70px] rounded-lg object-cover" /></div> )
       }
       </>
     )

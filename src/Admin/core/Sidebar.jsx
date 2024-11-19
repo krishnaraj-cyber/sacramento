@@ -26,7 +26,7 @@ export default function Sidebar() {
       <div id="application-sidebar" className="hs-overlay hs-overlay-open:translate-x-0 -translate-x-full transition-all duration-300 transform hidden fixed top-0 start-0 bottom-0 z-[60] w-64 bg-white rounded-xl m-3  border pt-7 pb-10 overflow-y-auto lg:block lg:translate-x-0 lg:end-auto lg:bottom-0 [&::-webkit-scrollbar]:w-2 [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-track]:bg-gray-100 [&::-webkit-scrollbar-thumb]:bg-gray-300">
         <div className="px-6">
           <a className="flex text-xl font-semibold" href="/" aria-label="Brand">
-            <img src="/assets/Images/Logo/logoo.png" alt="logo" className="object-cover " />
+            <img src="/assets/images/Logo/logoo.png" alt="logo" className="object-cover " />
           </a>
         </div>
         <nav className="flex flex-col flex-wrap w-full p-6 hs-accordion-group" data-hs-accordion-always-open>
