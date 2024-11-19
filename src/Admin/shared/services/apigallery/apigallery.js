@@ -73,27 +73,6 @@ export const saveGallerys = async (datas, onUploadProgress) => {
 
 
 
-// export const updateGallerys = async (datas) => {
-//    const formData = new FormData();
-//    for (const key in datas) {
-//      if (key === "Image" && Array.isArray(datas[key])) {
-//        datas[key].forEach((file) => formData.append(key, file));
-//      } else {
-//        formData.append(key, datas[key]);
-//      }
-//    }
- 
-//    try {
-//      const res = await axios.post(`${apiurl()}/api/updategallery`, formData, {
-//        params: { id: datas.id },
-//        headers: { Authorization: `Bearer ${gettoken()}` },
-//      });
-//      return res.data;
-//    } catch (error) {
-//      throw new Error(error.response?.data?.error || "API request failed");
-//    }
-//  };
-
 // export const updateGallerys = async (datas, onUploadProgress) => {
 //   try {
 //     const formData = new FormData();
@@ -115,8 +94,6 @@ export const saveGallerys = async (datas, onUploadProgress) => {
 //         formData.append(key, datas[key]);
 //       }
 //     }
-
-    
 //     const res = await axios.post(
 //       `${apiurl()}/api/updategallery`,
 //       formData,
@@ -140,11 +117,11 @@ export const updateGallerys = async (datas, onUploadProgress) => {
     const formData = new FormData();
 
     for (const key in datas) {
-      console.log(`Key: ${key}, Value: `, datas[key]);
+      // console.log(`Key: ${key}, Value: `, datas[key]);
       if (key === "Image") {
         if (Array.isArray(datas[key])) {
           datas[key].forEach((file) => {
-            console.log("Processing image: ", file);
+            // console.log("Processing image: ", file);
             if (file instanceof File) {
               formData.append("Image[]", file); 
             } else {

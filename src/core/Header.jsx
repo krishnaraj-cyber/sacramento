@@ -19,7 +19,7 @@ export default function Header() {
         <nav className="max-w-[95rem] w-full mx-auto px-4 lg:flex lg:items-center lg:justify-between" aria-label="Global">
           <div className="flex items-center justify-between">
             <a className="flex-none" href="/">
-              <img src="/assets/Images/Logo/logo.png" className='md-w-[270px] w-[200px]' alt="" />
+              <img src="/assets/images/Logo/logo.png" className='md-w-[270px] w-[200px]' alt="" />
             </a>
             <div className="lg:hidden">
               <button type="button" onClick={() => isCollapsed ?setIsCollapsed(false): setIsCollapsed(true)} className="hs-collapse-toggle p-2 inline-flex justify-center items-center gap-x-2 rounded-lg border border-gray-200 bg-white text-gray-800 shadow-sm hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none" data-hs-collapse="#navbar-image-1" aria-controls="navbar-image-1" aria-label="Toggle navigation">

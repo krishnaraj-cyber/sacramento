@@ -15,8 +15,8 @@ export default {
         "secondary":"#288043"
       },
       backgroundImage:{
-        "wall1":"url('/assets/Images/Wallpaper/Wall_02.jpg')",
-        "wall2":"url('/assets/Images/Wallpaper/Wall_04.png')"
+        "wall1":"url('/assets/images/Wallpaper/Wall_02.jpg')",
+        "wall2":"url('/assets/images/Wallpaper/Wall_04.png')"
       },
     },
   },
