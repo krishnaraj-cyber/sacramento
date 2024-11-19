@@ -94,6 +94,47 @@ export const saveGallerys = async (datas, onUploadProgress) => {
 //    }
 //  };
 
+// export const updateGallerys = async (datas, onUploadProgress) => {
+//   try {
+//     const formData = new FormData();
+
+//     for (const key in datas) {
+//       console.log(`Key: ${key}, Value: `, datas[key]);
+//       if (key === "Image") {
+//         if (Array.isArray(datas[key])) {
+//           datas[key].forEach((file) => {
+//             console.log("Appending file: ", file.name || file);
+//             if (file instanceof File) {
+//               formData.append("Image[]", file); 
+//             } else {
+//               formData.append("ExistingImages[]", file); 
+//             }
+//           });
+//         }
+//       } else {
+//         formData.append(key, datas[key]);
+//       }
+//     }
+
+    
+//     const res = await axios.post(
+//       `${apiurl()}/api/updategallery`,
+//       formData,
+//       {
+//         params: { id: datas.id }, 
+//         headers: { Authorization: `Bearer ${gettoken()}` },
+//         onUploadProgress, 
+//       }
+//     );
+
+//     return res.data;
+//   } catch (error) {
+//     console.error(error);
+//     throw new Error(error.response?.data?.error || "API request failed");
+//   }
+// };
+
+
 export const updateGallerys = async (datas, onUploadProgress) => {
   try {
     const formData = new FormData();
@@ -102,29 +143,33 @@ export const updateGallerys = async (datas, onUploadProgress) => {
       console.log(`Key: ${key}, Value: `, datas[key]);
       if (key === "Image") {
         if (Array.isArray(datas[key])) {
-          // Handle multiple images
           datas[key].forEach((file) => {
-            console.log("Appending file: ", file.name || file);
+            console.log("Processing image: ", file);
             if (file instanceof File) {
-              formData.append("Image[]", file); // Append new files
+              formData.append("Image[]", file); 
             } else {
-              formData.append("ExistingImages[]", file); // Append existing image paths
+              formData.append("ExistingImages[]", file); 
             }
           });
+        } else if (datas[key]) {
+          const image = datas[key];
+          if (image instanceof File) {
+            formData.append("Image[]", image);
+          } else {
+            formData.append("ExistingImages[]", image);
+          }
         }
       } else {
         formData.append(key, datas[key]);
       }
     }
-
-    // Perform the API request
     const res = await axios.post(
       `${apiurl()}/api/updategallery`,
       formData,
       {
-        params: { id: datas.id }, // Pass the ID as a query parameter
+        params: { id: datas.id }, 
         headers: { Authorization: `Bearer ${gettoken()}` },
-        onUploadProgress, // Progress callback
+        onUploadProgress, 
       }
     );
 
@@ -134,8 +179,6 @@ export const updateGallerys = async (datas, onUploadProgress) => {
     throw new Error(error.response?.data?.error || "API request failed");
   }
 };
-
-
 
 
 

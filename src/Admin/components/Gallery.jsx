@@ -184,28 +184,6 @@ export default function Gallery() {
     setDataUrl(null)
   }
 
-  // const handleupdate = async (e) => {
-  //   e.preventDefault();
-  //   setLoading(true);
-    
-  //   try {
-  //     const response = await updateGallerys(formdata);
-  //     if (response.success) {
-  //       toast.success("Successfully updated");
-  //       await getallGallery();
-  //       setVisible(false);
-  //       setDataUrl(null);
-  //     } else {
-  //       toast.error(response.message || "Update failed");
-  //     }
-  //   } catch (error) {
-  //     console.error("Update error:", error);
-  //     toast.error(error.message || "Failed to update");
-  //   } finally {
-  //     setLoading(false);
-  //   }
-  // };
-
   const handledelete = (id) => {
     confirmDialog({
       message: 'Do you want to delete this record?',
