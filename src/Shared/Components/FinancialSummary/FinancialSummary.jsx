@@ -3,7 +3,6 @@ import { FaChevronUp, FaChevronDown } from 'react-icons/fa';
 
 function FinancialSummary(props) {
     const { toggleAccordion, openAccordions, setIsOpen, isOpen, setSelectedId, accordionItems, selectedItem } = props;
-
     return (
         <>
             <section className="max-w-[60rem] mx-auto px-5 my-10  ">
