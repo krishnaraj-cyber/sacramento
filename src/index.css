@@ -2,7 +2,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Spirax&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Agbalumo&family=Anton&family=Archivo+Black&family=Concert+One&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Agbalumo&family=Anton&family=Archivo+Black&family=Baumans&family=Be+Vietnam+Pro:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Concert+One&display=swap');
-@import 'src/assets/Fonts/fonts.css';
 @import url('https://fonts.googleapis.com/css2?family=Agbalumo&family=Anton&family=Archivo+Black&family=Baumans&family=Be+Vietnam+Pro:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Concert+One&display=swap');
 @tailwind base;
 @tailwind components;
@@ -20,3 +19,24 @@ body{
 
 
 
+.concert-one-regular {
+  font-family: "Concert One", sans-serif;
+  src: url('src/assets/Fonts/ConcertOne-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+}
+
+.vietnam {
+  font-family: "Be Vietnam Pro", sans-serif;
+  src: url('src/assets/Fonts/BeVietnamPro-ExtraBold.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+}
+
+
+.baumans-regular {
+  font-family: "Baumans", system-ui;
+  src: url('src/assets/Fonts/Baumans-Regular.ttf') format('truetype');
+  font-weight: 500;
+  font-style: normal;
+}

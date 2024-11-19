@@ -11,12 +11,11 @@ function VideoSwiper() {
     const videoNextStepRef = useRef(null);
     return (
         <>
-            <div className='  max-w-[78rem] mx-auto my-20 space-y-5 cursor-pointer '>
+            <div className='  max-w-[78rem] mx-auto my-10 space-y-5 cursor-pointer '>
                 <section className="flex flex-col items-center relative  px-10">
                     <Swiper
                         slidesPerView={1}
                         loop={true}
-
                         breakpoints={{
                             0: {
                                 slidesPerView: 1,
@@ -52,8 +51,8 @@ function VideoSwiper() {
                     </div>
                 </section>
             </div>
- 
-    
+
+
 
         </>
     )

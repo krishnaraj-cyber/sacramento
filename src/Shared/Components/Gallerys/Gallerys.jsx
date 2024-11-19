@@ -2,7 +2,7 @@ import React from 'react'
 function Gallerys() {
     return (
         <>
-            <section className='max-w-[70rem] mx-auto px-5 my-10'>
+            <section className='max-w-[80rem] mx-auto px-5 my-10'>
                 <div className='grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 cursor-pointer'>
                     <div className="relative group  ">
                         <img src="/assets/images/Gallery-Hero/Galler.png" alt="Event" className="w-full h-full object-cover" />

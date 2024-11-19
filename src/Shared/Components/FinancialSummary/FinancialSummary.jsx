@@ -7,7 +7,7 @@ function FinancialSummary(props) {
 
     return (
         <>
-            <section className="max-w-[50rem] mx-auto px-5 my-10  ">
+            <section className="max-w-[60rem] mx-auto px-5 my-10  ">
                 <p className="text-center text-[#E52E3D] md:text-3xl text-2xl concert-one-regular my-5">YEARS</p>
                 {accordionItems.map((item) => (
                     <div key={item.id} className="">
