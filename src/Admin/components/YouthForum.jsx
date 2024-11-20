@@ -67,6 +67,14 @@ export default function Sponsors() {
           //   toast.error(`Image must be ${requiredWidth} x ${requiredHeight} pixels.`);
           //   return;
           // }
+          const aspectRatio = img.width / img.height;
+          const acceptableAspectRatio = 3 / 4; 
+          const tolerance = 0.01; 
+          
+          if (Math.abs(aspectRatio - acceptableAspectRatio) > tolerance) {
+          toast.error("Image must have a 3:4 aspect ratio.");
+          return;
+        }
           setFormdata({ ...formdata, [e.target.name]: filesArray });
           setDataUrl({ src: event.target.result, length: e.target.files.length });
         };

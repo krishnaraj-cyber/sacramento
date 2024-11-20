@@ -31,8 +31,7 @@ function AboutSection(props) {
                         </div>
                         <div className='bg-[#E91E31] text-center p-2 md:px-14 text-white font-semibold rounded-tl-3xl rounded-bl-3xl '>
                             <p className="">  Sharing Tamil </p>
-                            <p className="">
-                                educational resources</p>
+                            <p className=""> educational resources</p>
                         </div>
                         <div className='bg-[#E91E31] text-center p-2 md:px-14 text-white font-semibold rounded-tr-3xl rounded-br-3xl '>
                             <p className=""> Ensuring</p>
@@ -63,8 +62,8 @@ function AboutSection(props) {
                             ))}
                         </div>
                         <div>
-                            <div className=' concert-one-regular cursor-pointer  text-[#E91E31] rounded-lg px-3 hover:bg-[#E91E31] hover:text-white duration-200 bg-white p-2 w-fit mx-auto'>
-                                <Link to='/board-members'>
+                            <div className='text-center'>
+                                <Link to="/board-members" className=' concert-one-regular cursor-pointer  text-[#E91E31] rounded-lg px-3 hover:bg-[#E91E31] hover:text-white duration-200 bg-white p-2 w-fit mx-auto'>
                                     VIEW ALL
                                 </Link>
                             </div>

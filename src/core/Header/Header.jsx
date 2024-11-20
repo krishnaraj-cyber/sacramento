@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import Hamburger from 'hamburger-react';
 function Header() {
   const [isOpen, setOpen] = useState(false);
@@ -11,6 +11,17 @@ function Header() {
     setOpen(false);
     setIsAboutOpen(false);
   };
+  const navigate = useNavigate();
+  const handleDonateClick = () => {
+    navigate('/');
+    setTimeout(() => {
+      const feedbackSection = document.getElementById('feedback');
+      if (feedbackSection) {
+        feedbackSection.scrollIntoView({ behavior: 'smooth' });
+      }
+    }, 0);
+  };
+
   return (
     <>
       <div className="bg-[url('/assets/images/Header/ddd.png')] bg-center bg-white bg-contain z-50 shadow-md fixed w-full top-0  ">
@@ -38,8 +49,7 @@ function Header() {
                 className={`p-3 ps-px sm:px-3 md:py-2 2xl:text-lg group text-[#5E0000] text-sm relative hover:text-white hover:bg-[#0470BC] ${isActive('/board-members') || isActive('/goals') || isActive('/laws') || isActive('/financial-summary') || isActive('/youth-forum') ? 'text-white bg-[#0470BC]' : 'text-[#E91E31]'}`}>
                 About Us
                 <i className={`fi fi-rr-angle-small-down text-red-500 group-hover:text-white relative top-1  ${isActive('/board-members') || isActive('/goals') || isActive('/laws') || isActive('/financial-summary') || isActive('/youth-forum') ? 'text-white bg-[#0470BC]' : 'text-[#E91E31]'
-                  }${isHovered ? 'rotate-180' : 'rotate-0'}`}
-                ></i>
+                  }${isHovered ? 'rotate-180' : 'rotate-0'}`}></i>
                 {isHovered && (
                   <div className="absolute left-0  mt-[6.5px] bg-white border rounded shadow-lg w-60">
                     <Link to="/board-members" className={`block px-4 py-2 text-[#E91E31] hover:bg-[#0470BC] hover:text-white ${isActive('/board-members') ? 'text-white bg-[#0470BC]' : 'text-[#E91E31]'}`}>
@@ -70,14 +80,13 @@ function Header() {
                 Tamil Schools
               </Link>
             </div>
-            <div className="bg-[#0470BC] px-5 py-7 lg:block hidden text-white font-bold cursor-pointer">Donate</div>
+            <div onClick={handleDonateClick} className="bg-[#0470BC] px-5 py-7 lg:block hidden text-white font-bold cursor-pointer">Donate</div>
           </div>
         </header>
       </div>
       <div
         className={`fixed top-0 right-0 h-full w-[60%] bg-[#0571BC]  text-[#f4e316] text-center p-5 transition-transform transform ${isOpen ? 'translate-x-0' : 'translate-x-full'
-          } lg:hidden z-50`}
-      >
+          } lg:hidden z-50`}  >
         <div className="text-left">
           <button onClick={() => setOpen(false)} className="text-white text-3xl">
             &times;

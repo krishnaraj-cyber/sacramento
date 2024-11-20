@@ -6,45 +6,43 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
-
-
+@media (max-width: 644px) and (min-width: 425px) {
+  .fit{
+    height: 500px;
+  }
+}
 body{
     font-family: "Poppins", sans-serif;
 }
-
-
 html {
     scroll-behavior: smooth;
 }
-
 .text-outline-yellow {
   text-shadow: 2px 2px 0 #FFD700, -2px -2px 0 #FFD700, 2px -2px 0 #FFD700, -2px 2px 0 #FFD700;
 }
 .text-outline-white {
   text-shadow: 2px 2px 0 #fff, -2px -2px 0 #fff, 2px -2px 0 #fff, -2px 2px 0 #fff;
 }
-
-
-
 .concert-one-regular {
   font-family: "Concert One", sans-serif;
-  src: url('src/assets/Fonts/ConcertOne-Regular.ttf') format('truetype');
+  
   font-weight: 400;
   font-style: normal;
 }
-
 .vietnam {
-  font-family: "Be Vietnam Pro", sans-serif;
-  src: url('src/assets/Fonts/BeVietnamPro-ExtraBold.ttf') format('truetype');
+  font-family: "Be Vietnam Pro", sans-serif;  
   font-weight: 400;
   font-style: normal;
 }
-
-
 .baumans-regular {
   font-family: "Baumans", system-ui;
-  src: url('src/assets/Fonts/Baumans-Regular.ttf') format('truetype');
   font-weight: 500;
   font-style: normal;
 }
+
+
+
+
+
+
+ 

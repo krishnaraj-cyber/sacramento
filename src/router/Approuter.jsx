@@ -2,7 +2,6 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Main from "../core/Main/Main";
 import Home from "../Components/Home/Home";
 import About from "../Components/About/About";
-import ScrollToTop from "./ScroolToTop";
 import GoalPage from "../Components/GoalPage/GoalPage";
 import FinancialPage from "../Components/FinancialSummaryPage/FinancialPage";
 import YouthPage from "../Components/YouthForumPage.jsx/YouthPage";
@@ -10,10 +9,11 @@ import GalleryPage from "../Components/GalleryPage/GalleryPage";
 import EventsPage from "../Components/EventsPage/EventsPage";
 import TamilSchoolPage from "../Components/TamilSchoolPage/TamilSchoolPage";
 import ByLawsPage from "../Components/ByLawsPage/ByLawsPage";
-
 import LoginPage from "../components/LoginPage";
 import AdminRouter from "../Admin/Router/AdminRouter";
 import ProtectedRoute from "../shared/services/Token/ProtectedRoute";
+import ScrollToTop from "./ScrollToTop";
+ 
 
 function Approuter() {
     return (
@@ -31,8 +31,8 @@ function Approuter() {
                     <Route path="/tamil-schools" element={<TamilSchoolPage />} />
                     <Route path="/laws" element={<ByLawsPage />} />
                 </Route>
-                    <Route path='/login' element={<LoginPage/>}/>
-                    <Route path="/admin/*" element={<ProtectedRoute allowedRoles={['Admin']}><AdminRouter/></ProtectedRoute>} />
+                <Route path='/login' element={<LoginPage />} />
+                <Route path="/admin/*" element={<ProtectedRoute allowedRoles={['Admin']}><AdminRouter /></ProtectedRoute>} />
             </Routes>
         </BrowserRouter>
     );
