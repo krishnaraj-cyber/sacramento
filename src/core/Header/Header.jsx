@@ -76,8 +76,7 @@ function Header() {
       </div>
       <div
         className={`fixed top-0 right-0 h-full w-[60%] bg-[#0571BC]  text-[#f4e316] text-center p-5 transition-transform transform ${isOpen ? 'translate-x-0' : 'translate-x-full'
-          } lg:hidden z-50`}
-      >
+          } lg:hidden z-50`}  >
         <div className="text-left">
           <button onClick={() => setOpen(false)} className="text-white text-3xl">
             &times;

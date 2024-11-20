@@ -67,18 +67,9 @@ function HomePage(props) {
                                     loop={true}
                                     autoplay={{ delay: 3000, disableOnInteraction: false, }}
                                     breakpoints={{
-                                        0: {
-                                            slidesPerView: 1,
-                                            direction: 'horizontal',
-                                        },
-                                        768: {
-                                            slidesPerView: 2,
-                                            direction: 'horizontal',
-                                        },
-                                        1024: {
-                                            slidesPerView: 3,
-                                            direction: 'vertical',
-                                        },
+                                        0: { slidesPerView: 1, direction: 'horizontal', },
+                                        768: { slidesPerView: 2, direction: 'horizontal', },
+                                        1024: { slidesPerView: 3, direction: 'vertical', },
                                     }}
                                     navigation={{ nextEl: '.swiper-button-nextdeal', prevEl: '.swiper-button-prevdeal' }}
                                     modules={[Pagination, Navigation, Autoplay]}
@@ -86,7 +77,6 @@ function HomePage(props) {
                                     {sponsors.map((sponsor, index) => (
                                         <SwiperSlide key={index} className="flex justify-center items-center">
                                             <div>
-                                                {/* <h3 className="text-xl font-semibold mb-2">{sponsor.tier}</h3> */}
                                                 <div className="flex items-center space-x-4">
                                                     <img src={`${apiurl()}/${sponsor.Image}`} className="bg-no-repeat mx-auto" />
                                                 </div>
