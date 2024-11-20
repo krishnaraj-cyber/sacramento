@@ -15,7 +15,7 @@ function HomePage(props) {
         <>
             <section className="bg-[url('/assets/images/Header/Hero-sec.png')] bg-cover bg-no-repeat lg:my-0 my-10  flex items-center justify-center    lg:h-[100vh]   w-full">
                 <div className='mx-auto max-w-[100rem] lg:my-0 my-10 px-5' >
-                    <div className='grid lg:grid-cols-4 grid-cols-1   gap-10 items-center'>
+                    <div className='grid lg:grid-cols-4 grid-cols-1 gap-10 items-center'>
                         <div className=' space-y-6 lg:col-span-3'>
                             <div>
                                 <Swiper
@@ -40,7 +40,7 @@ function HomePage(props) {
                                     className="w-full " >
                                     {EventProgram.map((item, index) => (
                                         <SwiperSlide>
-                                            <div key={index} className="flex flex-wrap md:flex-nowrap  justify-center items-center gap-5 cursor-pointer py-10">
+                                            <div key={index} className="flex flex-wrap md:flex-nowrap  justify-center items-center gap-5 cursor-pointer pb-10">
                                                 <img className='w-96' src={item.imgSrc} />
                                                 <div className='md:space-y-5 space-y-3'>
                                                     <p className=" concert-one-regular md:text-2xl text-base text-white w-fit px-3 rounded-md bg-[#0470BC]">UPCOMING EVENT</p>
@@ -58,7 +58,7 @@ function HomePage(props) {
                                 </Swiper>
                             </div>
                         </div>
-                        <div className='lg:ml-auto'>
+                        <div className='lg:ml-auto '>
                             <h2 className="text-2xl font-bold text-center text-red-600 md:mb-5 archivo-black-regular">OUR SPONSORS</h2>
                             <section className="flex flex-col items-center relative py-7 xl:h-[615px] lg:h-[500px] cursor-pointer ">
                                 <Swiper
@@ -73,10 +73,19 @@ function HomePage(props) {
                                     }}
                                     navigation={{ nextEl: '.swiper-button-nextdeal', prevEl: '.swiper-button-prevdeal' }}
                                     modules={[Pagination, Navigation, Autoplay]}
-                                    className="w-full max-w-5xl" >
+                                    className="w-full max-w-5xl " >
                                     {sponsors.map((sponsor, index) => (
                                         <SwiperSlide key={index} className="flex justify-center items-center">
                                             <div>
+                                                {/* <div className='flex flex-col justify-center  '>
+                                                    <div class="relative  ">
+                                                        <img src="/assets/images/Check/TopDesign.png" alt="Image" className='ml-1' />
+                                                        <div class="absolute  top-0  left-10  ">
+                                                            Silver
+                                                        </div>
+                                                    </div>
+                                                    <img src="/assets/images/Check/Checking...png" alt="" />
+                                                </div> */}
                                                 <div className="flex items-center space-x-4">
                                                     <img src={`${apiurl()}/${sponsor.Image}`} className="bg-no-repeat mx-auto" />
                                                 </div>

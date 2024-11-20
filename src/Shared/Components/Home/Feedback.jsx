@@ -25,14 +25,16 @@ function Feedback(props) {
                                     <p className="text-sm mt-2 italic">Enter an event name (Example: Summer Picnic) or type General</p>
                                 </div>
                             </div>
-                            <div className="grid items-center md:grid-cols-8 md:gap-10">
-                                <div className="flex flex-col col-span-7">
+                            <div className="grid items-center md:grid-cols-8 grid-cols-1  ">
+                                <div className="flex flex-col md:col-span-7 ">
                                     <label htmlFor="feedback" className="text-lg">Feedback</label>
                                     <input id="feedback" name="feedback" className=" p-2 rounded-md" />
                                 </div>
-                                <button type="submit" className="bg-[#E91E31] hover:text-[#E91E31] py-2 px-3 mt-7 concert-one-regular hover:bg-white duration-200 text-white rounded-md"   >
-                                    SEND
-                                </button>
+                                <div className='md:ml-auto  md:col-span-1  text-center'>
+                                    <button type="submit" className="bg-[#E91E31] hover:text-[#E91E31] mt-7 py-2 px-5    concert-one-regular hover:bg-white duration-200 text-white rounded-md"   >
+                                        SEND
+                                    </button>
+                                </div>
                             </div>
                         </form>
                     </div>
