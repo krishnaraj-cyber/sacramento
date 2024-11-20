@@ -24,6 +24,20 @@ function Home() {
   const [customAmount, setCustomAmount] = useState('');
   const customInputRef = useRef(null);
   const statuses = ['$10', '$25', '$50', '$100', '$250', 'Custom Amount'];
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [formData, setFormData] = useState({
+    firstName: "",
+    email: "",
+  });
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
+  };
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log("Form submitted:", formData);
+
+  };
   const handleStatusClick = (status) => {
     if (status === 'Custom Amount') {
       setActiveStatus('Custom Amount');
@@ -43,7 +57,6 @@ function Home() {
       customInputRef.current?.focus();
     }
   }, [activeStatus]);
-
   const fetchSponsors = useCallback(async () => {
     let isMounted = true;
     try {
@@ -58,7 +71,6 @@ function Home() {
     };
   }, []);
   useEffect(() => { fetchSponsors(); }, [fetchSponsors]);
-
   const fetchBoardmem = useCallback(async () => {
     let isMounted = true;
     try {
@@ -73,7 +85,6 @@ function Home() {
     };
   }, []);
   useEffect(() => { fetchBoardmem(); }, [fetchBoardmem]);
-
   const fetchGallery = useCallback(async () => {
     let isMounted = true;
     try {
@@ -88,7 +99,6 @@ function Home() {
     };
   }, []);
   useEffect(() => { fetchGallery(); }, [fetchGallery]);
-
   const fetchEvent = useCallback(async () => {
     let isMounted = true;
     try {
@@ -110,7 +120,7 @@ function Home() {
       <AboutSection boardmem={boardmem} />
       <Gallery mobilePreviousRef={mobilePreviousRef} mobileNextstepRef={mobileNextstepRef} gallery={gallery} />
       <Event mobilePrevRef={mobilePrevRef} mobileNextRef={mobileNextRef} event={event} />
-      <Feedback activeStatus={activeStatus} customInputRef={customInputRef} handleStatusClick={handleStatusClick} handleCustomAmountChange={handleCustomAmountChange} customAmount={customAmount} setActiveStatus={setActiveStatus} statuses={statuses} />
+      <Feedback isModalOpen={isModalOpen} setIsModalOpen={setIsModalOpen} formData={formData} handleSubmit={handleSubmit} handleInputChange={handleInputChange} activeStatus={activeStatus} customInputRef={customInputRef} handleStatusClick={handleStatusClick} handleCustomAmountChange={handleCustomAmountChange} customAmount={customAmount} setActiveStatus={setActiveStatus} statuses={statuses} />
     </>
   )
 }

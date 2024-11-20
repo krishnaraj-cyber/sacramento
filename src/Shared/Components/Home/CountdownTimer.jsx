@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 const CountdownTimer = ({ bgColor = '#E91E31', texColor = '#E91E31', textColor = '#fff' }) => {
-    const targetDate = new Date('2024-11-31T23:59:59');
+    const targetDate = new Date('2024-11-23T23:59:59');
     const calculateTimeLeft = () => {
         const now = new Date();
         const difference = targetDate - now;
