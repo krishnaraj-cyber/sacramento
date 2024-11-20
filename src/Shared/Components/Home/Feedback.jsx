@@ -3,7 +3,7 @@ function Feedback(props) {
     const { activeStatus, customInputRef, handleCustomAmountChange, customAmount, statuses, handleStatusClick, } = props;
     return (
         <>
-            <section    className="bg-[url('/assets/images/Feedback/Feedback.png')] bg-center bg-contain">
+            <section className="bg-[url('/assets/images/Feedback/Feedback.png')] bg-center bg-contain">
                 <div className='max-w-[60rem] px-5 mx-auto py-10 pb-52 space-y-4 '>
                     <div>
                         <p className="text-center text-[#E91E31] md:text-4xl text-2xl   concert-one-regular font-bold">FEEDBACK</p>
@@ -61,7 +61,7 @@ function Feedback(props) {
                             <div className="flex lg:gap-0 gap-4 mb-4 justify-evenly flex-wrap overflow-x-auto md:overflow-visible scrollbar-hide">
                                 {statuses.map((status) => (
                                     <button key={status} onClick={() => handleStatusClick(status)}
-                                        className={`px-4 py-2 rounded-md whitespace-nowrap font-semibold text-sm ${activeStatus === status ? 'bg-[#0571BC] text-white' : 'bg-[#FFE134]'}`} >
+                                        className={`px-4 py-2 rounded-md whitespace-nowrap font-semibold hover:bg-[#0571BC] hover:text-white text-sm ${activeStatus === status ? 'bg-[#0571BC] text-white' : 'bg-[#FFE134]'}`} >
                                         {status}
                                     </button>
                                 ))}
