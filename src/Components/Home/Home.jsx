@@ -18,74 +18,74 @@ function Home() {
   const mobileNextRef = useRef(null);
   const [activeStatus, setActiveStatus] = useState('$10');
   const statuses = ['$10', '$25', '$50', '$100', '$250', 'Custom Amount'];
-  const [sponsors, setSponsors] = useState([]); 
-  const [boardmem, setBoardmem] = useState([]); 
-  const [gallery, setGallery] = useState([]); 
-  const [event, setEvent] = useState([]); 
+  const [sponsors, setSponsors] = useState([]);
+  const [boardmem, setBoardmem] = useState([]);
+  const [gallery, setGallery] = useState([]);
+  const [event, setEvent] = useState([]);
 
 
 
 
-    
-const fetchSponsors = useCallback(async () => {
-      let isMounted = true; 
-      try {
-        const response = await getallSponsors(); 
-        console.log(response)
-        if (isMounted) {  setSponsors(response);  }
-      } catch (error) {
-        console.error('Error fetching sponsors:', error);
-      }
-      return () => {
-        isMounted = false; 
-      };
-}, []);
-useEffect(() => { fetchSponsors();}, [fetchSponsors]);
 
-const fetchBoardmem = useCallback(async () => {
-      let isMounted = true; 
-      try {
-        const response = await getallBoardmembers(); 
-        console.log(response)
-        if (isMounted) {  setBoardmem(response);  }
-      } catch (error) {
-        console.error('Error fetching sponsors:', error);
-      }
-      return () => {
-        isMounted = false; 
-      };
-}, []);
-    useEffect(() => { fetchBoardmem();}, [fetchBoardmem]);
+  const fetchSponsors = useCallback(async () => {
+    let isMounted = true;
+    try {
+      const response = await getallSponsors();
+      console.log(response)
+      if (isMounted) { setSponsors(response); }
+    } catch (error) {
+      console.error('Error fetching sponsors:', error);
+    }
+    return () => {
+      isMounted = false;
+    };
+  }, []);
+  useEffect(() => { fetchSponsors(); }, [fetchSponsors]);
 
-    const fetchGallery = useCallback(async () => {
-      let isMounted = true; 
-      try {
-        const response = await getallGallerys(); 
-        console.log(response)
-        if (isMounted) {  setGallery(response);  }
-      } catch (error) {
-        console.error('Error fetching sponsors:', error);
-      }
-      return () => {
-        isMounted = false; 
-      };
-}, []);
-    useEffect(() => { fetchGallery();}, [fetchGallery]);
+  const fetchBoardmem = useCallback(async () => {
+    let isMounted = true;
+    try {
+      const response = await getallBoardmembers();
+      console.log(response)
+      if (isMounted) { setBoardmem(response); }
+    } catch (error) {
+      console.error('Error fetching sponsors:', error);
+    }
+    return () => {
+      isMounted = false;
+    };
+  }, []);
+  useEffect(() => { fetchBoardmem(); }, [fetchBoardmem]);
 
-    const fetchEvent = useCallback(async () => {
-      let isMounted = true; 
-      try {
-        const response = await getallEvents(); 
-        console.log(response)
-        if (isMounted) {  setEvent(response);  }
-      } catch (error) {
-        console.error('Error fetching sponsors:', error);
-      }
-      return () => {
-        isMounted = false; 
-      };
-}, []);
-    useEffect(() => { fetchEvent();}, [fetchEvent]);
+  const fetchGallery = useCallback(async () => {
+    let isMounted = true;
+    try {
+      const response = await getallGallerys();
+      console.log(response)
+      if (isMounted) { setGallery(response); }
+    } catch (error) {
+      console.error('Error fetching sponsors:', error);
+    }
+    return () => {
+      isMounted = false;
+    };
+  }, []);
+  useEffect(() => { fetchGallery(); }, [fetchGallery]);
+
+  const fetchEvent = useCallback(async () => {
+    let isMounted = true;
+    try {
+      const response = await getallEvents();
+      console.log(response)
+      if (isMounted) { setEvent(response); }
+    } catch (error) {
+      console.error('Error fetching sponsors:', error);
+    }
+    return () => {
+      isMounted = false;
+    };
+  }, []);
+  useEffect(() => { fetchEvent(); }, [fetchEvent]);
 
   return (
     <>
