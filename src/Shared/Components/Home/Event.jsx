@@ -7,10 +7,10 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Pagination, Autoplay } from 'swiper/modules';
 import apiurl from '../../../shared/services/apiendpoint/apiendpoint';
 function Event(props) {
-    const { mobileNextRef, mobilePrevRef , event } = props;
+    const { mobileNextRef, mobilePrevRef, event } = props;
     return (
         <>
-            <section className=' max-w-[90rem] mx-auto  my-10 md:my-20 '>
+            <section className=' max-w-[90rem] mx-auto  my-10 md:my-20 ' >
                 <div>
                     <div className='md:space-y-10 space-y-5'>
                         <h2 className="text-2xl font-bold text-center text-[#8F000D] md:text-4xl   concert-one-regular">EVENTS</h2>
@@ -58,9 +58,11 @@ function Event(props) {
                         </section>
                     </div>
                 </div>
+                <div id="feedback">
+
+                </div>
             </section>
-            <div id='Donate'>
-            </div>
+
         </>
     )
 }

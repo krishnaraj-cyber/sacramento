@@ -3,7 +3,7 @@ function Feedback(props) {
     const { activeStatus, customInputRef, handleCustomAmountChange, customAmount, statuses, handleStatusClick, } = props;
     return (
         <>
-            <section className="bg-[url('/assets/images/Feedback/Feedback.png')] bg-center bg-contain">
+            <section    className="bg-[url('/assets/images/Feedback/Feedback.png')] bg-center bg-contain">
                 <div className='max-w-[60rem] px-5 mx-auto py-10 pb-52 space-y-4 '>
                     <div>
                         <p className="text-center text-[#E91E31] md:text-4xl text-2xl   concert-one-regular font-bold">FEEDBACK</p>
@@ -38,10 +38,9 @@ function Feedback(props) {
                             </div>
                         </form>
                     </div>
-
                 </div>
             </section >
-            <section className="px-5 lg:h-52 md:h-auto sm:h-auto h-[400px]">
+            <section className="px-5 lg:h-52 md:h-auto sm:h-auto fit h-[400px]">
                 <div className="relative bottom-36 max-w-[58rem] bg-white border rounded-xl mx-auto">
                     <div className="flex items-center lg:flex-nowrap flex-wrap">
                         <img className="lg:w-96 w-full" src="/assets/images/Feedback/Coin.png" alt="" />
@@ -49,13 +48,10 @@ function Feedback(props) {
                             <div className="flex justify-between items-center flex-wrap px-4">
                                 <p className="concert-one-regular md:text-4xl text-lg text-[#0571BC] font-bold">DONATE</p>
                                 <div className="flex border items-center rounded-md">
-                                    <div className="bg-[#0571BC] p-1 px-3 md:text-4xl text-lg rounded-md">$</div>
+                                    <div className="bg-[#0571BC] p-1 px-3 md:text-5xl text-lg rounded-md text-white font-bold concert-one-regular">$</div>
                                     <div className="  text-[#0571BC] md:text-4xl text-lg text-center w-20 concert-one-regular">
                                         {activeStatus === 'Custom Amount' ? (
-                                            <input ref={customInputRef} className=" w-20  focus:outline-none rounded-md text-center"
-                                                value={customAmount}
-                                                onChange={handleCustomAmountChange}
-                                            />
+                                            <input ref={customInputRef} className=" w-20  focus:outline-none rounded-md text-center" value={customAmount} onChange={handleCustomAmountChange} />
                                         ) : (
                                             activeStatus.replace('$', '')
                                         )}
@@ -65,9 +61,7 @@ function Feedback(props) {
                             <div className="flex lg:gap-0 gap-4 mb-4 justify-evenly flex-wrap overflow-x-auto md:overflow-visible scrollbar-hide">
                                 {statuses.map((status) => (
                                     <button key={status} onClick={() => handleStatusClick(status)}
-                                        className={`px-4 py-2 rounded-md whitespace-nowrap font-semibold text-sm ${activeStatus === status ? 'bg-[#0571BC] text-white' : 'bg-[#FFE134]'
-                                            }`}
-                                    >
+                                        className={`px-4 py-2 rounded-md whitespace-nowrap font-semibold text-sm ${activeStatus === status ? 'bg-[#0571BC] text-white' : 'bg-[#FFE134]'}`} >
                                         {status}
                                     </button>
                                 ))}
