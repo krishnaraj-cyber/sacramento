@@ -1,5 +1,4 @@
-import React, { useCallback, useEffect, useState } from 'react'
-import { Sponsor } from '../../../assets/Json/Swiper'
+import React from 'react'
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
@@ -10,30 +9,53 @@ import CountdownTimer from './CountdownTimer';
 import apiurl from '../../../shared/services/apiendpoint/apiendpoint';
 
 function HomePage(props) {
-    const { prevRef, nextRef, mobileNextRef ,sponsors } = props;
+    const { prevRef, nextRef, mobileNextRef, sponsors } = props;
 
     return (
         <>
             <section className="bg-[url('/assets/images/Header/Hero-sec.png')] bg-cover bg-no-repeat lg:my-0 my-10  flex items-center justify-center    lg:h-[100vh]   w-full">
                 <div className='mx-auto max-w-[100rem] lg:my-0 my-10 px-5' >
                     <div className='grid lg:grid-cols-4 grid-cols-1   gap-10 items-center'>
-                        <div className=' space-y-6 lg:col-span-3  '>
+                        <div className=' space-y-6 lg:col-span-3'>
                             <div>
-                                {EventProgram.map((item, index) => (
-                                    <div key={index} className="flex flex-wrap md:flex-nowrap  justify-center items-center gap-5">
-                                        <img className='w-96' src={item.imgSrc} />
-                                        <div className='md:space-y-5 space-y-3'>
-                                            <p className=" concert-one-regular md:text-2xl text-base text-white w-fit px-3 rounded-md bg-[#0470BC]">UPCOMING EVENT</p>
-                                            <p className="md:text-2xl text-lg text-[#E91E31] font-semibold">சாக்ரமெண்டோ தமிழ் மன்றம்</p>
-                                            <p className="text-[#0470BC] font-semibold text-xl">நடத்தும்</p>
-                                            <p className="  font-bold  text-[#0470BC] xl:text-5xl lg:text-3xl text-2xl  text-outline-yellow">முதலாம் ஆண்டு  விளையாட்டு போட்டி  </p>
-                                            <p className="font-bold text-[#FFD900] md:text-2xl  text-base  bg-[#0470BC] w-fit md:p-2 p-1 rounded-md">GAMES-CARROM, CHESS <span className='text-white'> &</span> TABLE TENNIS</p>
-                                            <p className="concert-one-regular text-[#0470BC] text-xl">Registration Deadline: <span className='text-[#E91E31]'> 23-11-24</span></p>
-                                            <p className="concert-one-regular text-[#0470BC] text-xl">Date Duration:  </p>
-                                            <CountdownTimer />
-                                        </div>
-                                    </div>
-                                ))}
+                                <Swiper
+                                    slidesPerView={1}
+                                    spaceBetween={10}
+                                    loop={true}
+                                    pagination={{ clickable: true, }}
+                                    autoplay={{ delay: 3000, disableOnInteraction: false, }}
+                                    breakpoints={{
+                                        0: {
+                                            slidesPerView: 1,
+                                        },
+                                        768: {
+                                            slidesPerView: 1,
+                                        },
+                                        1024: {
+                                            slidesPerView: 1,
+                                        },
+                                    }}
+                                    navigation={{ nextEl: '.swiper-button', prevEl: '.swiper-button' }}
+                                    modules={[Pagination, Navigation, Autoplay]}
+                                    className="w-full " >
+                                    {EventProgram.map((item, index) => (
+                                        <SwiperSlide>
+                                            <div key={index} className="flex flex-wrap md:flex-nowrap  justify-center items-center gap-5 cursor-pointer py-10">
+                                                <img className='w-96' src={item.imgSrc} />
+                                                <div className='md:space-y-5 space-y-3'>
+                                                    <p className=" concert-one-regular md:text-2xl text-base text-white w-fit px-3 rounded-md bg-[#0470BC]">UPCOMING EVENT</p>
+                                                    <p className="md:text-2xl text-lg text-[#E91E31] font-semibold">சாக்ரமெண்டோ தமிழ் மன்றம்</p>
+                                                    <p className="text-[#0470BC] font-semibold text-xl">நடத்தும்</p>
+                                                    <p className="  font-bold  text-[#0470BC] xl:text-5xl lg:text-3xl text-2xl  text-outline-yellow">முதலாம் ஆண்டு  விளையாட்டு போட்டி  </p>
+                                                    <p className="font-bold text-[#FFD900] md:text-2xl  text-base  bg-[#0470BC] w-fit md:p-2 p-1 rounded-md">GAMES-CARROM, CHESS <span className='text-white'> &</span> TABLE TENNIS</p>
+                                                    <p className="concert-one-regular text-[#0470BC] text-xl">Registration Deadline: <span className='text-[#E91E31]'> 23-11-24</span></p>
+                                                    <p className="concert-one-regular text-[#0470BC] text-xl">Date Duration:  </p>
+                                                    <CountdownTimer />
+                                                </div>
+                                            </div>
+                                        </SwiperSlide>
+                                    ))}
+                                </Swiper>
                             </div>
                         </div>
                         <div className='lg:ml-auto'>

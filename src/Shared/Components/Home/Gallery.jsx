@@ -37,10 +37,10 @@ function Gallery(props) {
                 navigation={{ nextEl: '.swiper-button-nextdea', prevEl: '.swiper-button-prevdea' }}
                 modules={[Pagination, Navigation, Autoplay]} className="w-full  " >
                 {gallery.map((sponsor, index) => (
-                  <SwiperSlide key={index} className="flex justify-center">
-                    <div className='cursor-pointer  w-96 '>
+                  <SwiperSlide key={index} className="">
+                    <div className='cursor-pointer  '>
                       <div className="flex items-center space-x-4">
-                        <img src={`${apiurl()}/${sponsor.Image}`} className="bg-no-repeat" />
+                        <img src={`${apiurl()}/${sponsor.Image}`} className="bg-no-repeat mx-auto w-full" />
                       </div>
                       <div className='text-center border rounded-br-2xl rounded-bl-2xl p-2 relative bottom-1  -z-10 text-[#504C00] font-bold md:text-2xl text-base bg-[#EBE8A2]'>
                         {sponsor.Year}

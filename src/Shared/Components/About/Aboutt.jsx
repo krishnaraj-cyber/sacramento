@@ -3,8 +3,9 @@ import AboutUs from './AboutUs'
 import { allMember } from '../../../assets/Json/AllMember'
 import SponsorSwiper from '../SponsorSwiper/SponsorSwiper'
 import apiurl from '../../services/apiendpoint/apiendpoint';
+
 function Aboutt(props) {
-    const {boardmem} = props;
+    const { boardmem } = props;
     return (
         <>
             <section>
@@ -41,14 +42,12 @@ function Aboutt(props) {
                 </div>
             </section>
             <section className='max-w-[90rem] mx-auto px-5 my-20'>
-                <div className='grid xl:grid-cols-5 md:grid-cols-3 justify-center items-center  md:gap-10 gap-5  '>
+                <div className='grid lg:grid-cols-5 md:grid-cols-3 grid-cols-2 justify-center items-center  md:gap-10 gap-5  '>
                     {boardmem.map((item, index) => (
-                        <div key={index} className="text-center">
-                            <img className='  w-72 border-2 border-[#0571BC] rounded-t-xl '
-                                src={`${apiurl()}/${item.Image}`}
-                            />
+                        <div key={index} className="text-center w-full">
+                            <img className='  md:w-72 border-2 border-[#0571BC] rounded-t-xl w-full ' src={`${apiurl()}/${item.Image}`} />
                             <div className='  flex flex-col justify-center items-center mx-2  h-24  rounded-bl-lg  rounded-br-lg bg-[#0571BC]'>
-                                <p className="  text-base text-[#FFD900]"> {item.Name}</p>
+                                <p className="  md:text-base text-sm text-[#FFD900]"> {item.Name}</p>
                                 <p className=" text-white  text-xs md:text-sm"> {item.Designation}</p>
                             </div>
                         </div>
