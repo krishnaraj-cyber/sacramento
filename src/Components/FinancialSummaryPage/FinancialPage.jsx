@@ -1,28 +1,47 @@
-import React, { useState } from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
 import FinancialSummary from '../../Shared/Components/FinancialSummary/FinancialSummary'
 import AboutUs from '../../Shared/Components/About/AboutUs';
-import { accordionItems } from '../../assets/Json/FinancialSummary';
+// import { accordionItems } from '../../assets/Json/FinancialSummary';
 import SponsorSwiper from '../../Shared/Components/SponsorSwiper/SponsorSwiper';
+import { getallFinancialsum } from '../../Admin/shared/services/apifinancialsummary/apifinancialsummary';
+
 function FinancialPage() {
-    const [isOpen, setIsOpen] = useState(false);
-    const [selectedId, setSelectedId] = useState(null);
-    const selectedItem = accordionItems.find((item) => item.id === selectedId);
-    const [openAccordions, setOpenAccordions] = useState(() => {
-        const initialState = {};
-        if (accordionItems.length > 0) {
-            initialState[accordionItems[0].id] = true;
+    const [data, setData] = useState([]);
+    const [openYear, setOpenYear] = useState(null);
+
+
+    const fetchSponsors = useCallback(async () => {
+        let isMounted = true; 
+        try {
+          const response = await getallFinancialsum(); 
+          console.log(response)
+          if (isMounted) {  setData(response);  }
+        } catch (error) {
+          console.error('Error fetching sponsors:', error);
         }
-        return initialState;
-    });
-    const toggleAccordion = (id) => {
-        setOpenAccordions((prevState) => ({
-            ...prevState, [id]: !prevState[id],
-        }));
-    };
+        return () => {
+          isMounted = false; 
+        };
+  }, []);
+  useEffect(() => { fetchSponsors();}, [fetchSponsors]);
+
+
+  const groupedData = data.reduce((acc, item) => {
+    acc[item.Year] = acc[item.Year] || [];
+    acc[item.Year].push(item);
+    return acc;
+  }, {});
+  
+
+  const toggleYear = (year) => {
+    setOpenYear(openYear === year ? null : year);
+  };
+
+  
     return (
         <>
             <AboutUs title="FINANCIAL SUMMARY" />
-            <FinancialSummary openAccordions={openAccordions} selectedId={selectedId} selectedItem={selectedItem} setSelectedId={setSelectedId} isOpen={isOpen} accordionItems={accordionItems} setIsOpen={setIsOpen}   toggleAccordion={toggleAccordion} setOpenAccordions={setOpenAccordions} />
+            <FinancialSummary data={data} openYear={openYear} groupedData={groupedData} toggleYear={toggleYear} />
             <SponsorSwiper />
         </>
     )
