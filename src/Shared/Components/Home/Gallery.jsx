@@ -7,7 +7,7 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Pagination, Autoplay } from 'swiper/modules';
 import apiurl from '../../../shared/services/apiendpoint/apiendpoint';
 function Gallery(props) {
-  const { mobileNextStepRef, mobilePreviousRef , gallery} = props;
+  const { mobileNextStepRef, mobilePreviousRef, gallery } = props;
   return (
     <>
       <section className=' max-w-[90rem] mx-auto   md:my-20  my-10'>
@@ -35,12 +35,10 @@ function Gallery(props) {
                   },
                 }}
                 navigation={{ nextEl: '.swiper-button-nextdea', prevEl: '.swiper-button-prevdea' }}
-                modules={[Pagination, Navigation, Autoplay]}
-                className="w-full  "
-              >
+                modules={[Pagination, Navigation, Autoplay]} className="w-full  " >
                 {gallery.map((sponsor, index) => (
                   <SwiperSlide key={index} className="flex justify-center">
-                    <div className='cursor-pointer'>
+                    <div className='cursor-pointer  w-96 '>
                       <div className="flex items-center space-x-4">
                         <img src={`${apiurl()}/${sponsor.Image}`} className="bg-no-repeat" />
                       </div>

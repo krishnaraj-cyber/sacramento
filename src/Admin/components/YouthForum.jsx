@@ -60,13 +60,13 @@ export default function Sponsors() {
       reader.onload = (event) => {
         img.src = event.target.result;
         img.onload = () => {
-          const cmToPx = 37.7952755906; 
-          const requiredWidth = Math.round(3.5 * cmToPx);
-          const requiredHeight = Math.round(4.5 * cmToPx);
-          if (img.width !== requiredWidth || img.height !== requiredHeight) {
-            toast.error(`Image must be ${requiredWidth} x ${requiredHeight} pixels.`);
-            return;
-          }
+          // const cmToPx = 37.7952755906; 
+          // const requiredWidth = Math.round(3.5 * cmToPx);
+          // const requiredHeight = Math.round(4.5 * cmToPx);
+          // if (img.width !== requiredWidth || img.height !== requiredHeight) {
+          //   toast.error(`Image must be ${requiredWidth} x ${requiredHeight} pixels.`);
+          //   return;
+          // }
           setFormdata({ ...formdata, [e.target.name]: filesArray });
           setDataUrl({ src: event.target.result, length: e.target.files.length });
         };

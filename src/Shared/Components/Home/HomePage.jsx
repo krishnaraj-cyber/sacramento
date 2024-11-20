@@ -11,9 +11,6 @@ import apiurl from '../../../shared/services/apiendpoint/apiendpoint';
 
 function HomePage(props) {
     const { prevRef, nextRef, mobileNextRef ,sponsors } = props;
-   
-
-      
 
     return (
         <>
@@ -65,11 +62,11 @@ function HomePage(props) {
                                     modules={[Pagination, Navigation, Autoplay]}
                                     className="w-full max-w-5xl" >
                                     {sponsors.map((sponsor, index) => (
-                                        <SwiperSlide key={index} className="flex justify-center">
+                                        <SwiperSlide key={index} className="flex justify-center items-center">
                                             <div>
                                                 {/* <h3 className="text-xl font-semibold mb-2">{sponsor.tier}</h3> */}
                                                 <div className="flex items-center space-x-4">
-                                                    <img src={`${apiurl()}/${sponsor.Image}`} className="bg-no-repeat" />
+                                                    <img src={`${apiurl()}/${sponsor.Image}`} className="bg-no-repeat mx-auto" />
                                                 </div>
                                             </div>
                                         </SwiperSlide>

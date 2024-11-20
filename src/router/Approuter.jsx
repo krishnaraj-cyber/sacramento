@@ -19,7 +19,7 @@ function Approuter() {
     return (
         <BrowserRouter>
             <ScrollToTop />
-            <Routes >
+            <Routes>
                 <Route element={<Main />}>
                     <Route path="/" element={<Home />} />
                     <Route path="/board-members" element={<About />} />
