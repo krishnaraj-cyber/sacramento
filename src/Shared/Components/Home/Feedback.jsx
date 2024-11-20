@@ -1,5 +1,13 @@
-import React from 'react'
+import React, { useState } from 'react'
 function Feedback(props) {
+    const [isModalOpen, setIsModalOpen] = useState(false); // For modal visibility
+    const handleDonateNow = () => {
+        setIsModalOpen(true); // Open the modal
+    };
+
+    const handleModalClose = () => {
+        setIsModalOpen(false); // Close the modal
+    };
     const { activeStatus, customInputRef, handleCustomAmountChange, customAmount, statuses, handleStatusClick, } = props;
     return (
         <>
@@ -67,10 +75,35 @@ function Feedback(props) {
                                 ))}
                             </div>
                             <div className="md:text-left text-center">
-                                <button className="bg-[#0571BC] text-[#FFE134] md:ml-4 hover:bg-[#FFE134] hover:text-[#0571BC] duration-200 p-2 md:text-xl rounded-md concert-one-regular">
+                                <button onClick={handleDonateNow} className="bg-[#0571BC] text-[#FFE134] md:ml-4 hover:bg-[#FFE134] hover:text-[#0571BC] duration-200 p-2 md:text-xl rounded-md concert-one-regular">
                                     DONATE NOW
                                 </button>
                             </div>
+                            {isModalOpen && (
+                                <div className="fixed right-0 left-0 bottom-0 -top-20 bg-black bg-opacity-50 flex px-5 items-center justify-center z-50">
+                                    <div className="bg-white p-6 rounded-md shadow-lg   ">
+                                        <h2 className="text-xl font-bold text-[#0571BC] mb-4">Confirm Donation</h2>
+                                        <div className='flex gap-10 items-center'>
+                                            <img src="/assets/images/Feedback/Coin.png" alt="" />
+                                            <p className="text-gray-700 mb-6">
+                                                You are about to donate{' '}
+                                                <span className="font-bold">${activeStatus === 'Custom Amount' ? customAmount || '0' : activeStatus.replace('$', '')}</span>.
+                                                Do you want to proceed?
+                                            </p>
+                                        </div>
+                                        <div className="flex justify-end gap-4">
+                                            <button className="px-4 py-2 bg-gray-200 rounded-md hover:bg-gray-300" onClick={handleModalClose} >
+                                                Cancel
+                                            </button>
+                                            <button
+                                                className="px-4 py-2 bg-[#0571BC] text-white rounded-md hover:bg-[#045a96]"
+                                                onClick={() => { console.log('Donation Confirmed'); setIsModalOpen(false); }}   >
+                                                Confirm
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            )}
                         </div>
                     </div>
                 </div>
