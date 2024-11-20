@@ -63,8 +63,8 @@ export default function Sponsors() {
         img.src = event.target.result;
         img.onload = () => {
           const cmToPx = 37.7952755906; 
-          const requiredWidth = Math.round(3.5 * cmToPx);
-          const requiredHeight = Math.round(4.5 * cmToPx);
+          const requiredWidth = Math.round(14 * cmToPx);
+          const requiredHeight = Math.round(18 * cmToPx);
           if (img.width !== requiredWidth || img.height !== requiredHeight) {
             toast.error(`Image must be ${requiredWidth} x ${requiredHeight} pixels.`);
             return;

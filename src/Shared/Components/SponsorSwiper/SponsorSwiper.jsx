@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
 import { Sponsor } from '../../../assets/Json/Swiper'
 import { useRef } from 'react';
 import 'swiper/css';
@@ -6,7 +6,28 @@ import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Pagination, Autoplay } from 'swiper/modules';
+import apiurl from '../../services/apiendpoint/apiendpoint';
+import { getallSponsors } from '../../../Admin/shared/services/apisponsor/apisponsor';
 function SponsorSwiper() {
+
+    const [sponsors, setSponsors] = useState([]); 
+
+const fetchSponsors = useCallback(async () => {
+      let isMounted = true; 
+      try {
+        const response = await getallSponsors(); 
+        console.log(response)
+        if (isMounted) {  setSponsors(response);  }
+      } catch (error) {
+        console.error('Error fetching sponsors:', error);
+      }
+      return () => {
+        isMounted = false; 
+      };
+}, []);
+useEffect(() => { fetchSponsors();}, [fetchSponsors]);
+
+
     const mobilePreviousRef = useRef(null);
     const mobileNextStepRef = useRef(null);
     return (
@@ -35,12 +56,12 @@ function SponsorSwiper() {
                         navigation={{ nextEl: '.swiper-button-nextdeal', prevEl: '.swiper-button-prevdeal' }}
                         modules={[Pagination, Navigation, Autoplay]}
                         className=" w-full">
-                        {Sponsor.map((sponsor, index) => (
+                        {sponsors.map((sponsor, index) => (
                             <SwiperSlide key={index} className="flex justify-center">
                                 <div className='cursor-pointer'>
                                     <h3 className="text-xl font-semibold mb-2">{sponsor.tier}</h3>
                                     <div className="flex items-center space-x-4">
-                                        <img src={sponsor.imgSrc} className="bg-no-repeat" />
+                                        <img src={`${apiurl()}/${sponsor.Image}`} className="bg-no-repeat" />
                                     </div>
                                 </div>
                             </SwiperSlide>
