@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import Hamburger from 'hamburger-react';
 function Header() {
@@ -14,13 +14,24 @@ function Header() {
   const navigate = useNavigate();
   const handleDonateClick = () => {
     navigate('/');
-    setTimeout(() => {
-      const feedbackSection = document.getElementById('feedback');
-      if (feedbackSection) {
-        feedbackSection.scrollIntoView({ behavior: 'smooth' });
-      }
-    }, 0);
+    sessionStorage.setItem('scrollToSection', 'scrfeed_backsec');
   };
+  
+  useEffect(() => {
+    const scrollTargetId = sessionStorage.getItem('scrollToSection');
+  
+    if (scrollTargetId) {
+      const scrollTimeout = setTimeout(() => {
+        const feedbackSection = document.getElementById(scrollTargetId);
+        if (feedbackSection) {
+          feedbackSection.scrollIntoView({ behavior: 'smooth' });
+          sessionStorage.removeItem('scrollToSection');
+        }
+      }, 100); 
+  
+      return () => clearTimeout(scrollTimeout);
+    }
+  }, [location]);
 
   return (
     <>

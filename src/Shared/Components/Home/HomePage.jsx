@@ -10,6 +10,7 @@ import apiurl from '../../../shared/services/apiendpoint/apiendpoint';
 
 function HomePage(props) {
     const { prevRef, nextRef, mobileNextRef, sponsors , event} = props;
+    
 
 
     const activeEvents = event
@@ -22,7 +23,6 @@ function HomePage(props) {
     Image: event.Image
   }));
 
-    console.log(activeEvents)
 
     return (
         <>
@@ -56,8 +56,8 @@ function HomePage(props) {
                                     modules={[Pagination, Navigation, Autoplay]}
                                     className="w-full " >
                                      {activeEvents.map((item, index) => (
-                                        <SwiperSlide>
-                                            <div key={index} className="flex flex-wrap md:flex-nowrap  justify-center items-center gap-5 cursor-pointer pb-10">
+                                        <SwiperSlide  key={index} >
+                                            <div className="flex flex-wrap md:flex-nowrap  justify-center items-center gap-5 cursor-pointer pb-10">
                                                 <img className='w-96 rounded-2xl border-4 border-[#0670bd]' src={`${apiurl()}/${item.Image}`} />
                                                 <div className='md:space-y-5 space-y-3'>
                                                     <p className=" concert-one-regular md:text-2xl text-base text-white w-fit px-3 rounded-md bg-[#0470BC]">UPCOMING EVENT</p>
@@ -85,51 +85,84 @@ function HomePage(props) {
                             </div> 
                             ) }
                         </div>
-                        <div className='lg:ml-auto '>
-                            <h2 className="text-2xl font-bold text-center text-red-600 md:mb-5 archivo-black-regular">OUR SPONSORS</h2>
-                            <section className="flex flex-col items-center relative py-7 xl:h-[615px] lg:h-[500px] cursor-pointer ">
-                                <Swiper
-                                    slidesPerView={1}
-                                    spaceBetween={10}
-                                    loop={true}
-                                    autoplay={{ delay: 3000, disableOnInteraction: false, }}
-                                    breakpoints={{
-                                        0: { slidesPerView: 1, direction: 'horizontal', },
-                                        768: { slidesPerView: 2, direction: 'horizontal', },
-                                        1024: { slidesPerView: 3, direction: 'vertical', },
-                                    }}
-                                    navigation={{ nextEl: '.swiper-button-nextdeal', prevEl: '.swiper-button-prevdeal' }}
-                                    modules={[Pagination, Navigation, Autoplay]}
-                                    className="w-full max-w-5xl " >
-                                    {sponsors.map((sponsor, index) => (
-                                        <SwiperSlide key={index} className="flex justify-center items-center">
-                                            <div>
-                                                {/* <div className='flex flex-col justify-center  '>
-                                                    <div class="relative  ">
-                                                        <img src="/assets/images/Check/TopDesign.png" alt="Image" className='ml-1' />
-                                                        <div class="absolute  top-0  left-10  ">
-                                                            Silver
-                                                        </div>
-                                                    </div>
-                                                    <img src="/assets/images/Check/Checking...png" alt="" />
-                                                </div> */}
-                                                <div className="flex items-center space-x-4">
-                                                    <img src={`${apiurl()}/${sponsor.Image}`} className="bg-no-repeat mx-auto" />
-                                                </div>
+                        <div className="lg:ml-auto">
+                        <h2 className="text-2xl font-bold text-center text-red-600 md:mb-5 archivo-black-regular">
+                            OUR SPONSORS
+                        </h2>
+                        <section className="flex flex-col items-center relative py-7 px-7 xl:h-[615px] lg:h-[500px] cursor-pointer">
+                            <Swiper
+                            spaceBetween={10}
+                            loop={true}
+                            direction="vertical"  
+                            slidesPerView={3}
+                            autoplay={{
+                                delay: 3000,
+                                disableOnInteraction: false,
+                            }}
+                            breakpoints={{
+                                0: { slidesPerView: 1, direction: "horizontal" },
+                                768: { slidesPerView: 2, direction: "horizontal" },
+                                1024: { slidesPerView: 3, direction: "vertical" },
+                            }}
+                            navigation={{
+                                nextEl: ".swiper-button-nexx",
+                                prevEl: ".swiper-button-pree",
+                            }}
+                            modules={[Pagination, Navigation, Autoplay]}
+                            className="w-full max-w-5xl"
+                            >
+                                {sponsors.map((sponsor, index) => (
+                                    <SwiperSlide key={index} className="flex justify-center items-center">
+                                    <div className="flex items-center justify-center">
+                                        <div className='mx-auto'>
+                                            <div className={`sponsor-clip-path text-black font-semibold px-10 w-40 text-center ${sponsor.Category == 'Gold' ? 'bg-[#d9a31c] ': sponsor.Category == 'Silver' ? 'bg-[#d9d9d9]' : 'bg-[#e8b692]'}`}>{sponsor.Category}</div>
+                                            <img
+                                                src={`${apiurl()}/${sponsor.Image}`}
+                                                className="bg-no-repeat mx-auto"
+                                                alt={`Duplicate Sponsor ${index + 1}`}
+                                            />
                                             </div>
-                                        </SwiperSlide>
+                                        </div>
+                                    </SwiperSlide>
+                                ))}
+
+                                {sponsors.length < 4 &&
+                                    sponsors.map((sponsor, index) => (
+                                    <SwiperSlide key={`duplicate-${index}`} className="flex justify-center items-center">
+                                        <div className="flex items-center justify-center">
+                                        <div className='mx-auto'>
+                                            <div className={`sponsor-clip-path text-black font-semibold px-10  w-40 text-center ${sponsor.Category == 'Gold' ? 'bg-[#d9a31c] ': sponsor.Category == 'Silver' ? 'bg-[#d9d9d9]' : 'bg-[#e8b692]'}`}>{sponsor.Category}</div>
+                                            <img
+                                                src={`${apiurl()}/${sponsor.Image}`}
+                                                className="bg-no-repeat mx-auto"
+                                                alt={`Duplicate Sponsor ${index + 1}`}
+                                            />
+                                            </div>
+                                        </div>
+                                    </SwiperSlide>
                                     ))}
-                                </Swiper>
-                                <div ref={prevRef} className="absolute lg:top-0 lg:left-1/2 lg:transform lg:-translate-x-1/2      -left-10   lg:rotate-0   -rotate-90 top-1/2    lg:-translate-y-1/2 z-10 cursor-pointer"  >
-                                    <img className="swiper-button-prevdeal px-2" src="/assets/images/Hero-Section/Top.png" alt="Previous" />
-                                </div>
-                                <div ref={nextRef} className="absolute  lg:-bottom-4   lg:left-1/2 lg:transform  lg:block hidden lg:-translate-x-1/2  lg:-translate-y-1/2  z-10   -rotate-90  lg:rotate-0  cursor-pointer" >
-                                    <img className="swiper-button-nextdeal px-2" src="/assets/images/Hero-Section/Bottom.png" alt="Next" />
-                                </div>
-                                <div ref={mobileNextRef} className="absolute    z-10  lg:hidden block  -right-10 top-1/2 -rotate-90  cursor-pointer" >
-                                    <img className="swiper-button-nextdeal px-2" src="/assets/images/Hero-Section/Bottom.png" alt="Next" />
-                                </div>
-                            </section>
+                            </Swiper>
+
+                            {/* Navigation Buttons */}
+                            <div
+                            className="swiper-button-pree absolute z-30 -left-5 top-1/2 translate-y-1/2 -rotate-90 lg:-top-3 lg:left-1/2 lg:-translate-x-1/2 lg:rotate-0"
+                            >
+                            <img
+                                className="px-2"
+                                src="/assets/images/Hero-Section/Top.png"
+                                alt="Previous"
+                            />
+                            </div>
+                            <div
+                            className="swiper-button-nexx absolute z-30 -right-5 bottom-1/2 translate-y-1/2 -rotate-90 lg:bottom-3 lg:right-1/2 lg:translate-x-1/2 lg:rotate-0"
+                            >
+                            <img
+                                className="px-2"
+                                src="/assets/images/Hero-Section/Bottom.png"
+                                alt="Next"
+                            />
+                            </div>
+                        </section>
                         </div>
                     </div>
                 </div>

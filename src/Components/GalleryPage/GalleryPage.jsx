@@ -1,8 +1,8 @@
 import React, { useCallback, useEffect, useState } from 'react'
 import Gallerys from '../../Shared/Components/Gallerys/Gallerys'
-import SponsorSwiper from '../../shared/components/SponsorSwiper/SponsorSwiper'
-import AboutUs from '../../shared/components/About/AboutUs'
 import { getallGallerys } from '../../Admin/shared/services/apigallery/apigallery';
+import SponsorSwiper from '../../Shared/Components/SponsorSwiper/SponsorSwiper';
+import AboutUs from '../../Shared/Components/About/AboutUs';
 function GalleryPage() {
 
   const [gallery, setGallery] = useState([]); 

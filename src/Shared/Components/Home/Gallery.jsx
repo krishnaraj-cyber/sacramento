@@ -6,6 +6,7 @@ import 'swiper/css/pagination';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Pagination, Autoplay } from 'swiper/modules';
 import apiurl from '../../../shared/services/apiendpoint/apiendpoint';
+import { Link } from 'react-router-dom';
 function Gallery(props) {
   const { mobileNextStepRef, mobilePreviousRef, gallery } = props;
   return (
@@ -38,7 +39,8 @@ function Gallery(props) {
                 modules={[Pagination, Navigation, Autoplay]} className="w-full  " >
                 {gallery.map((sponsor, index) => (
                   <SwiperSlide key={index} className="">
-                    <div className='cursor-pointer  '>
+                  <Link to='/gallery'>
+                    <div  className='cursor-pointer  '>
                       <div className="flex items-center space-x-4">
                         <img src={`${apiurl()}/${sponsor.Image}`} className="bg-no-repeat mx-auto w-full" />
                       </div>
@@ -46,6 +48,7 @@ function Gallery(props) {
                         {sponsor.Year}
                       </div>
                     </div>
+                    </Link>
                   </SwiperSlide>
                 ))}
               </Swiper>

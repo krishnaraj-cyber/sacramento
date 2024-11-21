@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useState } from 'react'
-import Aboutt from '../../shared/components/About/Aboutt'
 import { getallBoardmembers } from '../../Admin/shared/services/apiboardmembers/apiboardmembers';
+import Aboutt from '../../Shared/Components/About/Aboutt';
 function About() {
 
   const [boardmem, setBoardmem] = useState([]); 

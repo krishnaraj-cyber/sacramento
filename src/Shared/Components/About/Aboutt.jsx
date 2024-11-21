@@ -1,8 +1,8 @@
 import React from 'react'
-import AboutUs from './AboutUs'
 import { allMember } from '../../../assets/Json/AllMember'
-import SponsorSwiper from '../SponsorSwiper/SponsorSwiper'
-import apiurl from '../../services/apiendpoint/apiendpoint';
+import apiurl from '../../../shared/services/apiendpoint/apiendpoint';
+import AboutUs from '../../../Shared/Components/About/AboutUs'
+import SponsorSwiper from '../SponsorSwiper/SponsorSwiper';
 
 function Aboutt(props) {
     const { boardmem } = props;
