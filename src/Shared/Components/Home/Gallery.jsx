@@ -45,7 +45,7 @@ function Gallery(props) {
                         <img src={`${apiurl()}/${sponsor.Image}`} className="bg-no-repeat mx-auto w-full" />
                       </div>
                       <div className='text-center border rounded-br-2xl rounded-bl-2xl p-2 relative bottom-1  -z-10 text-[#504C00] font-bold md:text-2xl text-base bg-[#EBE8A2]'>
-                        {sponsor.Year}
+                        {sponsor.Year.split('-')[0]}
                       </div>
                     </div>
                     </Link>
