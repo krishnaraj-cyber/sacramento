@@ -34,11 +34,11 @@ function SponsorSwiper() {
   const mobileNextStepRef = useRef(null);
   return (
     <>
-      <div className="max-w-[85rem] w-full  mx-auto md:my-20 my-10 space-y-5">
+      <div className="max-w-[85rem] w-full px-5  mx-auto md:my-20 my-10 space-y-5">
         <h2 className=" text-2xl md:text-3xl font-bold text-center text-red-600  concert-one-regular">
           OUR SPONSORS
         </h2>
-        <section className="flex flex-col items-center relative  px-10 ">
+        <section className="flex flex-col items-center relative  px-10  ">
           <Swiper
             slidesPerView={1}
             spaceBetween={10}
@@ -56,6 +56,7 @@ function SponsorSwiper() {
               },
               1024: {
                 slidesPerView: 3,
+
               },
             }}
             navigation={{
@@ -64,19 +65,18 @@ function SponsorSwiper() {
             }}
             modules={[Pagination, Navigation, Autoplay]}
             className=" w-full mx-auto"
-          >
+             >
             {sponsors.map((sponsor, index) => (
               <SwiperSlide key={index} className="flex justify-center mx-auto">
                 <div className="flex items-center justify-center">
                   <div className="mx-auto">
                     <div
-                      className={`sponsor-clip-path text-black font-semibold px-10 w-40 text-center ${
-                        sponsor.Category == "Gold"
-                          ? "bg-[#d9a31c] "
-                          : sponsor.Category == "Silver"
+                      className={`sponsor-clip-path text-black font-semibold px-10 w-40 text-center ${sponsor.Category == "Gold"
+                        ? "bg-[#d9a31c] "
+                        : sponsor.Category == "Silver"
                           ? "bg-[#d9d9d9]"
                           : "bg-[#e8b692]"
-                      }`}
+                        }`}
                     >
                       {sponsor.Category}
                     </div>
@@ -95,13 +95,12 @@ function SponsorSwiper() {
                   <div className="flex items-center justify-center">
                     <div className="mx-auto">
                       <div
-                        className={`sponsor-clip-path text-black font-semibold px-10 w-40 text-center ${
-                          sponsor.Category == "Gold"
-                            ? "bg-[#d9a31c] "
-                            : sponsor.Category == "Silver"
+                        className={`sponsor-clip-path text-black font-semibold px-10 w-40 text-center ${sponsor.Category == "Gold"
+                          ? "bg-[#d9a31c] "
+                          : sponsor.Category == "Silver"
                             ? "bg-[#d9d9d9]"
                             : "bg-[#e8b692]"
-                        }`}
+                          }`}
                       >
                         {sponsor.Category}
                       </div>
