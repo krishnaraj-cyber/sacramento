@@ -116,7 +116,7 @@ function Home() {
 
   return (
     <>
-      <HomePage prevRef={prevRef} nextRef={nextRef} sponsors={sponsors} setSponsors={setSponsors}  event={event}  />
+      <HomePage prevRef={prevRef} nextRef={nextRef} sponsors={sponsors} setSponsors={setSponsors} event={event} />
       <AboutSection boardmem={boardmem} />
       <Gallery mobilePreviousRef={mobilePreviousRef} mobileNextstepRef={mobileNextstepRef} gallery={gallery} />
       <Event mobilePrevRef={mobilePrevRef} mobileNextRef={mobileNextRef} event={event} />
