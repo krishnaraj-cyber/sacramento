@@ -2,12 +2,12 @@ import axios from "axios";
 import apiurl from "../../../../shared/services/apiendpoint/apiendpoint";
 import { gettoken } from "../../../../shared/services/Token/token";
 
-
 export const getallBoardmembers = async (params) => {
-  var res = await axios.get(`${apiurl()}/api/getallBoardmembers`, { params: params });
+  var res = await axios.get(`${apiurl()}/api/getallBoardmembers`, {
+    params: params,
+  });
   return res.data;
 };
-
 
 export const getuniquevaluebyfield = async (params) => {
   var res = await axios.get(`${apiurl()}/api/gallery/getBoardmembersbyid`, {
@@ -15,7 +15,6 @@ export const getuniquevaluebyfield = async (params) => {
   });
   return res.data;
 };
-
 
 export const saveBoardmembers = async (datas, onUploadProgress) => {
   try {
@@ -41,7 +40,6 @@ export const saveBoardmembers = async (datas, onUploadProgress) => {
   }
 };
 
-
 export const updateBoardmembers = async (datas) => {
   const formData = new FormData();
   for (const key in datas) {
@@ -62,7 +60,6 @@ export const updateBoardmembers = async (datas) => {
     throw new Error(error.response?.data?.error || "API request failed");
   }
 };
-
 
 export const deleteBoardmembers = async (id) => {
   var res = await axios.delete(`${apiurl()}/api/deleteBoardmembers?id=${id}`, {

@@ -14,33 +14,7 @@ export default function Addandeditform(props) {
     return (
         <Dialog header={!formdata?.id ? "Add Sponsor" : "Update Sponsor"} visible={visible} onHide={() =>closeModel() } className="!w-full lg:!w-[40rem]">
             <form onSubmit={!formdata?.id ? handlesave : handleupdate}>
-                {/* <div className="mb-3">
-                    <div className="flex items-center justify-center mb-3">
-                        <label className=" relative z-[1] flex flex-col items-center justify-center w-40 h-40 sm:w-60 sm:h-60 rounded-xl overflow-hidden border-2 border-gray-300 border-dashed cursor-pointer bg-gray-50 dark:hover:bg-bray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600">
-                        {dataUrl ? (
-                            <div className='mb-5'>
-                                <img src={dataUrl.src} alt="" />
-                            </div>
-                        ) : formdata?.Image ? (
-                            <div className='mb-5'>
-                                <img src={`${apiurl()}/${formdata.Image}`} alt="" />
-                            </div>
-                        ) : (
-                            <div className="flex flex-col items-center justify-center pt-4 pb-5">
-                                <i className="fi fi-sr-mode-landscape"></i>
-                                <p className="mb-2 text-sm text-gray-500 dark:text-gray-400">
-                                    <span className="font-semibold">Click to upload</span>
-                                </p>
-                            </div>
-                        )}
-
-                            
-
-                            <input type="file" name="Image" multiple onChange={handlechange} className="hidden" />
-                        </label>
-                    </div>
-                </div> */}
-
+               
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-3 mb-3">
                     <div className="mb-2">
                         <div className="mb-2">
@@ -80,16 +54,6 @@ export default function Addandeditform(props) {
                             <option value="Inactive">Inactive</option>
                         </select>
                     </div>
-
-                    {/* <div className="mb-2">
-                        <div className="mb-2">
-                            <label>Date</label>
-                        </div>
-                        <input type="date" name="Event_Date" value={moment(formdata?.Event_Date).format("YYYYY-MM-DD")} onChange={handlechange} className="w-full px-4 py-2 border rounded-md outline-none" required />
-                    </div> */}
-
-                    
-
                 </div>
                 <div className="mb-2">
                     <button type="submit" className="w-full px-4 py-2 text-white bg-secondary border rounded-md" >

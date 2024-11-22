@@ -29,14 +29,17 @@ function Home() {
     firstName: "",
     email: "",
   });
+
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
   };
+
   const handleSubmit = (e) => {
     e.preventDefault();
 
   };
+
   const handleStatusClick = (status) => {
     if (status === 'Custom Amount') {
       setActiveStatus('Custom Amount');
@@ -45,6 +48,7 @@ function Home() {
       setCustomAmount('');
     }
   };
+
   const handleCustomAmountChange = (e) => {
     const value = e.target.value;
     if (/^\d*$/.test(value)) {
@@ -56,6 +60,7 @@ function Home() {
       customInputRef.current?.focus();
     }
   }, [activeStatus]);
+
   const fetchSponsors = useCallback(async () => {
     let isMounted = true;
     try {
@@ -69,6 +74,7 @@ function Home() {
     };
   }, []);
   useEffect(() => { fetchSponsors(); }, [fetchSponsors]);
+
   const fetchBoardmem = useCallback(async () => {
     let isMounted = true;
     try {
@@ -82,6 +88,7 @@ function Home() {
     };
   }, []);
   useEffect(() => { fetchBoardmem(); }, [fetchBoardmem]);
+
   const fetchGallery = useCallback(async () => {
     let isMounted = true;
     try {
@@ -95,6 +102,7 @@ function Home() {
     };
   }, []);
   useEffect(() => { fetchGallery(); }, [fetchGallery]);
+  
   const fetchEvent = useCallback(async () => {
     let isMounted = true;
     try {

@@ -59,16 +59,6 @@ export default function Addandeditform(props) {
                             <option value="Inactive">Inactive</option>
                         </select>
                     </div>
-
-                    {/* <div className="mb-2">
-                        <div className="mb-2">
-                            <label>Date</label>
-                        </div>
-                        <input type="date" name="Event_Date" value={moment(formdata?.Event_Date).format("YYYYY-MM-DD")} onChange={handlechange} className="w-full px-4 py-2 border rounded-md outline-none" required />
-                    </div> */}
-
-                    
-
                 </div>
                 <div className="mb-2">
                     <button type="submit" className="w-full px-4 py-2 text-white bg-secondary border rounded-md" >

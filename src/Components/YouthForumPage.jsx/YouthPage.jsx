@@ -8,9 +8,6 @@ function YouthPage() {
     const [forum, setForum] = useState([]); 
 
 
-
-
-    
 const fetchYouthforum = useCallback(async () => {
       let isMounted = true; 
       try {

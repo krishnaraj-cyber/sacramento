@@ -3,7 +3,9 @@ import apiurl from "../../../../shared/services/apiendpoint/apiendpoint";
 import { gettoken } from "../../../../shared/services/Token/token";
 
 export const getallFinancialsum = async (params) => {
-  var res = await axios.get(`${apiurl()}/api/getallfinancials`, { params: params });
+  var res = await axios.get(`${apiurl()}/api/getallfinancials`, {
+    params: params,
+  });
   return res.data;
 };
 
@@ -58,7 +60,6 @@ export const updateFinancialsum = async (datas) => {
     throw new Error(error.response?.data?.error || "API request failed");
   }
 };
-
 
 export const deleteFinancialsum = async (id) => {
   var res = await axios.delete(`${apiurl()}/api/deletefinancial?id=${id}`, {

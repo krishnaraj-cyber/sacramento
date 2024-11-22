@@ -5,21 +5,34 @@ import SponsorSwiper from '../../Shared/Components/SponsorSwiper/SponsorSwiper';
 import AboutUs from '../../Shared/Components/About/AboutUs';
 function GalleryPage() {
 
-  const [gallery, setGallery] = useState([]); 
+  const [gallery, setGallery] = useState([]);
+  const [years, setYears] = useState([]);
+  const [groupedData, setGroupedData] = useState({});
 
   const fetchGallery = useCallback(async () => {
-    let isMounted = true; 
-    try {
-      const response = await getallGallerys(); 
-      if (isMounted) {  setGallery(response);  }
-    } catch (error) {
-      console.error('Error fetching sponsors:', error);
+    const response = await getallGallerys();
+    if (response?.length > 0) {
+      // Extract unique years, sorted in descending order
+      const sortedYears = [...new Set(response.map((item) => item.Year.split('-')[0]))].sort((a, b) => b - a);
+      setYears(sortedYears);
+
+      // Group data by year and then by event name
+      const groupedByYear = sortedYears.reduce((acc, year) => {
+        const eventsInYear = response.filter((item) => item.Year.startsWith(year));
+        acc[year] = eventsInYear.reduce((events, item) => {
+          events[item.EventName] = events[item.EventName] || [];
+          events[item.EventName].push(item);
+          return events;
+        }, {});
+        return acc;
+      }, {});
+      setGroupedData(groupedByYear);
     }
-    return () => {
-      isMounted = false; 
-    };
-}, []);
-  useEffect(() => { fetchGallery();}, [fetchGallery]);
+  }, []);
+
+  useEffect(() => {
+    fetchGallery();
+  }, [fetchGallery]);
 
   
   return (

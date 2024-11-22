@@ -38,25 +38,6 @@ export const saveEvents = async (datas, onUploadProgress) => {
   }
 };
 
-// export const updateEvents = async (datas) => {
-//   const formData = new FormData();
-//   for (const key in datas) {
-//     if (key == "Image") {
-//       for (let i = 0; i < datas["Image"].length; i++)
-//         if (datas["Image"][i] instanceof File)
-//           formData.append(key, datas[key][i]);
-//         else formData.append(key, datas[key]);
-//     } else {
-//       formData.append(key, datas[key]);
-//     }
-//   }
-//   var res = await axios.put(`${apiurl()}/api/editevent`, formData, {
-//     params: { id: datas?.id },
-//     headers: { Authorization: `Bearer ${gettoken()}` },
-//   });
-//   return res.data;
-// };
-
 export const updateEvents = async (datas) => {
   const formData = new FormData();
   for (const key in datas) {
@@ -77,11 +58,6 @@ export const updateEvents = async (datas) => {
     throw new Error(error.response?.data?.error || "API request failed");
   }
 };
-
-// export const getFilterOptions = async(data)=>{
-//    var res=await axios.post(`${apiurl()}/gallery/getfilteroptions`,{field:data},{headers: {"Authorization" : `Bearer ${gettoken()}`}});
-//    return res.data;
-// }
 
 export const deleteEvents = async (id) => {
   var res = await axios.delete(`${apiurl()}/api/deleteevent?id=${id}`, {

@@ -1,4 +1,4 @@
-/* eslint-disable react/prop-types */
+
 import { useEffect, useState } from 'react';
 import { DataTable } from 'primereact/datatable';
 import { Column } from 'primereact/column';
@@ -79,7 +79,6 @@ const Tableview = (props) =>{
     {field: 'Eventname', header: 'Title' ,width : "120px"},
     {field: 'Date', header: 'Event Date',filter:true, format: "Date",width : "120px"},
     {field: 'Activities', header: 'Activities', width : "120px"},
-    // {field: 'Description', header: 'Description',width : "350px", format: "HTML"},
     {field: 'Status', header: 'Status',filter:true,width : "120px"}
   ];
 
