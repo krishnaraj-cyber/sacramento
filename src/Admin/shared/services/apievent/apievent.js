@@ -8,7 +8,6 @@ export const getallEvents = async (params) => {
 };
 
 export const getuniquevaluebyfield = async (params) => {
-  console.log(params);
   var res = await axios.get(`${apiurl()}/api/geteventbyid`, {
     params: params,
   });

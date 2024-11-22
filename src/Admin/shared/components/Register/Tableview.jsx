@@ -54,7 +54,6 @@ const Tableview = (props) =>{
 
   const getOption = async (key)=>{
     var filterOptions = await getFilterOptions(key.field);
-    //console.log(filterOptions)
     var formatoption = filterOptions[key.field].map( val =>({ label:val,value: key.format == "Date"? moment(val).format('YYYY-MM-DD') :val}));
     setFilterOptions(formatoption);
   }

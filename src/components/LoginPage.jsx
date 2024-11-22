@@ -18,7 +18,6 @@ export default function LoginPage() {
         const res = await apilogin(formdata);
 
         if (res.message === "Successful login") {
-            console.log(res.Role)
             if(location?.state?.status=="checkoutlogin"){
                 navigate('/checkout')
             }

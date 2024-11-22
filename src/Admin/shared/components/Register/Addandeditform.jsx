@@ -6,14 +6,7 @@ import ReactQuill from 'react-quill';
 
 export default function Addandeditform(props) {
     const { visible, setVisible, handlesave, handlechange, loading, formdata, handleupdate , AddGame, removeGame, handlechangeGames} = props;
-  
-    // const quillRef = useRef(null);
-
-    // useEffect(() => {
-    //   const quillInstance = quillRef.current.getEditor();
-    //   console.log(quillInstance.getContents());
-    // }, [formdata?.Description]);
-  
+ 
     const modules = {
       toolbar: [
         [{ 'header': '1'}, {'header': '2'}, { 'font': [] }],
@@ -33,7 +26,6 @@ export default function Addandeditform(props) {
       'link', 'image', 'video'
     ];
 
-    console.log(formdata)
 
     return (
         <Dialog header={!formdata?._id ? "Add Registration" : "Update Registration"} visible={visible} onHide={() => setVisible(false)} className="!w-full lg:!w-[40rem]">

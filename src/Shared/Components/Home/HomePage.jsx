@@ -4,7 +4,6 @@ import "swiper/css/navigation";
 import "swiper/css/pagination";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination, Autoplay } from "swiper/modules";
-import { EventProgram } from "../../../assets/Json/Event";
 import CountdownTimer from "./CountdownTimer";
 import apiurl from "../../../shared/services/apiendpoint/apiendpoint";
 

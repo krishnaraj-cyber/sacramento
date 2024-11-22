@@ -49,7 +49,6 @@ export default function Register() {
     };
 
     const handlechange = (e,name) => {
-        //console.log(e)
         if (e.target && e.target.files) {
             const filesArray = Array.from(e.target.files);
             setFormdata({...formdata, [e.target.name]: filesArray});
@@ -99,7 +98,6 @@ export default function Register() {
 
     const handleupdate=async (e)=>{
         e.preventDefault();
-        //console.log(formdata)
         setLoading(true)
         await updateregisters(formdata)
         toast.success("Sucessfully updated")

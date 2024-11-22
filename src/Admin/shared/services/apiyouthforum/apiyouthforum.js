@@ -8,7 +8,6 @@ export const getallYouthForum = async (params) => {
 };
 
 export const getuniquevaluebyfield = async (params) => {
-  console.log(params);
   var res = await axios.get(`${apiurl()}/api/getyouthforumbyid`, {
     params: params,
   });

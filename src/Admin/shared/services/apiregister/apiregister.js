@@ -9,7 +9,6 @@ export const getallregister = async(params)=>{
 }
 
 export const getuniquevaluebyfield = async(params)=>{
-   console.log(params)
    var res=await axios.get(`${apiurl()}/register/apigetuniquevaluebyfield` ,{params:params , headers: {"Authorization" : `Bearer ${gettoken()}`}});
    return res.data;
 }

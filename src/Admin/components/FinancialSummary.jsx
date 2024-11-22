@@ -126,7 +126,6 @@ export default function FinancialSummary() {
   
 
   const handledelete = (id) => {
-    console.log("Deleting product with ID:", id);
     confirmDialog({
       message: 'Do you want to delete this record?',
       header: 'Delete Confirmation',

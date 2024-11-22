@@ -8,7 +8,6 @@ export const getallFinancialsum = async (params) => {
 };
 
 export const getuniquevaluebyfield = async (params) => {
-  console.log(params);
   var res = await axios.get(`${apiurl()}/api/getfinancialsbyid`, {
     params: params,
   });

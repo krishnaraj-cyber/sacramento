@@ -11,7 +11,6 @@ function GalleryPage() {
     let isMounted = true; 
     try {
       const response = await getallGallerys(); 
-      console.log(response)
       if (isMounted) {  setGallery(response);  }
     } catch (error) {
       console.error('Error fetching sponsors:', error);

@@ -35,7 +35,6 @@ function Home() {
   };
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("Form submitted:", formData);
 
   };
   const handleStatusClick = (status) => {
