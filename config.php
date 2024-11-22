@@ -17,13 +17,23 @@ define('DATABASE', [
     'Pass'   => '',
     'Prefix' => 'cia_'*/
 
+    // 'Port'   => '3306',
+    // 'Host'   => 'localhost',
+    // 'Driver' => 'PDO',
+    // 'Name'   => 'sacra_mento',
+    // 'User'   => 'root',
+    // 'Pass'   => '',
+    // 'Prefix' => 'sacra_'
+
+    
     'Port'   => '3306',
-    'Host'   => 'localhost',
+    'Host'   => '89.116.53.23',
     'Driver' => 'PDO',
-    'Name'   => 'sacra_mento',
-    'User'   => 'root',
-    'Pass'   => '',
-    'Prefix' => 'sacra_'
+    'Name'   => 'u937770786_sactamil',
+    'User'   => 'u937770786_sactamil',
+    'Pass'   => 'S=FJB^y3',
+    'Prefix' => 'u937770786_'
+
    
     
     

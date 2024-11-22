@@ -1,7 +1,9 @@
 <?php
     $allowedOrigins = array(
         'http://localhost:4200',
-        'http://192.168.0.120:5173',  
+        'http://192.168.0.111:5173',  
+        'http://192.168.0.115:5173',  
+        'https://thirstycrowz.com',  
         
     );
     if (isset($_SERVER['HTTP_ORIGIN']) && in_array($_SERVER['HTTP_ORIGIN'], $allowedOrigins)) {
