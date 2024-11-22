@@ -242,6 +242,27 @@ public function updateGallery() {
         
     }
 
+    public function getGallerybyYear(){
+        try {
+            $year = $_GET['Year'] ?? $reqdata['Year'] ?? null;
+    
+            if ($year) {
+                $galleryModel = new ModelsGallery();
+                $resData = $galleryModel->getByYear($year);
+                
+                http_response_code(200);
+                echo json_encode($resData);
+            } else {
+                http_response_code(400);
+                echo json_encode(array("message" => "year is required"));
+            }
+        } catch (Exception $e) {
+            http_response_code(500);
+            echo json_encode(array("error" => "An error occurred: " . $e->getMessage()));
+        }
+        
+    }
+
 
 public function deleteGallery(){
     try {

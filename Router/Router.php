@@ -83,6 +83,7 @@ $router->delete('/sacra_mento/api/deleteyouthforum', function(){(new Controllers
 
 //Gallery
 $router->get('/sacra_mento/api/getgallerybyid', function(){(new ControllersGallery)->getGallerybyid();});
+$router->get('/sacra_mento/api/getgallerybyyear', function(){(new ControllersGallery)->getGallerybyYear();});
 $router->get('/sacra_mento/api/getallgallery', function(){(new ControllersGallery)->getallGallery();});
 $router->post('/sacra_mento/api/uploadgallery', function(){(new ControllersGallery)->saveGallery();});
 $router->post('/sacra_mento/api/updategallery', function(){(new ControllersGallery)->updateGallery();});

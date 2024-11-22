@@ -20,14 +20,6 @@ class ModelsGallery extends Model {
         $query = $this->db->query("SELECT * FROM " . DB_PREFIX . "Gallery");
         return $query->rows;
     }
-    // public function save($data) {
-    //     $array_keys =implode(",", array_keys($data));
-    //     $array_values = "'".implode("','", array_values($data))."'";
-    //     $query = $this->db->query("INSERT INTO " . DB_PREFIX ."Gallery (".$array_keys.") VALUES (".$array_values.")");
-    //     $id=$this->db->getLastId();
-    //     $fdata=$this->lastrecord($id);
-    //     return $fdata;
-    // }
 
     public function save($data) {
         $validColumns = ['EventName', 'Year', 'Status', 'Image']; 
@@ -42,25 +34,6 @@ class ModelsGallery extends Model {
         return $fdata;
     }
 
-    // public function update($data, $id) {
-    //     if (array_key_exists("id", $data)) {
-    //         unset($data['id']);
-    //     }
-    //     $cols = [];
-    //     $values = [];
-    //     foreach ($data as $key => $val) {
-    //         $cols[] = "$key = ?";
-    //         $values[] = $val;
-    //     }
-    //     $query = "UPDATE " . DB_PREFIX . "Gallery SET " . implode(', ', $cols) . " WHERE id = ?";
-    //     $values[] = (int)$id; 
-    //     $stmt = $this->db->prepare($query); 
-    //     if ($stmt->execute($values)) {
-    //         return $this->lastRecord($id);
-    //     } else {
-    //         throw new Exception("Failed to update record.");
-    //     }
-    // }
     
 
     public function update($data, $id) {
