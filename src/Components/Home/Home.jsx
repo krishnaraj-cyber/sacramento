@@ -61,7 +61,6 @@ function Home() {
     let isMounted = true;
     try {
       const response = await getallSponsors();
-      console.log(response)
       if (isMounted) { setSponsors(response); }
     } catch (error) {
       console.error('Error fetching sponsors:', error);
@@ -75,7 +74,6 @@ function Home() {
     let isMounted = true;
     try {
       const response = await getallBoardmembers();
-      console.log(response)
       if (isMounted) { setBoardmem(response); }
     } catch (error) {
       console.error('Error fetching sponsors:', error);
@@ -89,7 +87,6 @@ function Home() {
     let isMounted = true;
     try {
       const response = await getallGallerys();
-      console.log(response)
       if (isMounted) { setGallery(response); }
     } catch (error) {
       console.error('Error fetching sponsors:', error);
@@ -103,7 +100,6 @@ function Home() {
     let isMounted = true;
     try {
       const response = await getallEvents();
-      console.log(response)
       if (isMounted) { setEvent(response); }
     } catch (error) {
       console.error('Error fetching sponsors:', error);

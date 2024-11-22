@@ -87,11 +87,11 @@ export default function Sponsors() {
         img.src = event.target.result;
         img.onload = () => {
           const aspectRatio = img.width / img.height;
-          const acceptableAspectRatio = 4 / 3; 
+          const acceptableAspectRatio = 2; 
           const tolerance = 0.01; 
           
           if (Math.abs(aspectRatio - acceptableAspectRatio) > tolerance) {
-          toast.error("Image must have a 4:3 aspect ratio.");
+          toast.error("Image must have a 4:2 aspect ratio.");
           return;
         }
           setFormdata({ ...formdata, [e.target.name]: filesArray });

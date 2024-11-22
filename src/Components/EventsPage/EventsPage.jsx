@@ -1,9 +1,9 @@
 import React, { useCallback, useEffect, useState } from 'react'
 import Events from '../../Shared/Components/Eventss/Events'
 import EventSwipe from '../../Shared/Components/EventSwipe/EventSwipe'
-import AboutUs from '../../shared/components/About/AboutUs'
-import SponsorSwiper from '../../shared/components/SponsorSwiper/SponsorSwiper'
 import { getallEvents } from '../../Admin/shared/services/apievent/apievent'
+import SponsorSwiper from '../../Shared/Components/SponsorSwiper/SponsorSwiper';
+import AboutUs from '../../Shared/Components/About/AboutUs';
 function EventsPage() {
   
   const [event, setEvent] = useState([]); 

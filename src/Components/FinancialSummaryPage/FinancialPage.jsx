@@ -1,7 +1,6 @@
 import React, { useCallback, useEffect, useState } from 'react'
 import FinancialSummary from '../../Shared/Components/FinancialSummary/FinancialSummary'
 import AboutUs from '../../Shared/Components/About/AboutUs';
-// import { accordionItems } from '../../assets/Json/FinancialSummary';
 import SponsorSwiper from '../../Shared/Components/SponsorSwiper/SponsorSwiper';
 import { getallFinancialsum } from '../../Admin/shared/services/apifinancialsummary/apifinancialsummary';
 
@@ -14,8 +13,14 @@ function FinancialPage() {
         let isMounted = true; 
         try {
           const response = await getallFinancialsum(); 
-          console.log(response)
-          if (isMounted) {  setData(response);  }
+            console.log(response);
+            if (isMounted) {
+                setData(response);
+                if (response.length > 0) {
+                    const sortedYears = [...new Set(response.map(item => item.Year))].sort((a, b) => b - a);
+                    setOpenYear(sortedYears[0]); 
+                }
+            }
         } catch (error) {
           console.error('Error fetching sponsors:', error);
         }

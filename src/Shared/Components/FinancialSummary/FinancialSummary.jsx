@@ -24,7 +24,6 @@ function FinancialSummary(props) {
                       <th className="border px-4 py-2">Event</th>
                       <th className="border px-4 py-2">Expenses</th>
                       <th className="border px-4 py-2">Income</th>
-                      {/* <th className="border px-4 py-2">Status</th> */}
                     </tr>
                   </thead>
                   <tbody>
@@ -33,7 +32,6 @@ function FinancialSummary(props) {
                         <td className="border px-4 py-2">{item.EventName}</td>
                         <td className="border px-4 py-2">{item.Expenses}</td>
                         <td className="border px-4 py-2">{item.Income}</td>
-                        {/* <td className="border px-4 py-2">{item.Status}</td> */}
                       </tr>
                     ))}
                   </tbody>

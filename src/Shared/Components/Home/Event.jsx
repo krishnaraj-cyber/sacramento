@@ -6,6 +6,7 @@ import 'swiper/css/pagination';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Pagination, Autoplay } from 'swiper/modules';
 import apiurl from '../../../shared/services/apiendpoint/apiendpoint';
+import { Link } from 'react-router-dom';
 function Event(props) {
     const { mobileNextRef, mobilePrevRef, event } = props;
     return (
@@ -37,7 +38,7 @@ function Event(props) {
                                             <img src={`${apiurl()}/${sponsor.Image}`} className="w-full h-full object-cover" />
                                             <div className="absolute inset-0 bg-black bg-opacity-50 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                                                 <div className="flex items-center justify-center h-full">
-                                                    <button className="text-[#E91E31] hover:bg-[#E91E31] hover:text-white duration-200 bg-white px-4 py-2 concert-one-regular rounded">Apply Now</button>
+                                                    <Link to='/events'><button className="text-[#E91E31] hover:bg-[#E91E31] hover:text-white duration-200 bg-white px-4 py-2 concert-one-regular rounded">View all</button></Link>
                                                 </div>
                                             </div>
                                         </div>
@@ -58,7 +59,7 @@ function Event(props) {
                         </section>
                     </div>
                 </div>
-                <div id="feedback">
+                <div id="scrfeed_backsec">
 
                 </div>
             </section>

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
-const CountdownTimer = ({ bgColor = '#E91E31', texColor = '#E91E31', textColor = '#fff' , date}) => {
-    console.log(date)
+const CountdownTimer = ({ bgColor = '#E91E31', texColor = '#E91E31', textColor = '#fff' , date , justify}) => {
+   
     const targetDate = new Date(date);
     const calculateTimeLeft = () => {
         const now = new Date();
@@ -23,7 +23,7 @@ const CountdownTimer = ({ bgColor = '#E91E31', texColor = '#E91E31', textColor =
         return () => clearInterval(timer);
     }, []);
     return (
-        <div className='flex gap-5 md:text-base text-sm'>
+        <div className={`flex gap-5 md:text-base text-sm ${justify}`}>
             <div className='text-center'>
                 <div className='  w-fit px-3 py-1   rounded-md font-bold' style={{ backgroundColor: bgColor, color: textColor }}>
                     {String(timeLeft.days).padStart(2, '0')}

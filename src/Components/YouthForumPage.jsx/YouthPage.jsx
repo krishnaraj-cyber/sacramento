@@ -1,8 +1,8 @@
 import React, { useCallback, useEffect, useState } from 'react'
 import YouthForum from '../../Shared/Components/YouthForum/YouthForum'
-import SponsorSwiper from '../../shared/components/SponsorSwiper/SponsorSwiper'
 import { getallYouthForum } from '../../Admin/shared/services/apiyouthforum/apiyouthforum';
-import AboutUs from '../../shared/components/About/AboutUs';
+import SponsorSwiper from '../../Shared/Components/SponsorSwiper/SponsorSwiper';
+import AboutUs from '../../Shared/Components/About/AboutUs';
 function YouthPage() {
 
     const [forum, setForum] = useState([]); 
