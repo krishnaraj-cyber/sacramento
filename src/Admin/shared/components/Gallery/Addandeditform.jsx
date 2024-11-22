@@ -57,9 +57,10 @@ export default function Addandeditform(props) {
                     </div>
                     <div className="mb-2">
                         <div className="mb-2">
-                            <label>Year</label>
+                            <label>Date</label>
                         </div>
-                        <input type="text" name="Year" value={formdata?.Year} onChange={handlechange} className="w-full px-4 py-2 border rounded-md outline-none" required />
+                        {/* <input type="text" name="Year" value={formdata?.Year} onChange={handlechange} className="w-full px-4 py-2 border rounded-md outline-none" required /> */}
+                        <input type="date" name="Year" value={moment(formdata?.Year).format("YYYYY-MM-DD")} onChange={handlechange} className="w-full px-4 py-2 border rounded-md outline-none" required />
                     </div>
 
                     <div className="mb-2">

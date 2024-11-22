@@ -79,7 +79,7 @@ const Tableview = (props) =>{
 
   const columns = [
     {field: 'EventName', header: 'Event Name', width : "120px"},
-    {field: 'Year', header: 'Year',filter:true,width : "100px"},
+    {field: 'Year', header: 'Date',filter:true,width : "100px"},
     {field: 'Status', header: 'Status',width : "120px"},
   ];
 
