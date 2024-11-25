@@ -77,7 +77,7 @@ function HomePage(props) {
                             </p>
                             <p className="concert-one-regular text-[#0470BC] text-xl">
                               Registration Deadline:{" "}
-                              <span className="text-[#E91E31]">
+                              <span className="text-[#E91E31] md:text-base text-sm">
                                 {" "}
                                 {item.Date.split("T")[0]}
                               </span>
@@ -130,7 +130,7 @@ function HomePage(props) {
               <h2 className="text-2xl font-bold  text-center  text-red-600 md:mb-5 archivo-black-regular">
                 OUR SPONSORS
               </h2>
-              <section className="flex flex-col items-center relative  py-5   xl:h-[735px] lg:h-[650px] cursor-pointer">
+              <section className="flex flex-col items-center relative  py-5  px-5 xl:h-[735px] lg:h-[650px] cursor-pointer">
                 <Swiper
                   spaceBetween={10}
                   loop={true}
