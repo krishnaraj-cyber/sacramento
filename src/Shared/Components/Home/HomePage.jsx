@@ -7,15 +7,12 @@ import 'swiper/swiper-bundle.css';
 import 'swiper/css/pagination';
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination, Autoplay } from "swiper/modules";
-
-import { EventProgram } from "../../../assets/Json/Event";
 import CountdownTimer from "./CountdownTimer";
 import apiurl from "../../../shared/services/apiendpoint/apiendpoint";
 
 function HomePage(props) {
-  const shouldHideSlide = true;
-  const swiperRef = useRef(null);
-  const { prevRef, nextRef, mobileNextRef, sponsors, event } = props;
+
+  const { sponsors, event } = props;
 
   const activeEvents = event
     .filter((event) => event.Status === "Active")
@@ -29,17 +26,16 @@ function HomePage(props) {
 
   return (
     <>
-      <section className="bg-[url('/assets/images/Header/Hero-sec.png')] bg-cover bg-no-repeat lg:my-0 my-10  flex items-center justify-center    lg:h-[100vh]   w-full">
-        <div className="mx-auto max-w-[106rem] lg:my-0 my-10 px-5">
-          <div className="grid lg:grid-cols-6 grid-cols-1 gap-10 items-center">
-            <div className=" space-y-6 lg:col-span-4">
+      <section className="bg-[url('/assets/images/Header/Hero-sec.png')]   bg-cover bg-no-repeat lg:my-0 my-10  flex items-center justify-center     lg:h-[100vh]   w-full">
+        <div className=" max-w-[110rem]     2xl:ml-auto lg:my-0 my-10 px-5">
+          <div className="grid lg:grid-cols-6 grid-cols-1    items-center">
+            <div className=" space-y-6 lg:col-span-4   ">
               {activeEvents && activeEvents.length > 0 ? (
                 <div>
-                  <Swiper
-                    slidesPerView={1}
-
+                  <Swiper slidesPerView={1}
                     loop={true}
                     speed={1500}
+                    spaceBetween={10}
                     pagination={{ clickable: true }}
                     autoplay={{ delay: 3000, disableOnInteraction: false, reverseDirection: true }}
                     breakpoints={{
@@ -53,7 +49,6 @@ function HomePage(props) {
                         slidesPerView: 1,
                       },
                     }}
-                    // navigation={{ nextEl: '.swiper-button', prevEl: '.swiper-button' }}
                     modules={[Pagination, Navigation, Autoplay]}
                     className="w-full " >
                     {activeEvents.map((item, index) => (
@@ -131,11 +126,11 @@ function HomePage(props) {
                 </div>
               )}
             </div>
-            <div className="col-span-2 space-y-10 2xl:ml-auto ">
+            <div className="col-span-2 space-y-10   ">
               <h2 className="text-2xl font-bold  text-center  text-red-600 md:mb-5 archivo-black-regular">
                 OUR SPONSORS
               </h2>
-              <section className="flex flex-col items-center relative  py-5   xl:h-[750px] lg:h-[650px] cursor-pointer">
+              <section className="flex flex-col items-center relative  py-5   xl:h-[735px] lg:h-[650px] cursor-pointer">
                 <Swiper
                   spaceBetween={10}
                   loop={true}
@@ -163,11 +158,11 @@ function HomePage(props) {
                     prevEl: ".swiper-button-pree",
                   }}
                   modules={[Pagination, Navigation, Autoplay]}
-                  className="w-full max-w-5xl "  >
+                  className="w-full max-w-5xl"  >
                   {sponsors.map((sponsor, index) => (
                     <SwiperSlide
                       key={index}
-                      className="flex justify-center items-center"  >
+                      className="flex justify-center items-center "  >
                       <div className="flex items-center justify-center">
                         <div className="mx-auto">
                           <div
@@ -188,7 +183,6 @@ function HomePage(props) {
                       </div>
                     </SwiperSlide>
                   ))}
-
                   {sponsors.length < 4 &&
                     sponsors.map((sponsor, index) => (
                       <SwiperSlide
@@ -203,8 +197,7 @@ function HomePage(props) {
                                 : sponsor.Category == "Silver"
                                   ? "bg-[#d9d9d9]"
                                   : "bg-[#e8b692]"
-                                }`}
-                            >
+                                }`} >
                               {sponsor.Category}
                             </div>
                             <img
