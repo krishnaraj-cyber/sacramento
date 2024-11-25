@@ -2,7 +2,7 @@
 import { useEffect, useState } from 'react';
 import { DataTable } from 'primereact/datatable';
 import { Column } from 'primereact/column';
-import apiurl from '../../../../shared/services/apiendpoint/apiendpoint';
+import apiurl from '../../../../Shared/services/apiendpoint/apiendpoint';
 import { MultiSelect } from 'primereact/multiselect';
 import { Button } from 'primereact/button';
 import moment from 'moment-timezone';

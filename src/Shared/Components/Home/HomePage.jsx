@@ -5,7 +5,7 @@ import "swiper/css/pagination";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination, Autoplay } from "swiper/modules";
 import CountdownTimer from "./CountdownTimer";
-import apiurl from "../../../shared/services/apiendpoint/apiendpoint";
+import apiurl from "../../../Shared/services/apiendpoint/apiendpoint";
 
 function HomePage(props) {
   const { prevRef, nextRef, mobileNextRef, sponsors, event } = props;

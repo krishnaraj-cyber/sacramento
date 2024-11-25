@@ -1,5 +1,5 @@
 import axios from "axios";
-import apiurl from "../../../../shared/services/apiendpoint/apiendpoint";
+import apiurl from "../../../../Shared/services/apiendpoint/apiendpoint";
 import { gettoken } from "../../../../shared/services/Token/token";
 
 export const getallFinancialsum = async (params) => {

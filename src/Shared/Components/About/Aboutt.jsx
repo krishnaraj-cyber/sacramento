@@ -1,5 +1,5 @@
 import React from 'react'
-import apiurl from '../../../shared/services/apiendpoint/apiendpoint';
+import apiurl from '../../../Shared/services/apiendpoint/apiendpoint';
 import AboutUs from '../../../Shared/Components/About/AboutUs'
 import SponsorSwiper from '../SponsorSwiper/SponsorSwiper';
 

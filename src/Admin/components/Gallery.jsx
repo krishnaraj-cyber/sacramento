@@ -113,8 +113,14 @@ export default function Gallery() {
       };
       reader.readAsDataURL(file);
     } else if (e.target && !e.target.files) {
+      // if (e.target.name === "Year") {
+      //   const fullDate = e.target.value; 
+      //   const yearOnly = fullDate.split("-")[0]; 
+      //   setFormdata({ ...formdata, [e.target.name]: yearOnly });
+      // } else {
       setFormdata({ ...formdata, [e.target.name]: e.target.value });
-    } else {
+    // }
+   } else {
       setFormdata({ ...formdata, [name]: e });
     }
   };

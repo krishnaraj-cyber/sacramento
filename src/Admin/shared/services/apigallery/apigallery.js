@@ -1,5 +1,5 @@
 import axios from "axios";
-import apiurl from "../../../../shared/services/apiendpoint/apiendpoint";
+import apiurl from "../../../../Shared/services/apiendpoint/apiendpoint";
 import { gettoken } from "../../../../shared/services/Token/token";
 
 export const getallGallerys = async (params) => {
@@ -12,6 +12,13 @@ export const getallGallerys = async (params) => {
 export const getuniquevaluebyfield = async (params) => {
   var res = await axios.get(`${apiurl()}/api/getgallerybyid`, {
     params: params,
+  });
+  return res.data;
+};
+
+export const getuniquevaluebyyear = async (Year) => {
+  var res = await axios.get(`${apiurl()}/api/getgallerybyyear`, {
+    params: {Year},
   });
   return res.data;
 };
