@@ -13,7 +13,10 @@ import LoginPage from "../components/LoginPage";
 import AdminRouter from "../Admin/Router/AdminRouter";
 import ProtectedRoute from "../shared/services/Token/ProtectedRoute";
 import ScrollToTop from "./ScrollToTop";
- 
+import FormPage from "../Components/FormPage/FormPage";
+import Payment from "../Components/Payment/Payments";
+import Payments from "../Components/Payment/Payments";
+
 
 function Approuter() {
     return (
@@ -30,6 +33,8 @@ function Approuter() {
                     <Route path="/events" element={<EventsPage />} />
                     <Route path="/tamil-schools" element={<TamilSchoolPage />} />
                     <Route path="/laws" element={<ByLawsPage />} />
+                    <Route path="/forms" element={<FormPage />} />
+                    <Route path="/payment-page" element={<Payments />} />
                 </Route>
                 <Route path='/login' element={<LoginPage />} />
                 <Route path="/admin/*" element={<ProtectedRoute allowedRoles={['Admin']}><AdminRouter /></ProtectedRoute>} />
