@@ -225,7 +225,6 @@ function HomePage(props) {
                   />
                 </div>
               </section>
-
             </div>
           </div>
         </div>
