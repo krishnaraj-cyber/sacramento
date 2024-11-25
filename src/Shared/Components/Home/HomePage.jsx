@@ -217,7 +217,7 @@ function HomePage(props) {
                     alt="Previous"
                   />
                 </div>
-                <div className="swiper-button-nexx absolute z-30 -right-5 bottom-1/2 translate-y-1/2 -rotate-90 lg:bottom-3 lg:right-1/2 lg:translate-x-1/2 lg:rotate-0">
+                <div className="swiper-button-nexx absolute z-30 -right-5 bottom-1/2 translate-y-[150%] -rotate-90 lg:bottom-3 lg:right-1/2 lg:translate-x-1/2 lg:rotate-0">
                   <img
                     className="px-2"
                     src="/assets/images/Hero-Section/Bottom.png"
