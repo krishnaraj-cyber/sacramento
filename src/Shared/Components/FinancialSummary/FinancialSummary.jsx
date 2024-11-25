@@ -1,8 +1,7 @@
 import React from 'react';
-import { FaChevronUp, FaChevronDown } from 'react-icons/fa';
 
 function FinancialSummary(props) {
-  const { data, openYear, groupedData, toggleYear } = props;
+  const { openYear, groupedData, toggleYear } = props;
   return (
     <div className="w-full max-w-4xl mx-auto my-6 px-5">
       {Object.keys(groupedData)

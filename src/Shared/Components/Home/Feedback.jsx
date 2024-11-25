@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 function Feedback(props) {
 
     const { activeStatus, customInputRef, handleCustomAmountChange, handleInputChange, isModalOpen, formData, handleSubmit, customAmount, statuses, handleDonateNow, handleModalClose, setIsModalOpen, handleStatusClick, } = props;

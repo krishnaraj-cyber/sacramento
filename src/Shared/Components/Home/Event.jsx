@@ -1,5 +1,4 @@
 import React from 'react'
-import { Events } from '../../../assets/Json/NewEvent'
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
@@ -8,7 +7,7 @@ import { Navigation, Pagination, Autoplay } from 'swiper/modules';
 import apiurl from '../../../shared/services/apiendpoint/apiendpoint';
 import { Link } from 'react-router-dom';
 function Event(props) {
-    const { mobileNextRef, mobilePrevRef, event } = props;
+    const {  event } = props;
     return (
         <>
             <section className=' max-w-[90rem] mx-auto  my-10 md:my-20 ' >
@@ -47,12 +46,12 @@ function Event(props) {
                                 ))}
                             </Swiper>
                             <div
-                                ref={mobileNextRef}
+                             
                                 className="absolute  right-0   top-1/2  rotate-90  cursor-pointer"  >
                                 <img className=" swiper-button-nextdeals px-2 w-14" src="/assets/images/Hero-Section/Top.png" alt="Previous" />
                             </div>
                             <div
-                                ref={mobilePrevRef}
+                                
                                 className="absolute  left-0 top-1/2   rotate-90 cursor-pointer">
                                 <img className=" swiper-button-prevdeals px-2 w-14" src="/assets/images/Hero-Section/Bottom.png" alt="Next" />
                             </div>

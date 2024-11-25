@@ -10,12 +10,6 @@ import { getallGallerys } from '../../Admin/shared/services/apigallery/apigaller
 import { getallEvents } from '../../Admin/shared/services/apievent/apievent'
 
 function Home() {
-  const prevRef = useRef(null);
-  const nextRef = useRef(null);
-  const mobilePreviousRef = useRef(null);
-  const mobileNextstepRef = useRef(null);
-  const mobilePrevRef = useRef(null);
-  const mobileNextRef = useRef(null);
   const [sponsors, setSponsors] = useState([]);
   const [boardmem, setBoardmem] = useState([]);
   const [gallery, setGallery] = useState([]);
@@ -112,10 +106,10 @@ function Home() {
 
   return (
     <>
-      <HomePage prevRef={prevRef} nextRef={nextRef} sponsors={sponsors} setSponsors={setSponsors} event={event} />
+      <HomePage sponsors={sponsors} setSponsors={setSponsors} event={event} />
       <AboutSection boardmem={boardmem} />
-      <Gallery mobilePreviousRef={mobilePreviousRef} mobileNextstepRef={mobileNextstepRef} gallery={gallery} />
-      <Event mobilePrevRef={mobilePrevRef} mobileNextRef={mobileNextRef} event={event} />
+      <Gallery gallery={gallery} />
+      <Event event={event} />
       <Feedback isModalOpen={isModalOpen} setIsModalOpen={setIsModalOpen} formData={formData} handleSubmit={handleSubmit} handleInputChange={handleInputChange} activeStatus={activeStatus} customInputRef={customInputRef} handleStatusClick={handleStatusClick} handleCustomAmountChange={handleCustomAmountChange} customAmount={customAmount} setActiveStatus={setActiveStatus} statuses={statuses} />
     </>
   )

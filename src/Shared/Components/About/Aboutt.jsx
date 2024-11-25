@@ -1,5 +1,4 @@
 import React from 'react'
-import { allMember } from '../../../assets/Json/AllMember'
 import apiurl from '../../../shared/services/apiendpoint/apiendpoint';
 import AboutUs from '../../../Shared/Components/About/AboutUs'
 import SponsorSwiper from '../SponsorSwiper/SponsorSwiper';

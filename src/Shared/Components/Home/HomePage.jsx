@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React from "react";
 import "swiper/css";
 import 'swiper/css/autoplay';
 import "swiper/css/navigation";
@@ -211,18 +211,10 @@ function HomePage(props) {
                     ))}
                 </Swiper>
                 <div className="swiper-button-pree absolute z-30 -left-5 top-1/2 translate-y-1/2 -rotate-90 lg:-top-3 lg:left-1/2 lg:-translate-x-1/2 lg:rotate-0">
-                  <img
-                    className="px-2"
-                    src="/assets/images/Hero-Section/Top.png"
-                    alt="Previous"
-                  />
+                  <img className="px-2" src="/assets/images/Hero-Section/Top.png" alt="Previous" />
                 </div>
                 <div className="swiper-button-nexx absolute z-30 -right-5 bottom-1/2 translate-y-[150%] -rotate-90 lg:bottom-3 lg:right-1/2 lg:translate-x-1/2 lg:rotate-0">
-                  <img
-                    className="px-2"
-                    src="/assets/images/Hero-Section/Bottom.png"
-                    alt="Next"
-                  />
+                  <img className="px-2" src="/assets/images/Hero-Section/Bottom.png" alt="Next" />
                 </div>
               </section>
             </div>

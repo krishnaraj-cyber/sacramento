@@ -1,6 +1,5 @@
 import React, { useCallback, useEffect, useState } from 'react'
 import CountdownTimer from '../Home/CountdownTimer'
-
 import "swiper/css";
 import 'swiper/css/autoplay';
 import "swiper/css/navigation";

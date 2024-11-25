@@ -1,6 +1,4 @@
 import React, { useCallback, useEffect, useState } from "react";
-import { Sponsor } from "../../../assets/Json/Swiper";
-import { useRef } from "react";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
@@ -30,8 +28,6 @@ function SponsorSwiper() {
     fetchSponsors();
   }, [fetchSponsors]);
 
-  const mobilePreviousRef = useRef(null);
-  const mobileNextStepRef = useRef(null);
   return (
     <>
       <div className="max-w-[85rem] w-full px-5  mx-auto md:my-20 my-10 space-y-5">
@@ -65,7 +61,7 @@ function SponsorSwiper() {
             }}
             modules={[Pagination, Navigation, Autoplay]}
             className=" w-full mx-auto"
-             >
+          >
             {sponsors.map((sponsor, index) => (
               <SwiperSlide key={index} className="flex justify-center cursor-pointer mx-auto">
                 <div className="flex items-center justify-center">
@@ -114,25 +110,12 @@ function SponsorSwiper() {
                 </SwiperSlide>
               ))}
           </Swiper>
-          <div
-            ref={mobileNextStepRef}
-            className="absolute  -right-5   top-[47%]   z-40 cursor-pointer"
-          >
-            <img
-              className=" swiper-button-nextdeal px-2 w-14"
-              src="/assets/images/Pagination/Next page.png"
-              alt="Previous"
-            />
+          <div className="absolute  -right-5   top-[47%]   z-40 cursor-pointer" >
+            <img className=" swiper-button-nextdeal px-2 w-14" src="/assets/images/Pagination/Next page.png" alt="Previous" />
           </div>
           <div
-            ref={mobilePreviousRef}
-            className="absolute  -left-5 top-[47%]   z-40 cursor-pointer"
-          >
-            <img
-              className=" swiper-button-prevdeal px-2 w-14"
-              src="/assets/images/Pagination/Next page (1).png"
-              alt="Next"
-            />
+            className="absolute  -left-5 top-[47%]   z-40 cursor-pointer" >
+            <img className=" swiper-button-prevdeal px-2 w-14" src="/assets/images/Pagination/Next page (1).png" alt="Next" />
           </div>
         </section>
       </div>
