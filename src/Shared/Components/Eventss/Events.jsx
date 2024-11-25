@@ -51,7 +51,7 @@ function Events() {
               disableOnInteraction: false,
             }}
             pagination={{
-              clickable:true,
+              clickable: true,
             }}
 
             breakpoints={{
@@ -70,13 +70,17 @@ function Events() {
               nextEl: ".swiper-button-nexx",
               prevEl: ".swiper-button-pree",
             }}
+            style={{
+              "--swiper-navigation-color": "#000",
+              "--swiper-pagination-color": "#fff",
+            }}
             modules={[Pagination, Navigation, Autoplay]}
             className="w-full max-w-5xl  py-10"  >
             {activeEvents && activeEvents.length > 0 && (
               <div className='  bg-[#0571BC] rounded-lg border-4 py-2  border-[#FFD900] '>
                 {activeEvents.map((item, i) => (
                   <SwiperSlide>
-                    <div key={i} className='grid md:grid-cols-2 items-center '>
+                    <div key={i} className='grid md:grid-cols-2 items-center px-5  mb-5'>
                       <div className='flex gap-4 items-center'>
                         <img src="/assets/images/Main/Calendar.png" alt="" />
                         <div>
@@ -84,7 +88,7 @@ function Events() {
                           <p className='concert-one-regular text-[#FFD900] md:text-xl text-sm'> {item.Eventname}</p>
                         </div>
                       </div>
-                      <div className=''>
+                      <div className='ml-auto'>
                         <CountdownTimer date={item.Date} bgColor="#fff" textColor="#E91E31" texColor="#FFD900" justify={'justify-center'} />
                       </div>
                     </div>
