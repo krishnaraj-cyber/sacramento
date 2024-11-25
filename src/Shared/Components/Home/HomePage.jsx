@@ -30,18 +30,17 @@ function HomePage(props) {
   return (
     <>
       <section className="bg-[url('/assets/images/Header/Hero-sec.png')] bg-cover bg-no-repeat lg:my-0 my-10  flex items-center justify-center    lg:h-[100vh]   w-full">
-        <div className="mx-auto max-w-[100rem] lg:my-0 my-10 px-5">
+        <div className="mx-auto max-w-[106rem] lg:my-0 my-10 px-5">
           <div className="grid lg:grid-cols-6 grid-cols-1 gap-10 items-center">
             <div className=" space-y-6 lg:col-span-4">
               {activeEvents && activeEvents.length > 0 ? (
                 <div>
                   <Swiper
                     slidesPerView={1}
-                    spaceBetween={10}
+                    
                     loop={true}
                     speed={1500}
                     pagination={{ clickable: true }}
-
                     autoplay={{ delay: 3000, disableOnInteraction: false, reverseDirection: true }}
                     breakpoints={{
                       0: {
@@ -132,11 +131,11 @@ function HomePage(props) {
                 </div>
               )}
             </div>
-            <div className="col-span-2 space-y-10">
+            <div className="col-span-2 space-y-10 2xl:ml-auto ">
               <h2 className="text-2xl font-bold  text-center  text-red-600 md:mb-5 archivo-black-regular">
                 OUR SPONSORS
               </h2>
-              <section className="flex flex-col items-center relative    xl:h-[750px] lg:h-[500px] cursor-pointer">
+              <section className="flex flex-col items-center relative    xl:h-[750px] lg:h-[650px] cursor-pointer">
                 <Swiper
                   spaceBetween={10}
                   loop={true}
