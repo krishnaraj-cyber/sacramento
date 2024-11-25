@@ -67,7 +67,7 @@ function SponsorSwiper() {
             className=" w-full mx-auto"
              >
             {sponsors.map((sponsor, index) => (
-              <SwiperSlide key={index} className="flex justify-center mx-auto">
+              <SwiperSlide key={index} className="flex justify-center cursor-pointer mx-auto">
                 <div className="flex items-center justify-center">
                   <div className="mx-auto">
                     <div
