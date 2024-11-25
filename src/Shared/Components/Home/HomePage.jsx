@@ -28,7 +28,7 @@ function HomePage(props) {
     <>
       <section className="bg-[url('/assets/images/Header/Hero-sec.png')]   bg-cover bg-no-repeat lg:my-0 my-10  flex items-center justify-center     lg:h-[100vh]   w-full">
         <div className=" max-w-[110rem]     2xl:ml-auto lg:my-0 my-10 px-5">
-          <div className="grid lg:grid-cols-6 grid-cols-1    items-center">
+          <div className="grid lg:grid-cols-6 grid-cols-1 md:gap-10   items-center">
             <div className=" space-y-6 lg:col-span-4   ">
               {activeEvents && activeEvents.length > 0 ? (
                 <div>
