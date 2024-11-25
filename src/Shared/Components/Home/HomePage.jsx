@@ -37,7 +37,7 @@ function HomePage(props) {
                 <div>
                   <Swiper
                     slidesPerView={1}
-                    
+
                     loop={true}
                     speed={1500}
                     pagination={{ clickable: true }}
@@ -135,7 +135,7 @@ function HomePage(props) {
               <h2 className="text-2xl font-bold  text-center  text-red-600 md:mb-5 archivo-black-regular">
                 OUR SPONSORS
               </h2>
-              <section className="flex flex-col items-center relative    xl:h-[750px] lg:h-[650px] cursor-pointer">
+              <section className="flex flex-col items-center relative  py-5   xl:h-[750px] lg:h-[650px] cursor-pointer">
                 <Swiper
                   spaceBetween={10}
                   loop={true}
