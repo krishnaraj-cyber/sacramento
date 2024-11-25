@@ -80,7 +80,7 @@ function Events() {
               <div className='  bg-[#0571BC] rounded-lg border-4 py-2  border-[#FFD900] '>
                 {activeEvents.map((item, i) => (
                   <SwiperSlide>
-                    <div key={i} className='grid md:grid-cols-2 items-center px-5  mb-5'>
+                    <div key={i} className='grid md:grid-cols-2 items-center px-5  md:mb-5 mb-10'>
                       <div className='flex gap-4 items-center'>
                         <img src="/assets/images/Main/Calendar.png" alt="" />
                         <div>
@@ -88,7 +88,7 @@ function Events() {
                           <p className='concert-one-regular text-[#FFD900] md:text-xl text-sm'> {item.Eventname}</p>
                         </div>
                       </div>
-                      <div className='ml-auto'>
+                      <div className='md:ml-auto'>
                         <CountdownTimer date={item.Date} bgColor="#fff" textColor="#E91E31" texColor="#FFD900" justify={'justify-center'} />
                       </div>
                     </div>
