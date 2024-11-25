@@ -2,11 +2,11 @@ import React from 'react';
 import { FaChevronUp, FaChevronDown } from 'react-icons/fa';
 
 function FinancialSummary(props) {
-    const { data, openYear, groupedData, toggleYear } = props;
-    return (
-        <div className="w-full max-w-4xl mx-auto my-6">
+  const { data, openYear, groupedData, toggleYear } = props;
+  return (
+    <div className="w-full max-w-4xl mx-auto my-6 px-5">
       {Object.keys(groupedData)
-        .sort((a, b) => b - a) 
+        .sort((a, b) => b - a)
         .map((year) => (
           <div key={year} className="mb-4 border rounded shadow">
             <div
@@ -14,10 +14,10 @@ function FinancialSummary(props) {
               onClick={() => toggleYear(year)}
             >
               <h3 className="text-lg font-bold">{year}</h3>
-              <span> <i className={`fa-solid fa-chevron-up  ${openYear === year ? 'rotate-0':'rotate-180'} duration-300`}></i></span>
+              <span> <i className={`fa-solid fa-chevron-up  ${openYear === year ? 'rotate-0' : 'rotate-180'} duration-300`}></i></span>
             </div>
             {openYear === year && (
-              <div className="p-4 bg-gray-50">
+              <div className="p-4 bg-gray-50 overflow-hidden overflow-x-auto scrollbar-hide">
                 <table className="w-full table-auto border-collapse border border-gray-200">
                   <thead>
                     <tr className="bg-[#0670bd] text-white text-left">
