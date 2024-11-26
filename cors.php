@@ -1,8 +1,8 @@
 <?php
     $allowedOrigins = array(
-        'http://localhost:4200',
-        'http://192.168.0.111:5173',  
-        'http://192.168.0.115:5173',  
+        'http://localhost:4200',  
+        'http://192.168.29.62:5173', 
+        'http://192.168.29.174:5173',
         'https://thirstycrowz.com',  
         
     );
