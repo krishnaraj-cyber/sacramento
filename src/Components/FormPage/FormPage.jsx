@@ -26,7 +26,7 @@ function FormPage() {
     return (
         <>
             <AboutUs title="Sports Fest" />
-            <Form handleChange={handleChange}  handleSubmit={handleSubmit} formData={formData}/>
+            <Form handleChange={handleChange} handleSubmit={handleSubmit} formData={formData} />
         </>
     )
 }
