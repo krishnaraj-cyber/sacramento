@@ -155,7 +155,7 @@ function Form(props) {
                                             </div>
                                         </div>
                                         <div className='text-center col-span-2'>
-                                            <button type='submit' className='p-2 border w-fit bg-white text-black rounded-md'  >
+                                            <button type='submit' className='p-2 border w-fit  bg-white text-black rounded-md'  >
                                                 Submit
                                             </button>
                                         </div>
@@ -191,7 +191,7 @@ function Form(props) {
                                     <textarea rows={4} className='p-2 border border-gray-400 focus:outline-none' placeholder='Comments' name='comments' onChange={handleVolunteerChange} value={volunteerData.comments} />
                                 </div>
                                 <div className='text-center'>
-                                    <button type='submit' className='p-2 border'>
+                                    <button type='submit' className='p-2 border text-white rounded-md hover:bg-white hover:text-[#0571BC] duration-200 bg-[#0571BC]'>
                                         Submit
                                     </button>
                                 </div>
