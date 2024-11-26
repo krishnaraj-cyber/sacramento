@@ -17,6 +17,8 @@ import FormPage from "../Components/FormPage/FormPage";
 import Payment from "../Components/Payment/Payments";
 import Payments from "../Components/Payment/Payments";
 
+import ViewGalleryPage from "../Components/GalleryPage/ViewGalleryPage";
+ 
 
 function Approuter() {
     return (
@@ -32,6 +34,7 @@ function Approuter() {
                     <Route path="/gallery" element={<GalleryPage />} />
                     <Route path="/events" element={<EventsPage />} />
                     <Route path="/tamil-schools" element={<TamilSchoolPage />} />
+                    <Route path='/gallery-view/:Year' element={<ViewGalleryPage />} />
                     <Route path="/laws" element={<ByLawsPage />} />
                     <Route path="/forms" element={<FormPage />} />
 

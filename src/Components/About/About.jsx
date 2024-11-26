@@ -9,7 +9,6 @@ function About() {
     let isMounted = true; 
     try {
       const response = await getallBoardmembers(); 
-      console.log(response)
       if (isMounted) {  setBoardmem(response);  }
     } catch (error) {
       console.error('Error fetching sponsors:', error);

@@ -1,5 +1,5 @@
 import axios from "axios";
-import apiurl from "../../../../shared/services/apiendpoint/apiendpoint";
+import apiurl from "../../../../Shared/services/apiendpoint/apiendpoint";
 import { gettoken } from "../../../../shared/services/Token/token";
 
 
@@ -9,7 +9,6 @@ export const getallregister = async(params)=>{
 }
 
 export const getuniquevaluebyfield = async(params)=>{
-   console.log(params)
    var res=await axios.get(`${apiurl()}/register/apigetuniquevaluebyfield` ,{params:params , headers: {"Authorization" : `Bearer ${gettoken()}`}});
    return res.data;
 }

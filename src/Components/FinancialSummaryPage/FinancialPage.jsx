@@ -13,7 +13,6 @@ function FinancialPage() {
         let isMounted = true; 
         try {
           const response = await getallFinancialsum(); 
-            console.log(response);
             if (isMounted) {
                 setData(response);
                 if (response.length > 0) {

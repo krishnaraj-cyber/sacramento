@@ -1,8 +1,8 @@
-/* eslint-disable react/prop-types */
+
 import { useEffect, useState } from 'react';
 import { DataTable } from 'primereact/datatable';
 import { Column } from 'primereact/column';
-import apiurl from '../../../../shared/services/apiendpoint/apiendpoint';
+import apiurl from '../../../../Shared/services/apiendpoint/apiendpoint';
 import { MultiSelect } from 'primereact/multiselect';
 import { Button } from 'primereact/button';
 import moment from 'moment-timezone';
@@ -56,7 +56,6 @@ const Tableview = (props) =>{
 
   const getOption = async (key)=>{
     var filterOptions = await getFilterOptions(key.field);
-    console.log(filterOptions)
     var formatoption = filterOptions[key.field].map( val =>({ label:val,value: key.format == "Date"? moment(val).format('YYYY-MM-DD') :val}));
     setFilterOptions(formatoption);
   }
@@ -88,7 +87,6 @@ const Tableview = (props) =>{
       <div >
         <DataTable value={tabledata}scrollable scrollHeight="575px" loading={loading} className='!text-sm' stateStorage="session" stateKey="dt-state-demo-local" > 
           <Column header="Action" body={actionbotton} style={{ minWidth: "80px" }} />
-          {/* <Column header="Image" body={image} style={{ minWidth: "150px" }} /> */}
           {columns.map((col, i) => (
             <Column key={i} field={col.field} header={col.header} style={{ minWidth: col.width }}
             filter={col.filter} filterElement={Filter(col)} showFilterMenuOptions={false} showApplyButton={false} showClearButton={false} showFilterMatchModes={false} 

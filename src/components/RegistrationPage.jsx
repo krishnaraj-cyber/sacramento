@@ -41,12 +41,10 @@ export default function RegistrationPage(prpos) {
 
     const handlesave = async(e)=>{
         e.preventDefault();
-        console.log(formdata)
         if(formdata.Poster_Type == "RSVP"){
             if(formdata.Peyment == "Yes"){
                 if(formdata.Guest_Count == "Age Wise"){
                     var totalAmount = ( (formdata.Fees_Adults*1)*formdata.Adults)+((formdata.Fees_Kids*1)*formdata.Kids)+((formdata.Fees_Under5*1)*formdata.Babes );
-                    //console.log(totalAmount)
                     var formatData = {...formdata,Entry_Fees:totalAmount};
                     delete formatData._id;
                     localStorage.setItem('registerData',JSON.stringify(formatData));
@@ -55,7 +53,6 @@ export default function RegistrationPage(prpos) {
                 }
                 else{
                     var totalAmount = ((formdata.Entry_Fees*1)*formdata.Number_Guests);
-                    //console.log(totalAmount)
                     var formatData = {...formdata,Entry_Fees:totalAmount};
                     delete formatData._id;
                     localStorage.setItem('registerData',JSON.stringify(formatData));
