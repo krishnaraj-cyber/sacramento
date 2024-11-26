@@ -98,31 +98,31 @@ function Form(props) {
                         <div>
                             <img src="/assets/images/Volunteer/cccc.jpg" className='w-full' alt="" />
                         </div>
-                        <div className='border p-2 rounded-b-xl border-y-red-950'>
+                        <div className='border p-2 rounded-b-xl bg-[#0571BC] text-white  '>
                             <div>
                                 <form action="" onSubmit={handleVolunteerSubmit} className='space-y-5'>
                                     <div className='flex flex-col'>
-                                        <label htmlFor="" className='text-[#0571BC]'>Name *</label>
-                                        <input type="text" className='p-2 border border-gray-100 focus:outline-none' placeholder='Name' required name='name' onChange={handleVolunteerChange} value={volunteerData.name} />
+                                        <label htmlFor="" className=''>Name *</label>
+                                        <input type="text" className='p-2 border text-black border-gray-100 focus:outline-none' placeholder='Name' required name='name' onChange={handleVolunteerChange} value={volunteerData.name} />
                                     </div>
                                     <div className='flex flex-col'>
-                                        <label htmlFor="" className='text-[#0571BC]'>Email *</label>
-                                        <input type="text" className='p-2 border border-gray-100 focus:outline-none' placeholder='Email' required name='email' onChange={handleVolunteerChange} value={volunteerData.email} />
+                                        <label htmlFor="" className=''>Email *</label>
+                                        <input type="text" className='p-2 border border-gray-100 text-black focus:outline-none' placeholder='Email' required name='email' onChange={handleVolunteerChange} value={volunteerData.email} />
                                     </div>
                                     <div className='flex flex-col'>
-                                        <label htmlFor="" className='text-[#0571BC]'>phone *</label>
-                                        <input type="text" className='p-2 border border-gray-100 focus:outline-none' name="phone" required placeholder='Phone' value={volunteerData.phone} onChange={handleVolunteerChange} />
+                                        <label htmlFor="" className=''>phone *</label>
+                                        <input type="text" className='p-2 border border-gray-100 text-black focus:outline-none' name="phone" required placeholder='Phone' value={volunteerData.phone} onChange={handleVolunteerChange} />
                                     </div>
                                     <div className='flex flex-col'>
-                                        <label htmlFor="" className='text-[#0571BC]'>Event * </label>
-                                        <input type="text" className='p-2 border border-gray-100 focus:outline-none' placeholder='Event' required readOnly name='event' onChange={handleVolunteerChange} value={volunteerData.event} />
+                                        <label htmlFor="" className=''>Event * </label>
+                                        <input type="text" className='p-2 border border-gray-100 text-black focus:outline-none' placeholder='Event' required readOnly name='event' onChange={handleVolunteerChange} value={volunteerData.event} />
                                     </div>
                                     <div className='flex flex-col'>
-                                        <label htmlFor="" className='text-[#0571BC]'>Comments</label>
-                                        <textarea rows={4} className='p-2 border border-gray-100 focus:outline-none' placeholder='Comments' required name='comments' onChange={handleVolunteerChange} value={volunteerData.comments} />
+                                        <label htmlFor="" className=''>Comments</label>
+                                        <textarea rows={4} className='p-2 border border-gray-100 text-black focus:outline-none' placeholder='Comments' required name='comments' onChange={handleVolunteerChange} value={volunteerData.comments} />
                                     </div>
                                     <div className='text-center'>
-                                        <button type='submit' className='p-2 border text-white rounded-md hover:bg-white hover:text-[#0571BC] duration-200 bg-[#0571BC]'>
+                                        <button type='submit' className='p-2 border   rounded-md  text-[#0571BC] duration-200 bg-white'>
                                             Submit
                                         </button>
                                     </div>
