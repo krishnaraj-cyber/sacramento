@@ -7,6 +7,11 @@ function FormPage() {
     const location = useLocation();
     const [activeSection, setActiveSection] = useState('register');
     const [isLoading, setIsLoading] = useState(false);
+    const eventImage = location.state?.eventImage;
+    const eventName = location.state?.eventName;
+    const eventActivity = location.state?.eventActivity;
+    const eventDate = location.state?.eventDate;
+    const eventImag = location.state?.eventImag;
     const navigate = useNavigate();
     const [formData, setFormData] = useState({
         firstName: '',
@@ -73,7 +78,7 @@ function FormPage() {
     return (
         <>
             <AboutUs title="Sports Fest" />
-            <Form activeSection={activeSection}  formData={formData} handleVolunteerSubmit={handleVolunteerSubmit} handleRegisterSubmit={handleRegisterSubmit} handleRegisterChange={handleRegisterChange} handleVolunteerChange={handleVolunteerChange} volunteerData={volunteerData} isLoading={isLoading} />
+            <Form activeSection={activeSection} eventImage={eventImage} eventImag={eventImag} eventDate={eventDate} eventActivity={eventActivity} eventName={eventName} formData={formData} handleVolunteerSubmit={handleVolunteerSubmit} handleRegisterSubmit={handleRegisterSubmit} handleRegisterChange={handleRegisterChange} handleVolunteerChange={handleVolunteerChange} volunteerData={volunteerData} isLoading={isLoading} />
         </>
     )
 }

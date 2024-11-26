@@ -1,17 +1,9 @@
 import React from 'react'
 import { Registers } from '../../../assets/Json/Register'
 import RegistrationPage from '../../../Components/RegistrationPage';
-import { useLocation } from 'react-router-dom';
 
 function Form(props) {
-    const location = useLocation();
-    const eventImage = location.state?.eventImage;
-    const eventName = location.state?.eventName;
-    const eventActivity = location.state?.eventActivity;
-    const eventDate = location.state?.eventDate;
-    const eventImag = location.state?.eventImag;
-
-    const { activeSection, handleVolunteerSubmit, handleVolunteerChange, volunteerData, isLoading } = props;
+    const { activeSection, handleVolunteerSubmit, handleVolunteerChange, volunteerData, isLoading, eventImage, eventName, eventActivity, eventDate, eventImag } = props;
     return (
         <>
             <div>
@@ -24,7 +16,7 @@ function Form(props) {
                         )}
                         <div className='  text-center items-center flex-wrap  justify-center flex md:gap-10'>
                             {eventImage && (
-                                <div className="mb-10 w-[790px] h-56   mx-auto rounded-lg shadow-lg flex justify-center items-center   bg-no-repeat  relative" style={{ backgroundImage: `url(${eventImage})` }}  >
+                                <div className="mb-10 w-[790px] h-56   mx-auto rounded-lg shadow-lg flex justify-center items-center  bg-cover  bg-no-repeat  relative" style={{ backgroundImage: `url(${eventImage})` }}  >
                                     <div className="absolute inset-0 bg-black bg-opacity-50 rounded-lg"></div>
                                     <div className="relative z-10 text-center">
                                         {eventName && (
@@ -57,25 +49,26 @@ function Form(props) {
                                             <p className="font-semibold text-lg">{index + 1}.</p>
                                             <h1 className="text-xl font-semibold">{sponsor.eventName}</h1>
                                         </div>
-                                        <div className="flex gap-4 mb-2">
-                                            <p className="font-bold">Day & Date:</p>
-                                            <p>{sponsor.date}</p>
+                                        <div className="flex mb-2 gap-2">
+                                            <p className="font-semibold  ">Day & Date:</p>
+                                            <p className='md:text-base text-sm'>{sponsor.date}</p>
                                         </div>
-                                        <div className="flex gap-4 mb-2">
-                                            <p className="font-bold">Venue:</p>
-                                            <p>{sponsor.venue}</p>
+                                        <div className="flex mb-2 gap-2 ">
+                                            <p className="font-semibold ">Venue:</p>
+                                            <p className='md:text-base text-sm'>{sponsor.venue}</p>
                                         </div>
-                                        <div className="flex gap-4 mb-2">
-                                            <p className="font-bold">Fees:</p>
-                                            <p>{sponsor.fees}</p>
+                                        <div className="flex mb-2 gap-2">
+                                            <p className="font-semibold ">Fees:</p>
+                                            <p className='md:text-base text-sm'>{sponsor.fees}</p>
                                         </div>
-                                        <div className="flex gap-4">
-                                            <p className="font-bold">Prizes:</p>
-                                            <p>{sponsor.prizes}</p>
+                                        <div className="flex gap-2">
+                                            <p className="font-semibold  ">Prizes:</p>
+                                            <p className='md:text-base text-sm'>{sponsor.prizes}</p>
                                         </div>
                                     </div>
                                 ))}
                             </div>
+
                         </section>
                         <section>
                             <RegistrationPage />
