@@ -43,10 +43,14 @@ html {
 .sponsor-clip-path{
   clip-path: polygon(20% 0%, 80% 0%, 100% 100%, 0% 100%);
 }
-
-
-
-
-
+.swiper {
+  width: 100%;
+  height: 100%;
+}
+.swiper-slide {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
  

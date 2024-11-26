@@ -3,7 +3,7 @@ import { Dialog } from 'primereact/dialog';
 import { Editor } from 'primereact/editor';
 import { useEffect, useRef } from 'react';
 import ReactQuill from 'react-quill';
-import apiurl from '../../../../shared/services/apiendpoint/apiendpoint';
+import apiurl from '../../../../Shared/services/apiendpoint/apiendpoint';
 
 export default function Addandeditform(props) {
     const { visible, setVisible, handlesave, handlechange, loading, formdata,setFormdata, handleupdate ,setDataUrl, AddGame, removeGame, handlechangeGames,dataUrl} = props;

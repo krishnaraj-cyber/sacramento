@@ -16,10 +16,10 @@ function Header() {
     navigate('/');
     sessionStorage.setItem('scrollToSection', 'scrfeed_backsec');
   };
-  
+
   useEffect(() => {
     const scrollTargetId = sessionStorage.getItem('scrollToSection');
-  
+
     if (scrollTargetId) {
       const scrollTimeout = setTimeout(() => {
         const feedbackSection = document.getElementById(scrollTargetId);
@@ -27,8 +27,8 @@ function Header() {
           feedbackSection.scrollIntoView({ behavior: 'smooth' });
           sessionStorage.removeItem('scrollToSection');
         }
-      }, 100); 
-  
+      }, 100);
+
       return () => clearTimeout(scrollTimeout);
     }
   }, [location]);

@@ -1,15 +1,18 @@
 import React from "react";
 import "swiper/css";
+import 'swiper/css/autoplay';
 import "swiper/css/navigation";
 import "swiper/css/pagination";
+import 'swiper/swiper-bundle.css';
+import 'swiper/css/pagination';
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination, Autoplay } from "swiper/modules";
-import { EventProgram } from "../../../assets/Json/Event";
 import CountdownTimer from "./CountdownTimer";
 import apiurl from "../../../shared/services/apiendpoint/apiendpoint";
 
 function HomePage(props) {
-  const { prevRef, nextRef, mobileNextRef, sponsors, event } = props;
+
+  const { sponsors, event } = props;
 
   const activeEvents = event
     .filter((event) => event.Status === "Active")
@@ -23,19 +26,18 @@ function HomePage(props) {
 
   return (
     <>
-      <section className="bg-[url('/assets/images/Header/Hero-sec.png')] bg-cover bg-no-repeat lg:my-0 my-10  flex items-center justify-center    lg:h-[100vh]   w-full">
-        <div className="mx-auto max-w-[100rem] lg:my-0 my-10 px-5">
-          <div className="grid lg:grid-cols-4 grid-cols-1 gap-10 items-center">
-            <div className=" space-y-6 lg:col-span-3">
+      <section className="bg-[url('/assets/images/Header/Hero-sec.png')]   bg-cover bg-no-repeat lg:my-0 my-10  flex items-center justify-center     lg:h-[100vh]   w-full">
+        <div className=" max-w-[110rem]     2xl:ml-auto lg:my-0 my-10 px-5">
+          <div className="grid lg:grid-cols-6 grid-cols-1 md:gap-10   items-center">
+            <div className=" space-y-6 lg:col-span-4   ">
               {activeEvents && activeEvents.length > 0 ? (
                 <div>
-                  <Swiper
-                    slidesPerView={1}
-                    spaceBetween={10}
+                  <Swiper slidesPerView={1}
                     loop={true}
                     speed={1500}
+                    spaceBetween={10}
                     pagination={{ clickable: true }}
-                    autoplay={{ delay: 3000, disableOnInteraction: false }}
+                    autoplay={{ delay: 3000, disableOnInteraction: false, reverseDirection: true }}
                     breakpoints={{
                       0: {
                         slidesPerView: 1,
@@ -47,17 +49,14 @@ function HomePage(props) {
                         slidesPerView: 1,
                       },
                     }}
-                    // navigation={{ nextEl: '.swiper-button', prevEl: '.swiper-button' }}
                     modules={[Pagination, Navigation, Autoplay]}
-                    className="w-full "
-                  >
+                    className="w-full " >
                     {activeEvents.map((item, index) => (
                       <SwiperSlide key={index}>
                         <div className="flex flex-wrap md:flex-nowrap  justify-center items-center gap-5 cursor-pointer pb-10">
                           <img
                             className="w-96 rounded-2xl border-4 border-[#0670bd]"
-                            src={`${apiurl()}/${item.Image}`}
-                          />
+                            src={`${apiurl()}/${item.Image}`} />
                           <div className="md:space-y-5 space-y-3">
                             <p className=" concert-one-regular md:text-2xl text-base text-white w-fit px-3 rounded-md bg-[#0470BC]">
                               UPCOMING EVENT
@@ -78,7 +77,7 @@ function HomePage(props) {
                             </p>
                             <p className="concert-one-regular text-[#0470BC] text-xl">
                               Registration Deadline:{" "}
-                              <span className="text-[#E91E31]">
+                              <span className="text-[#E91E31] md:text-base text-sm">
                                 {" "}
                                 {item.Date.split("T")[0]}
                               </span>
@@ -127,48 +126,52 @@ function HomePage(props) {
                 </div>
               )}
             </div>
-            <div className="col-span-1  ">
-              <h2 className="text-2xl font-bold text-center text-red-600 md:mb-5 archivo-black-regular">
+            <div className="col-span-2 space-y-10   ">
+              <h2 className="text-2xl font-bold  text-center  text-red-600 md:mb-5 archivo-black-regular">
                 OUR SPONSORS
               </h2>
-              <section className="flex flex-col items-center relative py-7 px-7 xl:h-[615px] lg:h-[500px] cursor-pointer">
+              <section className="flex flex-col items-center relative  py-5  px-5 xl:h-[735px] lg:h-[650px] cursor-pointer">
                 <Swiper
                   spaceBetween={10}
                   loop={true}
-                  direction="vertical"
                   slidesPerView={3}
                   autoplay={{
                     delay: 3000,
                     disableOnInteraction: false,
                   }}
                   breakpoints={{
-                    0: { slidesPerView: 1, direction: "horizontal" },
-                    768: { slidesPerView: 2, direction: "horizontal" },
-                    1024: { slidesPerView: 3, direction: "vertical" },
+                    0: {
+                      slidesPerView: 1,
+                      direction: "horizontal"
+                    },
+                    768: {
+                      slidesPerView: 2,
+                      direction: "horizontal"
+                    },
+                    1024: {
+                      slidesPerView: 3,
+                      direction: "vertical"
+                    },
                   }}
                   navigation={{
                     nextEl: ".swiper-button-nexx",
                     prevEl: ".swiper-button-pree",
                   }}
                   modules={[Pagination, Navigation, Autoplay]}
-                  className="w-full max-w-5xl "
-                >
+                  className="w-full max-w-5xl"  >
                   {sponsors.map((sponsor, index) => (
                     <SwiperSlide
                       key={index}
-                      className="flex justify-center items-center"
-                    >
+                      className="flex justify-center items-center "  >
                       <div className="flex items-center justify-center">
                         <div className="mx-auto">
                           <div
-                            className={`sponsor-clip-path text-black font-semibold px-10 w-40 text-center ${
-                              sponsor.Category == "Gold"
-                                ? "bg-[#d9a31c] "
-                                : sponsor.Category == "Silver"
+                            className={`sponsor-clip-path text-black font-semibold px-10 w-40 text-center ${sponsor.Category == "Gold"
+                              ? "bg-[#d9a31c] "
+                              : sponsor.Category == "Silver"
                                 ? "bg-[#d9d9d9]"
                                 : "bg-[#e8b692]"
-                            }`}
-                          >
+                              }`}   >
                             {sponsor.Category}
                           </div>
                           <img
@@ -180,7 +183,6 @@ function HomePage(props) {
                       </div>
                     </SwiperSlide>
                   ))}
-
                   {sponsors.length < 4 &&
                     sponsors.map((sponsor, index) => (
                       <SwiperSlide
@@ -190,14 +192,12 @@ function HomePage(props) {
                         <div className="flex items-center justify-center">
                           <div className="mx-auto">
                             <div
-                              className={`sponsor-clip-path text-black font-semibold px-10  w-40 text-center ${
-                                sponsor.Category == "Gold"
-                                  ? "bg-[#d9a31c] "
-                                  : sponsor.Category == "Silver"
+                              className={`sponsor-clip-path text-black font-semibold px-10  w-40 text-center ${sponsor.Category == "Gold"
+                                ? "bg-[#d9a31c] "
+                                : sponsor.Category == "Silver"
                                   ? "bg-[#d9d9d9]"
                                   : "bg-[#e8b692]"
-                              }`}
-                            >
+                                }`} >
                               {sponsor.Category}
                             </div>
                             <img
@@ -210,21 +210,11 @@ function HomePage(props) {
                       </SwiperSlide>
                     ))}
                 </Swiper>
-
-                {/* Navigation Buttons */}
                 <div className="swiper-button-pree absolute z-30 -left-5 top-1/2 translate-y-1/2 -rotate-90 lg:-top-3 lg:left-1/2 lg:-translate-x-1/2 lg:rotate-0">
-                  <img
-                    className="px-2"
-                    src="/assets/images/Hero-Section/Top.png"
-                    alt="Previous"
-                  />
+                  <img className="px-2" src="/assets/images/Hero-Section/Top.png" alt="Previous" />
                 </div>
-                <div className="swiper-button-nexx absolute z-30 -right-5 bottom-1/2 translate-y-1/2 -rotate-90 lg:bottom-3 lg:right-1/2 lg:translate-x-1/2 lg:rotate-0">
-                  <img
-                    className="px-2"
-                    src="/assets/images/Hero-Section/Bottom.png"
-                    alt="Next"
-                  />
+                <div className="swiper-button-nexx absolute z-30 -right-5 bottom-1/2 translate-y-[150%] -rotate-90 lg:bottom-3 lg:right-1/2 lg:translate-x-1/2 lg:rotate-0">
+                  <img className="px-2" src="/assets/images/Hero-Section/Bottom.png" alt="Next" />
                 </div>
               </section>
             </div>

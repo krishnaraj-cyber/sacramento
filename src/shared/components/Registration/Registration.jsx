@@ -5,7 +5,7 @@ export default function Registration(props) {
     const { EventData, formdata, handlechange, handlesave, loading } = props;
     return (
         <section className='mt-[98px]'>
-            
+
             <div className='h-[20vh] bg-primary flex items-center justify-center'>
                 <div className='text-center'>
                     <div className='text-3xl text-white font-bold mb-3'>{EventData?.Title}</div>
@@ -14,7 +14,7 @@ export default function Registration(props) {
             </div>
 
             <div className='md:max-w-[95rem] py-16 w-full mx-auto px-4'>
-                {formdata['Description']&&
+                {formdata['Description'] &&
                     <div className='mb-5'>
                         <div className='text-xl font-bold mb-4'>Description</div>
                         <div className='mx-3' dangerouslySetInnerHTML={{ __html: formdata['Description'] }} />
@@ -36,7 +36,7 @@ export default function Registration(props) {
                                 </div>
                                 <input type="text" name="Last_Name" value={formdata?.Last_Name} onChange={handlechange} className="w-full px-4 py-2 border rounded-md outline-none" required />
                             </div>
-                            
+
                             <div className="mb-2">
                                 <div className="mb-2">
                                     <label>Email <span className='text-[#ef4444]'>*</span></label>
@@ -51,17 +51,17 @@ export default function Registration(props) {
                                 <input type="text" name="Phone_Number" value={formdata?.Phone_Number} onChange={handlechange} className="w-full px-4 py-2 border rounded-md outline-none" required />
                             </div>
 
-                            { formdata?.Poster_Type == "Donation" && <>
+                            {formdata?.Poster_Type == "Donation" && <>
                                 <div className="mb-2">
                                     <div className="mb-2">
                                         <label>How much do you wish to donate? <span className='text-[#ef4444]'>*</span></label>
                                     </div>
                                     <input type="text" name="Entry_Fees" value={formdata?.Entry_Fees} onChange={handlechange} className="w-full px-4 py-2 border rounded-md outline-none" required />
                                 </div>
-                                </>
+                            </>
                             }
 
-                            { formdata?.Poster_Type == "RSVP" && <>
+                            {formdata?.Poster_Type == "RSVP" && <>
                                 <div className="mb-2">
                                     <div className="mb-2">
                                         <label>Will you attend? <span className='text-[#ef4444]'>*</span> </label>
@@ -74,7 +74,7 @@ export default function Registration(props) {
                                     </select>
                                 </div>
 
-                                { formdata?.Guest_Count == "Customizable" && <>
+                                {formdata?.Guest_Count == "Customizable" && <>
                                     <div className="mb-2">
                                         <div className="mb-2">
                                             <label>Number of guests <span className='text-[#ef4444]'>*</span></label>
@@ -83,7 +83,7 @@ export default function Registration(props) {
                                     </div>
                                 </>}
 
-                                { formdata?.Guest_Count == "Age Wise" && <>
+                                {formdata?.Guest_Count == "Age Wise" && <>
                                     <div className="mb-2">
                                         <div className="mb-2">
                                             <label>Adults <span className='text-[#ef4444]'>*</span></label>
@@ -126,10 +126,10 @@ export default function Registration(props) {
                                         </select>
                                     </div>
                                 </>}
-                                
+
                             </>}
 
-                            { formdata?.Poster_Type == "Registration Form" && <>
+                            {formdata?.Poster_Type == "Registration Form" && <>
                                 <div className="mb-2">
                                     <div className="mb-2">
                                         <label>Choice Event <span className='text-[#ef4444]'>*</span></label>
@@ -141,8 +141,8 @@ export default function Registration(props) {
                                         ))}
                                     </select>
                                 </div>
-                                
-                                { formdata?.Participant_Type != "Individual" && <>
+
+                                {formdata?.Participant_Type != "Individual" && <>
                                     <div className="mb-2">
                                         <div className="mb-2">
                                             <label>Team / Participant Name <span className='text-[#ef4444]'>*</span></label>
@@ -150,7 +150,7 @@ export default function Registration(props) {
                                         <input type="text" name="Team_Name" value={formdata?.Team_Name} onChange={handlechange} className="w-full px-4 py-2 border rounded-md outline-none" required />
                                     </div>
 
-                                    { formdata?.Participant_Type == "Custom Team" && <>
+                                    {formdata?.Participant_Type == "Custom Team" && <>
                                         <div className="mb-2">
                                             <div className="mb-2">
                                                 <label>Team Members Count <span className='text-[#ef4444]'>*</span></label>
@@ -172,13 +172,13 @@ export default function Registration(props) {
                                     </div>
                                 </div>
                             </>
-                        }
+                            }
 
 
                         </div>
                         <div className="mt-4 text-center">
                             <button type="submit" className=" px-4 py-2 text-white bg-secondary border rounded-md" >
-                                {loading && <span className="animate-spin text-xl inline-block size-4 border-[3px] border-current border-t-transparent text-white rounded-full" role="status" aria-label="loading"></span>} 
+                                {loading && <span className="animate-spin text-xl inline-block size-4 border-[3px] border-current border-t-transparent text-white rounded-full" role="status" aria-label="loading"></span>}
                                 Submit
                             </button>
                         </div>
