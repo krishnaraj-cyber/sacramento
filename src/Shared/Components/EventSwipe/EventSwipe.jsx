@@ -5,7 +5,7 @@ import 'swiper/css/pagination';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Pagination, Autoplay } from 'swiper/modules';
 import { Link } from 'react-router-dom';
-import apiurl from '../../../Shared/services/apiendpoint/apiendpoint';
+import apiurl from '../../services/apiendpoint/apiendpoint';
 function EventSwipe(props) {
     const { mobileNextRef, mobilePrevRef, event } = props;
     return (

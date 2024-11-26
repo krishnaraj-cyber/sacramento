@@ -19,7 +19,6 @@ export default function PaymentFail() {
             <p className="mt-2 text-gray-500 dark:text-neutral-400">
               Please Try again later
             </p>
-
             <div className={`text-center mt-4  `}>
               <Link to={'/event'} type="button" className="py-2 px-4 inline-flex items-center gap-x-2 text-sm font-semibold rounded-full border border-danger-600 text-danger-600 hover:bg-danger-600 hover:text-white disabled:opacity-50 disabled:pointer-events-none">
                 Ok

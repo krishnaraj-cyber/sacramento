@@ -4,15 +4,13 @@ import React from 'react'
 export default function Registration(props) {
     const { EventData, formdata, handlechange, handlesave, loading } = props;
     return (
-        <section className='mt-[98px]'>
-
-            <div className='h-[20vh] bg-primary flex items-center justify-center'>
+        <section  >
+            {/* <div className='h-[20vh] bg-primary flex items-center justify-center'>
                 <div className='text-center'>
                     <div className='text-3xl text-white font-bold mb-3'>{EventData?.Title}</div>
                     <div className='text-md text-white '><span className='me-2'>Date / Time :</span> {moment(EventData?.Event_Date).format("YYYY-MM-DD")} / {EventData?.Event_Time} </div>
                 </div>
-            </div>
-
+            </div> */}
             <div className='md:max-w-[95rem] py-16 w-full mx-auto px-4'>
                 {formdata['Description'] &&
                     <div className='mb-5'>
@@ -50,7 +48,6 @@ export default function Registration(props) {
                                 </div>
                                 <input type="text" name="Phone_Number" value={formdata?.Phone_Number} onChange={handlechange} className="w-full px-4 py-2 border rounded-md outline-none" required />
                             </div>
-
                             {formdata?.Poster_Type == "Donation" && <>
                                 <div className="mb-2">
                                     <div className="mb-2">
@@ -60,7 +57,6 @@ export default function Registration(props) {
                                 </div>
                             </>
                             }
-
                             {formdata?.Poster_Type == "RSVP" && <>
                                 <div className="mb-2">
                                     <div className="mb-2">
@@ -73,7 +69,6 @@ export default function Registration(props) {
                                         <option value="Maybe">Maybe</option>
                                     </select>
                                 </div>
-
                                 {formdata?.Guest_Count == "Customizable" && <>
                                     <div className="mb-2">
                                         <div className="mb-2">
@@ -82,7 +77,6 @@ export default function Registration(props) {
                                         <input type="text" name="Number_Guests" value={formdata?.Number_Guests} onChange={handlechange} className="w-full px-4 py-2 border rounded-md outline-none" required />
                                     </div>
                                 </>}
-
                                 {formdata?.Guest_Count == "Age Wise" && <>
                                     <div className="mb-2">
                                         <div className="mb-2">
@@ -97,7 +91,6 @@ export default function Registration(props) {
                                             <option value="5">5</option>
                                         </select>
                                     </div>
-
                                     <div className="mb-2">
                                         <div className="mb-2">
                                             <label>Kids <span className='text-[#ef4444]'>*</span></label>
@@ -111,7 +104,6 @@ export default function Registration(props) {
                                             <option value="4">4</option>
                                         </select>
                                     </div>
-
                                     <div className="mb-2">
                                         <div className="mb-2">
                                             <label>Under 5 yrs <span className='text-[#ef4444]'>*</span></label>
@@ -126,9 +118,7 @@ export default function Registration(props) {
                                         </select>
                                     </div>
                                 </>}
-
                             </>}
-
                             {formdata?.Poster_Type == "Registration Form" && <>
                                 <div className="mb-2">
                                     <div className="mb-2">
@@ -177,7 +167,7 @@ export default function Registration(props) {
 
                         </div>
                         <div className="mt-4 text-center">
-                            <button type="submit" className=" px-4 py-2 text-white bg-secondary border rounded-md" >
+                            <button type="submit" className=" px-4 py-2 text-white bg-[#0571BC] border rounded-md" >
                                 {loading && <span className="animate-spin text-xl inline-block size-4 border-[3px] border-current border-t-transparent text-white rounded-full" role="status" aria-label="loading"></span>}
                                 Submit
                             </button>

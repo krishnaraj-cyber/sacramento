@@ -1,106 +1,97 @@
 import React from 'react'
 import { Registers } from '../../../assets/Json/Register'
+import RegistrationPage from '../../../Components/RegistrationPage';
+import { useLocation } from 'react-router-dom';
 
 function Form(props) {
-    const { activeSection, handleRegisterSubmit, formData, handleRegisterChange, handleVolunteerSubmit, handleVolunteerChange, volunteerData, isLoading } = props;
+    const location = useLocation();
+    const eventImage = location.state?.eventImage;
+    const eventName = location.state?.eventName;
+    const eventActivity = location.state?.eventActivity;
+    const eventDate = location.state?.eventDate;
+    const eventImag = location.state?.eventImag;
+
+    const { activeSection, handleVolunteerSubmit, handleVolunteerChange, volunteerData, isLoading } = props;
     return (
         <>
             <div>
                 {activeSection === 'register' && (
-                    <section className='grid lg:grid-cols-3 relative  max-w-[90rem] grid-cols-1 gap-10 md:my-20 my-10 px-5 mx-auto  '>
+                    <section className='  relative  max-w-[90rem]   gap-10 md:my-20 my-10 px-5 mx-auto  '>
                         {isLoading && (
                             <div className="absolute inset-0   z-50 flex justify-center items-center">
                                 <div className="animate-spin border-t-4 border-blue-500 border-solid rounded-full w-16 h-16"></div>
                             </div>
                         )}
-                        <section className='  space-y-5  col-span-2 '>
+                        <div className='  text-center items-center flex-wrap  justify-center flex md:gap-10'>
+                            {eventImage && (
+                                <div className="mb-10 w-[790px] h-56   mx-auto rounded-lg shadow-lg flex justify-center items-center   bg-no-repeat  relative" style={{ backgroundImage: `url(${eventImage})` }}  >
+                                    <div className="absolute inset-0 bg-black bg-opacity-50 rounded-lg"></div>
+                                    <div className="relative z-10 text-center">
+                                        {eventName && (
+                                            <div className="mb-5 md:text-2xl text-base concert-one-regular font-bold text-white">
+                                                <p>{eventName}</p>
+                                            </div>
+                                        )}
+                                        {eventActivity && (
+                                            <div className="mb-5 md:text-2xl text-base concert-one-regular font-bold text-white">
+                                                <p>{eventActivity}</p>
+                                            </div>
+                                        )}
+                                        {eventDate && (
+                                            <div className="mb-5 md:text-2xl text-base concert-one-regular font-bold text-white">
+                                                <p>{eventDate}</p>
+                                            </div>
+                                        )}
+                                    </div>
+                                </div>
+                            )}
+                        </div>
+                        <section className='  space-y-5 '>
                             <div className=' '>
                                 <h1 className='md:text-4xl text-2xl concert-one-regular  text-[#8F000D]'>Description</h1>
                             </div>
-                            <div className='space-y-5'>
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                                 {Registers.map((sponsor, index) => (
-                                    <div className='' key={index}>
-                                        <div className='flex  gap-1 md:text-2xl text-lg mb-5'>
-                                            <p className=""> {index + 1}.</p>
-                                            <h1>{sponsor.eventName}</h1>
+                                    <div className="p-4 border border-gray-200 rounded-lg shadow-md" key={index}>
+                                        <div className="flex items-center gap-2 mb-4">
+                                            <p className="font-semibold text-lg">{index + 1}.</p>
+                                            <h1 className="text-xl font-semibold">{sponsor.eventName}</h1>
                                         </div>
-                                        <div className='flex gap-3'>    <p className='font-bold'>    Day & Date :  </p>
-                                            <p> {sponsor.date}</p>
+                                        <div className="flex gap-4 mb-2">
+                                            <p className="font-bold">Day & Date:</p>
+                                            <p>{sponsor.date}</p>
                                         </div>
-                                        <div className='flex gap-3'>
-                                            <p className='font-bold'>   venue : </p>
+                                        <div className="flex gap-4 mb-2">
+                                            <p className="font-bold">Venue:</p>
                                             <p>{sponsor.venue}</p>
                                         </div>
-                                        <div className='flex gap-3'>
-                                            <p className='font-bold'>    Fees: </p>
+                                        <div className="flex gap-4 mb-2">
+                                            <p className="font-bold">Fees:</p>
                                             <p>{sponsor.fees}</p>
                                         </div>
-                                        <div className='flex gap-3'>
-                                            <p className='font-bold'>    Prizes :  </p>
+                                        <div className="flex gap-4">
+                                            <p className="font-bold">Prizes:</p>
                                             <p>{sponsor.prizes}</p>
                                         </div>
                                     </div>
                                 ))}
                             </div>
                         </section>
-                        <section className='px-5 border p-4 rounded-xl bg-[#0571BC] col-span-1 text-white'>
-                            <div>
-                                <form onSubmit={handleRegisterSubmit}>
-                                    <div className='space-y-5'>
-                                        <div>
-                                            <label htmlFor="firstName" className='md:text-lg'>First Name</label>
-                                            <input type="text" name="firstName" className='w-full border p-2 focus:outline-none text-black rounded-md' placeholder='First Name' value={formData.firstName} onChange={handleRegisterChange} />
-                                        </div>
-                                        <div>
-                                            <label htmlFor="lastName" className='md:text-lg'>Last Name</label>
-                                            <input type="text" name="lastName" className='w-full border p-2 focus:outline-none text-black rounded-md' placeholder='Last Name' value={formData.lastName} onChange={handleRegisterChange} />
-                                        </div>
-                                        <div>
-                                            <label htmlFor="email" className='md:text-lg'>Email</label>
-                                            <input type="text" name="email" className='w-full border p-2 focus:outline-none text-black rounded-md' placeholder='Email' value={formData.email} onChange={handleRegisterChange} />
-                                        </div>
-                                        <div>
-                                            <label htmlFor="phoneNumber" className='md:text-lg'>Phone Number</label>
-                                            <input type="text" name="phoneNumber" className='w-full border p-2 focus:outline-none text-black rounded-md' placeholder='Phone Number' value={formData.phoneNumber} onChange={handleRegisterChange} />
-                                        </div>
-                                        <div>
-                                            <label htmlFor="event" className='md:text-lg'>Event *</label>
-                                            <select id="event" name="event" className="w-full border p-2 focus:outline-none text-black rounded-md" value={formData.event} onChange={handleRegisterChange}  >
-                                                <option value="Choose">Select Type</option>
-                                                <option value="chess">Chess, Carrom & Painting</option>
-                                                <option value="painting">Table Tennis (TT)</option>
-                                            </select>
-                                        </div>
-                                        <div>
-                                            <label htmlFor="participantName" className='md:text-lg'>Team / Participant Name *</label>
-                                            <input type="text" name="participantName" className='w-full border p-2 focus:outline-none text-black rounded-md' placeholder='Participant Name' value={formData.participantName} onChange={handleRegisterChange} />
-                                        </div>
-                                        <div>
-                                            <label htmlFor="agree" className='md:text-lg'>Disclaimer</label>
-                                            <div className='flex items-center gap-2'>
-                                                <input type="checkbox" name="agree" checked={formData.agree} onChange={handleRegisterChange} />
-                                                <p>I Agree *</p>
-                                            </div>
-                                        </div>
-                                        <div className='text-center col-span-2'>
-                                            <button type='submit' className='p-2 border w-fit  bg-white text-black rounded-md'  >
-                                                Submit
-                                            </button>
-                                        </div>
-                                    </div>
-                                </form>
-                            </div>
+                        <section>
+                            <RegistrationPage />
                         </section>
                     </section>
                 )}
                 {activeSection === 'volunteer' && (
-                    <section className='max-w-[30rem] mx-auto my-10 '>
-                        <div>
-                            <img src="/assets/images/Volunteer/cccc.jpg" className='w-full' alt="" />
-                        </div>
-                        <div className='border p-2 rounded-b-xl bg-[#0571BC] text-white  '>
+                    <section className='max-w-[30rem] px-5  grid grid-cols-1 mx-auto my-10 '>
+                        {eventImag && (
+                            <div className="   w-full h-48 mx-auto rounded-t-lg shadow-lg flex justify-center items-center bg-cover  relative" style={{ backgroundImage: `url(${eventImag})` }}  >
+                                <div className="absolute inset-0 bg-black bg-opacity-50 rounded-t-lg"></div>
+                            </div>
+                        )}
+                        <div className='border p-2 rounded-b-xl'>
                             <div>
-                                <form action="" onSubmit={handleVolunteerSubmit} className='space-y-5'>
+                                <form action="" onSubmit={handleVolunteerSubmit} className='space-y-5 ' >
                                     <div className='flex flex-col'>
                                         <label htmlFor="" className=''>Name *</label>
                                         <input type="text" className='p-2 border text-black border-gray-100 focus:outline-none' placeholder='Name' required name='name' onChange={handleVolunteerChange} value={volunteerData.name} />
@@ -115,7 +106,7 @@ function Form(props) {
                                     </div>
                                     <div className='flex flex-col'>
                                         <label htmlFor="" className=''>Event * </label>
-                                        <input type="text" className='p-2 border border-gray-100 text-black focus:outline-none' placeholder='Event' required readOnly name='event' onChange={handleVolunteerChange} value={volunteerData.event} />
+                                        <input type="text" className='p-2 border border-gray-100 text-black text-sm focus:outline-none' placeholder='Event' required readOnly name='event' onChange={handleVolunteerChange} value={volunteerData.event} />
                                     </div>
                                     <div className='flex flex-col'>
                                         <label htmlFor="" className=''>Comments</label>

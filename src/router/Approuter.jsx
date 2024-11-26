@@ -18,6 +18,7 @@ import Payment from "../Components/Payment/Payments";
 import Payments from "../Components/Payment/Payments";
 
 import ViewGalleryPage from "../Components/GalleryPage/ViewGalleryPage";
+import RegistrationPage from "../Components/RegistrationPage";
  
 
 function Approuter() {
@@ -37,6 +38,7 @@ function Approuter() {
                     <Route path='/gallery-view/:Year' element={<ViewGalleryPage />} />
                     <Route path="/laws" element={<ByLawsPage />} />
                     <Route path="/forms" element={<FormPage />} />
+                    <Route path="/register" element={<RegistrationPage />} />
 
                 </Route>
                 <Route path="/payment-page" element={<Payments />} />

@@ -11,9 +11,7 @@ import CountdownTimer from "./CountdownTimer";
 import apiurl from "../../../Shared/services/apiendpoint/apiendpoint";
 
 function HomePage(props) {
-
   const { sponsors, event } = props;
-
   const activeEvents = event
     .filter((event) => event.Status === "Active")
     .map((event) => ({
