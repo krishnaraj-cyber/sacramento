@@ -4,7 +4,11 @@ function PaymentPage() {
     return (
         <>
             <section>
-                fdfdffdf
+                <div>
+                    <div>
+
+                    </div>
+                </div>
             </section>
         </>
     )

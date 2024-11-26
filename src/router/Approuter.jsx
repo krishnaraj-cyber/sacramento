@@ -34,8 +34,9 @@ function Approuter() {
                     <Route path="/tamil-schools" element={<TamilSchoolPage />} />
                     <Route path="/laws" element={<ByLawsPage />} />
                     <Route path="/forms" element={<FormPage />} />
-                    <Route path="/payment-page" element={<Payments />} />
+
                 </Route>
+                <Route path="/payment-page" element={<Payments />} />
                 <Route path='/login' element={<LoginPage />} />
                 <Route path="/admin/*" element={<ProtectedRoute allowedRoles={['Admin']}><AdminRouter /></ProtectedRoute>} />
             </Routes>
