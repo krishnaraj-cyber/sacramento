@@ -15,62 +15,62 @@ export default function RegistrationPage(prpos) {
     const [EventData, setEventData] = useState({});
     const [loading, setLoading] = useState(false);
     const [Visible, setVisible] = useState(false);
-    const [formdata, setFormdata] = useState([]);
+    const [formdata, setFormdata]=useState([]);
 
     const geteventbyID = useCallback(async () => {
-        const Event = await geteventbyid({ _id: param.id });
+        const Event = await geteventbyid({_id:param.id});
         setEventData(Event);
         setFormdata(Event)
     }, []);
 
     var isMounted = true;
-    useEffect(() => {
+    useEffect(()=>{
         if (isMounted) {
             geteventbyID();
         }
         return () => (isMounted = false);
-    }, [param.id])
+    },[param.id])
 
-    const handlechange = (e) => {
-        setFormdata({ ...formdata, [e.target.name]: e.target.value });
-        if (e.target.name == "Event") {
+    const handlechange = (e)=>{
+        setFormdata({...formdata, [e.target.name]: e.target.value});
+        if(e.target.name == "Event"){
             var datas = formdata.Games.find(item => item.Game_Title === e.target.value);
-            setFormdata({ ...formdata, ...datas });
+            setFormdata({...formdata,...datas}); 
         }
     }
 
-    const handlesave = async (e) => {
+    const handlesave = async(e)=>{
         e.preventDefault();
-        if (formdata.Poster_Type == "RSVP") {
-            if (formdata.Peyment == "Yes") {
-                if (formdata.Guest_Count == "Age Wise") {
-                    var totalAmount = ((formdata.Fees_Adults * 1) * formdata.Adults) + ((formdata.Fees_Kids * 1) * formdata.Kids) + ((formdata.Fees_Under5 * 1) * formdata.Babes);
-                    var formatData = { ...formdata, Entry_Fees: totalAmount };
+        if(formdata.Poster_Type == "RSVP"){
+            if(formdata.Peyment == "Yes"){
+                if(formdata.Guest_Count == "Age Wise"){
+                    var totalAmount = ( (formdata.Fees_Adults*1)*formdata.Adults)+((formdata.Fees_Kids*1)*formdata.Kids)+((formdata.Fees_Under5*1)*formdata.Babes );
+                    var formatData = {...formdata,Entry_Fees:totalAmount};
                     delete formatData._id;
-                    localStorage.setItem('registerData', JSON.stringify(formatData));
+                    localStorage.setItem('registerData',JSON.stringify(formatData));
                     var res = await saveregister(formatData);
                     window.location.href = res.url;
                 }
-                else {
-                    var totalAmount = ((formdata.Entry_Fees * 1) * formdata.Number_Guests);
-                    var formatData = { ...formdata, Entry_Fees: totalAmount };
+                else{
+                    var totalAmount = ((formdata.Entry_Fees*1)*formdata.Number_Guests);
+                    var formatData = {...formdata,Entry_Fees:totalAmount};
                     delete formatData._id;
-                    localStorage.setItem('registerData', JSON.stringify(formatData));
+                    localStorage.setItem('registerData',JSON.stringify(formatData));
                     var res = await saveregister(formatData);
                     window.location.href = res.url;
                 }
             }
-            else {
-                var formatData = { ...formdata, Entry_Fees: "Free" };
+            else{
+                var formatData = {...formdata,Entry_Fees:"Free"};
                 delete formatData._id;
                 var res = await FreeRegisterion(formatData);
                 navigate('/payment-success/completed')
             }
         }
-        else {
+        else{
             var formatData = formdata;
             delete formatData._id;
-            localStorage.setItem('registerData', JSON.stringify(formatData))
+            localStorage.setItem('registerData',JSON.stringify(formatData))
             var res = await saveregister(formatData)
             // Setclientsecret(res.clientSecret)
             window.location.href = res.url;
@@ -79,7 +79,7 @@ export default function RegistrationPage(prpos) {
 
     return (
         <>
-            <Registration EventData={EventData} formdata={formdata} handlechange={handlechange} handlesave={handlesave} />
+            <Registration EventData={EventData} formdata={formdata} handlechange={handlechange} handlesave={handlesave}/>
         </>
     )
 }

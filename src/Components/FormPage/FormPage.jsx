@@ -1,12 +1,14 @@
-import React, { useEffect, useState } from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
 import Form from '../../Shared/Components/Form/Form'
 import AboutUs from '../../Shared/Components/About/AboutUs'
 import { useLocation, useNavigate } from 'react-router-dom';
+import { getallEvents } from '../../Admin/shared/services/apievent/apievent';
 
 function FormPage() {
     const location = useLocation();
     const [activeSection, setActiveSection] = useState('register');
     const [isLoading, setIsLoading] = useState(false);
+    const [event, setEvent] = useState([]);
     const eventImage = location.state?.eventImage;
     const eventName = location.state?.eventName;
     const eventActivity = location.state?.eventActivity;
@@ -75,10 +77,24 @@ function FormPage() {
             });
         }, 2000);
     };
+
+    const fetchEvent = useCallback(async () => {
+        let isMounted = true;
+        try {
+            const response = await getallEvents();
+            if (isMounted) { setEvent(response); }
+        } catch (error) {
+            console.error('Error fetching sponsors:', error);
+        }
+        return () => {
+            isMounted = false;
+        };
+    }, []);
+    useEffect(() => { fetchEvent(); }, [fetchEvent]);
     return (
         <>
             <AboutUs title="Sports Fest" />
-            <Form activeSection={activeSection} eventImage={eventImage} eventImag={eventImag} eventDate={eventDate} eventActivity={eventActivity} eventName={eventName} formData={formData} handleVolunteerSubmit={handleVolunteerSubmit} handleRegisterSubmit={handleRegisterSubmit} handleRegisterChange={handleRegisterChange} handleVolunteerChange={handleVolunteerChange} volunteerData={volunteerData} isLoading={isLoading} />
+            <Form event={event} activeSection={activeSection} eventImage={eventImage} eventImag={eventImag} eventDate={eventDate} eventActivity={eventActivity} eventName={eventName} formData={formData} handleVolunteerSubmit={handleVolunteerSubmit} handleRegisterSubmit={handleRegisterSubmit} handleRegisterChange={handleRegisterChange} handleVolunteerChange={handleVolunteerChange} volunteerData={volunteerData} isLoading={isLoading} />
         </>
     )
 }

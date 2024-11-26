@@ -1,9 +1,26 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { Registers } from '../../../assets/Json/Register'
 import RegistrationPage from '../../../Components/RegistrationPage';
+import apiurl from '../../services/apiendpoint/apiendpoint';
+import { useParams } from 'react-router-dom';
 
 function Form(props) {
-    const { activeSection, handleVolunteerSubmit, handleVolunteerChange, volunteerData, isLoading, eventImage, eventName, eventActivity, eventDate, eventImag } = props;
+    const { eventId } = useParams();  
+    const [eventDetails, setEventDetails] = useState(null);
+  
+    useEffect(() => {
+      const fetchEventDetails = async () => {
+        const response = await fetch(`${apiurl()}/events/${eventId}`);
+        const data = await response.json();
+        setEventDetails(data);
+      };
+  
+      fetchEventDetails();
+    }, [eventId]);
+  
+    if (!eventDetails) return <div>Loading...</div>;
+    const { activeSection, handleVolunteerSubmit, handleVolunteerChange, volunteerData, isLoading, event, eventName, eventActivity, eventDate, eventImag } = props;
+    console.log(event)
     return (
         <>
             <div>
@@ -15,28 +32,19 @@ function Form(props) {
                             </div>
                         )}
                         <div className='  text-center items-center flex-wrap  justify-center flex md:gap-10'>
-                            {eventImage && (
-                                <div className="mb-10 w-[790px] h-56   mx-auto rounded-lg shadow-lg flex justify-center items-center  bg-cover  bg-no-repeat  relative" style={{ backgroundImage: `url(${eventImage})` }}  >
+                            {event.map((sponsor, index) => (
+                                <div className="mb-10 w-[790px] h-56   mx-auto rounded-lg shadow-lg flex justify-center items-center  bg-cover  bg-no-repeat  relative" style={{ backgroundImage: `url(${apiurl()}/${sponsor.Image})` }}  >
                                     <div className="absolute inset-0 bg-black bg-opacity-50 rounded-lg"></div>
                                     <div className="relative z-10 text-center">
-                                        {eventName && (
-                                            <div className="mb-5 md:text-2xl text-base concert-one-regular font-bold text-white">
-                                                <p>{eventName}</p>
-                                            </div>
-                                        )}
-                                        {eventActivity && (
-                                            <div className="mb-5 md:text-2xl text-base concert-one-regular font-bold text-white">
-                                                <p>{eventActivity}</p>
-                                            </div>
-                                        )}
-                                        {eventDate && (
-                                            <div className="mb-5 md:text-2xl text-base concert-one-regular font-bold text-white">
-                                                <p>{eventDate}</p>
-                                            </div>
-                                        )}
+                                        <div className="mb-5 md:text-2xl text-base concert-one-regular font-bold text-white">
+                                            <p>{sponsor.Eventname}</p>
+                                        </div>
+                                        <div className="mb-5 md:text-2xl text-base concert-one-regular font-bold text-white">
+                                            <p>{sponsor.Activities}</p>
+                                        </div>
                                     </div>
                                 </div>
-                            )}
+                            ))}
                         </div>
                         <section className='  space-y-5 '>
                             <div className=' '>
@@ -68,7 +76,6 @@ function Form(props) {
                                     </div>
                                 ))}
                             </div>
-
                         </section>
                         <section>
                             <RegistrationPage />
@@ -115,7 +122,7 @@ function Form(props) {
                         </div>
                     </section>
                 )}
-            </div>
+            </div >
         </>
     )
 }

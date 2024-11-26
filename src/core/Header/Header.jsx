@@ -36,7 +36,7 @@ function Header() {
   return (
     <>
       <div className="bg-[url('/assets/images/Header/ddd.png')] bg-center bg-white bg-contain z-50 shadow-md fixed w-full top-0  ">
-        <header className="max-w-[100rem] mx-auto px-5">
+        <header className="max-w-[105rem] mx-auto px-5">
           <div className="flex items-center justify-between">
             <Link to="/">
               <div className="flex gap-5 items-center lg:my-0 my-3">

@@ -96,7 +96,7 @@ function Home() {
     };
   }, []);
   useEffect(() => { fetchGallery(); }, [fetchGallery]);
-  
+
   const fetchEvent = useCallback(async () => {
     let isMounted = true;
     try {

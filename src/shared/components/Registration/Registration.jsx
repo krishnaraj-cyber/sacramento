@@ -2,15 +2,10 @@ import moment from 'moment-timezone';
 import React from 'react'
 
 export default function Registration(props) {
+
     const { EventData, formdata, handlechange, handlesave, loading } = props;
     return (
         <section  >
-            {/* <div className='h-[20vh] bg-primary flex items-center justify-center'>
-                <div className='text-center'>
-                    <div className='text-3xl text-white font-bold mb-3'>{EventData?.Title}</div>
-                    <div className='text-md text-white '><span className='me-2'>Date / Time :</span> {moment(EventData?.Event_Date).format("YYYY-MM-DD")} / {EventData?.Event_Time} </div>
-                </div>
-            </div> */}
             <div className='md:max-w-[95rem] py-16 w-full mx-auto px-4'>
                 {formdata['Description'] &&
                     <div className='mb-5'>
@@ -27,21 +22,18 @@ export default function Registration(props) {
                                 </div>
                                 <input type="text" name="First_Name" value={formdata?.First_Name} onChange={handlechange} className="w-full px-4 py-2 border rounded-md outline-none" required />
                             </div>
-
                             <div className="mb-2">
                                 <div className="mb-2">
                                     <label>Last Name <span className='text-[#ef4444]'>*</span></label>
                                 </div>
                                 <input type="text" name="Last_Name" value={formdata?.Last_Name} onChange={handlechange} className="w-full px-4 py-2 border rounded-md outline-none" required />
                             </div>
-
                             <div className="mb-2">
                                 <div className="mb-2">
                                     <label>Email <span className='text-[#ef4444]'>*</span></label>
                                 </div>
                                 <input type="email" name="Email" value={formdata?.Email} onChange={handlechange} className="w-full px-4 py-2 border rounded-md outline-none" required />
                             </div>
-
                             <div className="mb-2">
                                 <div className="mb-2">
                                     <label>Phone Number <span className='text-[#ef4444]'>*</span></label>
@@ -131,7 +123,6 @@ export default function Registration(props) {
                                         ))}
                                     </select>
                                 </div>
-
                                 {formdata?.Participant_Type != "Individual" && <>
                                     <div className="mb-2">
                                         <div className="mb-2">
@@ -139,7 +130,6 @@ export default function Registration(props) {
                                         </div>
                                         <input type="text" name="Team_Name" value={formdata?.Team_Name} onChange={handlechange} className="w-full px-4 py-2 border rounded-md outline-none" required />
                                     </div>
-
                                     {formdata?.Participant_Type == "Custom Team" && <>
                                         <div className="mb-2">
                                             <div className="mb-2">
@@ -149,7 +139,6 @@ export default function Registration(props) {
                                         </div>
                                     </>}
                                 </>}
-
                                 <div className="mb-2 lg:col-span-2">
                                     <div className="mb-2">
                                         <label>Disclaimer</label>
@@ -163,8 +152,6 @@ export default function Registration(props) {
                                 </div>
                             </>
                             }
-
-
                         </div>
                         <div className="mt-4 text-center">
                             <button type="submit" className=" px-4 py-2 text-white bg-[#0571BC] border rounded-md" >
