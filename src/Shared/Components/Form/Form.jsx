@@ -24,28 +24,19 @@ function Form(props) {
                                             <p className=""> {index + 1}.</p>
                                             <h1>{sponsor.eventName}</h1>
                                         </div>
-                                        <div className='flex gap-3'>
-                                            <p className='font-bold'>
-                                                Day & Date :
-                                            </p>
+                                        <div className='flex gap-3'>    <p className='font-bold'>    Day & Date :  </p>
                                             <p> {sponsor.date}</p>
                                         </div>
                                         <div className='flex gap-3'>
-                                            <p className='font-bold'>
-                                                venue :
-                                            </p>
+                                            <p className='font-bold'>   venue : </p>
                                             <p>{sponsor.venue}</p>
                                         </div>
                                         <div className='flex gap-3'>
-                                            <p className='font-bold'>
-                                                Fees:
-                                            </p>
+                                            <p className='font-bold'>    Fees: </p>
                                             <p>{sponsor.fees}</p>
                                         </div>
                                         <div className='flex gap-3'>
-                                            <p className='font-bold'>
-                                                Prizes :
-                                            </p>
+                                            <p className='font-bold'>    Prizes :  </p>
                                             <p>{sponsor.prizes}</p>
                                         </div>
                                     </div>
@@ -112,23 +103,23 @@ function Form(props) {
                                 <form action="" onSubmit={handleVolunteerSubmit} className='space-y-5'>
                                     <div className='flex flex-col'>
                                         <label htmlFor="" className='text-[#0571BC]'>Name *</label>
-                                        <input type="text" className='p-2 border border-gray-100 focus:outline-none' placeholder='Name' name='name' onChange={handleVolunteerChange} value={volunteerData.name} />
+                                        <input type="text" className='p-2 border border-gray-100 focus:outline-none' placeholder='Name' required name='name' onChange={handleVolunteerChange} value={volunteerData.name} />
                                     </div>
                                     <div className='flex flex-col'>
                                         <label htmlFor="" className='text-[#0571BC]'>Email *</label>
-                                        <input type="text" className='p-2 border border-gray-100 focus:outline-none' placeholder='Email' name='email' onChange={handleVolunteerChange} value={volunteerData.email} />
+                                        <input type="text" className='p-2 border border-gray-100 focus:outline-none' placeholder='Email' required name='email' onChange={handleVolunteerChange} value={volunteerData.email} />
                                     </div>
                                     <div className='flex flex-col'>
                                         <label htmlFor="" className='text-[#0571BC]'>phone *</label>
-                                        <input type="text" className='p-2 border border-gray-100 focus:outline-none' name="phone" placeholder='Phone' value={volunteerData.phone} onChange={handleVolunteerChange} />
+                                        <input type="text" className='p-2 border border-gray-100 focus:outline-none' name="phone" required placeholder='Phone' value={volunteerData.phone} onChange={handleVolunteerChange} />
                                     </div>
                                     <div className='flex flex-col'>
                                         <label htmlFor="" className='text-[#0571BC]'>Event * </label>
-                                        <input type="text" className='p-2 border border-gray-100 focus:outline-none' placeholder='Event' name='event' onChange={handleVolunteerChange} value={volunteerData.event} />
+                                        <input type="text" className='p-2 border border-gray-100 focus:outline-none' placeholder='Event' required readOnly name='event' onChange={handleVolunteerChange} value={volunteerData.event} />
                                     </div>
                                     <div className='flex flex-col'>
                                         <label htmlFor="" className='text-[#0571BC]'>Comments</label>
-                                        <textarea rows={4} className='p-2 border border-gray-100 focus:outline-none' placeholder='Comments' name='comments' onChange={handleVolunteerChange} value={volunteerData.comments} />
+                                        <textarea rows={4} className='p-2 border border-gray-100 focus:outline-none' placeholder='Comments' required name='comments' onChange={handleVolunteerChange} value={volunteerData.comments} />
                                     </div>
                                     <div className='text-center'>
                                         <button type='submit' className='p-2 border text-white rounded-md hover:bg-white hover:text-[#0571BC] duration-200 bg-[#0571BC]'>
