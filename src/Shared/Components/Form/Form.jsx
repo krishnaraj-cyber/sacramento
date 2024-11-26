@@ -5,19 +5,19 @@ import apiurl from '../../services/apiendpoint/apiendpoint';
 import { useParams } from 'react-router-dom';
 
 function Form(props) {
-    const { eventId } = useParams();  
+    const { eventId } = useParams();
     const [eventDetails, setEventDetails] = useState(null);
-  
+
     useEffect(() => {
-      const fetchEventDetails = async () => {
-        const response = await fetch(`${apiurl()}/events/${eventId}`);
-        const data = await response.json();
-        setEventDetails(data);
-      };
-  
-      fetchEventDetails();
+        const fetchEventDetails = async () => {
+            const response = await fetch(`${apiurl()}/events/${eventId}`);
+            const data = await response.json();
+            setEventDetails(data);
+        };
+
+        fetchEventDetails();
     }, [eventId]);
-  
+
     if (!eventDetails) return <div>Loading...</div>;
     const { activeSection, handleVolunteerSubmit, handleVolunteerChange, volunteerData, isLoading, event, eventName, eventActivity, eventDate, eventImag } = props;
     console.log(event)
