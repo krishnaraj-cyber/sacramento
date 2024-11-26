@@ -23,7 +23,10 @@ export const saveEvents = async (datas, onUploadProgress) => {
           if (datas["Image"][i] instanceof File)
             formData.append(key, datas[key][i]);
           else formData.append(key, datas[key]);
-      } else {
+      }
+      else if(key== 'Games'){
+        formData.append(key, JSON.stringify(datas[key]));
+     } else {
         formData.append(key, datas[key]);
       }
     }
@@ -43,7 +46,10 @@ export const updateEvents = async (datas) => {
   for (const key in datas) {
     if (key === "Image" && Array.isArray(datas[key])) {
       datas[key].forEach((file) => formData.append(key, file));
-    } else {
+    }
+    else if(key== 'Games'){
+      formData.append(key, JSON.stringify(datas[key]));
+   } else {
       formData.append(key, datas[key]);
     }
   }

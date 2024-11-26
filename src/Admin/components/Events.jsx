@@ -88,10 +88,11 @@ export default function Event() {
     }
   };
 
-  const handlechangeGames = (value, index) => {
+  const handlechangeGames = (event, index) => {
     const updatedProducts = [...formdata.Games];
-    updatedProducts[index][value.target.name] = value.target.value;
+    updatedProducts[index][event.target.name] = event.target.value;
     setFormdata({ ...formdata, Games: updatedProducts });
+    
   };
 
   const cusfilter = (field, value) => {
@@ -119,7 +120,7 @@ export default function Event() {
   };
 
   const newform = () => {
-    setFormdata({});
+    setFormdata({Games :[{}]});
     setVisible(true);
   };
 

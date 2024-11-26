@@ -10,7 +10,6 @@ function Gallerys({ gallery }) {
                 <div className='grid lg:grid-cols-3 md:grid-cols-2 grid-cols-2 gap-2 lg:gap-5 cursor-pointer'>
                     {gallery.map((item, index) => (
                         <Link to={`/gallery-view/${moment(item.Year).format('YYYY-MM-DD')}`} key={index} >
-                             {console.log(moment(item.Year).format('YYYY'))}
                         <div className="relative group  ">
                             <img src={`${apiurl()}/${item.Image}`} alt="Event" className="w-full h-full object-cover" />
                             <div className="absolute inset-0 bg-[#0571BC] bg-opacity-50 opacity-0 rounded-lg group-hover:opacity-100 transition-opacity duration-300">

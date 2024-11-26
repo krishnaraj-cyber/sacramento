@@ -8,7 +8,6 @@ import "yet-another-react-lightbox/plugins/thumbnails.css";
 
 export default function GalleryModel(props) {
     const {setVisible,Visible, ModelData} = props;
-    console.log(ModelData)
 
     const GalleryData = ModelData.Image.split(',').map(items=>({
       src: `${apiurl()}/${items}`,
@@ -16,7 +15,6 @@ export default function GalleryModel(props) {
       height: 5760
   })) ;
 
-  console.log(GalleryData)
   
   return (
     <>

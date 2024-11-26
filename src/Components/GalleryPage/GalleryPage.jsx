@@ -12,11 +12,8 @@ function GalleryPage() {
 
   const fetchGallery = useCallback(async () => {
     const response = await getallGallerys();
-    console.log(response)
     var images = response?.filter(item => item.Image);  
-    console.log(images)  
     var uniqueImage = images.filter((item, index, self) => index === self.findIndex((t) => moment(t.Year).format('YYYY') === moment(item.Year).format('YYYY')) );
-    console.log(uniqueImage)
     setGallery(uniqueImage)
   }, []);
 

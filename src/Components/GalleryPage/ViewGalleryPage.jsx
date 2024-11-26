@@ -11,16 +11,13 @@ export default function ViewGalleryPage() {
   
     const [Images, setImages]=useState([]);
     var param = useParams()
-    console.log(param.Year)
   
     let isMounted = true;
   
     const getallevent = useCallback(async ()=>{
       const res= await getuniquevaluebyyear(param.Year);
-      console.log(res)
       var images = res?.filter(item => item.Image);  
       setImages(images)
-      console.log(images)
     },[param.Year]);
   
     useEffect(()=>{
@@ -35,7 +32,6 @@ export default function ViewGalleryPage() {
       setModelData(data);
       setVisible(true)
     }
-    console.log(ModelData)
   return (
     <>
     <AboutUs title="GALLERY" Year={param.Year} />
