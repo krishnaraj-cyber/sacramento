@@ -1,7 +1,7 @@
 import moment from 'moment-timezone';
 import { Dialog } from 'primereact/dialog';
 import { ProgressBar } from 'primereact/progressbar';
-import apiurl from '../../../../shared/services/apiendpoint/apiendpoint';
+import apiurl from '../../../../Shared/services/apiendpoint/apiendpoint';
 
 export default function Addandeditform(props) {
     const { visible, setVisible, handlesave, handlechange, loading, formdata,setFormdata, handleupdate, dataUrl, setDataUrl, AddGame, removeGame, progress} = props;
@@ -59,8 +59,7 @@ export default function Addandeditform(props) {
                         <div className="mb-2">
                             <label>Date</label>
                         </div>
-                        {/* <input type="text" name="Year" value={formdata?.Year} onChange={handlechange} className="w-full px-4 py-2 border rounded-md outline-none" required /> */}
-                        <input type="date" name="Year" value={moment(formdata?.Year).format("YYYYY-MM-DD")} onChange={handlechange} className="w-full px-4 py-2 border rounded-md outline-none" required />
+                        <input type="date" name="Year" value={formdata?.Year ? moment(formdata?.Year).format("YYYY-MM-DD") : ""} onChange={handlechange} className="w-full px-4 py-2 border rounded-md outline-none" required placeholder='Select Date'/>
                     </div>
 
                     <div className="mb-2">

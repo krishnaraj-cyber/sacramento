@@ -13,6 +13,7 @@ import LoginPage from "../components/LoginPage";
 import AdminRouter from "../Admin/Router/AdminRouter";
 import ProtectedRoute from "../shared/services/Token/ProtectedRoute";
 import ScrollToTop from "./ScrollToTop";
+import ViewGalleryPage from "../Components/GalleryPage/ViewGalleryPage";
  
 
 function Approuter() {
@@ -29,6 +30,7 @@ function Approuter() {
                     <Route path="/gallery" element={<GalleryPage />} />
                     <Route path="/events" element={<EventsPage />} />
                     <Route path="/tamil-schools" element={<TamilSchoolPage />} />
+                    <Route path='/gallery-view/:Year' element={<ViewGalleryPage />} />
                     <Route path="/laws" element={<ByLawsPage />} />
                 </Route>
                 <Route path='/login' element={<LoginPage />} />

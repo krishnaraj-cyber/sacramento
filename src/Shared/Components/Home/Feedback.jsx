@@ -10,7 +10,7 @@ function Feedback(props) {
                         <p className="text-center text-[#E91E31] md:text-4xl text-2xl   concert-one-regular font-bold">FEEDBACK</p>
                     </div>
                     <div className="space-y-5">
-                        <form onSubmit={(e) => { e.preventDefault(); const formData = new FormData(e.target); const data = Object.fromEntries(formData.entries()); console.log(data); }}    >
+                        <form onSubmit={(e) => { e.preventDefault(); const formData = new FormData(e.target); const data = Object.fromEntries(formData.entries()); }}    >
                             <div className="grid md:grid-cols-3 gap-4">
                                 <div>
                                     <label htmlFor="name" className="text-lg">Name *</label>
@@ -95,7 +95,7 @@ function Feedback(props) {
                                                 <button className="px-4 py-2 bg-red-400 rounded-md  md:text-base text-sm " onClick={() => setIsModalOpen(false)}>
                                                     Cancel
                                                 </button>
-                                                <button type="submit" className="px-4 py-2 bg-[#0571BC] md:text-base text-sm text-white rounded-md hover:bg-[#045a96]" onClick={() => { console.log('Donation Confirmed'); setIsModalOpen(false); }}   >
+                                                <button type="submit" className="px-4 py-2 bg-[#0571BC] md:text-base text-sm text-white rounded-md hover:bg-[#045a96]" onClick={() => { setIsModalOpen(false); }}   >
                                                     Make Your Donation
                                                 </button>
                                             </div>

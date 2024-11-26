@@ -3,7 +3,6 @@ const tokenkey="SAC_TAMIL";
 //const navigate = useNavigate();
 
 const login = (token)=>{
-  console.log(token)
   localStorage.setItem(tokenkey, token);
 }
 
@@ -22,7 +21,6 @@ const settoken=(token)=>{
 
 const logout = () => {
 
-  //set({ isLoggedIn: false, user: null });
 }
 
 const getuserdetails = () => {
@@ -31,7 +29,6 @@ const getuserdetails = () => {
     if (gettoken() != null) {
         try{
           var userData = JSON.parse(window.atob(token.split(".")[1]));
-          // console.log(userData.data)
           return userData.data;
        } catch (error) {
         console.error('Error decoding token:', error);

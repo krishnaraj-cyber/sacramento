@@ -1,10 +1,11 @@
 import React, { useCallback, useEffect, useState } from "react";
+import { useRef } from "react";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination, Autoplay } from "swiper/modules";
-import apiurl from "../../../shared/services/apiendpoint/apiendpoint";
+import apiurl from "../../../Shared/services/apiendpoint/apiendpoint";
 import { getallSponsors } from "../../../Admin/shared/services/apisponsor/apisponsor";
 function SponsorSwiper() {
   const [sponsors, setSponsors] = useState([]);
@@ -13,7 +14,6 @@ function SponsorSwiper() {
     let isMounted = true;
     try {
       const response = await getallSponsors();
-      console.log(response);
       if (isMounted) {
         setSponsors(response);
       }
@@ -30,7 +30,7 @@ function SponsorSwiper() {
 
   return (
     <>
-      <div className="max-w-[85rem] w-full px-5  mx-auto md:my-20 my-10 space-y-5">
+      <div className="max-w-[80rem] px-5 lg:px-0 w-full  mx-auto md:my-20 my-10 space-y-5">
         <h2 className=" text-2xl md:text-3xl font-bold text-center text-red-600  concert-one-regular">
           OUR SPONSORS
         </h2>
@@ -46,13 +46,15 @@ function SponsorSwiper() {
             breakpoints={{
               0: {
                 slidesPerView: 1,
+                spaceBetween: 10,
               },
               768: {
                 slidesPerView: 2,
+                spaceBetween:15,
               },
               1024: {
                 slidesPerView: 3,
-
+                spaceBetween:20,
               },
             }}
             navigation={{
@@ -60,7 +62,7 @@ function SponsorSwiper() {
               prevEl: ".swiper-button-prevdeal",
             }}
             modules={[Pagination, Navigation, Autoplay]}
-            className=" w-full mx-auto"
+            className=" w-full mx-auto "
           >
             {sponsors.map((sponsor, index) => (
               <SwiperSlide key={index} className="flex justify-center cursor-pointer mx-auto">

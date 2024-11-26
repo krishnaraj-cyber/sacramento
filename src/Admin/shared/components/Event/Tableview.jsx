@@ -1,8 +1,8 @@
-/* eslint-disable react/prop-types */
+
 import { useEffect, useState } from 'react';
 import { DataTable } from 'primereact/datatable';
 import { Column } from 'primereact/column';
-import apiurl from '../../../../shared/services/apiendpoint/apiendpoint';
+import apiurl from '../../../../Shared/services/apiendpoint/apiendpoint';
 
 import { MultiSelect } from 'primereact/multiselect';
 import { Button } from 'primereact/button';
@@ -57,7 +57,6 @@ const Tableview = (props) =>{
 
   const getOption = async (key)=>{
     var filterOptions = await getFilterOptions(key.field);
-    console.log(filterOptions)
     var formatoption = filterOptions[key.field].map( val =>({ label:val,value: key.format == "Date"? moment(val).format('YYYY-MM-DD') :val}));
     setFilterOptions(formatoption);
   }
@@ -80,7 +79,6 @@ const Tableview = (props) =>{
     {field: 'Eventname', header: 'Title' ,width : "120px"},
     {field: 'Date', header: 'Event Date',filter:true, format: "Date",width : "120px"},
     {field: 'Activities', header: 'Activities', width : "120px"},
-    // {field: 'Description', header: 'Description',width : "350px", format: "HTML"},
     {field: 'Status', header: 'Status',filter:true,width : "120px"}
   ];
 

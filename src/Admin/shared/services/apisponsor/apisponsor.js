@@ -1,5 +1,5 @@
 import axios from "axios";
-import apiurl from "../../../../shared/services/apiendpoint/apiendpoint";
+import apiurl from "../../../../Shared/services/apiendpoint/apiendpoint";
 import { gettoken } from "../../../../shared/services/Token/token";
 
 export const getallSponsors = async (params) => {
@@ -8,7 +8,6 @@ export const getallSponsors = async (params) => {
 };
 
 export const getuniquevaluebyfield = async (params) => {
-  console.log(params);
   var res = await axios.get(`${apiurl()}/api/gallery/getsponsorbyid`, {
     params: params,
   });
@@ -60,11 +59,6 @@ export const updateSponsors = async (datas) => {
     throw new Error(error.response?.data?.error || "API request failed");
   }
 };
-
-// export const getFilterOptions = async(data)=>{
-//    var res=await axios.post(`${apiurl()}/gallery/getfilteroptions`,{field:data},{headers: {"Authorization" : `Bearer ${gettoken()}`}});
-//    return res.data;
-// }
 
 export const deleteSponsors = async (id) => {
   var res = await axios.delete(`${apiurl()}/api/deletesponsor?id=${id}`, {
