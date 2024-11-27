@@ -34,8 +34,8 @@ export default function Addandeditform(props) {
 
 
     return (
-        <Dialog header={!formdata?._id ? "Add Registration" : "Update Registration"} visible={visible} onHide={() => setVisible(false)} className="!w-full lg:!w-[40rem]">
-            <form onSubmit={!formdata?._id ? handlesave : handleupdate}>
+        <Dialog header={!formdata?.id ? "Add Registration" : "Update Registration"} visible={visible} onHide={() => setVisible(false)} className="!w-full lg:!w-[40rem]">
+            <form onSubmit={!formdata?.id ? handlesave : handleupdate}>
 
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
                     <div className="mb-2">
@@ -226,7 +226,7 @@ export default function Addandeditform(props) {
                 <div className="mb-2">
                     <button type="submit" className="w-full px-4 py-2 text-white bg-secondary border rounded-md" >
                         {loading && <span className="animate-spin text-xl inline-block size-4 border-[3px] border-current border-t-transparent text-white rounded-full" role="status" aria-label="loading"></span>} 
-                        {!formdata?._id ? "Add Event" : "Update Event"}
+                        {!formdata?.id ? "Add Event" : "Update Event"}
                     </button>
                 </div>
             </form>

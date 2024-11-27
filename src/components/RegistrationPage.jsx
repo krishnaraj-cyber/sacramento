@@ -46,7 +46,7 @@ export default function RegistrationPage(prpos) {
                 if(formdata.Guest_Count == "Age Wise"){
                     var totalAmount = ( (formdata.Fees_Adults*1)*formdata.Adults)+((formdata.Fees_Kids*1)*formdata.Kids)+((formdata.Fees_Under5*1)*formdata.Babes );
                     var formatData = {...formdata,Entry_Fees:totalAmount};
-                    delete formatData._id;
+                    delete formatData.id;
                     localStorage.setItem('registerData',JSON.stringify(formatData));
                     var res = await saveregister(formatData);
                     window.location.href = res.url;
@@ -54,7 +54,7 @@ export default function RegistrationPage(prpos) {
                 else{
                     var totalAmount = ((formdata.Entry_Fees*1)*formdata.Number_Guests);
                     var formatData = {...formdata,Entry_Fees:totalAmount};
-                    delete formatData._id;
+                    delete formatData.id;
                     localStorage.setItem('registerData',JSON.stringify(formatData));
                     var res = await saveregister(formatData);
                     window.location.href = res.url;
@@ -62,8 +62,9 @@ export default function RegistrationPage(prpos) {
             }
             else{
                 var formatData = {...formdata,Entry_Fees:"Free"};
-                delete formatData._id;
-                var res = await FreeRegisterion(formatData);
+                delete formatData.id;
+                // var res = await FreeRegisterion(formatData);
+                var res = await saveregister(formatData);
                 navigate('/payment-success/completed')
             }
         }

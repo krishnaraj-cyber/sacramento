@@ -38,13 +38,6 @@ export default function Sidebar() {
               </NavLink>
             </li>
            
-            {/* <li>
-              <NavLink to={'/admin/register'} className={({ isActive }) => (`flex items-center gap-x-3.5 py-2.5 px-2.5 ${isActive ? ' bg-gradient-to-tr from-primary to-primary text-white shadow' : 'bg-white shadow'} text-sm rounded-lg hover:bg-[#19569326] hover:shadow`)}>
-                <i className="fi fi-rr-box-open-full"></i> Register
-              </NavLink>
-            </li> */}
-           
-           
             <li>
               <NavLink to={'/admin/boardmembers'} className={({ isActive }) => (`flex items-center gap-x-3.5 py-2.5 px-2.5 ${isActive ? ' bg-gradient-to-tr from-primary to-primary text-white shadow' : 'bg-white shadow'} text-sm rounded-lg hover:bg-[#19569326] hover:shadow`)}>
                 <i className="fi fi-sr-users-alt"></i> Board Members
@@ -65,7 +58,13 @@ export default function Sidebar() {
               <i className="fa-solid fa-calendar-days"></i> Event
               </NavLink>
             </li>
-           
+
+             <li>
+              <NavLink to={'/admin/register'} className={({ isActive }) => (`flex items-center gap-x-3.5 py-2.5 px-2.5 ${isActive ? ' bg-gradient-to-tr from-primary to-primary text-white shadow' : 'bg-white shadow'} text-sm rounded-lg hover:bg-[#19569326] hover:shadow`)}>
+                <i className="fi fi-rr-box-open-full"></i> Register
+              </NavLink>
+            </li>
+
             <li>
               <NavLink to={'/admin/financial'} className={({ isActive }) => (`flex items-center gap-x-3.5 py-2.5 px-2.5 ${isActive ? ' bg-gradient-to-tr from-primary to-primary text-white shadow' : 'bg-white shadow'} text-sm rounded-lg hover:bg-[#19569326] hover:shadow`)}>
               <i className="fa-solid fa-coins"></i> Financial Summary
