@@ -40,6 +40,8 @@ export default function Registration(props) {
                     </div>
                 }
                 <div>
+                    
+                    
                     <form onSubmit={handlesave} >
                         <div className="grid grid-cols-1 gap-5 lg:grid-cols-2">
                             <div className="mb-2">

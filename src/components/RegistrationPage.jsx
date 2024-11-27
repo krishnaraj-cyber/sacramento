@@ -1,8 +1,9 @@
 import React, { useCallback, useEffect, useState } from 'react'
 import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import { geteventbyid } from '../shared/services/apiregistration/apiregistration';
-import { FreeRegisterion, saveregister } from '../shared/services/apiRegister/apiregister';
+import { FreeRegisterion } from '../shared/services/apiRegister/apiregister';
 import Registration from '../Shared/Components/Registration/Registration';
+import { saveRegisterForm } from '../Admin/shared/services/apiregister/apiregister';
 
 export default function RegistrationPage(prpos) {
 
@@ -21,7 +22,7 @@ export default function RegistrationPage(prpos) {
     const type = queryParams.get('type') || 'register';
 
     const geteventbyID = useCallback(async () => {
-        const Event = await geteventbyid({ id});
+        const Event = await geteventbyid({ id });
         console.log(Event)
         setEventData(Event);
         setFormdata(Event)
@@ -45,39 +46,45 @@ export default function RegistrationPage(prpos) {
 
     const handlesave = async (e) => {
         e.preventDefault();
-        if (formdata.Poster_Type == "RSVP") {
+        if (type === "volunteer") {
+            var formatData = { ...formdata, Poster_Type: "Volunteer" };
+            delete formatData._id;
+            var res = await saveRegisterForm(formatData);
+        }
+
+        else if (formdata.Poster_Type == "RSVP") {
             if (formdata.Peyment == "Yes") {
                 if (formdata.Guest_Count == "Age Wise") {
                     var totalAmount = ((formdata.Fees_Adults * 1) * formdata.Adults) + ((formdata.Fees_Kids * 1) * formdata.Kids) + ((formdata.Fees_Under5 * 1) * formdata.Babes);
                     var formatData = { ...formdata, Entry_Fees: totalAmount };
                     delete formatData._id;
                     localStorage.setItem('registerData', JSON.stringify(formatData));
-                    var res = await saveregister(formatData);
-                    window.location.href = res.url;
+                    var res = await saveRegisterForm(formatData);
+                    // window.location.href = res.url;
                 }
                 else {
                     var totalAmount = ((formdata.Entry_Fees * 1) * formdata.Number_Guests);
                     var formatData = { ...formdata, Entry_Fees: totalAmount };
                     delete formatData._id;
                     localStorage.setItem('registerData', JSON.stringify(formatData));
-                    var res = await saveregister(formatData);
-                    window.location.href = res.url;
+                    var res = await saveRegisterForm(formatData);
+                    // window.location.href = res.url;
                 }
             }
             else {
                 var formatData = { ...formdata, Entry_Fees: "Free" };
                 delete formatData._id;
                 var res = await FreeRegisterion(formatData);
-                navigate('/payment-success/completed')
+                // navigate('/payment-success/completed')
             }
         }
         else {
             var formatData = formdata;
             delete formatData._id;
             localStorage.setItem('registerData', JSON.stringify(formatData))
-            var res = await saveregister(formatData)
+            var res = await saveRegisterForm(formatData)
             // Setclientsecret(res.clientSecret)
-            window.location.href = res.url;
+            // window.location.href = res.url;
         }
     }
 

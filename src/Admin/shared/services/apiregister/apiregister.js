@@ -13,7 +13,7 @@ export const getuniquevaluebyfield = async(params)=>{
    return res.data;
 }
 
-export const saveregister=async(datas)=>{
+export const saveRegisterForm=async(datas)=>{
    try {
       var res=await axios.post(`${apiurl()}/api/uploadregister`,datas
       // ,{ headers: {"Authorization" : `Bearer ${gettoken()}`}}

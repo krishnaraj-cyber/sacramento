@@ -9,7 +9,7 @@ import {
   deleteregister,
   getallregister,
   getuniquevaluebyfield,
-  saveregister,
+  saveRegisterForm,
   updateregisters,
 } from "../shared/services/apiregister/apiregister";
 
@@ -80,7 +80,7 @@ export default function Register() {
       Category: selectedCategory, 
     };
 
-    await saveregister(updatedFormData);
+    await saveRegisterForm(updatedFormData);
     toast.success("Successfully saved");
     getallevent();
     setVisible(false);
