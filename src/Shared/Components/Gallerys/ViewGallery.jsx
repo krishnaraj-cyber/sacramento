@@ -17,14 +17,14 @@ export default function ViewGallery(props) {
                             {Images.length > 0 && Images.map((items,index)=>(
                                 <div role='button' onClick={() =>OpenModel(items)} className='relative z-[1]' key={index}>
                                     <ul className="cards">
-                                        <li className="rounded-lg">
+                                        <li className="rounded-lg card card-1 !rotate-0">
                                             <img loading='lazy' src={`${apiurl()}/${items.Image.split(',')[0]}`} />
                                             <div className='absolute bottom-0 end-0 z-[2] bg-primary text-white text-2xl font-bold px-3 mx-0 badge'> {items.EventName}</div>
                                         </li>
-                                        {/* {items.Image.split(',')[1] &&
+                                        {items.Image.split(',')[1] &&
                                         <li className="card card-2"><img loading='lazy' src={`${apiurl()}/${items.Image.split(',')[1]}`}/></li> }
                                          {items.Image.split(',')[2] &&
-                                        <li className="card card-3"><img loading='lazy' src={`${apiurl()}/${items.Image.split(',')[2]}`}/></li> } */}
+                                        <li className="card card-3"><img loading='lazy' src={`${apiurl()}/${items.Image.split(',')[2]}`}/></li> }
                                     </ul>
                                 </div>
                             )) }
