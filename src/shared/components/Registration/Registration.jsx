@@ -4,7 +4,7 @@ import apiurl from '../../services/apiendpoint/apiendpoint';
 
 export default function Registration(props) {
 
-    const { EventData, formdata, handlechange, handlesave, loading } = props;
+    const { EventData, formdata, handlechange, handlesave, loading, type } = props;
     console.log(EventData)
     return (
         <>
@@ -23,7 +23,7 @@ export default function Registration(props) {
                                 <div className=" md:text-2xl text-base concert-one-regular font-bold ">
                                     <p className='text-[#0571BC]'>{EventData?.Activities}</p>
                                 </div>
-                                <div className=" md:text-2xl text-base text-[#0571BC]  flex  gap-3 justify-center concert-one-regular font-bold ">
+                                <div className=" md:text-2xl text-base text-[#0571BC]  flex  flex-wrap  md:gap-3 gap-2 justify-center concert-one-regular font-bold ">
                                     <p>{EventData?.Date}</p>
                                     <p>({EventData?.Event_Time})</p>
                                 </div>
@@ -70,7 +70,7 @@ export default function Registration(props) {
                                 <input type="text" name="Phone_Number" value={formdata?.Phone_Number} onChange={handlechange} className="w-full px-4 py-2 border rounded-md outline-none" required />
                             </div>
 
-                            {formdata?.Poster_Type == "Donation" && <>
+                            {formdata?.Poster_Type === "Donation" && type !== "volunteer" && (<>
                                 <div className="mb-2">
                                     <div className="mb-2">
                                         <label>How much do you wish to donate? <span className='text-[#ef4444]'>*</span></label>
@@ -78,8 +78,9 @@ export default function Registration(props) {
                                     <input type="text" name="Entry_Fees" value={formdata?.Entry_Fees} onChange={handlechange} className="w-full px-4 py-2 border rounded-md outline-none" required />
                                 </div>
                             </>
+                            )
                             }
-                            {formdata?.Poster_Type == "RSVP" && <>
+                            {formdata?.Poster_Type == "RSVP" && type !== "volunteer" && <>
                                 <div className="mb-2">
                                     <div className="mb-2">
                                         <label>Will you attend? <span className='text-[#ef4444]'>*</span> </label>
@@ -141,7 +142,8 @@ export default function Registration(props) {
                                     </div>
                                 </>}
                             </>}
-                            {formdata?.Poster_Type == "Registration Form" && <>
+
+                            {formdata?.Poster_Type == "Registration Form" && type !== "volunteer" && <>
                                 <div className="mb-2">
                                     <div className="mb-2">
                                         <label>Choice Event <span className='text-[#ef4444]'>*</span></label>

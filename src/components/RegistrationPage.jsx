@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useState } from 'react'
-import { useNavigate, useParams } from 'react-router-dom';
+import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import { geteventbyid } from '../shared/services/apiregistration/apiregistration';
 import { FreeRegisterion, saveregister } from '../shared/services/apiRegister/apiregister';
 import Registration from '../Shared/Components/Registration/Registration';
@@ -15,14 +15,17 @@ export default function RegistrationPage(prpos) {
     const [loading, setLoading] = useState(false);
     const [Visible, setVisible] = useState(false);
     const [formdata, setFormdata] = useState([]);
-
+    const location = useLocation();
+    const queryParams = new URLSearchParams(location.search);
+    const id = queryParams.get('id');
+    const type = queryParams.get('type') || 'register';
 
     const geteventbyID = useCallback(async () => {
-        const Event = await geteventbyid({ id: param.id });
+        const Event = await geteventbyid({ id});
         console.log(Event)
         setEventData(Event);
         setFormdata(Event)
-    }, []);
+    }, [id]);
 
     var isMounted = true;
     useEffect(() => {
@@ -30,7 +33,7 @@ export default function RegistrationPage(prpos) {
             geteventbyID();
         }
         return () => (isMounted = false);
-    }, [param.id])
+    }, [id])
 
     const handlechange = (e) => {
         setFormdata({ ...formdata, [e.target.name]: e.target.value });
@@ -80,7 +83,7 @@ export default function RegistrationPage(prpos) {
 
     return (
         <>
-            <Registration EventData={EventData} formdata={formdata} handlechange={handlechange} handlesave={handlesave} />
+            <Registration type={type} EventData={EventData} formdata={formdata} handlechange={handlechange} handlesave={handlesave} />
         </>
     )
 }
