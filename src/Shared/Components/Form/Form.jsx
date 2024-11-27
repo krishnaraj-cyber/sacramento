@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import { Registers } from '../../../assets/Json/Register'
 import RegistrationPage from '../../../Components/RegistrationPage';
-import apiurl from '../../services/apiendpoint/apiendpoint';
 import { useParams } from 'react-router-dom';
+import apiurl from '../../services/apiendpoint/apiendpoint';
 
 function Form(props) {
     const { eventId } = useParams();
@@ -14,12 +14,10 @@ function Form(props) {
             const data = await response.json();
             setEventDetails(data);
         };
-
         fetchEventDetails();
     }, [eventId]);
-
     if (!eventDetails) return <div>Loading...</div>;
-    const { activeSection, handleVolunteerSubmit, handleVolunteerChange, volunteerData, isLoading, event, eventName, eventActivity, eventDate, eventImag } = props;
+    const { activeSection, handleVolunteerSubmit, handleVolunteerChange, volunteerData, isLoading, event, eventImag } = props;
     console.log(event)
     return (
         <>
