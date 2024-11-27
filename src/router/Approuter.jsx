@@ -38,8 +38,8 @@ function Approuter() {
                     <Route path="/tamil-schools" element={<TamilSchoolPage />} />
                     <Route path='/gallery-view/:Year' element={<ViewGalleryPage />} />
                     <Route path="/laws" element={<ByLawsPage />} />
-                    <Route path="/forms" element={<FormPage />} />
-                    <Route path="/register" element={<Registration />} />
+                    <Route path="/forms/:id" element={<FormPage />} />
+                    <Route path="/register/:id" element={<RegistrationPage />} />
 
                 </Route>
                 <Route path="/payment-page" element={<Payments />} />

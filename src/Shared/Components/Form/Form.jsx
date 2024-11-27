@@ -1,24 +1,12 @@
-import React, { useEffect, useState } from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
 import { Registers } from '../../../assets/Json/Register'
 import RegistrationPage from '../../../Components/RegistrationPage';
-import { useParams } from 'react-router-dom';
 import apiurl from '../../services/apiendpoint/apiendpoint';
 
 function Form(props) {
-    const { eventId } = useParams();
-    const [eventDetails, setEventDetails] = useState(null);
+    const { activeSection, handleVolunteerSubmit, handleVolunteerChange, eventdetails, volunteerData, isLoading, eventImag } = props;
+    console.log(eventdetails)
 
-    useEffect(() => {
-        const fetchEventDetails = async () => {
-            const response = await fetch(`${apiurl()}/events/${eventId}`);
-            const data = await response.json();
-            setEventDetails(data);
-        };
-        fetchEventDetails();
-    }, [eventId]);
-    if (!eventDetails) return <div>Loading...</div>;
-    const { activeSection, handleVolunteerSubmit, handleVolunteerChange, volunteerData, isLoading, event, eventImag } = props;
-    console.log(event)
     return (
         <>
             <div>
@@ -30,7 +18,7 @@ function Form(props) {
                             </div>
                         )}
                         <div className='  text-center items-center flex-wrap  justify-center flex md:gap-10'>
-                            {event.map((sponsor, index) => (
+                            {eventdetails.length != 0 && eventdetails.map((sponsor, index) => (
                                 <div className="mb-10 w-[790px] h-56   mx-auto rounded-lg shadow-lg flex justify-center items-center  bg-cover  bg-no-repeat  relative" style={{ backgroundImage: `url(${apiurl()}/${sponsor.Image})` }}  >
                                     <div className="absolute inset-0 bg-black bg-opacity-50 rounded-lg"></div>
                                     <div className="relative z-10 text-center">

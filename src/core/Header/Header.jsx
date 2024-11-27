@@ -44,7 +44,7 @@ function Header() {
                   <img src="/assets/images/Header/Logo (2).png" alt="logo" className="w-20" />
                 </div>
                 <div>
-                  <p className="text-[#5E0000] md:text-xl text-sm font-bold">SACRAMENTO</p>
+                  <p className="text-[#E91E31] md:text-xl text-sm font-bold">SACRAMENTO</p>
                   <p className="text-[#0571BC] md:text-base text-sm font-semibold">TAMIL MANDRUM</p>
                 </div>
               </div>

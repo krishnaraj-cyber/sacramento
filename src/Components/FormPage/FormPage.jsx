@@ -1,8 +1,8 @@
 import React, { useCallback, useEffect, useState } from 'react'
 import Form from '../../Shared/Components/Form/Form'
 import AboutUs from '../../Shared/Components/About/AboutUs'
-import { useLocation, useNavigate } from 'react-router-dom';
-import { getallEvents } from '../../Admin/shared/services/apievent/apievent';
+import { useLocation, useNavigate, useParams } from 'react-router-dom';
+import { getallEvents, getuniquevaluebyfield } from '../../Admin/shared/services/apievent/apievent';
 
 function FormPage() {
     const location = useLocation();
@@ -15,6 +15,24 @@ function FormPage() {
     const eventDate = location.state?.eventDate;
     const eventImag = location.state?.eventImag;
     const navigate = useNavigate();
+    const param = useParams();
+    const [eventdetails, setEventDetails] = useState([]);
+    const geteventbyID = useCallback(async () => {
+        const Event = await getuniquevaluebyfield({ id: param.id });
+        console.log(Event)
+        setEventDetails(Event);
+    }, []);
+    var isMounted = true;
+    useEffect(() => {
+        if (isMounted) {
+            geteventbyID();
+        }
+        return () => (isMounted = false);
+    }, [param.id])
+
+
+
+
     const [formData, setFormData] = useState({
         firstName: '',
         lastName: '',
@@ -94,7 +112,7 @@ function FormPage() {
     return (
         <>
             <AboutUs title="Sports Fest" />
-            <Form event={event} activeSection={activeSection} eventImage={eventImage} eventImag={eventImag} eventDate={eventDate} eventActivity={eventActivity} eventName={eventName} formData={formData} handleVolunteerSubmit={handleVolunteerSubmit} handleRegisterSubmit={handleRegisterSubmit} handleRegisterChange={handleRegisterChange} handleVolunteerChange={handleVolunteerChange} volunteerData={volunteerData} isLoading={isLoading} />
+            <Form event={event} activeSection={activeSection} eventdetails={eventdetails} eventImage={eventImage} eventImag={eventImag} eventDate={eventDate} eventActivity={eventActivity} eventName={eventName} formData={formData} handleVolunteerSubmit={handleVolunteerSubmit} handleRegisterSubmit={handleRegisterSubmit} handleRegisterChange={handleRegisterChange} handleVolunteerChange={handleVolunteerChange} volunteerData={volunteerData} isLoading={isLoading} />
         </>
     )
 }
