@@ -10,7 +10,7 @@ export default function ViewGallery(props) {
         <>
             <section className=' '>
                 <div className='max-w-[110rem] pt-18 w-full mx-auto px-2 md:px-4 py-16'>
-                    <div>
+                    <div className='space-y-10'>
                         <div className='text-primary text-center text-xl font-bold mb-4'><i className="fa-regular fa-images"></i> <span className='text-secondary'>Photos</span></div>
                         <div className='mb-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-2 md:gap-3'>
                             {Images.length > 0 && Images.map((items, index) => (
