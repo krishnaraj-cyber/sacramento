@@ -1,7 +1,7 @@
 import React from 'react'
-import apiurl from '../../../Shared/services/apiendpoint/apiendpoint';
 import AboutUs from '../../../Shared/Components/About/AboutUs'
 import SponsorSwiper from '../SponsorSwiper/SponsorSwiper';
+import apiurl from '../../services/apiendpoint/apiendpoint';
 
 function Aboutt(props) {
     const { boardmem } = props;

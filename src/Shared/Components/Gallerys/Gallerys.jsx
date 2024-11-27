@@ -1,5 +1,4 @@
 import React from 'react'
-// import apiurl from '../../services/apiendpoint/apiendpoint'
 import apiurl from '../../../Shared/services/apiendpoint/apiendpoint'
 import { Link } from 'react-router-dom'
 import moment from 'moment-timezone'

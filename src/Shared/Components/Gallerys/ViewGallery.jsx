@@ -1,6 +1,6 @@
 import React from 'react'
 import { useParams } from 'react-router-dom';
-import apiurl from '../../../Shared/services/apiendpoint/apiendpoint';
+import apiurl from '../../services/apiendpoint/apiendpoint';
 
 export default function ViewGallery(props) {
     const { OpenModel, Images } = props;

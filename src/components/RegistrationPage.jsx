@@ -1,9 +1,10 @@
 import React, { useCallback, useEffect, useState } from 'react'
 import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import { geteventbyid } from '../shared/services/apiregistration/apiregistration';
-import { FreeRegisterion } from '../shared/services/apiRegister/apiregister';
-import Registration from '../Shared/Components/Registration/Registration';
+// import { FreeRegisterion, saveregister } from '../shared/services/apiRegister/apiregister';
+import Registration from '../shared/components/Registration/Registration';
 import { saveRegisterForm } from '../Admin/shared/services/apiregister/apiregister';
+import toast from 'react-hot-toast';
 
 export default function RegistrationPage(prpos) {
 
@@ -57,7 +58,7 @@ export default function RegistrationPage(prpos) {
                 if (formdata.Guest_Count == "Age Wise") {
                     var totalAmount = ((formdata.Fees_Adults * 1) * formdata.Adults) + ((formdata.Fees_Kids * 1) * formdata.Kids) + ((formdata.Fees_Under5 * 1) * formdata.Babes);
                     var formatData = { ...formdata, Entry_Fees: totalAmount };
-                    delete formatData._id;
+                    delete formatData.id;
                     localStorage.setItem('registerData', JSON.stringify(formatData));
                     var res = await saveRegisterForm(formatData);
                     // window.location.href = res.url;
@@ -65,7 +66,7 @@ export default function RegistrationPage(prpos) {
                 else {
                     var totalAmount = ((formdata.Entry_Fees * 1) * formdata.Number_Guests);
                     var formatData = { ...formdata, Entry_Fees: totalAmount };
-                    delete formatData._id;
+                    delete formatData.id;
                     localStorage.setItem('registerData', JSON.stringify(formatData));
                     var res = await saveRegisterForm(formatData);
                     // window.location.href = res.url;
@@ -73,19 +74,21 @@ export default function RegistrationPage(prpos) {
             }
             else {
                 var formatData = { ...formdata, Entry_Fees: "Free" };
-                delete formatData._id;
-                var res = await FreeRegisterion(formatData);
+                delete formatData.id;
+                // var res = await FreeRegisterion(formatData);
+                var res = await saveRegisterForm(formatData);
                 // navigate('/payment-success/completed')
             }
         }
         else {
             var formatData = formdata;
-            delete formatData._id;
+            delete formatData.id;
             localStorage.setItem('registerData', JSON.stringify(formatData))
             var res = await saveRegisterForm(formatData)
             // Setclientsecret(res.clientSecret)
             // window.location.href = res.url;
         }
+        res.message == "Registered Successfully" ? toast.success("Registered Successfully") : toast.error("Registered Failed")
     }
 
 

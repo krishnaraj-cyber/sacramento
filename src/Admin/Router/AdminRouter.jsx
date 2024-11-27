@@ -9,6 +9,7 @@ import Sponsors from "../components/Sponsor";
 import Boardmembers from "../components/Boardmembers";
 import FinancialSummary from "../components/FinancialSummary";
 import YouthForum from "../components/YouthForum";
+import Volunteer from "../components/Volunteer";
 
 
 const AdminRouter = () => {
@@ -19,6 +20,7 @@ const AdminRouter = () => {
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/event" element={<Event />} />
             <Route path="/register" element={<Register />} />
+            <Route path="/volunteer" element={<Volunteer />} />
             <Route path="/gallery" element={<Gallery />} />
             <Route path="/sponsors" element={<Sponsors />} />
             <Route path="/boardmembers" element={<Boardmembers />} />

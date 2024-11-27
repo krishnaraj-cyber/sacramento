@@ -1,6 +1,6 @@
 import axios from "axios";
-import apiurl from "../../../../Shared/services/apiendpoint/apiendpoint";
 import { gettoken } from "../../../../shared/services/Token/token";
+import apiurl from "../../../../shared/services/apiendpoint/apiendpoint";
 
 export const getallFinancialsum = async (params) => {
   var res = await axios.get(`${apiurl()}/api/getallfinancials`, {

@@ -66,6 +66,12 @@ export default function Sidebar() {
             </li>
 
             <li>
+              <NavLink to={'/admin/volunteer'} className={({ isActive }) => (`flex items-center gap-x-3.5 py-2.5 px-2.5 ${isActive ? ' bg-gradient-to-tr from-primary to-primary text-white shadow' : 'bg-white shadow'} text-sm rounded-lg hover:bg-[#19569326] hover:shadow`)}>
+                <i className="fi fi-rr-box-open-full"></i> Volunteer
+              </NavLink>
+            </li>
+
+            <li>
               <NavLink to={'/admin/financial'} className={({ isActive }) => (`flex items-center gap-x-3.5 py-2.5 px-2.5 ${isActive ? ' bg-gradient-to-tr from-primary to-primary text-white shadow' : 'bg-white shadow'} text-sm rounded-lg hover:bg-[#19569326] hover:shadow`)}>
               <i className="fa-solid fa-coins"></i> Financial Summary
               </NavLink>

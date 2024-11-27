@@ -8,7 +8,7 @@ import 'swiper/css/pagination';
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination, Autoplay } from "swiper/modules";
 import CountdownTimer from "./CountdownTimer";
-import apiurl from "../../../Shared/services/apiendpoint/apiendpoint";
+import apiurl from "../../services/apiendpoint/apiendpoint";
 
 function HomePage(props) {
   const { sponsors, event } = props;

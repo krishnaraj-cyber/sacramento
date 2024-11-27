@@ -1,5 +1,5 @@
 import React from 'react'
-import apiurl from '../../../Shared/services/apiendpoint/apiendpoint'
+import apiurl from '../../services/apiendpoint/apiendpoint';
 function YouthForum(props) {
     const { forum } = props;
     return (
