@@ -29,13 +29,22 @@ function EventSwipe(props) {
                                 {event?.map((sponsor, index) => (
                                     <SwiperSlide key={index} className="flex justify-center">
                                         <div className="relative group ">
-                                            <img src={`${apiurl()}/${sponsor.Image}`} className="w-full h-full object-cover" />
-                                            <div className="absolute inset-0 bg-black bg-opacity-50 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                                                <Link to='/forms'>
+                                            <img src={`${apiurl()}/${sponsor.Image}`} className="w-full rounded-lg h-full object-cover" />
+                                            <div className="absolute inset-0 bg-black rounded-lg bg-opacity-50 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                                                <div className='flex justify-center items-center h-full gap-3 flex-wrap '>
+                                                    {/* <Link to='/forms'>
                                                     <div className="flex items-center justify-center h-full">
                                                         <button className="text-[#E91E31] hover:bg-[#E91E31] hover:text-white duration-200 bg-white px-4 py-2 concert-one-regular rounded">Apply Now</button>
                                                     </div>
-                                                </Link>
+                                                </Link> */}
+                                                    <Link to={`/register?id=${sponsor.id}&type=volunteer`}>
+                                                        <button className="text-[#E91E31] hover:bg-[#E91E31] hover:text-white duration-200 md:text-base text-sm bg-white px-4 py-2 concert-one-regular rounded">
+                                                            Volunteer
+                                                        </button>
+                                                    </Link>
+
+                                                    <Link to={`/register?id=${sponsor.id}`} ><button className="text-[#E91E31] hover:bg-[#E91E31] md:text-base text-sm hover:text-white duration-200 bg-white px-4 py-2 concert-one-regular rounded">Register Now</button></Link>
+                                                </div>
                                             </div>
                                         </div>
                                     </SwiperSlide>
