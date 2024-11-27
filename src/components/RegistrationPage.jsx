@@ -88,6 +88,7 @@ export default function RegistrationPage(prpos) {
         }
     }
 
+
     return (
         <>
             <Registration type={type} EventData={EventData} formdata={formdata} handlechange={handlechange} handlesave={handlesave} />
