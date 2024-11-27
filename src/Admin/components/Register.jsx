@@ -32,8 +32,8 @@ export default function Register() {
     setLoading(true);
     const res = await getallregister({ first, rows, globalfilter, colfilter });
     setLoading(false);
-    setTabledata(res?.resdata);
-    setTotalRecords(res?.totallength);
+    setTabledata(res);
+    setTotalRecords(res?.length);
   }, [first, rows, globalfilter, colfilter]);
 
   useEffect(() => {
