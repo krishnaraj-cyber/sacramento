@@ -4,18 +4,20 @@ import { gettoken } from "../../../../shared/services/Token/token";
 
 
 export const getallregister = async(params)=>{
-   var res=await axios.get(`${apiurl()}/register/apigetallregistrations`,{params:params , headers: {"Authorization" : `Bearer ${gettoken()}`}});
+   var res=await axios.get(`${apiurl()}/api/getallregisters`,{params:params , headers: {"Authorization" : `Bearer ${gettoken()}`}});
    return res.data;
 }
 
 export const getuniquevaluebyfield = async(params)=>{
-   var res=await axios.get(`${apiurl()}/register/apigetuniquevaluebyfield` ,{params:params , headers: {"Authorization" : `Bearer ${gettoken()}`}});
+   var res=await axios.get(`${apiurl()}/api/getregisterbyid` ,{params:params , headers: {"Authorization" : `Bearer ${gettoken()}`}});
    return res.data;
 }
 
 export const saveregister=async(datas)=>{
    try {
-      var res=await axios.post(`${apiurl()}/register/apisaveregistration`,datas,{ headers: {"Authorization" : `Bearer ${gettoken()}`}});
+      var res=await axios.post(`${apiurl()}/api/uploadregister`,datas
+      // ,{ headers: {"Authorization" : `Bearer ${gettoken()}`}}
+   );
       return res.data;
    }
    catch(err){
@@ -24,7 +26,7 @@ export const saveregister=async(datas)=>{
 }
 
 export const updateregisters=async(datas)=>{
-   var res=await axios.put(`${apiurl()}/register/apiupdateregistration`,datas,{params:{_id:datas?._id}, headers: {"Authorization" : `Bearer ${gettoken()}`}});
+   var res=await axios.put(`${apiurl()}/api/editregister`,datas,{params:{id:datas?.id}, headers: {"Authorization" : `Bearer ${gettoken()}`}});
    return res.data;
 }
 
@@ -34,6 +36,6 @@ export const getFilterOptions = async(data)=>{
 }
 
 export const deleteregister=async(id)=>{
-   var res=await axios.delete(`${apiurl()}/register/apideleteregistration`,{params:{_id:id}, headers: {"Authorization" : `Bearer ${gettoken()}`}});
+   var res=await axios.delete(`${apiurl()}/api/deleteregister`,{params:{id:id}, headers: {"Authorization" : `Bearer ${gettoken()}`}});
    return res.data;
 }

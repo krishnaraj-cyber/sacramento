@@ -23,10 +23,10 @@ const Tableview = (props) =>{
   const actionbotton = (rowData) => {
     return (
       <div className="flex gap-2">
-        {/* <button onClick={()=>editfrom(rowData)} className="inline-flex items-center text-md font-medium text-blue-600 gap-x-1 decoration-2 " >
+        <button onClick={()=>editfrom(rowData)} className="inline-flex items-center text-md font-medium text-blue-600 gap-x-1 decoration-2 " >
           <i className="fa-regular fa-pen-to-square"></i>
-        </button> */}
-        <button onClick={()=>handledelete(rowData?._id)} className="inline-flex items-center text-md font-medium text-red-600 gap-x-1 decoration-2 " >
+        </button>
+        <button onClick={()=>handledelete(rowData?.id)} className="inline-flex items-center text-md font-medium text-red-600 gap-x-1 decoration-2 " >
           <i className="fa-solid fa-trash"></i>
         </button>
       </div>
@@ -75,9 +75,9 @@ const Tableview = (props) =>{
   const columns = [
     {field: 'Registration_id', header: 'Reg ID',width : "180px"},
     {field: 'Registration_Date', header: 'Reg Date',width : "120px", format: "Date"},
-    {field: 'Title', header: 'Title',width : "200px"},
+    {field: 'Eventname', header: 'Title',width : "200px"},
     {field: 'Poster_Type', header: 'Form Type',width : "150px"},
-    {field: 'Game_Title', header: 'Game Title',width : "200px"},
+    {field: 'Event', header: 'Game Title',width : "200px"},
     {field: 'Team_Name', header: 'Team Name',width : "200px"},
     {field: 'Team_Members_Count', header: 'Team Members Count',width : "150px"},
     {field: 'First_Name', header: 'First Name',width : "150px"},
@@ -92,7 +92,8 @@ const Tableview = (props) =>{
     {field: 'Babes', header: 'Number of under5',width : "150px"},
     {field: 'Payment_id', header: 'Payment ID',width : "120px"},
     {field: 'Payment_Status', header: 'Payment Status',width : "120px"},
-    {field: 'Total_Amount', header: 'Entry Fees',width : "120px"}
+    // {field: 'Total_Amount', header: 'Entry Fees',width : "120px"}
+    {field: 'Entry_Fees', header: 'Entry Fees',width : "120px"}
   ];
 
   return(
