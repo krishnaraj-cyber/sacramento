@@ -4,9 +4,8 @@ import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Pagination, Autoplay } from 'swiper/modules';
-import apiurl from '../../services/apiendpoint/apiendpoint';
-// import apiurl from '../../../Shared/services/apiendpoint/apiendpoint';
 import { Link } from 'react-router-dom';
+import apiurl from '../../services/apiendpoint/apiendpoint';
 function Gallery(props) {
   const { mobileNextStepRef, mobilePreviousRef, gallery } = props;
   return (

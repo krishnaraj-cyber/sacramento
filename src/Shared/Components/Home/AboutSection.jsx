@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import apiurl from '../../../Shared/services/apiendpoint/apiendpoint';
+import apiurl from '../../services/apiendpoint/apiendpoint';
 function AboutSection(props) {
     const { boardmem } = props;
     return (

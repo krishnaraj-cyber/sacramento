@@ -5,8 +5,8 @@ import "swiper/css/navigation";
 import "swiper/css/pagination";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination, Autoplay } from "swiper/modules";
-import apiurl from "../../../Shared/services/apiendpoint/apiendpoint";
 import { getallSponsors } from "../../../Admin/shared/services/apisponsor/apisponsor";
+import apiurl from "../../services/apiendpoint/apiendpoint";
 function SponsorSwiper() {
   const [sponsors, setSponsors] = useState([]);
 

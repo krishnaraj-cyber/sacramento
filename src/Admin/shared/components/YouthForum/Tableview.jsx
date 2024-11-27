@@ -2,11 +2,11 @@
 import { useEffect, useState } from 'react';
 import { DataTable } from 'primereact/datatable';
 import { Column } from 'primereact/column';
-import apiurl from '../../../../Shared/services/apiendpoint/apiendpoint';
 import { MultiSelect } from 'primereact/multiselect';
 import { Button } from 'primereact/button';
 import moment from 'moment-timezone';
 import { getFilterOptions } from '../../services/apigallery/apigallery';
+import apiurl from '../../../../shared/services/apiendpoint/apiendpoint';
 
 const Tableview = (props) =>{
   const {tabledata,editfrom,handledelete,cusfilter,onPage,first,rows, page, filtervalues, loading}=props

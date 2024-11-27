@@ -1,7 +1,6 @@
 import moment from 'moment-timezone';
 import { Dialog } from 'primereact/dialog';
 import { ProgressBar } from 'primereact/progressbar';
-import apiurl from '../../../../Shared/services/apiendpoint/apiendpoint';
 
 export default function Addandeditform(props) {
     const { visible, setVisible, handlesave, handlechange, loading, formdata, handleupdate, dataUrl, setDataUrl, AddGame, removeGame, progress} = props;

@@ -1,6 +1,6 @@
 import axios from "axios";
-import apiurl from "../../../../Shared/services/apiendpoint/apiendpoint";
 import { gettoken } from "../../../../shared/services/Token/token";
+import apiurl from "../../../../shared/services/apiendpoint/apiendpoint";
 
 
 export const getallregister = async(params)=>{
@@ -13,7 +13,7 @@ export const getuniquevaluebyfield = async(params)=>{
    return res.data;
 }
 
-export const saveregister=async(datas)=>{
+export const saveRegisterForm=async(datas)=>{
    try {
       var res=await axios.post(`${apiurl()}/api/uploadregister`,datas
       // ,{ headers: {"Authorization" : `Bearer ${gettoken()}`}}

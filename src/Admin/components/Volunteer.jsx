@@ -1,8 +1,4 @@
 import { useCallback, useEffect, useState } from "react";
-import Tableview from "../shared/components/Register/Tableview";
-import Tableheadpanel from "../shared/components/Register/Tableheadpanel";
-import Tablepagination from "../shared/others/Tablepagination";
-import Addandeditform from "../shared/components/Register/Addandeditform";
 import toast from "react-hot-toast";
 import { ConfirmDialog, confirmDialog } from "primereact/confirmdialog";
 import {
@@ -12,8 +8,12 @@ import {
   saveRegisterForm,
   updateregisters,
 } from "../shared/services/apiregister/apiregister";
+import Addandeditform from "../shared/components/Volunteer/Addandeditform";
+import Tableview from "../shared/components/Volunteer/Tableview";
+import Tableheadpanel from "../shared/components/Volunteer/Tableheadpanel";
+import Tablepagination from "../shared/others/Tablepagination";
 
-export default function Register() {
+export default function Volunteer() {
   const [totalRecords, setTotalRecords] = useState(0);
   const [page, setPage] = useState(1);
   const [first, setFirst] = useState(0);
@@ -32,8 +32,9 @@ export default function Register() {
     setLoading(true);
     const res = await getallregister({ first, rows, globalfilter, colfilter });
     setLoading(false);
-    setTabledata(res);
-    setTotalRecords(res?.length);
+    const filteredData = res.filter(item => item.Poster_Type === "Volunteer");
+    setTabledata(filteredData);
+    setTotalRecords(filteredData?.length);
   }, [first, rows, globalfilter, colfilter]);
 
   useEffect(() => {
@@ -147,6 +148,7 @@ export default function Register() {
 
         <Tableview
           tabledata={tabledata}
+        //   tabledata={filteredData}
           totalRecords={totalRecords}
           first={first}
           editfrom={editfrom}
