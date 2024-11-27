@@ -42,7 +42,6 @@ export default function RegistrationPage(prpos) {
 
     const handlesave = async (e) => {
         e.preventDefault();
-<<<<<<< HEAD
         if (formdata.Poster_Type == "RSVP") {
             if (formdata.Peyment == "Yes") {
                 if (formdata.Guest_Count == "Age Wise") {
@@ -58,39 +57,14 @@ export default function RegistrationPage(prpos) {
                     var formatData = { ...formdata, Entry_Fees: totalAmount };
                     delete formatData._id;
                     localStorage.setItem('registerData', JSON.stringify(formatData));
-=======
-        if(formdata.Poster_Type == "RSVP"){
-            if(formdata.Peyment == "Yes"){
-                if(formdata.Guest_Count == "Age Wise"){
-                    var totalAmount = ( (formdata.Fees_Adults*1)*formdata.Adults)+((formdata.Fees_Kids*1)*formdata.Kids)+((formdata.Fees_Under5*1)*formdata.Babes );
-                    var formatData = {...formdata,Entry_Fees:totalAmount};
-                    delete formatData.id;
-                    localStorage.setItem('registerData',JSON.stringify(formatData));
-                    var res = await saveregister(formatData);
-                    window.location.href = res.url;
-                }
-                else{
-                    var totalAmount = ((formdata.Entry_Fees*1)*formdata.Number_Guests);
-                    var formatData = {...formdata,Entry_Fees:totalAmount};
-                    delete formatData.id;
-                    localStorage.setItem('registerData',JSON.stringify(formatData));
->>>>>>> f95f02ea88a2b147faa1ccd1d275fc4f26ee5d8f
                     var res = await saveregister(formatData);
                     window.location.href = res.url;
                 }
             }
-<<<<<<< HEAD
             else {
                 var formatData = { ...formdata, Entry_Fees: "Free" };
                 delete formatData._id;
                 var res = await FreeRegisterion(formatData);
-=======
-            else{
-                var formatData = {...formdata,Entry_Fees:"Free"};
-                delete formatData.id;
-                // var res = await FreeRegisterion(formatData);
-                var res = await saveregister(formatData);
->>>>>>> f95f02ea88a2b147faa1ccd1d275fc4f26ee5d8f
                 navigate('/payment-success/completed')
             }
         }
