@@ -15,26 +15,36 @@ export default function RegistrationPage(prpos) {
     const [EventData, setEventData] = useState({});
     const [loading, setLoading] = useState(false);
     const [Visible, setVisible] = useState(false);
-    const [formdata, setFormdata] = useState([]);
+    const [formdata, setFormdata] = useState({});
     const location = useLocation();
     const queryParams = new URLSearchParams(location.search);
     const id = queryParams.get('id');
     const type = queryParams.get('type') || 'register';
 
+    const initialAmount = queryParams.get('amount');
+
+
     const geteventbyID = useCallback(async () => {
         const Event = await geteventbyid({ id });
         console.log(Event)
         setEventData(Event);
-        setFormdata(Event)
-    }, [id]);
 
+        if (type === "Donation") {
+            setFormdata({ Poster_Type: "Donation", Entry_Fees: initialAmount })
+        }
+        else {
+            setFormdata(Event);
+        }
+
+    }, [id]);
     var isMounted = true;
     useEffect(() => {
         if (isMounted) {
             geteventbyID();
         }
         return () => (isMounted = false);
-    }, [id])
+    }, [id, type])
+
 
     const handlechange = (e) => {
         setFormdata({ ...formdata, [e.target.name]: e.target.value });
@@ -43,7 +53,6 @@ export default function RegistrationPage(prpos) {
             setFormdata({ ...formdata, ...datas });
         }
     }
-
     const handlesave = async (e) => {
         e.preventDefault();
         if (type === "volunteer") {
@@ -51,7 +60,6 @@ export default function RegistrationPage(prpos) {
             delete formatData._id;
             var res = await saveRegisterForm(formatData);
         }
-
         else if (formdata.Poster_Type == "RSVP") {
             if (formdata.Peyment == "Yes") {
                 if (formdata.Guest_Count == "Age Wise") {
@@ -87,7 +95,6 @@ export default function RegistrationPage(prpos) {
             // window.location.href = res.url;
         }
     }
-
 
     return (
         <>

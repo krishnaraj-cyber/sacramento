@@ -25,9 +25,9 @@ function HomePage(props) {
   return (
     <>
       <section className="bg-[url('/assets/images/Header/Hero-sec.png')]   bg-cover bg-no-repeat lg:my-0 my-10  flex items-center justify-center     lg:h-[100vh]   w-full">
-        <div className=" max-w-[110rem]     2xl:ml-auto lg:my-0 my-10 px-5">
+        <div className=" max-w-[110rem]  2xl:ml-auto lg:my-0 my-10 px-5">
           <div className="grid lg:grid-cols-6 grid-cols-1 md:gap-10   items-center">
-            <div className=" space-y-6 lg:col-span-4   ">
+            <div className=" space-y-6 lg:col-span-4     ">
               {activeEvents && activeEvents.length > 0 ? (
                 <div>
                   <Swiper slidesPerView={1}
@@ -53,7 +53,7 @@ function HomePage(props) {
                       <SwiperSlide key={index}>
                         <div className="flex flex-wrap md:flex-nowrap  justify-center items-center gap-5 cursor-pointer pb-10">
                           <img
-                            className="w-[500px] rounded-2xl border-4 border-[#0670bd]"
+                            className="  rounded-2xl border-4 border-[#0670bd]"
                             src={`${apiurl()}/${item.Image}`} />
                           <div className="md:space-y-5 space-y-3">
                             <p className=" concert-one-regular md:text-2xl text-base text-white w-fit px-3 rounded-md bg-[#0470BC]">
