@@ -1,11 +1,14 @@
 import moment from 'moment-timezone';
-import React from 'react'
+import React, { useEffect } from 'react'
 import apiurl from '../../services/apiendpoint/apiendpoint';
+import { useSearchParams } from 'react-router-dom';
 
 export default function Registration(props) {
+    const { EventData, formdata, handlechange, handlesave, loading, type, } = props;
 
-    const { EventData, formdata, handlechange, handlesave, loading, type } = props;
-    console.log(EventData)
+    console.log(formdata)
+
+    const [searchParams] = useSearchParams();
     return (
         <>
             <section className='  relative  max-w-[95rem]  md:mt-20 md:my-0 mt-20 px-5 mx-auto  '>
@@ -25,7 +28,7 @@ export default function Registration(props) {
                                 </div>
                                 <div className=" md:text-2xl text-base text-[#0571BC]  flex  flex-wrap  md:gap-3 gap-2 justify-center concert-one-regular font-bold ">
                                     <p>{EventData?.Date}</p>
-                                    <p>({EventData?.Event_Time})</p>
+                                    <p>{EventData?.Event_Time}</p>
                                 </div>
                             </div>
                         </div>
@@ -40,8 +43,6 @@ export default function Registration(props) {
                     </div>
                 }
                 <div>
-                    
-                    
                     <form onSubmit={handlesave} >
                         <div className="grid grid-cols-1 gap-5 lg:grid-cols-2">
                             <div className="mb-2">
@@ -71,17 +72,17 @@ export default function Registration(props) {
                                 </div>
                                 <input type="text" name="Phone_Number" value={formdata?.Phone_Number} onChange={handlechange} className="w-full px-4 py-2 border rounded-md outline-none" required />
                             </div>
-
-                            {formdata?.Poster_Type === "Donation" && type !== "volunteer" && (<>
+                            {formdata?.Poster_Type === "Donation" && type !== "volunteer"  && (<>
                                 <div className="mb-2">
                                     <div className="mb-2">
                                         <label>How much do you wish to donate? <span className='text-[#ef4444]'>*</span></label>
                                     </div>
-                                    <input type="text" name="Entry_Fees" value={formdata?.Entry_Fees} onChange={handlechange} className="w-full px-4 py-2 border rounded-md outline-none" required />
+                                    <input type="text"
+                                        name="Entry_Fees"
+                                        value={formdata?.Entry_Fees || ""}
+                                        onChange={handlechange} className="w-full px-4 py-2 border rounded-md outline-none" required />
                                 </div>
-                            </>
-                            )
-                            }
+                            </>)}
                             {formdata?.Poster_Type == "RSVP" && type !== "volunteer" && <>
                                 <div className="mb-2">
                                     <div className="mb-2">
@@ -145,7 +146,7 @@ export default function Registration(props) {
                                 </>}
                             </>}
 
-                            {formdata?.Poster_Type == "Registration Form" && type !== "volunteer" && <>
+                            {formdata?.Poster_Type == "Registration Form" && type !== "volunteer"  && <>
                                 <div className="mb-2">
                                     <div className="mb-2">
                                         <label>Choice Event <span className='text-[#ef4444]'>*</span></label>

@@ -114,10 +114,10 @@ function Home() {
   return (
     <>
       <HomePage sponsors={sponsors} setSponsors={setSponsors} event={event} />
-      <AboutSection boardmem={boardmem} />
+      {/* <AboutSection boardmem={boardmem} /> */}
       <Gallery gallery={gallery} />
       <Event event={event} />
-      <Feedback isModalOpen={isModalOpen} setIsModalOpen={setIsModalOpen} formData={formData} handleSubmit={handleSubmit} handleInputChange={handleInputChange} activeStatus={activeStatus} customInputRef={customInputRef} handleStatusClick={handleStatusClick} handleCustomAmountChange={handleCustomAmountChange} customAmount={customAmount} setActiveStatus={setActiveStatus} statuses={statuses} />
+      <Feedback isModalOpen={isModalOpen} event={event} setIsModalOpen={setIsModalOpen} formData={formData} handleSubmit={handleSubmit} handleInputChange={handleInputChange} activeStatus={activeStatus} customInputRef={customInputRef} handleStatusClick={handleStatusClick} handleCustomAmountChange={handleCustomAmountChange} customAmount={customAmount} setActiveStatus={setActiveStatus} statuses={statuses} />
     </>
   )
 }

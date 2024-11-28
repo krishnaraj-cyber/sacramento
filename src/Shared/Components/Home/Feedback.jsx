@@ -1,7 +1,10 @@
 import React from 'react'
+import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 function Feedback(props) {
+    const { activeStatus, customInputRef, handleCustomAmountChange, event, handleInputChange, isModalOpen, formData, handleSubmit, customAmount, statuses, handleDonateNow, handleModalClose, setIsModalOpen, handleStatusClick, } = props;
+    const donationAmount = activeStatus === "Custom Amount" ? customAmount : activeStatus.replace("$", "");
 
-    const { activeStatus, customInputRef, handleCustomAmountChange, handleInputChange, isModalOpen, formData, handleSubmit, customAmount, statuses, handleDonateNow, handleModalClose, setIsModalOpen, handleStatusClick, } = props;
     return (
         <>
             <section className="bg-[url('/assets/images/Feedback/Feedback.png')] bg-center bg-contain">
@@ -68,44 +71,20 @@ function Feedback(props) {
                                 ))}
                             </div>
                             <div className="md:text-left text-center">
-                                <button onClick={() => setIsModalOpen(true)} className="bg-[#0571BC] text-[#FFE134] md:ml-4 hover:bg-[#FFE134] hover:text-[#0571BC] duration-200 p-2 md:text-xl rounded-md concert-one-regular">
-                                    DONATE NOW
-                                </button>
+                                {event.map((sponsor, index) => (
+                                    <>
+                                        {sponsor.Poster_Type === "Donation" && (
+                                            <Link to={`/register?&type=Donation&amount=${donationAmount}`}>
+                                                <button className="bg-[#0571BC] text-[#FFE134] md:ml-4 hover:bg-[#FFE134] hover:text-[#0571BC] duration-200 p-2 md:text-xl rounded-md concert-one-regular">
+                                                    DONATE NOW
+                                                </button>
+                                            </Link>
+                                        )}
+                                    </>
+                                ))}
                             </div>
-                            {isModalOpen && (
-                                <div className="fixed right-0 left-0 bottom-0 -top-20  bg-black bg-opacity-50 flex px-5 items-center justify-center z-50">
-                                    <form onSubmit={handleSubmit} className="bg-white   rounded-lg    max-w-[60rem] bg-[url('/assets/images/Feedback/Coin.png')] bg-cover   text-white ">
-                                        <div className='bg-black bg-opacity-50 p-6 rounded-lg'>
-                                            <h2 className="text-xl font-bold text-white  mb-4">Confirm Donation</h2>
-                                            <div className='flex gap-10 items-center '>
-                                                <div className='my-5 space-y-5'>
-                                                    <input type="text" id="firstName" name="firstName" value={formData.firstName} onChange={handleInputChange} required className='w-full border focus:outline-none p-2 text-black' placeholder='Name' />
-                                                    <input type="text" id="email" name="email" value={formData.email} onChange={handleInputChange} required className='w-full border focus:outline-none p-2 text-black' placeholder='Email' />
-                                                    <div className='text-end'>
-                                                        Total :
-                                                        <span className="font-bold ml-1">${activeStatus === 'Custom Amount' ? customAmount || '0' : activeStatus.replace('$', '')}</span>
-                                                        <div className='flex gap-3 justify-end'>
-                                                            <p className="">Hide Name</p>
-                                                            <input type="checkbox" />
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div className="flex justify-end gap-4">
-                                                <button className="px-4 py-2 bg-red-400 rounded-md  md:text-base text-sm " onClick={() => setIsModalOpen(false)}>
-                                                    Cancel
-                                                </button>
-                                                <button type="submit" className="px-4 py-2 bg-[#0571BC] md:text-base text-sm text-white rounded-md hover:bg-[#045a96]" onClick={() => { setIsModalOpen(false); }}   >
-                                                    Make Your Donation
-                                                </button>
-                                            </div>
-
-                                        </div>
-
-                                    </form>
-                                </div>
-                            )}
                         </div>
+
                     </div>
                 </div>
             </section>

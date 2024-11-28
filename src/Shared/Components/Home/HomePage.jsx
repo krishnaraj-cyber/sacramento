@@ -24,12 +24,12 @@ function HomePage(props) {
 
   return (
     <>
-      <section className="bg-[url('/assets/images/Header/Hero-sec.png')]   bg-cover bg-no-repeat lg:my-0 my-10  flex items-center justify-center     lg:h-[100vh]   w-full">
-        <div className=" max-w-[110rem]     2xl:ml-auto lg:my-0 my-10 px-5">
+      <section className="  bg-[url('/assets/images/Hero-Section/secc.png')]  bg-no-repeat  lg:my-0 my-10 flex items-center justify-center min-h-[100vh]      ">
+        <div className=" max-w-[107rem]  2xl:ml-auto lg:my-0 my-10 px-5">
           <div className="grid lg:grid-cols-6 grid-cols-1 md:gap-10   items-center">
             <div className=" space-y-6 lg:col-span-4   ">
               {activeEvents && activeEvents.length > 0 ? (
-                <div>
+                <div className="polygon-clip">
                   <Swiper slidesPerView={1}
                     loop={true}
                     speed={1500}
@@ -51,9 +51,9 @@ function HomePage(props) {
                     className="w-full " >
                     {activeEvents.map((item, index) => (
                       <SwiperSlide key={index}>
-                        <div className="flex flex-wrap md:flex-nowrap  justify-center items-center gap-5 cursor-pointer pb-10">
+                        <div className="flex flex-wrap md:flex-nowrap items-center gap-5 cursor-pointer pb-10">
                           <img
-                            className="w-[500px] rounded-2xl border-4 border-[#0670bd]"
+                            className="   rounded-2xl border-4 border-[#0670bd]"
                             src={`${apiurl()}/${item.Image}`} />
                           <div className="md:space-y-5 space-y-3">
                             <p className=" concert-one-regular md:text-2xl text-base text-white w-fit px-3 rounded-md bg-[#0470BC]">
@@ -93,17 +93,17 @@ function HomePage(props) {
               ) : (
                 <div>
                   <div className="text-[#5c0000] max-w-[1000px] text-justify">
-                    <h1 className="text-xl lg:text-5xl font-bold py-2">
+                    <h1 className="text-xl lg:text-2xl font-bold py-2">
                       ABOUT US
                     </h1>
-                    <p className="py-2">
+                    <p className="py-2 ">
                       Sacramento Tamil Mandrum has been serving the Tamil
                       speaking Community of Greater Sacramento and surrounding
                       areas for about 20 years successfully. Come and explore
                       the world of rich Tamil heritage, culture and traditions
                       along with us in this journey.
                     </p>
-                    <p className="py-2">
+                    <p className="py-2 ">
                       We are a non-profit, non-religious and non-political
                       organization devoted to supporting Tamil Culture in the
                       Sacramento region. Our goals are to promote better
@@ -113,7 +113,7 @@ function HomePage(props) {
                       Sacramento area and requesting the community for its
                       support.{" "}
                     </p>
-                    <p className="py-2">
+                    <p className="py-2 ">
                       The beauty of Tamil is kept vibrantly alive and active by
                       Tamil Mandrum volunteers in Sacramento. You are never left
                       alone. Your cultural heritage and the affinity towards
@@ -158,9 +158,7 @@ function HomePage(props) {
                   modules={[Pagination, Navigation, Autoplay]}
                   className="w-full max-w-5xl"  >
                   {sponsors.map((sponsor, index) => (
-                    <SwiperSlide
-                      key={index}
-                      className="flex justify-center items-center "  >
+                    <SwiperSlide key={index} className="flex justify-center items-center "  >
                       <div className="flex items-center justify-center">
                         <div className="mx-auto">
                           <div
@@ -183,10 +181,7 @@ function HomePage(props) {
                   ))}
                   {sponsors.length < 4 &&
                     sponsors.map((sponsor, index) => (
-                      <SwiperSlide
-                        key={`duplicate-${index}`}
-                        className="flex justify-center items-center"
-                      >
+                      <SwiperSlide key={`duplicate-${index}`} className="flex justify-center items-center"  >
                         <div className="flex items-center justify-center">
                           <div className="mx-auto">
                             <div
@@ -218,6 +213,7 @@ function HomePage(props) {
             </div>
           </div>
         </div>
+
       </section>
     </>
   );

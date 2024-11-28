@@ -14,12 +14,10 @@ import AdminRouter from "../Admin/Router/AdminRouter";
 import ProtectedRoute from "../shared/services/Token/ProtectedRoute";
 import ScrollToTop from "./ScrollToTop";
 import FormPage from "../Components/FormPage/FormPage";
-import Payment from "../Components/Payment/Payments";
 import Payments from "../Components/Payment/Payments";
-
 import ViewGalleryPage from "../Components/GalleryPage/ViewGalleryPage";
 import RegistrationPage from "../Components/RegistrationPage";
-import Registration from "../Shared/Components/Registration/Registration";
+
 
 
 function Approuter() {
@@ -41,8 +39,6 @@ function Approuter() {
                     <Route path="/forms/:id" element={<FormPage />} />
                     {/* <Route path="/register/:id" element={<RegistrationPage />} /> */}
                     <Route path="/register" element={<RegistrationPage />} />
-
-
                 </Route>
                 <Route path="/payment-page" element={<Payments />} />
                 <Route path='/login' element={<LoginPage />} />
