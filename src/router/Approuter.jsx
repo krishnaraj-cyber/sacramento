@@ -12,12 +12,11 @@ import ByLawsPage from "../Components/ByLawsPage/ByLawsPage";
 import LoginPage from "../components/LoginPage";
 import AdminRouter from "../Admin/Router/AdminRouter";
 import ProtectedRoute from "../shared/services/Token/ProtectedRoute";
-import ScrollToTop from "./ScrollToTop";
 import FormPage from "../Components/FormPage/FormPage";
 import Payments from "../Components/Payment/Payments";
 import ViewGalleryPage from "../Components/GalleryPage/ViewGalleryPage";
 import RegistrationPage from "../Components/RegistrationPage";
-
+import ScrollToTop from "./ScrollToTop";
 
 
 function Approuter() {
