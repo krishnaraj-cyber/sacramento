@@ -37,13 +37,23 @@ function EventSwipe(props) {
                                                         <button className="text-[#E91E31] hover:bg-[#E91E31] hover:text-white duration-200 bg-white px-4 py-2 concert-one-regular rounded">Apply Now</button>
                                                     </div>
                                                 </Link> */}
-                                                    <Link to={`/register?id=${sponsor.id}&type=volunteer`}>
-                                                        <button className="text-[#E91E31] hover:bg-[#E91E31] hover:text-white duration-200 md:text-base text-sm bg-white px-4 py-2 concert-one-regular rounded">
-                                                            Volunteer
-                                                        </button>
-                                                    </Link>
-
-                                                    <Link to={`/register?id=${sponsor.id}`} ><button className="text-[#E91E31] hover:bg-[#E91E31] md:text-base text-sm hover:text-white duration-200 bg-white px-4 py-2 concert-one-regular rounded">Register Now</button></Link>
+                                                    {sponsor.Poster_Type === "Registration Form" && (
+                                                        <>
+                                                            <Link to={`/register?id=${sponsor.id}&type=volunteer`}>
+                                                                <button className="text-[#E91E31] hover:bg-[#E91E31] hover:text-white duration-200 md:text-base text-sm bg-white px-4 py-2 concert-one-regular rounded">
+                                                                    Volunteer
+                                                                </button>
+                                                            </Link>
+                                                            <Link to={`/register?id=${sponsor.id}`} ><button className="text-[#E91E31] hover:bg-[#E91E31] md:text-base text-sm hover:text-white duration-200 bg-white px-4 py-2 concert-one-regular rounded">Register Now</button></Link>
+                                                        </>
+                                                    )}
+                                                    {sponsor.Poster_Type === "Donation" && (
+                                                        <Link to={`/register?id=${sponsor.id}`}>
+                                                            <button className="text-white bg-green-600 hover:bg-green-700 md:text-base text-sm px-4 py-2 rounded concert-one-regular">
+                                                                Donate
+                                                            </button>
+                                                        </Link>
+                                                    )}
                                                 </div>
                                             </div>
                                         </div>
