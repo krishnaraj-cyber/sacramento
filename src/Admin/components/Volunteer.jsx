@@ -4,6 +4,7 @@ import { ConfirmDialog, confirmDialog } from "primereact/confirmdialog";
 import {
   deleteregister,
   getallregister,
+  getfilterregister,
   getuniquevaluebyfield,
   saveRegisterForm,
   updateregisters,
@@ -30,11 +31,10 @@ export default function Volunteer() {
 
   const getallevent = useCallback(async () => {
     setLoading(true);
-    const res = await getallregister({ first, rows, globalfilter, colfilter });
+    const res = await getfilterregister({ Poster_Type: 'Volunteer' });
     setLoading(false);
-    const filteredData = res.filter(item => item.Poster_Type === "Volunteer");
-    setTabledata(filteredData);
-    setTotalRecords(filteredData?.length);
+    setTabledata(res);
+    setTotalRecords(res?.length);
   }, [first, rows, globalfilter, colfilter]);
 
   useEffect(() => {

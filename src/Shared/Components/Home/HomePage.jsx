@@ -53,7 +53,7 @@ function HomePage(props) {
                       <SwiperSlide key={index}>
                         <div className="flex flex-wrap md:flex-nowrap  justify-center items-center gap-5 cursor-pointer pb-10">
                           <img
-                            className="w-[500px] rounded-2xl border-4 border-[#0670bd]"
+                            className=" rounded-2xl border-4 border-[#0670bd]"
                             src={`${apiurl()}/${item.Image}`} />
                           <div className="md:space-y-5 space-y-3">
                             <p className=" concert-one-regular md:text-2xl text-base text-white w-fit px-3 rounded-md bg-[#0470BC]">

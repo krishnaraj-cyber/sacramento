@@ -1,8 +1,4 @@
 import { useCallback, useEffect, useState } from "react";
-import Tableview from "../shared/components/Register/Tableview";
-import Tableheadpanel from "../shared/components/Register/Tableheadpanel";
-import Tablepagination from "../shared/others/Tablepagination";
-import Addandeditform from "../shared/components/Register/Addandeditform";
 import toast from "react-hot-toast";
 import { ConfirmDialog, confirmDialog } from "primereact/confirmdialog";
 import {
@@ -13,8 +9,12 @@ import {
   saveRegisterForm,
   updateregisters,
 } from "../shared/services/apiregister/apiregister";
+import Tablepagination from "../shared/others/Tablepagination";
+import Addandeditform from "../shared/components/Donation/Addandeditform";
+import Tableheadpanel from "../shared/components/Donation/Tableheadpanel";
+import Tableview from "../shared/components/Donation/Tableview";
 
-export default function Register() {
+export default function Donation() {
   const [totalRecords, setTotalRecords] = useState(0);
   const [page, setPage] = useState(1);
   const [first, setFirst] = useState(0);
@@ -31,8 +31,7 @@ export default function Register() {
 
   const getallevent = useCallback(async () => {
     setLoading(true);
-    // const res = await getallregister({ first, rows, globalfilter, colfilter });
-    const res = await getfilterregister({ Poster_Type: 'Registration Form' });
+    const res = await getfilterregister({ Poster_Type: 'Donation' });
     setLoading(false);
     setTabledata(res);
     setTotalRecords(res?.length);
@@ -149,6 +148,7 @@ export default function Register() {
 
         <Tableview
           tabledata={tabledata}
+        //   tabledata={filteredData}
           totalRecords={totalRecords}
           first={first}
           editfrom={editfrom}

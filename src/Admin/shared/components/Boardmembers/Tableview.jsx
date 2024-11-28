@@ -5,8 +5,9 @@ import { Column } from 'primereact/column';
 import { MultiSelect } from 'primereact/multiselect';
 import { Button } from 'primereact/button';
 import moment from 'moment-timezone';
-import { getFilterOptions } from '../../services/apigallery/apigallery';
+// import { getFilterOptions } from '../../services/apigallery/apigallery';
 import apiurl from '../../../../shared/services/apiendpoint/apiendpoint';
+import { getFilterOptions } from '../../services/apiboardmembers/apiboardmembers';
 
 const Tableview = (props) =>{
   const {tabledata,editfrom,handledelete,cusfilter,onPage,first,rows, page, filtervalues, loading}=props
@@ -83,7 +84,7 @@ const Tableview = (props) =>{
   return(
     <div >
       <div >
-        <DataTable value={tabledata}scrollable scrollHeight="575px" loading={loading} className='!text-sm' stateStorage="session" stateKey="dt-state-demo-local" > 
+        <DataTable value={tabledata} scrollable scrollHeight="575px" loading={loading} className='!text-sm' stateStorage="session" stateKey="dt-state-demo-local" > 
           <Column header="Action" body={actionbotton} style={{ minWidth: "80px" }} />
           <Column header="Image" body={image} style={{ minWidth: "150px" }} />
           {columns.map((col, i) => (

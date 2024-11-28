@@ -72,28 +72,27 @@ const Tableview = (props) =>{
   );
 
   const columns = [
-    {field: 'Reg_No', header: 'Reg ID',width : "180px"},
-    {field: 'Reg_ID', header: 'Reg_ID',width : "180px"},
-    {field: 'Registration_Date', header: 'Reg Date',width : "120px", format: "Date"},
-    {field: 'Eventname', header: 'Title',width : "200px"},
-    {field: 'Poster_Type', header: 'Form Type',width : "150px"},
-    {field: 'Game_Title', header: 'Game Title',width : "200px"},
-    {field: 'Team_Name', header: 'Team Name',width : "200px"},
-    {field: 'Team_Members_Count', header: 'Team Members Count',width : "150px"},
+    {field: 'Reg_No', header: 'Donator ID',width : "180px"},
     {field: 'First_Name', header: 'First Name',width : "150px"},
     {field: 'Last_Name', header: 'Last Name',width : "150px"},
     {field: 'Email', header: 'Email ID',width : "150px"},
     {field: 'Phone_Number', header: 'Phone Number', width : "120px"},
-    {field: 'Willingness', header: 'Willingness', width : "120px"},
+    {field: 'Registration_Date', header: 'Reg Date',width : "120px", format: "Date"},
+    {field: 'Eventname', header: 'Title',width : "200px"},
+    // {field: 'Game_Title', header: 'Game Title',width : "200px"},
+    // {field: 'Poster_Type', header: 'Form Type',width : "150px"},
+    // {field: 'Team_Name', header: 'Team Name',width : "200px"},
+    // {field: 'Team_Members_Count', header: 'Team Members Count',width : "150px"},
+    // {field: 'Willingness', header: 'Willingness', width : "120px"},
     // {field: 'Description', header: 'Description',width : "350px", format: "HTML"},
-    {field: 'Number_Guests', header: 'Number of Guests',width : "150px"},
-    {field: 'Adults', header: 'Number of Adults',width : "150px"},
-    {field: 'Kids', header: 'Number of Kids',width : "150px"},
-    {field: 'Babes', header: 'Number of under5',width : "150px"},
-    {field: 'Payment_id', header: 'Payment ID',width : "120px"},
-    {field: 'Payment_Status', header: 'Payment Status',width : "120px"},
+    // {field: 'Number_Guests', header: 'Number of Guests',width : "150px"},
+    // {field: 'Adults', header: 'Number of Adults',width : "150px"},
+    // {field: 'Kids', header: 'Number of Kids',width : "150px"},
+    // {field: 'Babes', header: 'Number of under5',width : "150px"},
+    // {field: 'Payment_id', header: 'Payment ID',width : "120px"},
+    // {field: 'Payment_Status', header: 'Payment Status',width : "120px"},
     // {field: 'Total_Amount', header: 'Entry Fees',width : "120px"}
-    {field: 'Entry_Fees', header: 'Entry Fees',width : "120px"}
+    // {field: 'Entry_Fees', header: 'Entry Fees',width : "120px"}
   ];
 
   return(

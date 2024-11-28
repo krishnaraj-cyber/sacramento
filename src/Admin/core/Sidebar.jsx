@@ -61,13 +61,19 @@ export default function Sidebar() {
 
              <li>
               <NavLink to={'/admin/register'} className={({ isActive }) => (`flex items-center gap-x-3.5 py-2.5 px-2.5 ${isActive ? ' bg-gradient-to-tr from-primary to-primary text-white shadow' : 'bg-white shadow'} text-sm rounded-lg hover:bg-[#19569326] hover:shadow`)}>
-                <i className="fi fi-rr-box-open-full"></i> Register
+              <i class="fa-regular fa-id-card"></i> Register
               </NavLink>
             </li>
 
             <li>
               <NavLink to={'/admin/volunteer'} className={({ isActive }) => (`flex items-center gap-x-3.5 py-2.5 px-2.5 ${isActive ? ' bg-gradient-to-tr from-primary to-primary text-white shadow' : 'bg-white shadow'} text-sm rounded-lg hover:bg-[#19569326] hover:shadow`)}>
                 <i className="fi fi-rr-box-open-full"></i> Volunteer
+              </NavLink>
+            </li>
+
+            <li>
+              <NavLink to={'/admin/donation'} className={({ isActive }) => (`flex items-center gap-x-3.5 py-2.5 px-2.5 ${isActive ? ' bg-gradient-to-tr from-primary to-primary text-white shadow' : 'bg-white shadow'} text-sm rounded-lg hover:bg-[#19569326] hover:shadow`)}>
+              <i class="fa-solid fa-circle-dollar-to-slot"></i> Donations
               </NavLink>
             </li>
 

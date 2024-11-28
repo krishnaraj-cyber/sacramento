@@ -38,7 +38,7 @@ export default function Sponsors() {
       colfilter,
     });
     setLoading(false);
-    setTabledata(res);
+    setTabledata(res.resdata);
     setTotalRecords(res.length);
   }, [first, rows, globalfilter, colfilter]);
 
