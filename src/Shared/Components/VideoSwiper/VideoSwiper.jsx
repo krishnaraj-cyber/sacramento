@@ -30,7 +30,7 @@ function VideoSwiper() {
                         className=" w-full   "  >
                         {Video.map((sponsor, index) => (
                             <SwiperSlide key={index} className="flex justify-center">
-                                <video controls className="w-full h-auto rounded-lg px-5"  >
+                                <video controls className=" w-full h-[600px] rounded-lg px-5" poster="/assets/images/Header/Logo (2).png" >
                                     <source src={sponsor.videoSrc} type="video/mp4" />
                                     Your browser does not support the video tag.
                                 </video>

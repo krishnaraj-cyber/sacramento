@@ -25,7 +25,7 @@ function HomePage(props) {
   return (
     <>
       <section className="  bg-[url('/assets/images/Hero-Section/secc.png')]  bg-no-repeat  lg:my-0 my-10 flex items-center justify-center min-h-[100vh]      ">
-        <div className=" max-w-[107rem] lg:my-0 my-10    px-5">
+        <div className=" max-w-[107rem] lg:my-0 my-10   lg:ml-8  px-5">
           <div className="grid lg:grid-cols-7 grid-cols-1 md:gap-10   items-center">
             <div className="space-y-6 lg:col-span-5 max-w-[90rem]">
               {isLoading ? (
@@ -38,12 +38,12 @@ function HomePage(props) {
                           <div className="w-96 h-96    rounded-2xl bg-gray-300"></div>
                           <div className="flex flex-col space-y-3">
                             <div className=" w-40 h-10 bg-gray-300 rounded"></div>
-                            <div className=" w-40 h-10  bg-gray-300 rounded"></div>
+                            <div className=" w-64 h-10  bg-gray-300 rounded"></div>
                             <div className="  w-40 h-10 bg-gray-300 rounded"></div>
-                            <div className=" w-40 h-10  bg-gray-300 rounded"></div>
+                            <div className=" w-80 h-10  bg-gray-300 rounded"></div>
+                            <div className="  w-64 h-10 bg-gray-300 rounded"></div>
                             <div className="  w-40 h-10 bg-gray-300 rounded"></div>
-                            <div className="  w-40 h-10 bg-gray-300 rounded"></div>
-                            <div className="  w-40 h-10 bg-gray-300 rounded"></div>
+                            <div className="  w-56 h-10 bg-gray-300 rounded"></div>
                           </div>
                         </div>
                       ))}
@@ -76,7 +76,7 @@ function HomePage(props) {
                       <SwiperSlide key={index}>
                         <div className="flex flex-wrap md:flex-nowrap items-center gap-5 cursor-pointer pb-10">
                           <img
-                            className="rounded-2xl border-4 border-[#0670bd]"
+                            className="rounded-2xl border-4 max-w-[500px] border-[#0670bd]"
                             src={`${apiurl()}/${item.Image}`}
                             alt={item.Eventname}
                           />
@@ -161,7 +161,7 @@ function HomePage(props) {
                       .map((_, index) => (
                         <SwiperSlide key={index} className="animate-pulse flex flex-col justify-center items-center">
                           <div className="grid   lg:grid-cols-1 gap-6 w-full">
-                            <div key={index} className="animate-pulse flex flex-col  justify-center  items-center "  >
+                            <div key={index} className="animate-pulse flex flex-col  justify-center    "  >
                               <div className="sponsor-clip-path w-40 h-5 bg-gray-300  flex justify-start"></div>
                               <div className="w-96 h-44 bg-gray-300  "></div>
                             </div>

@@ -9,24 +9,38 @@ function GalleryPage() {
   const [gallery, setGallery] = useState([]);
   const [years, setYears] = useState([]);
   const [groupedData, setGroupedData] = useState({});
+  const [isLoading, setIsLoading] = useState(false);
 
   const fetchGallery = useCallback(async () => {
-    const res = await getallGallerys();
-    var response = res.resdata
-    var images = response?.filter(item => item.Image);  
-    var uniqueImage = images.filter((item, index, self) => index === self.findIndex((t) => moment(t.Year).format('YYYY') === moment(item.Year).format('YYYY')) );
-    setGallery(uniqueImage)
+    try {
+      setIsLoading(true);
+      const res = await getallGallerys();
+      const response = res.resdata;
+      const images = response?.filter((item) => item.Image);
+      const uniqueImage = images.filter(
+        (item, index, self) =>
+          index ===
+          self.findIndex(
+            (t) => moment(t.Year).format('YYYY') === moment(item.Year).format('YYYY')
+          )
+      );
+      setGallery(uniqueImage);
+    } catch (error) {
+      console.error("Error fetching gallery:", error);
+    } finally {
+      setIsLoading(false);
+    }
   }, []);
 
   useEffect(() => {
     fetchGallery();
   }, [fetchGallery]);
 
-  
+
   return (
     <>
       <AboutUs title="GALLERY" />
-      <Gallerys gallery={gallery} />
+      <Gallerys isLoading={isLoading} gallery={gallery} />
       <SponsorSwiper />
     </>
   )

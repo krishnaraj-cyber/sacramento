@@ -2,7 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import apiurl from '../../services/apiendpoint/apiendpoint';
 function AboutSection(props) {
-    const { boardmem } = props;
+    const { boardmem, isLoading } = props;
     return (
         <>
             <section className="bg-[url('/assets/images/Main/Main-section.png')]   space-y-20   md:py-20 md:pt-0  lg:pt-20 md:mb-0     w-full">
@@ -50,15 +50,24 @@ function AboutSection(props) {
                     <div className='bg-[#0571BC] space-y-6 rounded-2xl p-5 '>
                         <p className="text-[#FFE134] text-center md:text-4xl text-2xl concert-one-regular" >BOARD MEMBERS</p>
                         <div className='flex justify-evenly flex-wrap gap-6 text-center'>
-                            {boardmem.slice(0, 3).map((item, index) => (
-                                <div key={index} className="      ">
-                                    <img className='  mx-auto border-2 rounded-tr-xl rounded-tl-xl w-60' src={`${apiurl()}/${item.Image}`} />
-                                    <div className='border   mx-3 md:text-base text-sm  rounded-bl-lg rounded-br-lg bg-[#FFE134]'>
-                                        <p className="text-[#E91E31] md:text-lg text-base baumans-regular "> {item.Name}</p>
-                                        <p className="vietnam text-sm"> {item.Designation}</p>
+                            {isLoading
+                                ? Array(2)
+                                    .fill(0)
+                                    .map((_, index) => (
+                                        <div key={index} className="animate-pulse">
+                                            <div className="w-60 h-60 bg-gray-300 rounded-tr-xl rounded-tl-xl mx-auto"></div>
+                                            <div className="w-60 h-12 bg-gray-300 mx-auto mt-2 rounded-bl-lg rounded-br-lg"></div>
+                                        </div>
+                                    ))
+                                : boardmem.slice(0, 3).map((item, index) => (
+                                    <div key={index} className="      ">
+                                        <img className='  mx-auto border-2 rounded-tr-xl rounded-tl-xl w-60' src={`${apiurl()}/${item.Image}`} />
+                                        <div className='border   mx-3 md:text-base text-sm  rounded-bl-lg rounded-br-lg bg-[#FFE134]'>
+                                            <p className="text-[#E91E31] md:text-lg text-base baumans-regular "> {item.Name}</p>
+                                            <p className="vietnam text-sm"> {item.Designation}</p>
+                                        </div>
                                     </div>
-                                </div>
-                            ))}
+                                ))}
                         </div>
                         <div>
                             <div className='text-center'>

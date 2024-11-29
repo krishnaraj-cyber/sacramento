@@ -3,25 +3,30 @@ import { getallBoardmembers } from '../../Admin/shared/services/apiboardmembers/
 import Aboutt from '../../Shared/Components/About/Aboutt';
 function About() {
 
-  const [boardmem, setBoardmem] = useState([]); 
-
+  const [boardmem, setBoardmem] = useState([]);
+  const[isLoading , setIsLoading] = useState(false);
   const fetchBoardmem = useCallback(async () => {
-    let isMounted = true; 
+    let isMounted = true;
+    setIsLoading(true);
     try {
-      const response = await getallBoardmembers(); 
-      if (isMounted) {  setBoardmem(response.resdata);  }
+      const response = await getallBoardmembers();
+      if (isMounted) { setBoardmem(response.resdata); }
     } catch (error) {
       console.error('Error fetching sponsors:', error);
+    } finally{
+      if(isMounted){
+        setIsLoading(false);
+      }
     }
     return () => {
-      isMounted = false; 
+      isMounted = false;
     };
-}, []);
-  useEffect(() => { fetchBoardmem();}, [fetchBoardmem]);
+  }, []);
+  useEffect(() => { fetchBoardmem(); }, [fetchBoardmem]);
 
   return (
     <>
-      <Aboutt boardmem={boardmem} />
+      <Aboutt isLoading={isLoading} boardmem={boardmem} />
     </>
   )
 }

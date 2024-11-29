@@ -5,28 +5,34 @@ import { getallEvents } from '../../Admin/shared/services/apievent/apievent'
 import SponsorSwiper from '../../Shared/Components/SponsorSwiper/SponsorSwiper';
 import AboutUs from '../../Shared/Components/About/AboutUs';
 function EventsPage() {
-  
-  const [event, setEvent] = useState([]); 
+
+  const [event, setEvent] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
 
   const fetchEvent = useCallback(async () => {
-    let isMounted = true; 
+    let isMounted = true;
+    setIsLoading(true);
     try {
-      const response = await getallEvents(); 
-      if (isMounted) {  setEvent(response.resdata);  }
+      const response = await getallEvents();
+      if (isMounted) { setEvent(response.resdata); }
     } catch (error) {
       console.error('Error fetching sponsors:', error);
+    } finally {
+      if (isMounted) {
+        setIsLoading(false);
+      }
     }
     return () => {
-      isMounted = false; 
+      isMounted = false;
     };
-}, []);
-  useEffect(() => { fetchEvent();}, [fetchEvent]);
+  }, []);
+  useEffect(() => { fetchEvent(); }, [fetchEvent]);
 
   return (
     <>
       <AboutUs title="EVENTS" />
-      <Events  />
-      <EventSwipe event={event} />
+      <Events event={event} isLoading={isLoading} />
+      <EventSwipe isLoading={isLoading} event={event} />
       <SponsorSwiper />
     </>
   )
