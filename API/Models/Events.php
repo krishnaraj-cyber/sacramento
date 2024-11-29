@@ -7,16 +7,20 @@ use MVC\Model;
 class ModelsEvents extends Model {
     
     public function lastRecord($id) {
-        $eventQuery = $this->db->query("SELECT * FROM " . DB_PREFIX . "Events WHERE id=" . (int)$id);
+        $eventQuery = $this->db->query("SELECT * FROM " . DB_PREFIX . "events WHERE id = " . (int)$id);
         $eventData = $eventQuery->row;
-        $gameQuery = $this->db->query("SELECT * FROM " . DB_PREFIX . "Events_Game WHERE id = " . (int)$id);
-        $gameData = $gameQuery->row;
-
-        return [
-            'event' => $eventData,
-            'game' => $gameData
-        ];
-    }  
+        $result = [];
+    
+        if (!empty($eventData)) {
+            $eventId = (int)$eventData['id'];
+            $gamesQuery = $this->db->query("SELECT * FROM " . DB_PREFIX . "events_game WHERE id = $eventId");
+            $eventData['Games'] = $gamesQuery->rows; 
+            $result = $eventData;
+        }
+    
+        return $result;
+    }
+    
     
     // public function getAll() {
     //     $query = $this->db->query("SELECT * FROM " . DB_PREFIX . "Events");
@@ -24,13 +28,13 @@ class ModelsEvents extends Model {
     // }
 
     public function getAll() {
-        $query = $this->db->query("SELECT * FROM " . DB_PREFIX . "Events");
+        $query = $this->db->query("SELECT * FROM " . DB_PREFIX . "events");
         $events = $query->rows;
     
         if (!empty($events)) {
             foreach ($events as &$event) {
                 $eventId = (int)$event['id'];
-                $gamesQuery = $this->db->query("SELECT * FROM " . DB_PREFIX . "Events_Game WHERE id = $eventId");
+                $gamesQuery = $this->db->query("SELECT * FROM " . DB_PREFIX . "events_game WHERE id = $eventId");
                 $event['Games'] = $gamesQuery->rows;
             }
         }
@@ -66,7 +70,7 @@ class ModelsEvents extends Model {
         ];
         $eventKeys = implode(",", array_keys($eventData));
         $eventValues = "'" . implode("','", array_values($eventData)) . "'";
-        $this->db->query("INSERT INTO " . DB_PREFIX . "Events ($eventKeys) VALUES ($eventValues)");
+        $this->db->query("INSERT INTO " . DB_PREFIX . "events ($eventKeys) VALUES ($eventValues)");
         
         $eventId = $this->db->getLastId();
     
@@ -78,7 +82,7 @@ class ModelsEvents extends Model {
                 $gameValues[] = "(" . (int)$eventId . ", '" . $this->db->escape($game['Game_Title']) . "', '" . $this->db->escape($game['Participant_Type']) . "', '" . $this->db->escape($game['GamePayment'] ?? null) . "', '" . $this->db->escape($game['Payment_Type'] ?? null) . "', '" . $this->db->escape($game['Entry_Fees'] ?? null) . "')";
             }
             if (!empty($gameValues)) {
-                $gameInsertQuery = "INSERT INTO " . DB_PREFIX . "Events_Game (id, Game_Title, Participant_Type, GamePayment, Payment_Type, Entry_Fees) VALUES " . implode(", ", $gameValues);
+                $gameInsertQuery = "INSERT INTO " . DB_PREFIX . "events_game (id, Game_Title, Participant_Type, GamePayment, Payment_Type, Entry_Fees) VALUES " . implode(", ", $gameValues);
                 $this->db->query($gameInsertQuery);
             }
         }
@@ -116,12 +120,12 @@ class ModelsEvents extends Model {
             $values[] = $val;
         }
         $values[] = (int)$id;
-        $query = "UPDATE " . DB_PREFIX . "Events SET " . implode(', ', $cols) . " WHERE id = ?";
+        $query = "UPDATE " . DB_PREFIX . "events SET " . implode(', ', $cols) . " WHERE id = ?";
         $stmt = $this->db->prepare($query);
         if (!$stmt->execute($values)) {
             throw new Exception("Failed to update record.");
         }
-        $this->db->query("DELETE FROM " . DB_PREFIX . "Events_Game WHERE id = " . (int)$id);
+        $this->db->query("DELETE FROM " . DB_PREFIX . "events_game WHERE id = " . (int)$id);
     
         $games = is_string($data['Games']) ? json_decode($data['Games'], true) : $data['Games'];
         if (isset($games) && is_array($games)) {
@@ -130,7 +134,7 @@ class ModelsEvents extends Model {
                 $gameValues[] = "(" . (int)$id . ", '" . $this->db->escape($game['Game_Title']) . "', '" . $this->db->escape($game['Participant_Type']) . "', '" . $this->db->escape($game['GamePayment'] ?? null) . "', '" . $this->db->escape($game['Payment_Type'] ?? null) . "', '" . $this->db->escape($game['Entry_Fees'] ?? null) . "')";
             }
             if (!empty($gameValues)) {
-                $gameInsertQuery = "INSERT INTO " . DB_PREFIX . "Events_Game (id, Game_Title, Participant_Type, GamePayment, Payment_Type, Entry_Fees) VALUES " . implode(", ", $gameValues);
+                $gameInsertQuery = "INSERT INTO " . DB_PREFIX . "events_game (id, Game_Title, Participant_Type, GamePayment, Payment_Type, Entry_Fees) VALUES " . implode(", ", $gameValues);
                 $this->db->query($gameInsertQuery);
             }
         }
@@ -138,8 +142,8 @@ class ModelsEvents extends Model {
     }
     
     public function delete($id) {
-        $this->db->query("DELETE FROM " . DB_PREFIX . "Events WHERE id = " . (int)$id);
-        $this->db->query("DELETE FROM " . DB_PREFIX . "Events_Game WHERE id = " . (int)$id);
+        $this->db->query("DELETE FROM " . DB_PREFIX . "events_game WHERE id = " . (int)$id);
+        $this->db->query("DELETE FROM " . DB_PREFIX . "events WHERE id = " . (int)$id);
         return $id;
     }
     

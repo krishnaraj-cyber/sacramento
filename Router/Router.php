@@ -10,6 +10,7 @@ require './API/Controllers/ApiTestimonial.php';
 require './API/Controllers/ApiMentors.php';
 require './API/Controllers/ApiBoardmembers.php';
 require './API/Controllers/ApiYouthForum.php';
+require './API/Controllers/ApiRegister.php';
 
 use Controller\APILoginController;
 //login or authentication
@@ -49,6 +50,7 @@ $router->post('/sacra_mento/api/deleteentors', function(){(new Controllersmentor
 //boardmembers
 $router->get('/sacra_mento/api/getBoardmembersbyid', function(){(new Controllersboardmembers)->getBoardmembersbyid();});
 $router->get('/sacra_mento/api/getallBoardmembers', function(){(new Controllersboardmembers)->getallBoardmembers();});
+$router->post('/sacra_mento/api/getfilterboard', function(){(new Controllersboardmembers)->getFilterOptions();});
 $router->post('/sacra_mento/api/uploadBoardmembers', function(){(new Controllersboardmembers)->saveBoardmembers();});
 $router->post('/sacra_mento/api/editBoardmembers', function(){(new Controllersboardmembers)->updateBoardmembers();});
 $router->delete('/sacra_mento/api/deleteBoardmembers', function(){(new Controllersboardmembers)->deleteBoardmembers();});
@@ -88,5 +90,13 @@ $router->get('/sacra_mento/api/getallgallery', function(){(new ControllersGaller
 $router->post('/sacra_mento/api/uploadgallery', function(){(new ControllersGallery)->saveGallery();});
 $router->post('/sacra_mento/api/updategallery', function(){(new ControllersGallery)->updateGallery();});
 $router->delete('/sacra_mento/api/deletegallery', function(){(new ControllersGallery)->deleteGallery();});
+
+//Event_Register
+$router->get('/sacra_mento/api/getregisterbyid', function(){(new ControllersRegister)->getRegisterbyid();});
+$router->get('/sacra_mento/api/getallregisters', function(){(new ControllersRegister)->getallRegister();});
+$router->get('/sacra_mento/api/getfilterregister', function(){(new ControllersRegister)->getFilteredRegister();});
+$router->post('/sacra_mento/api/uploadregister', function(){(new ControllersRegister)->saveRegister();});
+$router->post('/sacra_mento/api/editregister', function(){(new ControllersRegister)->updateRegister();});
+$router->delete('/sacra_mento/api/deleteregister', function(){(new ControllersRegister)->deleteRegister();});
 
 ?>

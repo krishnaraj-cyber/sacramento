@@ -2,13 +2,26 @@
 
 namespace MVC;
 
+use PDO;
+
 class Controller {
 
     public $request;
     public $response;
+    public $db;
     public function __construct() {
         $this->request = $GLOBALS['request'];
         $this->response = $GLOBALS['response'];
+
+        $this->db = new \Database\DatabaseAdapter(
+            DATABASE['Driver'],
+            DATABASE['Host'],
+            DATABASE['User'],
+            DATABASE['Pass'],
+            DATABASE['Name'],
+            DATABASE['Port']
+        );
+    
        
     }
     public function model($model) {

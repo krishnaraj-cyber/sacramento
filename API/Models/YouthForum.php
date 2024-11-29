@@ -7,19 +7,19 @@ use MVC\Model;
 class ModelsYouthForum extends Model {
     
     public function lastRecord($id) {
-        $query = $this->db->query("SELECT * FROM " . DB_PREFIX . "YouthForum WHERE id=" . (int)$id);
+        $query = $this->db->query("SELECT * FROM " . DB_PREFIX . "youthforum WHERE id=" . (int)$id);
         return $query->row;
     }  
     
     public function getAll() {
-        $query = $this->db->query("SELECT * FROM " . DB_PREFIX . "YouthForum");
+        $query = $this->db->query("SELECT * FROM " . DB_PREFIX . "youthforum");
         return $query->rows;
     }
     
     public function save($data) {
         $keys = implode(",", array_keys($data));
         $values = "'" . implode("','", array_values($data)) . "'";
-        $query = $this->db->query("INSERT INTO " . DB_PREFIX . "YouthForum ($keys) VALUES ($values)");
+        $query = $this->db->query("INSERT INTO " . DB_PREFIX . "youthforum ($keys) VALUES ($values)");
         $id = $this->db->getLastId();
         return $this->lastRecord($id);
     }
@@ -32,7 +32,7 @@ class ModelsYouthForum extends Model {
     //     foreach ($data as $key => $val) {
     //         $cols[] = "$key = '$val'";
     //     }
-    //     $query = $this->db->query("UPDATE " . DB_PREFIX . "YouthForum SET " . implode(', ', $cols) . " WHERE id = " . (int)$id);
+    //     $query = $this->db->query("UPDATE " . DB_PREFIX . "youthforum SET " . implode(', ', $cols) . " WHERE id = " . (int)$id);
     //     return $this->lastRecord($id);
     // }
 
@@ -46,7 +46,7 @@ class ModelsYouthForum extends Model {
             $cols[] = "$key = ?";
             $values[] = $val;
         }
-        $query = "UPDATE " . DB_PREFIX . "YouthForum SET " . implode(', ', $cols) . " WHERE id = ?";
+        $query = "UPDATE " . DB_PREFIX . "youthforum SET " . implode(', ', $cols) . " WHERE id = ?";
         $values[] = (int)$id; 
         $stmt = $this->db->prepare($query); 
         if ($stmt->execute($values)) {
@@ -57,7 +57,7 @@ class ModelsYouthForum extends Model {
     }
     
     public function delete($id) {
-        $query = $this->db->query("DELETE FROM " . DB_PREFIX . "YouthForum WHERE id = " . (int)$id);
+        $query = $this->db->query("DELETE FROM " . DB_PREFIX . "youthforum WHERE id = " . (int)$id);
         return $id;
     }
 }

@@ -7,24 +7,24 @@ use MVC\Model;
 class ModelsFinancialSummary extends Model {
     
     public function lastRecord($id) {
-        $query = $this->db->query("SELECT * FROM " . DB_PREFIX . "FinancialSummary WHERE id=" . (int)$id);
+        $query = $this->db->query("SELECT * FROM " . DB_PREFIX . "financialsummary WHERE id=" . (int)$id);
         return $query->row;
     }  
 
     public function lastRecord2($Year) {
-        $query = $this->db->query("SELECT * FROM " . DB_PREFIX . "FinancialSummary WHERE Year=" . (int)$Year);
+        $query = $this->db->query("SELECT * FROM " . DB_PREFIX . "financialsummary WHERE Year=" . (int)$Year);
         return $query->row;
     }  
     
     public function getAll() {
-        $query = $this->db->query("SELECT * FROM " . DB_PREFIX . "FinancialSummary");
+        $query = $this->db->query("SELECT * FROM " . DB_PREFIX . "financialsummary");
         return $query->rows;
     }
     
     public function save($data) {
         $keys = implode(",", array_keys($data));
         $values = "'" . implode("','", array_values($data)) . "'";
-        $query = $this->db->query("INSERT INTO " . DB_PREFIX . "FinancialSummary ($keys) VALUES ($values)");
+        $query = $this->db->query("INSERT INTO " . DB_PREFIX . "financialsummary ($keys) VALUES ($values)");
         $id = $this->db->getLastId();
         return $this->lastRecord($id);
     }
@@ -39,7 +39,7 @@ class ModelsFinancialSummary extends Model {
             $cols[] = "$key = ?";
             $values[] = $val;
         }
-        $query = "UPDATE " . DB_PREFIX . "FinancialSummary SET " . implode(', ', $cols) . " WHERE id = ?";
+        $query = "UPDATE " . DB_PREFIX . "financialsummary SET " . implode(', ', $cols) . " WHERE id = ?";
         $values[] = (int)$id; 
         $stmt = $this->db->prepare($query); 
         if ($stmt->execute($values)) {
@@ -51,7 +51,7 @@ class ModelsFinancialSummary extends Model {
     
     
     public function delete($id) {
-        $query = $this->db->query("DELETE FROM " . DB_PREFIX . "FinancialSummary WHERE id = " . (int)$id);
+        $query = $this->db->query("DELETE FROM " . DB_PREFIX . "financialsummary WHERE id = " . (int)$id);
         return $id;
     }
 }

@@ -3,21 +3,21 @@ namespace Models;
 use MVC\Model;
 class ModelsGallery extends Model {
     public function lastrecord($id){
-        $query = $this->db->query("SELECT * FROM " . DB_PREFIX . "Gallery WHERE id=".$id);
+        $query = $this->db->query("SELECT * FROM " . DB_PREFIX . "gallery WHERE id=".$id);
         return $query->row;
     }
     public function getByYear($year) {
         $year = $this->db->escape($year); 
-        $query = $this->db->query("SELECT * FROM " . DB_PREFIX . "Gallery WHERE Year = '" . $year . "'");
+        $query = $this->db->query("SELECT * FROM " . DB_PREFIX . "gallery WHERE Year = '" . $year . "'");
         return $query->rows;
     }
     public function getTotalRecords() {
-        $query = $this->db->query("SELECT COUNT(*) as total FROM " . DB_PREFIX . "Gallery");
+        $query = $this->db->query("SELECT COUNT(*) as total FROM " . DB_PREFIX . "gallery");
         return $query->row['total'];
     }
   
     public function getAll() {
-        $query = $this->db->query("SELECT * FROM " . DB_PREFIX . "Gallery");
+        $query = $this->db->query("SELECT * FROM " . DB_PREFIX . "gallery");
         return $query->rows;
     }
 
@@ -28,7 +28,7 @@ class ModelsGallery extends Model {
         $array_keys = implode(",", array_keys($filteredData));
         $array_values = "'" . implode("','", array_values($filteredData)) . "'";
         
-        $query = $this->db->query("INSERT INTO " . DB_PREFIX . "Gallery (" . $array_keys . ") VALUES (" . $array_values . ")");
+        $query = $this->db->query("INSERT INTO " . DB_PREFIX . "gallery (" . $array_keys . ") VALUES (" . $array_values . ")");
         $id = $this->db->getLastId();
         $fdata = $this->lastrecord($id);
         return $fdata;
@@ -56,7 +56,7 @@ class ModelsGallery extends Model {
         }
     
         // Add the condition for updating the specific record
-        $query = "UPDATE " . DB_PREFIX . "Gallery SET " . implode(', ', $cols) . " WHERE id = ?";
+        $query = "UPDATE " . DB_PREFIX . "gallery SET " . implode(', ', $cols) . " WHERE id = ?";
         $values[] = (int)$id; // Bind the record ID as the last parameter
     
         // Execute the query
@@ -70,7 +70,7 @@ class ModelsGallery extends Model {
     
 
     public function Delete($id) {
-        $query = $this->db->query("DELETE FROM " . DB_PREFIX ."Gallery WHERE id=".$id);
+        $query = $this->db->query("DELETE FROM " . DB_PREFIX ."gallery WHERE id=".$id);
         return $id;
     }
 }
