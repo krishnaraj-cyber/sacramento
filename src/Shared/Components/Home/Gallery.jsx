@@ -47,7 +47,7 @@ function Gallery(props) {
                     .map((_, index) => (
                       <SwiperSlide key={index} className="animate-pulse flex flex-col items-center">
                         <div className="w-full h-64 bg-gray-300 rounded-t-lg"></div>
-                        <div className="w-full h-64  bg-gray-500  rounded-b-lg "></div>
+                        <div className="w-full h-10  bg-gray-500  rounded-b-lg "></div>
                       </SwiperSlide>
                     ))}
                 </Swiper>
