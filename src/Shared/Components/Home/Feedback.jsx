@@ -63,25 +63,25 @@ function Feedback(props) {
                                 </div>
                             </div>
                             <div className="flex lg:gap-0 gap-4 mb-4 justify-evenly flex-wrap overflow-x-auto md:overflow-visible scrollbar-hide">
-                                {statuses.map((status) => (
-                                    <button key={status} onClick={() => handleStatusClick(status)}
+                                {statuses.map((status,index) => (
+                                    <button key={index} onClick={() => handleStatusClick(status)}
                                         className={`px-4 py-2 rounded-md whitespace-nowrap font-semibold hover:bg-[#0571BC] hover:text-white text-sm ${activeStatus === status ? 'bg-[#0571BC] text-white' : 'bg-[#FFE134]'}`} >
                                         {status}
                                     </button>
                                 ))}
                             </div>
                             <div className="md:text-left text-center">
-                                {event.map((sponsor, index) => (
-                                    <>
-                                        {sponsor.Poster_Type === "Donation" && (
-                                            <Link to={`/register?&type=Donation&amount=${donationAmount}`}>
+                                 
+                                     
+                                         
+                                            <Link  to={`/register?&type=Donation&amount=${donationAmount}`}>
                                                 <button className="bg-[#0571BC] text-[#FFE134] md:ml-4 hover:bg-[#FFE134] hover:text-[#0571BC] duration-200 p-2 md:text-xl rounded-md concert-one-regular">
                                                     DONATE NOW
                                                 </button>
                                             </Link>
-                                        )}
-                                    </>
-                                ))}
+                                         
+                                     
+                               
                             </div>
                         </div>
 

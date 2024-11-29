@@ -13,6 +13,7 @@ function Home() {
   const [sponsors, setSponsors] = useState([]);
   const [boardmem, setBoardmem] = useState([]);
   const [gallery, setGallery] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
   const [event, setEvent] = useState([]);
   const [activeStatus, setActiveStatus] = useState('$100');
   const [customAmount, setCustomAmount] = useState('');
@@ -57,11 +58,16 @@ function Home() {
 
   const fetchSponsors = useCallback(async () => {
     let isMounted = true;
+    setIsLoading(true);
     try {
       const response = await getallSponsors();
-      if (isMounted) { setSponsors(response); }
+      if (isMounted) { setSponsors(response.resdata);  }
     } catch (error) {
       console.error('Error fetching sponsors:', error);
+    } finally {
+      if (isMounted) {
+        setIsLoading(false);
+      }
     }
     return () => {
       isMounted = false;
@@ -71,11 +77,16 @@ function Home() {
 
   const fetchBoardmem = useCallback(async () => {
     let isMounted = true;
+    setIsLoading(true);
     try {
       const response = await getallBoardmembers();
       if (isMounted) { setBoardmem(response.resdata); }
     } catch (error) {
       console.error('Error fetching sponsors:', error);
+    } finally {
+      if (isMounted) {
+        setIsLoading(false);
+      }
     }
     return () => {
       isMounted = false;
@@ -85,11 +96,16 @@ function Home() {
 
   const fetchGallery = useCallback(async () => {
     let isMounted = true;
+    setIsLoading(true);
     try {
       const response = await getallGallerys();
-      if (isMounted) { setGallery(response); }
+      if (isMounted) { setGallery(response.resdata); }
     } catch (error) {
       console.error('Error fetching sponsors:', error);
+    } finally {
+      if (isMounted) {
+        setIsLoading(false);
+      }
     }
     return () => {
       isMounted = false;
@@ -99,11 +115,16 @@ function Home() {
 
   const fetchEvent = useCallback(async () => {
     let isMounted = true;
+    setIsLoading(true);
     try {
       const response = await getallEvents();
-      if (isMounted) { setEvent(response); }
+      if (isMounted) { setEvent(response.resdata); }
     } catch (error) {
       console.error('Error fetching sponsors:', error);
+    } finally {
+      if (isMounted) {
+        setIsLoading(false);
+      }
     }
     return () => {
       isMounted = false;
@@ -113,10 +134,10 @@ function Home() {
 
   return (
     <>
-      <HomePage sponsors={sponsors} setSponsors={setSponsors} event={event} />
-      {/* <AboutSection boardmem={boardmem} /> */}
-      <Gallery gallery={gallery} />
-      <Event event={event} />
+      <HomePage sponsors={sponsors} isLoading={isLoading} setSponsors={setSponsors} event={event} />
+      <AboutSection boardmem={boardmem} />
+      <Gallery gallery={gallery} isLoading={isLoading} />
+      <Event event={event} isLoading={isLoading} />
       <Feedback isModalOpen={isModalOpen} event={event} setIsModalOpen={setIsModalOpen} formData={formData} handleSubmit={handleSubmit} handleInputChange={handleInputChange} activeStatus={activeStatus} customInputRef={customInputRef} handleStatusClick={handleStatusClick} handleCustomAmountChange={handleCustomAmountChange} customAmount={customAmount} setActiveStatus={setActiveStatus} statuses={statuses} />
     </>
   )
