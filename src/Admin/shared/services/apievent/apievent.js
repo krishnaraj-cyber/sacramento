@@ -65,6 +65,17 @@ export const updateEvents = async (datas) => {
   }
 };
 
+export const getFilterOptions = async (data) => {
+  var res = await axios.post(
+    `${apiurl()}/api/getallfilterevents?field=${data}`,
+    {
+      //  params:{ field: data },
+     headers: {Authorization: `Bearer ${gettoken()}` } }
+    
+  );
+  return res.data;
+};
+
 export const deleteEvents = async (id) => {
   var res = await axios.delete(`${apiurl()}/api/deleteevent?id=${id}`, {
     headers: { Authorization: `Bearer ${gettoken()}` },

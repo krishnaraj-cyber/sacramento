@@ -77,7 +77,7 @@ export default function Addandeditform(props) {
                         </div>
                         <select name="Poster_Type" value={formdata?.Poster_Type} onChange={handlechange} className="w-full px-4 py-2 border rounded-md outline-none" required>
                             <option value="">Select Type</option>
-                            <option value="RSVP">RSVP</option>
+                            {/* <option value="RSVP">RSVP</option> */}
                             <option value="Registration Form">Registration Form</option>
                             <option value="Donation">Donation</option>
                         </select>
@@ -176,7 +176,8 @@ export default function Addandeditform(props) {
 
 
                     { formdata?.Poster_Type == "Registration Form" && <>
-                        { formdata?.Games.length !=0 && formdata?.Games.map((items, index) => (
+                    {console.log(formdata)}
+                        { formdata.Games && formdata?.Games.length !=0 && formdata?.Games.map((items, index) => (
                             <div className='lg:col-span-2' key={index}>
                                 {console.log(formdata.Games)}
                                 <div className='grid grid-cols-1 lg:grid-cols-2 gap-3'>

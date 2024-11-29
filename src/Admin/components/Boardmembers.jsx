@@ -39,7 +39,7 @@ export default function Sponsors() {
     });
     setLoading(false);
     setTabledata(res.resdata);
-    setTotalRecords(res.length);
+    setTotalRecords(res.totallength);
   }, [first, rows, globalfilter, colfilter]);
 
   useEffect(() => {

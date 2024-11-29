@@ -9,7 +9,7 @@ export default function Tablepagination(props){
     return(
         <div className="flex w-full  justify-between items-center p-2 px-8">
           <div></div>
-        {/* {totalRecords > 0 && (<Pagination
+        {totalRecords > 0 && (<Pagination
           isCompact
           showControls
           showShadow
@@ -18,7 +18,7 @@ export default function Tablepagination(props){
           total={pages}
           onChange={(page) => onPage(page)}
         />)
-        } */}
+        }
         <div>Total Records : {totalRecords}</div>
       </div>
     )

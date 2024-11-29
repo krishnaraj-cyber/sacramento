@@ -7,7 +7,7 @@ export default function Dashboardcard(props) {
           <i className="mt-2 text-2xl text-primary fi fi-sr-user-tag"></i>
         </div>
         <div>
-          <h1 className="text-xl font-semibold">{board.length}</h1>
+          <h1 className="text-xl font-semibold">{board}</h1>
           <h3 className="text-sm">No. of Board Members</h3>
         </div>
       </div>
@@ -16,7 +16,7 @@ export default function Dashboardcard(props) {
           <i className="mt-2 text-2xl text-primary  fi fi-sr-user-tag"></i>
         </div>
         <div>
-          <h1 className="text-xl font-semibold">{youth.length}</h1>
+          <h1 className="text-xl font-semibold">{youth}</h1>
           <h3 className="text-sm">No. of Youth Forum</h3>
         </div>
       </div>
@@ -25,7 +25,7 @@ export default function Dashboardcard(props) {
           <i className="mt-2 text-2xl text-primary fa-solid fa-handshake"></i>
         </div>
         <div>
-          <h1 className="text-xl font-semibold">{sponsor.length}</h1>
+          <h1 className="text-xl font-semibold">{sponsor}</h1>
           <h3 className="text-sm">No. of Sponsors</h3>
         </div>
       </div>

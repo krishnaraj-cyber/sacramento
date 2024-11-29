@@ -91,12 +91,15 @@ export const updateGallerys = async (datas, onUploadProgress) => {
 
 export const getFilterOptions = async (data) => {
   var res = await axios.post(
-    `${apiurl()}/gallery/getfilteroptions`,
-    { field: data },
-    { headers: { Authorization: `Bearer ${gettoken()}` } }
+    `${apiurl()}/api/getallfiltergallery?field=${data}`,
+    {
+      //  params:{ field: data },
+     headers: {Authorization: `Bearer ${gettoken()}` } }
+    
   );
   return res.data;
 };
+
 
 export const deleteGallerys = async (id) => {
   var res = await axios.delete(`${apiurl()}/api/deletegallery`, {

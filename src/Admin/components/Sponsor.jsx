@@ -33,8 +33,8 @@ export default function Sponsors() {
     setLoading(true);
     const res = await getallSponsors({ first, rows, globalfilter, colfilter });
     setLoading(false);
-    setTabledata(res);
-    setTotalRecords(res.length);
+    setTabledata(res.resdata);
+    setTotalRecords(res.totallength);
   }, [first, rows, globalfilter, colfilter]);
 
   useEffect(() => {

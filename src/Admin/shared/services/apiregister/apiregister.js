@@ -35,10 +35,17 @@ export const updateregisters=async(datas)=>{
    return res.data;
 }
 
-export const getFilterOptions = async(data)=>{
-   var res=await axios.post(`${apiurl()}/register/getfilteroptions`,{field:data},{headers: {"Authorization" : `Bearer ${gettoken()}`}});
+export const getFilterOptions = async (data) => {
+   var res = await axios.post(
+     `${apiurl()}/api/getallfilterregisters?field=${data}`,
+     {
+       //  params:{ field: data },
+      headers: {Authorization: `Bearer ${gettoken()}` } }
+     
+   );
    return res.data;
-}
+ };
+ 
 
 export const deleteregister=async(id)=>{
    var res=await axios.delete(`${apiurl()}/api/deleteregister`,{params:{id:id}, headers: {"Authorization" : `Bearer ${gettoken()}`}});

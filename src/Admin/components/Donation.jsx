@@ -13,6 +13,7 @@ import Tablepagination from "../shared/others/Tablepagination";
 import Addandeditform from "../shared/components/Donation/Addandeditform";
 import Tableheadpanel from "../shared/components/Donation/Tableheadpanel";
 import Tableview from "../shared/components/Donation/Tableview";
+import { deletedonation, getfilterdonation } from "../shared/services/apiregister/apidonation";
 
 export default function Donation() {
   const [totalRecords, setTotalRecords] = useState(0);
@@ -31,10 +32,10 @@ export default function Donation() {
 
   const getallevent = useCallback(async () => {
     setLoading(true);
-    const res = await getfilterregister({ Poster_Type: 'Donation' });
+    const res = await getfilterdonation({first, rows, globalfilter,  colfilter });
+    setTabledata(res.resdata);
+    setTotalRecords(res?.totallength);
     setLoading(false);
-    setTabledata(res);
-    setTotalRecords(res?.length);
   }, [first, rows, globalfilter, colfilter]);
 
   useEffect(() => {
@@ -117,7 +118,7 @@ export default function Donation() {
       acceptClassName: "bg-red-500 ml-2 text-white p-2",
       rejectClassName: "p-2 outline-none border-0",
       accept: async () => {
-        await deleteregister(id);
+        await deletedonation(id);
         toast.success("Sucessfully deleted");
         getallevent();
       },
