@@ -73,7 +73,7 @@ function Home() {
     let isMounted = true;
     try {
       const response = await getallBoardmembers();
-      if (isMounted) { setBoardmem(response); }
+      if (isMounted) { setBoardmem(response.resdata); }
     } catch (error) {
       console.error('Error fetching sponsors:', error);
     }

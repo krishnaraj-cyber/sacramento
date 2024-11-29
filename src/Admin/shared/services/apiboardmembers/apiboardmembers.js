@@ -62,6 +62,15 @@ export const updateBoardmembers = async (datas) => {
   }
 };
 
+export const getFilterOptions = async (data) => {
+  var res = await axios.post(
+    `${apiurl()}/api/filterBoardmembers`,
+    { field: data },
+    { headers: { Authorization: `Bearer ${gettoken()}` } }
+  );
+  return res.data;
+};
+
 export const deleteBoardmembers = async (id) => {
   var res = await axios.delete(`${apiurl()}/api/deleteBoardmembers?id=${id}`, {
     headers: { Authorization: `Bearer ${gettoken()}` },

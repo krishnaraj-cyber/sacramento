@@ -4,7 +4,7 @@ export default function Tableheadpanel(props){
         <div className="block md:flex items-center justify-between px-6 py-4">
             <div>
               <h2 className="text-xl font-semibold text-gray-800 mb-2">
-                Volunteers
+                Donations
               </h2>
             </div>
 

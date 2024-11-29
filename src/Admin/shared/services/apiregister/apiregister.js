@@ -8,6 +8,11 @@ export const getallregister = async(params)=>{
    return res.data;
 }
 
+export const getfilterregister = async(params)=>{
+   var res=await axios.get(`${apiurl()}/api/getfilterregister`,{params:params , headers: {"Authorization" : `Bearer ${gettoken()}`}});
+   return res.data;
+}
+
 export const getuniquevaluebyfield = async(params)=>{
    var res=await axios.get(`${apiurl()}/api/getregisterbyid` ,{params:params , headers: {"Authorization" : `Bearer ${gettoken()}`}});
    return res.data;
