@@ -33,8 +33,8 @@ export default function Gallery() {
     setLoading(true);
     const res = await getallGallerys({ first, rows, globalfilter, colfilter });
     setLoading(false);
-    setTabledata(res);
-    setTotalRecords(res.length);
+    setTabledata(res.resdata);
+    setTotalRecords(res.totallength);
   }, [first, rows, globalfilter, colfilter]);
 
   useEffect(() => {

@@ -61,6 +61,18 @@ export const updateFinancialsum = async (datas) => {
   }
 };
 
+export const getFilterOptions = async (data) => {
+  var res = await axios.post(
+    `${apiurl()}/api/getallfiltersummary?field=${data}`,
+    {
+      //  params:{ field: data },
+     headers: {Authorization: `Bearer ${gettoken()}` } }
+    
+  );
+  return res.data;
+};
+
+
 export const deleteFinancialsum = async (id) => {
   var res = await axios.delete(`${apiurl()}/api/deletefinancial?id=${id}`, {
     headers: { Authorization: `Bearer ${gettoken()}` },

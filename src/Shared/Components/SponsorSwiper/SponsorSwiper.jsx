@@ -15,7 +15,7 @@ function SponsorSwiper() {
     try {
       const response = await getallSponsors();
       if (isMounted) {
-        setSponsors(response);
+        setSponsors(response.resdata);
       }
     } catch (error) {
       console.error("Error fetching sponsors:", error);

@@ -5,8 +5,8 @@ import { Column } from 'primereact/column';
 import { MultiSelect } from 'primereact/multiselect';
 import { Button } from 'primereact/button';
 import moment from 'moment-timezone';
-import { getFilterOptions } from '../../services/apiregister/apiregister';
 import apiurl from '../../../../shared/services/apiendpoint/apiendpoint';
+import { getFilterOptions } from '../../services/apiregister/apidonation';
 
 const Tableview = (props) =>{
 
@@ -72,27 +72,13 @@ const Tableview = (props) =>{
   );
 
   const columns = [
-    {field: 'Reg_No', header: 'Donator ID',width : "180px"},
-    {field: 'First_Name', header: 'First Name',width : "150px"},
-    {field: 'Last_Name', header: 'Last Name',width : "150px"},
-    {field: 'Email', header: 'Email ID',width : "150px"},
-    {field: 'Phone_Number', header: 'Phone Number', width : "120px"},
-    {field: 'Registration_Date', header: 'Reg Date',width : "120px", format: "Date"},
-    {field: 'Eventname', header: 'Title',width : "200px"},
-    // {field: 'Game_Title', header: 'Game Title',width : "200px"},
-    // {field: 'Poster_Type', header: 'Form Type',width : "150px"},
-    // {field: 'Team_Name', header: 'Team Name',width : "200px"},
-    // {field: 'Team_Members_Count', header: 'Team Members Count',width : "150px"},
-    // {field: 'Willingness', header: 'Willingness', width : "120px"},
-    // {field: 'Description', header: 'Description',width : "350px", format: "HTML"},
-    // {field: 'Number_Guests', header: 'Number of Guests',width : "150px"},
-    // {field: 'Adults', header: 'Number of Adults',width : "150px"},
-    // {field: 'Kids', header: 'Number of Kids',width : "150px"},
-    // {field: 'Babes', header: 'Number of under5',width : "150px"},
-    // {field: 'Payment_id', header: 'Payment ID',width : "120px"},
-    // {field: 'Payment_Status', header: 'Payment Status',width : "120px"},
-    // {field: 'Total_Amount', header: 'Entry Fees',width : "120px"}
-    // {field: 'Entry_Fees', header: 'Entry Fees',width : "120px"}
+    {field: 'Reg_ID', header: 'Donator ID',width : "180px" ,filter:true},
+    {field: 'First_Name', header: 'First Name',width : "150px",filter:true},
+    {field: 'Last_Name', header: 'Last Name',width : "150px",filter:true},
+    {field: 'Email', header: 'Email ID',width : "150px",filter:true},
+    {field: 'Phone_Number', header: 'Phone Number', width : "120px",filter:true},
+    {field: 'Registration_Date', header: 'Donation Date',width : "120px", format: "Date"},
+    {field: 'Eventname', header: 'Title',width : "200px",filter:true},
   ];
 
   return(
@@ -103,7 +89,7 @@ const Tableview = (props) =>{
           {/* <Column header="Images" body={image} style={{ minWidth: "150px" }} /> */}
           {columns.map((col, i) => (
             <Column key={i} field={col.field} header={col.header} style={{ minWidth: col.width }}
-              filter filterElement={Filter(col)} showFilterMenuOptions={false} showApplyButton={false} showClearButton={false} showFilterMatchModes={false} 
+            filter={col.filter}  filterElement={Filter(col)} showFilterMenuOptions={false} showApplyButton={false} showClearButton={false} showFilterMatchModes={false} 
             body={(rowData,meta) => { if(col.format =="Date"){ return moment(rowData[meta.field]).format("YYYY-MM-DD")} else if(col.format == "HTML"){return <div dangerouslySetInnerHTML={{ __html: rowData[meta.field] }} />} else {return rowData[meta.field]}} }  />
           ))}
         </DataTable>

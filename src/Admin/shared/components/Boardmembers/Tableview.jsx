@@ -46,6 +46,7 @@ const Tableview = (props) =>{
 
   const handleApplyFilters = (key) => {
     cusfilter(key, tempFilterValues[key]);
+    console.log(key, tempFilterValues[key]);
     onPage(page);
   };
 
@@ -57,7 +58,9 @@ const Tableview = (props) =>{
 
   const getOption = async (key)=>{
     var filterOptions = await getFilterOptions(key.field);
+    console.log(filterOptions)
     var formatoption = filterOptions[key.field].map( val =>({ label:val,value: key.format == "Date"? moment(val).format('YYYY-MM-DD') :val}));
+    console.log(formatoption)
     setFilterOptions(formatoption);
   }
 
@@ -78,7 +81,7 @@ const Tableview = (props) =>{
   const columns = [
     {field: 'Name', header: 'Name', filter:true, width : "200px"},
     {field: 'Designation', header: 'Designation', filter:true, width : "200px"},
-    {field: 'Status', header: 'Status', width : "120px"},
+    {field: 'Status', header: 'Status',filter:true, width : "120px"},
   ];
 
   return(

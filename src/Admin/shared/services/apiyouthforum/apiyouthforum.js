@@ -59,6 +59,18 @@ export const updateYouthForum = async (datas) => {
   }
 };
 
+export const getFilterOptions = async (data) => {
+  var res = await axios.post(
+    `${apiurl()}/api/getallfilteryouthforums?field=${data}`,
+    {
+      //  params:{ field: data },
+     headers: {Authorization: `Bearer ${gettoken()}` } }
+    
+  );
+  return res.data;
+};
+
+
 export const deleteYouthForum = async (id) => {
   var res = await axios.delete(`${apiurl()}/api/deleteyouthforum?id=${id}`, {
     headers: { Authorization: `Bearer ${gettoken()}` },

@@ -5,8 +5,8 @@ import { Column } from 'primereact/column';
 import { MultiSelect } from 'primereact/multiselect';
 import { Button } from 'primereact/button';
 import moment from 'moment-timezone';
-import { getFilterOptions } from '../../services/apiregister/apiregister';
 import apiurl from '../../../../shared/services/apiendpoint/apiendpoint';
+import { getFilterOptions } from '../../services/apiregister/apivolunteer';
 
 const Tableview = (props) =>{
 
@@ -72,7 +72,8 @@ const Tableview = (props) =>{
   );
 
   const columns = [
-    {field: 'Reg_No', header: 'Volunteer ID',width : "180px"},
+    // {field: 'Reg_No', header: 'Volunteer ID',width : "180px"},
+    {field: 'Reg_ID', header: 'Reg_ID',width : "180px"},
     {field: 'First_Name', header: 'First Name',width : "150px"},
     {field: 'Last_Name', header: 'Last Name',width : "150px"},
     {field: 'Email', header: 'Email ID',width : "150px"},
@@ -103,7 +104,7 @@ const Tableview = (props) =>{
           {/* <Column header="Images" body={image} style={{ minWidth: "150px" }} /> */}
           {columns.map((col, i) => (
             <Column key={i} field={col.field} header={col.header} style={{ minWidth: col.width }}
-              filter filterElement={Filter(col)} showFilterMenuOptions={false} showApplyButton={false} showClearButton={false} showFilterMatchModes={false} 
+            filter={col.filter}  filterElement={Filter(col)} showFilterMenuOptions={false} showApplyButton={false} showClearButton={false} showFilterMatchModes={false} 
             body={(rowData,meta) => { if(col.format =="Date"){ return moment(rowData[meta.field]).format("YYYY-MM-DD")} else if(col.format == "HTML"){return <div dangerouslySetInnerHTML={{ __html: rowData[meta.field] }} />} else {return rowData[meta.field]}} }  />
           ))}
         </DataTable>

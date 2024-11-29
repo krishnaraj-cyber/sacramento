@@ -64,9 +64,11 @@ export const updateBoardmembers = async (datas) => {
 
 export const getFilterOptions = async (data) => {
   var res = await axios.post(
-    `${apiurl()}/api/filterBoardmembers`,
-    { field: data },
-    { headers: { Authorization: `Bearer ${gettoken()}` } }
+    `${apiurl()}/api/getfilterboard?field=${data}`,
+    {
+      //  params:{ field: data },
+     headers: {Authorization: `Bearer ${gettoken()}` } }
+    
   );
   return res.data;
 };

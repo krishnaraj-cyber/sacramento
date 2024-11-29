@@ -12,8 +12,9 @@ function FinancialPage() {
     const fetchSponsors = useCallback(async () => {
         let isMounted = true; 
         try {
-          const response = await getallFinancialsum(); 
+          const res = await getallFinancialsum(); 
             if (isMounted) {
+              var response=res.resdata
                 setData(response);
                 if (response.length > 0) {
                     const sortedYears = [...new Set(response.map(item => item.Year))].sort((a, b) => b - a);

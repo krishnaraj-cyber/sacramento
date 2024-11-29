@@ -8,6 +8,7 @@ import { Button } from 'primereact/button';
 import moment from 'moment-timezone';
 import { SortOrder } from 'primereact/api';
 import apiurl from '../../../../shared/services/apiendpoint/apiendpoint';
+import { getFilterOptions } from '../../services/apievent/apievent';
 
 const Tableview = (props) =>{
   const {tabledata,editfrom,handledelete,cusfilter,onPage,handleBulkMail,first,rows, page, filtervalues, loading}=props
@@ -76,9 +77,9 @@ const Tableview = (props) =>{
   );
 
   const columns = [
-    {field: 'Eventname', header: 'Title' ,width : "120px"},
+    {field: 'Eventname', header: 'Title' ,filter:true,width : "120px"},
     {field: 'Date', header: 'Event Date',filter:true, format: "Date",width : "120px"},
-    {field: 'Activities', header: 'Activities', width : "120px"},
+    {field: 'Activities', header: 'Activities',filter:true, width : "120px"},
     {field: 'Status', header: 'Status',filter:true,width : "120px"}
   ];
 

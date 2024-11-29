@@ -12,7 +12,7 @@ function EventsPage() {
     let isMounted = true; 
     try {
       const response = await getallEvents(); 
-      if (isMounted) {  setEvent(response);  }
+      if (isMounted) {  setEvent(response.resdata);  }
     } catch (error) {
       console.error('Error fetching sponsors:', error);
     }

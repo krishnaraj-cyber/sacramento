@@ -5,8 +5,9 @@ import { Column } from 'primereact/column';
 import { MultiSelect } from 'primereact/multiselect';
 import { Button } from 'primereact/button';
 import moment from 'moment-timezone';
-import { getFilterOptions } from '../../services/apigallery/apigallery';
+// import { getFilterOptions } from '../../services/apigallery/apigallery';
 import apiurl from '../../../../shared/services/apiendpoint/apiendpoint';
+import { getFilterOptions } from '../../services/apifinancialsummary/apifinancialsummary';
 
 const Tableview = (props) =>{
   const {tabledata,editfrom,handledelete,cusfilter,onPage,first,rows, page, filtervalues, loading}=props
@@ -75,11 +76,11 @@ const Tableview = (props) =>{
   );
 
   const columns = [
-    {field: 'EventName', header: 'Event Name',width : "200px"},
-    {field: 'Expenses', header: 'Expenses',width : "200px"},
-    {field: 'Income', header: 'Income',width : "200px"},
-    {field: 'Year', header: 'Year',width : "200px"},
-    {field: 'Status', header: 'Status', width : "120px"},
+    {field: 'EventName', header: 'Event Name', filter:true,width : "200px"},
+    {field: 'Expenses', header: 'Expenses', filter:true,width : "200px"},
+    {field: 'Income', header: 'Income', filter:true,width : "200px"},
+    {field: 'Year', header: 'Year', filter:true,width : "200px"},
+    {field: 'Status', header: 'Status', filter:true, width : "120px"},
   ];
 
   return(

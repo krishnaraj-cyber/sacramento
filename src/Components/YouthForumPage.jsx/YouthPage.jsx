@@ -12,7 +12,7 @@ const fetchYouthforum = useCallback(async () => {
       let isMounted = true; 
       try {
         const response = await getallYouthForum(); 
-        if (isMounted) {  setForum(response);  }
+        if (isMounted) {  setForum(response.resdata);  }
       } catch (error) {
         console.error('Error fetching sponsors:', error);
       }

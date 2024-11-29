@@ -60,6 +60,18 @@ export const updateSponsors = async (datas) => {
   }
 };
 
+export const getFilterOptions = async (data) => {
+  var res = await axios.post(
+    `${apiurl()}/api/getallfiltersponsors?field=${data}`,
+    {
+      //  params:{ field: data },
+     headers: {Authorization: `Bearer ${gettoken()}` } }
+    
+  );
+  return res.data;
+};
+
+
 export const deleteSponsors = async (id) => {
   var res = await axios.delete(`${apiurl()}/api/deletesponsor?id=${id}`, {
     headers: { Authorization: `Bearer ${gettoken()}` },

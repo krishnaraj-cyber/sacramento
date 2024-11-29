@@ -13,6 +13,7 @@ import Addandeditform from "../shared/components/Volunteer/Addandeditform";
 import Tableview from "../shared/components/Volunteer/Tableview";
 import Tableheadpanel from "../shared/components/Volunteer/Tableheadpanel";
 import Tablepagination from "../shared/others/Tablepagination";
+import { deletevolunteer, getfiltervolunteer } from "../shared/services/apiregister/apivolunteer";
 
 export default function Volunteer() {
   const [totalRecords, setTotalRecords] = useState(0);
@@ -31,10 +32,10 @@ export default function Volunteer() {
 
   const getallevent = useCallback(async () => {
     setLoading(true);
-    const res = await getfilterregister({ Poster_Type: 'Volunteer' });
+    const res = await getfiltervolunteer({first, rows, globalfilter,  colfilter });
     setLoading(false);
-    setTabledata(res);
-    setTotalRecords(res?.length);
+    setTabledata(res.resdata);
+    setTotalRecords(res?.totallength);
   }, [first, rows, globalfilter, colfilter]);
 
   useEffect(() => {
@@ -117,7 +118,7 @@ export default function Volunteer() {
       acceptClassName: "bg-red-500 ml-2 text-white p-2",
       rejectClassName: "p-2 outline-none border-0",
       accept: async () => {
-        await deleteregister(id);
+        await deletevolunteer(id);
         toast.success("Sucessfully deleted");
         getallevent();
       },
