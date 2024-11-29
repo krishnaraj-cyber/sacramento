@@ -55,8 +55,12 @@ html {
 
  
 
-
 .polygon-clip {
-  
-  clip-path: polygon(0 0, 100% 0, 90% 100%, 0% 100%);
+  clip-path: none;
+}
+
+@media (min-width: 1024px) {
+  .polygon-clip {
+    clip-path: polygon(0 0, 100% 0, 91% 100%, 0% 100%);
+  }
 }

@@ -10,7 +10,6 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination, Autoplay } from "swiper/modules";
 import { getallEvents } from '../../../Admin/shared/services/apievent/apievent';
 function Events(props) {
-
   const { event, isLoading } = props;
   const activeEvents = event
     .filter(event => event.Status === "Active")
@@ -69,15 +68,14 @@ function Events(props) {
                       <div className="animate-pulse flex flex-col gap-4 w-full px-5">
                         <div className="bg-gray-300 h-20 rounded-md w-full"></div>
                       </div>
-                      {/* <div   key={index} className='grid md:grid-cols-2 animate-pulse items-center px-5  md:mb-5 mb-10'>
+                      {/* <div key={index} className='grid md:grid-cols-2 animate-pulse items-center px-5  md:mb-5 mb-10'>
                         <div className='flex gap-4 items-center'>
-                          
                           <div>
                             <p className=' bg-gray-300 h-36'> </p>
                             <p className='bg-gray-300 h-36 '> </p>
                           </div>
                         </div>
-                        
+
                       </div> */}
                     </SwiperSlide>
                   ))}
@@ -104,7 +102,6 @@ function Events(props) {
                 </div>
               )
             )}
-
           </Swiper>
         </div>
       </section>

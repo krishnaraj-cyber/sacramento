@@ -61,7 +61,7 @@ function Home() {
     setIsLoading(true);
     try {
       const response = await getallSponsors();
-      if (isMounted) { setSponsors(response.resdata);  }
+      if (isMounted) { setSponsors(response.resdata); }
     } catch (error) {
       console.error('Error fetching sponsors:', error);
     } finally {
@@ -135,7 +135,7 @@ function Home() {
   return (
     <>
       <HomePage sponsors={sponsors} isLoading={isLoading} setSponsors={setSponsors} event={event} />
-      <AboutSection boardmem={boardmem} />
+      <AboutSection isLoading={isLoading} boardmem={boardmem} />
       <Gallery gallery={gallery} isLoading={isLoading} />
       <Event event={event} isLoading={isLoading} />
       <Feedback isModalOpen={isModalOpen} event={event} setIsModalOpen={setIsModalOpen} formData={formData} handleSubmit={handleSubmit} handleInputChange={handleInputChange} activeStatus={activeStatus} customInputRef={customInputRef} handleStatusClick={handleStatusClick} handleCustomAmountChange={handleCustomAmountChange} customAmount={customAmount} setActiveStatus={setActiveStatus} statuses={statuses} />

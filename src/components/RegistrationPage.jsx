@@ -14,7 +14,7 @@ export default function RegistrationPage(prpos) {
     const param = useParams();
     const navigate = useNavigate();
     const [EventData, setEventData] = useState({});
-    const [loading, setLoading] = useState(false);
+    const [isLoading, setIsLoading] = useState(false);
     const [Visible, setVisible] = useState(false);
     const [formdata, setFormdata] = useState({});
     const location = useLocation();
@@ -26,9 +26,11 @@ export default function RegistrationPage(prpos) {
 
 
     const geteventbyID = useCallback(async () => {
+        setIsLoading(true);
         const Event = await geteventbyid({ id });
         console.log(Event)
         setEventData(Event);
+        setIsLoading(false);
 
         if (type === "Donation") {
             setFormdata({ Poster_Type: "Donation", Entry_Fees: initialAmount })
@@ -101,7 +103,7 @@ export default function RegistrationPage(prpos) {
 
     return (
         <>
-            <Registration type={type} EventData={EventData} formdata={formdata} handlechange={handlechange} handlesave={handlesave} />
+            <Registration isLoading={isLoading} type={type} EventData={EventData} formdata={formdata} handlechange={handlechange} handlesave={handlesave} />
         </>
     )
 }

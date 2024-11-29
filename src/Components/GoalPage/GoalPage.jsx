@@ -7,8 +7,7 @@ function GoalPage() {
     return (
         <>
             <AboutUs title="GOALS" />
-            <VideoSwiper />
-            <Goals />
+            <VideoSwiper  />
             <SponsorSwiper />
         </>
     )

@@ -4,7 +4,7 @@ import SponsorSwiper from '../SponsorSwiper/SponsorSwiper';
 import apiurl from '../../services/apiendpoint/apiendpoint';
 
 function Aboutt(props) {
-    const { boardmem } = props;
+    const { boardmem, isLoading } = props;
     return (
         <>
             <section>
@@ -42,15 +42,27 @@ function Aboutt(props) {
             </section>
             <section className='max-w-[90rem] mx-auto px-5 my-20'>
                 <div className='grid lg:grid-cols-5 md:grid-cols-3 grid-cols-2 justify-center items-center  md:gap-10 gap-5  '>
-                    {boardmem.map((item, index) => (
-                        <div key={index} className="text-center w-full">
-                            <img className='  md:w-72 border-2 border-[#0571BC] rounded-t-xl w-full ' src={`${apiurl()}/${item.Image}`} />
-                            <div className='  flex flex-col justify-center items-center mx-2  h-24  rounded-bl-lg  rounded-br-lg bg-[#0571BC]'>
-                                <p className="  md:text-base text-sm text-[#FFD900]"> {item.Name}</p>
-                                <p className=" text-white  text-xs md:text-sm"> {item.Designation}</p>
+                    {isLoading
+                        ? Array(2)
+                            .fill(0)
+                            .map((_, index) => (
+                                <div key={index} className="animate-pulse">
+                                    <div className="w-60 h-60 bg-gray-300 rounded-tr-xl rounded-tl-xl mx-auto"></div>
+                                    <div className="w-60 h-12 bg-gray-300 mx-auto mt-2 rounded-bl-lg rounded-br-lg"></div>
+                                </div>
+                            ))
+                        :
+
+                        boardmem.map((item, index) => (
+                            <div key={index} className="text-center w-full">
+                                <img className='  md:w-72 border-2 border-[#0571BC] rounded-t-xl w-full ' src={`${apiurl()}/${item.Image}`} />
+                                <div className='  flex flex-col justify-center items-center mx-2  h-24  rounded-bl-lg  rounded-br-lg bg-[#0571BC]'>
+                                    <p className="  md:text-base text-sm text-[#FFD900]"> {item.Name}</p>
+                                    <p className=" text-white  text-xs md:text-sm"> {item.Designation}</p>
+                                </div>
                             </div>
-                        </div>
-                    ))}
+                        ))
+                    }
                 </div>
             </section>
             <section>
