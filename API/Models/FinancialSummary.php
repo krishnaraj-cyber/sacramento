@@ -16,8 +16,8 @@ class ModelsFinancialSummary extends Model {
         return $query->row;
     }  
     
-    public function getAll() {
-        $query = $this->db->query("SELECT * FROM " . DB_PREFIX . "financialsummary");
+    public function getAll($whereClause = '') {
+        $query = $this->db->query("SELECT * FROM " . DB_PREFIX . "financialsummary $whereClause");
         return $query->rows;
     }
     

@@ -11,8 +11,8 @@ class ModelsSponsor extends Model {
         return $query->row;
     }  
     
-    public function getAll() {
-        $query = $this->db->query("SELECT * FROM " . DB_PREFIX . "sponsor");
+    public function getAll($whereClause = '') {
+        $query = $this->db->query("SELECT * FROM " . DB_PREFIX . "sponsor $whereClause");
         return $query->rows;
     }
     

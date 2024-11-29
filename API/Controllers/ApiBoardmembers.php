@@ -30,25 +30,45 @@ public function getallBoardmembers() {
         $first = isset($_GET['first']) ? intval($_GET['first']) : 0;
         $rows = isset($_GET['rows']) ? intval($_GET['rows']) : 10;
         $globalfilter = isset($_GET['globalfilter']) ? $_GET['globalfilter'] : '';
-        $colfilter = isset($_GET['colfilter']) ? json_decode($_GET['colfilter'], true) : [];
+        $colfilter = [];
+        if (isset($_GET['colfilter'])) {
+            foreach ($_GET['colfilter'] as $column => $filterData) {
+                if (is_array($filterData)) {
+                    foreach ($filterData as $operator => $values) {
+                        if ($operator === '$in' && is_array($values)) {
+                            $colfilter[$column] = $values;
+                        }
+                    }
+                }
+            }
+        }
+
         $columns = ['Name', 'Designation', 'Status'];
         $globalFilterQuery = '';
         if (!empty($globalfilter)) {
             $globalFilterConditions = [];
             foreach ($columns as $column) {
-                $globalFilterConditions[] = "$column LIKE '%" . $this->db->escape($globalfilter) . "%'";
+                $escapedFilter = $this->db->escape($globalfilter);
+                $globalFilterConditions[] = "$column LIKE '%$escapedFilter%'";
             }
             $globalFilterQuery = "(" . implode(' OR ', $globalFilterConditions) . ")";
         }
+
         $additionalFilterQuery = '';
         if (!empty($colfilter)) {
             $additionalConditions = [];
             foreach ($colfilter as $key => $value) {
-                $escapedValue = $this->db->escape($value);
-                $additionalConditions[] = "$key = '$escapedValue'";
+                if (is_array($value)) {
+                    $escapedValues = array_map([$this->db, 'escape'], $value);
+                    $additionalConditions[] = "$key IN ('" . implode("','", $escapedValues) . "')";
+                } else {
+                    $escapedValue = $this->db->escape($value);
+                    $additionalConditions[] = "$key = '$escapedValue'";
+                }
             }
             $additionalFilterQuery = implode(' AND ', $additionalConditions);
         }
+
         $filterQuery = '';
         if ($globalFilterQuery && $additionalFilterQuery) {
             $filterQuery = "WHERE $globalFilterQuery AND $additionalFilterQuery";
@@ -57,12 +77,20 @@ public function getallBoardmembers() {
         } elseif ($additionalFilterQuery) {
             $filterQuery = "WHERE $additionalFilterQuery";
         }
+
         $totalCountQuery = "SELECT COUNT(*) as total FROM " . DB_PREFIX . "boardmembers $filterQuery";
         $totalCountResult = $this->db->query($totalCountQuery);
+        
+        if (!$totalCountResult || !isset($totalCountResult->row['total'])) {
+            throw new Exception("Failed to fetch total count.");        
+        }
+        
         $totalLength = $totalCountResult->row['total'];
         $dataQuery = "SELECT * FROM " . DB_PREFIX . "boardmembers $filterQuery LIMIT $first, $rows";
         $dataResult = $this->db->query($dataQuery);
+        
         $resdata = $dataResult->rows;
+        
         $this->response->sendStatus(200);
         $this->response->setContent([
             'resdata' => $resdata,
@@ -70,126 +98,47 @@ public function getallBoardmembers() {
         ]);
 
     } catch (Exception $e) {
-        echo 'Error Message: ' . $e->getMessage();
+        $this->response->sendStatus(500);
+        $this->response->setContent([
+            'error' => $e->getMessage()
+        ]);
     }
 }
 
-
-// function getFilterOptions($req, $conn) {
-
-//     echo $req; echo $conn;
-//     // Validate and sanitize the field parameter
-//     $field = isset($req['field']) ? $req['field'] : '';
-//     if (empty($field)) {
-//         return json_encode(['message' => 'Field parameter is required']);
-//     }
-
-//     // Define allowed fields to prevent invalid columns being queried
-//     $allowedFields = ['Name', 'Designation', 'Status'];
-//     if (!in_array($field, $allowedFields)) {
-//         return json_encode(['message' => 'Invalid field parameter']);
-//     }
-
-//     try {
-//         // Build the query to fetch distinct values for the given field
-//         $sql = "SELECT DISTINCT `$field` FROM " . DB_PREFIX . "boardmembers";
-//         $stmt = $conn->prepare($sql);
-//         $stmt->execute();
-
-//         // Retrieve results
-//         $result = $stmt->get_result();
-
-//         // Format the results
-//         if ($result->num_rows > 0) {
-//             $distinctValues = [];
-//             while ($row = $result->fetch_assoc()) {
-//                 $distinctValues[] = $row[$field];
-//             }
-
-//             return json_encode([$field => $distinctValues]);
-//         } else {
-//             return json_encode([$field => []]);
-//         }
-//     } catch (Exception $e) {
-//         // Handle exceptions gracefully
-//         return json_encode(['message' => 'An error occurred', 'error' => $e->getMessage()]);
-//     }
-// }
-
-function getFilterOptions() {
-    $field = '';
-    if (isset($_GET['field']) && !empty($_GET['field'])) {
-        $field = $_GET['field'];
-    } 
-    elseif (isset($_POST['field']) && !empty($_POST['field'])) {
-        $field = $_POST['field'];
-    } 
-    elseif (isset($this->request) && isset($this->request->field) && !empty($this->request->field)) {
-        $field = $this->request->field;
-    }
-
-    error_log("Received field parameter: " . ($field ?: 'EMPTY'));
-
-    $allowedFields = ['Designation', 'Status', 'Name'];
-    
-    if (empty($field)) {
-        error_log('Field parameter is missing');
-        return $this->send(400, ['message' => 'Field parameter is required']);
-    }
-    
-    if (!in_array($field, $allowedFields)) {
-        error_log('Invalid field requested: ' . $field);
-        return $this->send(400, ['message' => 'Invalid field requested']);
-    }
-    
+public function getFilterBoard() {
     try {
-        $sql = "SELECT DISTINCT `" . $this->db->escape($field) . "` FROM " . DB_PREFIX . "boardmembers WHERE `$field` IS NOT NULL AND `$field` != ''";
-        
-        error_log("Generated SQL Query: " . $sql);
-        
-        $result = $this->db->query($sql);
-        if ($result === false) {
-            error_log('Database query failed: ' . print_r($this->db->errorInfo(), true));
-            return $this->send(500, ['message' => 'Query execution failed']);
+        $field = isset($_POST['field']) ? $_POST['field'] : (isset($_GET['field']) ? $_GET['field'] : '');
+        if (empty($field)) {
+            $this->response->sendStatus(400);
+            $this->response->setContent(['message' => 'Field parameter is required']);
+            return;
         }
-        
-        $distinctValues = [];
-        if (is_array($result)) {
-            foreach ($result as $row) {
-                if (is_array($row) && !empty($row[$field])) {
-                    $distinctValues[] = $row[$field];
-                } elseif (is_object($row) && !empty($row->$field)) {
-                    $distinctValues[] = $row->$field;
-                }
+        // $allowedFields = ['field1', 'field2', 'field3']; // Replace with actual column names
+        // if (!in_array($field, $allowedFields)) {
+        //     $this->response->sendStatus(400);
+        //     $this->response->setContent(['message' => 'Invalid field parameter']);
+        //     return;
+        // }
+        $query = "SELECT DISTINCT $field FROM " . DB_PREFIX . "boardmembers";
+        $result = $this->db->query($query);
+        if ($result->num_rows > 0) {
+            $distinctValues = [];
+            foreach ($result->rows as $row) {
+                $distinctValues[] = $row[$field];
             }
-        } elseif (is_object($result)) {
-            if (method_exists($result, 'fetch_assoc')) {
-                while ($row = $result->fetch_assoc()) {
-                    if (!empty($row[$field])) {
-                        $distinctValues[] = $row[$field];
-                    }
-                }
-            } elseif (method_exists($result, 'fetchAll')) {
-                $rows = $result->fetchAll(PDO::FETCH_ASSOC);
-                foreach ($rows as $row) {
-                    if (!empty($row[$field])) {
-                        $distinctValues[] = $row[$field];
-                    }
-                }
-            }
+            $this->response->sendStatus(200);
+            $this->response->setContent([$field => $distinctValues]);
+        } else {
+            $this->response->sendStatus(200);
+            $this->response->setContent([$field => []]);
         }
-        $distinctValues = array_unique($distinctValues);
-        error_log("Distinct values found for $field: " . print_r($distinctValues, true));
-        sort($distinctValues);
-        return $this->send(200, [$field => $distinctValues]);
-    
+
     } catch (Exception $e) {
-        error_log('Exception in getFilterOptions: ' . $e->getMessage());
-        error_log('Exception trace: ' . $e->getTraceAsString());
-        
-        return $this->send(500, ['message' => 'Error retrieving filter options: ' . $e->getMessage()]);
+        $this->response->sendStatus(500);
+        $this->response->setContent(['message' => 'An error occurred', 'error' => $e->getMessage()]);
     }
 }
+
   
 
 

@@ -13,7 +13,7 @@ class ModelsBoardmembers extends Model {
     }
   
     public function getAll($whereClause = '') {
-        $query = $this->db->query("SELECT * FROM " . DB_PREFIX . "boardmembers");
+        $query = $this->db->query("SELECT * FROM " . DB_PREFIX . "boardmembers $whereClause");
         return $query->rows;
     }
     public function save($data) {

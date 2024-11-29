@@ -11,6 +11,8 @@ require './API/Controllers/ApiMentors.php';
 require './API/Controllers/ApiBoardmembers.php';
 require './API/Controllers/ApiYouthForum.php';
 require './API/Controllers/ApiRegister.php';
+require './API/Controllers/ApiVolunteer.php';
+require './API/Controllers/ApiDonation.php';
 
 use Controller\APILoginController;
 //login or authentication
@@ -50,7 +52,7 @@ $router->post('/sacra_mento/api/deleteentors', function(){(new Controllersmentor
 //boardmembers
 $router->get('/sacra_mento/api/getBoardmembersbyid', function(){(new Controllersboardmembers)->getBoardmembersbyid();});
 $router->get('/sacra_mento/api/getallBoardmembers', function(){(new Controllersboardmembers)->getallBoardmembers();});
-$router->post('/sacra_mento/api/getfilterboard', function(){(new Controllersboardmembers)->getFilterOptions();});
+$router->post('/sacra_mento/api/getfilterboard', function(){(new Controllersboardmembers)->getFilterBoard();});
 $router->post('/sacra_mento/api/uploadBoardmembers', function(){(new Controllersboardmembers)->saveBoardmembers();});
 $router->post('/sacra_mento/api/editBoardmembers', function(){(new Controllersboardmembers)->updateBoardmembers();});
 $router->delete('/sacra_mento/api/deleteBoardmembers', function(){(new Controllersboardmembers)->deleteBoardmembers();});
@@ -58,6 +60,7 @@ $router->delete('/sacra_mento/api/deleteBoardmembers', function(){(new Controlle
 //sponsor
 $router->get('/sacra_mento/api/getsponsorbyid', function(){(new ControllersSponsor)->getSponsorbyid();});
 $router->get('/sacra_mento/api/getallsponsors', function(){(new ControllersSponsor)->getallsponsor();});
+$router->post('/sacra_mento/api/getallfiltersponsors', function(){(new ControllersSponsor)->getFilterSponsor();});
 $router->post('/sacra_mento/api/uploadsponsor', function(){(new ControllersSponsor)->savesponsor();});
 $router->post('/sacra_mento/api/editsponsor', function(){(new ControllersSponsor)->updatesponsor();});
 $router->delete('/sacra_mento/api/deletesponsor', function(){(new ControllersSponsor)->deletesponsor();});
@@ -65,6 +68,7 @@ $router->delete('/sacra_mento/api/deletesponsor', function(){(new ControllersSpo
 //Events
 $router->get('/sacra_mento/api/geteventbyid', function(){(new ControllersEvents)->getEventsbyid();});
 $router->get('/sacra_mento/api/getallevents', function(){(new ControllersEvents)->getallEvents();});
+$router->post('/sacra_mento/api/getallfilterevents', function(){(new ControllersEvents)->getFilterEvents();});
 $router->post('/sacra_mento/api/uploadevent', function(){(new ControllersEvents)->saveEvents();});
 $router->post('/sacra_mento/api/editevent', function(){(new ControllersEvents)->updateEvents();});
 $router->delete('/sacra_mento/api/deleteevent', function(){(new ControllersEvents)->deleteEvents();});
@@ -72,6 +76,7 @@ $router->delete('/sacra_mento/api/deleteevent', function(){(new ControllersEvent
 //Financial summary
 $router->get('/sacra_mento/api/getfinancialsbyid', function(){(new ControllersFinancialSummary)->getFinancialSummarybyid();});
 $router->get('/sacra_mento/api/getallfinancials', function(){(new ControllersFinancialSummary)->getallFinancialSummary();});
+$router->post('/sacra_mento/api/getallfiltersummary', function(){(new ControllersFinancialSummary)->getFilterSummary();});
 $router->post('/sacra_mento/api/uploadfinancial', function(){(new ControllersFinancialSummary)->saveFinancialSummary();});
 $router->post('/sacra_mento/api/editfinancial', function(){(new ControllersFinancialSummary)->updateFinancialSummary();});
 $router->delete('/sacra_mento/api/deletefinancial', function(){(new ControllersFinancialSummary)->deleteFinancialSummary();});
@@ -79,6 +84,7 @@ $router->delete('/sacra_mento/api/deletefinancial', function(){(new ControllersF
 //Youth forum
 $router->get('/sacra_mento/api/getyouthforumbyid', function(){(new ControllersYouthForum)->getYouthForumbyid();});
 $router->get('/sacra_mento/api/getallyouthforums', function(){(new ControllersYouthForum)->getallYouthForum();});
+$router->post('/sacra_mento/api/getallfilteryouthforums', function(){(new ControllersYouthForum)->getFilterYouth();});
 $router->post('/sacra_mento/api/uploadyouthforum', function(){(new ControllersYouthForum)->saveYouthForum();});
 $router->post('/sacra_mento/api/edityouthforum', function(){(new ControllersYouthForum)->updateYouthForum();});
 $router->delete('/sacra_mento/api/deleteyouthforum', function(){(new ControllersYouthForum)->deleteYouthForum();});
@@ -87,6 +93,7 @@ $router->delete('/sacra_mento/api/deleteyouthforum', function(){(new Controllers
 $router->get('/sacra_mento/api/getgallerybyid', function(){(new ControllersGallery)->getGallerybyid();});
 $router->get('/sacra_mento/api/getgallerybyyear', function(){(new ControllersGallery)->getGallerybyYear();});
 $router->get('/sacra_mento/api/getallgallery', function(){(new ControllersGallery)->getallGallery();});
+$router->post('/sacra_mento/api/getallfiltergallery', function(){(new ControllersGallery)->getFilterGallery();});
 $router->post('/sacra_mento/api/uploadgallery', function(){(new ControllersGallery)->saveGallery();});
 $router->post('/sacra_mento/api/updategallery', function(){(new ControllersGallery)->updateGallery();});
 $router->delete('/sacra_mento/api/deletegallery', function(){(new ControllersGallery)->deleteGallery();});
@@ -94,9 +101,20 @@ $router->delete('/sacra_mento/api/deletegallery', function(){(new ControllersGal
 //Event_Register
 $router->get('/sacra_mento/api/getregisterbyid', function(){(new ControllersRegister)->getRegisterbyid();});
 $router->get('/sacra_mento/api/getallregisters', function(){(new ControllersRegister)->getallRegister();});
-$router->get('/sacra_mento/api/getfilterregister', function(){(new ControllersRegister)->getFilteredRegister();});
+$router->post('/sacra_mento/api/getallfilterregisters', function(){(new ControllersRegister)->getAllFilterRegister();});
+$router->get('/sacra_mento/api/getfilterregister', function(){(new ControllersRegister)->getFilteredbyPoster();});
 $router->post('/sacra_mento/api/uploadregister', function(){(new ControllersRegister)->saveRegister();});
 $router->post('/sacra_mento/api/editregister', function(){(new ControllersRegister)->updateRegister();});
 $router->delete('/sacra_mento/api/deleteregister', function(){(new ControllersRegister)->deleteRegister();});
+
+//Event_Volunteer
+$router->post('/sacra_mento/api/getallfiltervolunteers', function(){(new ControllersVolunteer)->getAllFilterVolunteer();}); //dashboard filter
+$router->get('/sacra_mento/api/getfiltervolunteer', function(){(new ControllersVolunteer)->getFilteredVolunteer();});
+$router->delete('/sacra_mento/api/deletevolunteer', function(){(new ControllersVolunteer)->deleteVolunteer();});
+
+//Event_Donation
+$router->post('/sacra_mento/api/getallfilterdonations', function(){(new ControllersDonation)->getAllFilterDonation();}); //dashboard filter
+$router->get('/sacra_mento/api/getfilterdonation', function(){(new ControllersDonation)->getFilteredDonation();});
+$router->delete('/sacra_mento/api/deletedonation', function(){(new ControllersDonation)->deleteDonation();});
 
 ?>

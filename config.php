@@ -27,12 +27,12 @@ define('DATABASE', [
 
     
     'Port'   => '3306',
-    'Host'   => '166.62.28.143',
+    'Host'   => '89.116.53.23',
     'Driver' => 'PDO',
-    'Name'   => 'BillingSoft',
-    'User'   => 'BillingSoft',
-    'Pass'   => '_5}&{nxn#rK[',
-    'Prefix' => 'BillingSoft.'
+    'Name'   => 'u937770786_previewportal',
+    'User'   => 'u937770786_previewportal',
+    'Pass'   => '[y=m10Og3',
+    'Prefix' => 'u937770786_'
 
    
     
@@ -40,5 +40,5 @@ define('DATABASE', [
 ]);
 
 // DB_PREFIX
-define('DB_PREFIX', 'sacra_');
+define('DB_PREFIX', 'u937770786_');
 ?>

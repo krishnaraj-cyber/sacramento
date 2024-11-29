@@ -11,8 +11,8 @@ class ModelsYouthForum extends Model {
         return $query->row;
     }  
     
-    public function getAll() {
-        $query = $this->db->query("SELECT * FROM " . DB_PREFIX . "youthforum");
+    public function getAll($whereClause = '') {
+        $query = $this->db->query("SELECT * FROM " . DB_PREFIX . "youthforum $whereClause");
         return $query->rows;
     }
     

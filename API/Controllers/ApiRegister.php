@@ -21,39 +21,208 @@ class ControllersRegister extends Controller {
             echo 'Error Message: ' . $e->getMessage();
         } 
     }
-    public function getallRegister(){
+
+    public function getallRegister() {
         try {
-            $verify = Authentication::verifyJWT();
-            if ($verify == "Unauthorized") {
-                http_response_code(401);
-                echo json_encode(array("error" => "Unauthorized"));
-            } else {
-               $id=$this->request->get();
-               $notification=new ModelsRegister();
-               $resdata =$notification->getall();
-               $this->response->sendStatus(200);
-               $this->response->setContent($resdata);
+            $faculties = new ModelsBoardmembers();
+            $first = isset($_GET['first']) ? intval($_GET['first']) : 0;
+            $rows = isset($_GET['rows']) ? intval($_GET['rows']) : 10;
+            $globalfilter = isset($_GET['globalfilter']) ? $_GET['globalfilter'] : '';
+            $colfilter = [];
+            if (isset($_GET['colfilter'])) {
+                foreach ($_GET['colfilter'] as $column => $filterData) {
+                    if (is_array($filterData)) {
+                        foreach ($filterData as $operator => $values) {
+                            if ($operator === '$in' && is_array($values)) {
+                                $colfilter[$column] = $values;
+                            }
+                        }
+                    }
+                }
             }
-            } catch (Exception $e) {
-            echo 'Error Message: ' . $e->getMessage();
-        } 
+    
+            $columns = ['First_Name','Last_Name','Email','Phone_Number','Entry_Fees','Willingness','Number_Guests','Adults','Kids','Babes','Game_Title','Team_Name','Team_Members_Count','Disclaimer_Acceptance','EventName','Poster_Type','Status'];
+            $globalFilterQuery = '';
+            if (!empty($globalfilter)) {
+                $globalFilterConditions = [];
+                foreach ($columns as $column) {
+                    $escapedFilter = $this->db->escape($globalfilter);
+                    $globalFilterConditions[] = "$column LIKE '%$escapedFilter%'";
+                }
+                $globalFilterQuery = "(" . implode(' OR ', $globalFilterConditions) . ")";
+            }
+    
+            $additionalFilterQuery = '';
+            if (!empty($colfilter)) {
+                $additionalConditions = [];
+                foreach ($colfilter as $key => $value) {
+                    if (is_array($value)) {
+                        $escapedValues = array_map([$this->db, 'escape'], $value);
+                        $additionalConditions[] = "$key IN ('" . implode("','", $escapedValues) . "')";
+                    } else {
+                        $escapedValue = $this->db->escape($value);
+                        $additionalConditions[] = "$key = '$escapedValue'";
+                    }
+                }
+                $additionalFilterQuery = implode(' AND ', $additionalConditions);
+            }
+    
+            $filterQuery = '';
+            if ($globalFilterQuery && $additionalFilterQuery) {
+                $filterQuery = "WHERE $globalFilterQuery AND $additionalFilterQuery";
+            } elseif ($globalFilterQuery) {
+                $filterQuery = "WHERE $globalFilterQuery";
+            } elseif ($additionalFilterQuery) {
+                $filterQuery = "WHERE $additionalFilterQuery";
+            }
+    
+            $totalCountQuery = "SELECT COUNT(*) as total FROM " . DB_PREFIX . "register $filterQuery";
+            $totalCountResult = $this->db->query($totalCountQuery);
+            
+            if (!$totalCountResult || !isset($totalCountResult->row['total'])) {
+                throw new Exception("Failed to fetch total count.");        
+            }
+            
+            $totalLength = $totalCountResult->row['total'];
+            $dataQuery = "SELECT * FROM " . DB_PREFIX . "register $filterQuery LIMIT $first, $rows";
+            $dataResult = $this->db->query($dataQuery);
+            
+            $resdata = $dataResult->rows;
+            
+            $this->response->sendStatus(200);
+            $this->response->setContent([
+                'resdata' => $resdata,
+                'totallength' => $totalLength
+            ]);
+    
+        } catch (Exception $e) {
+            $this->response->sendStatus(500);
+            $this->response->setContent([
+                'error' => $e->getMessage()
+            ]);
+        }
+    }
+    
+    public function getAllFilterRegister() { //for dashbooard filter
+        try {
+            $field = isset($_POST['field']) ? $_POST['field'] : (isset($_GET['field']) ? $_GET['field'] : '');
+            if (empty($field)) {
+                $this->response->sendStatus(400);
+                $this->response->setContent(['message' => 'Field parameter is required']);
+                return;
+            }
+            $query = "SELECT DISTINCT $field FROM " . DB_PREFIX . "register WHERE Poster_Type = 'Registration Form'";
+            $result = $this->db->query($query);
+            if ($result->num_rows > 0) {
+                $distinctValues = [];
+                foreach ($result->rows as $row) {
+                    $distinctValues[] = $row[$field];
+                }
+                $this->response->sendStatus(200);
+                $this->response->setContent([$field => $distinctValues]);
+            } else {
+                $this->response->sendStatus(200);
+                $this->response->setContent([$field => []]);
+            }
+    
+        } catch (Exception $e) {
+            $this->response->sendStatus(500);
+            $this->response->setContent(['message' => 'An error occurred', 'error' => $e->getMessage()]);
+        }
     }
 
-    public function getFilteredRegister() {
+
+    public function getFilteredbyPoster() {
         try {
             $verify = Authentication::verifyJWT();
             if ($verify == "Unauthorized") {
                 http_response_code(401);
                 echo json_encode(array("error" => "Unauthorized"));
-            } else {
-                $filter = $this->request->get('Poster_Type'); 
-                $notification = new ModelsRegister();
-                $resdata = $notification->getFiltered($filter); 
-                $this->response->sendStatus(200);
-                $this->response->setContent($resdata);
+                return;
             }
+    
+            $first = isset($_GET['first']) ? intval($_GET['first']) : 0;
+            $rows = isset($_GET['rows']) ? intval($_GET['rows']) : 10;
+            $globalfilter = isset($_GET['globalfilter']) ? $_GET['globalfilter'] : '';
+            $colfilter = [];
+            if (isset($_GET['colfilter'])) {
+                foreach ($_GET['colfilter'] as $column => $filterData) {
+                    if (is_array($filterData)) {
+                        foreach ($filterData as $operator => $values) {
+                            if ($operator === '$in' && is_array($values)) {
+                                $colfilter[$column] = $values;
+                            }
+                        }
+                    } else {
+                        $colfilter[$column] = $filterData;
+                    }
+                }
+            }
+            if (!isset($colfilter['Poster_Type'])) {
+                $notification = new ModelsRegister();
+                $defaultPosterTypes = $notification->getUniquePosterTypes();
+                if (!empty($defaultPosterTypes)) {
+                    $colfilter['Poster_Type'] = $defaultPosterTypes;
+                }
+            }
+            $columns = ['First_Name', 'Last_Name', 'Email', 'Phone_Number', 'Entry_Fees', 'Willingness', 
+                        'Number_Guests', 'Adults', 'Kids', 'Babes', 'Game_Title', 'Team_Name', 
+                        'Team_Members_Count', 'Disclaimer_Acceptance', 'EventName', 'Poster_Type', 'Status'];
+            $globalFilterQuery = '';
+            if (!empty($globalfilter)) {
+                $globalFilterConditions = [];
+                foreach ($columns as $column) {
+                    $escapedFilter = $this->db->escape($globalfilter);
+                    $globalFilterConditions[] = "$column LIKE '%$escapedFilter%'";
+                }
+                $globalFilterQuery = "(" . implode(' OR ', $globalFilterConditions) . ")";
+            }
+            $additionalFilterQuery = '';
+            if (!empty($colfilter)) {
+                $additionalConditions = [];
+                foreach ($colfilter as $key => $value) {
+                    if (is_array($value)) {
+                        $escapedValues = array_map([$this->db, 'escape'], $value);
+                        $additionalConditions[] = "$key IN ('" . implode("','", $escapedValues) . "')";
+                    } else {
+                        $escapedValue = $this->db->escape($value);
+                        $additionalConditions[] = "$key = '$escapedValue'";
+                    }
+                }
+                $additionalFilterQuery = implode(' AND ', $additionalConditions);
+            }
+            $filterQuery = '';
+            if ($globalFilterQuery && $additionalFilterQuery) {
+                $filterQuery = "WHERE $globalFilterQuery AND $additionalFilterQuery";
+            } elseif ($globalFilterQuery) {
+                $filterQuery = "WHERE $globalFilterQuery";
+            } elseif ($additionalFilterQuery) {
+                $filterQuery = "WHERE $additionalFilterQuery";
+            }
+            $totalCountQuery = "SELECT COUNT(*) as total FROM " . DB_PREFIX . "register $filterQuery";
+            $totalCountResult = $this->db->query($totalCountQuery);
+            
+            if (!$totalCountResult || !isset($totalCountResult->row['total'])) {
+                throw new Exception("Failed to fetch total count.");        
+            }
+            
+            $totalLength = $totalCountResult->row['total'];
+            $dataQuery = "SELECT * FROM " . DB_PREFIX . "register $filterQuery LIMIT $first, $rows";
+            $dataResult = $this->db->query($dataQuery);
+            
+            $resdata = $dataResult->rows;
+            
+            $this->response->sendStatus(200);
+            $this->response->setContent([
+                'resdata' => $resdata,
+                'totallength' => $totalLength
+            ]);
+    
         } catch (Exception $e) {
-            echo 'Error Message: ' . $e->getMessage();
+            $this->response->sendStatus(500);
+            $this->response->setContent([
+                'error' => $e->getMessage()
+            ]);
         }
     }
     

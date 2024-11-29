@@ -1,12 +1,12 @@
 <?php
 
 namespace Models;
-
 use MVC\Model;
-
 use PDO;
+class ModelsDonation extends Model {
 
-class ModelsRegister extends Model {
+
+
     
     public function lastRecord($id) {
         $query = $this->db->query("SELECT * FROM " . DB_PREFIX . "register WHERE id=" . (int)$id);

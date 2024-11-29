@@ -6,7 +6,7 @@ use MVC\Model;
 
 use PDO;
 
-class ModelsRegister extends Model {
+class ModelsVolunteer extends Model {
     
     public function lastRecord($id) {
         $query = $this->db->query("SELECT * FROM " . DB_PREFIX . "register WHERE id=" . (int)$id);

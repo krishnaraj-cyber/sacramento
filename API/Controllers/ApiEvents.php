@@ -14,16 +14,121 @@ class ControllersEvents extends Controller {
             } catch (Exception $e) {
             echo 'Error Message: ' . $e->getMessage();
         } 
-    }public function getallEvents(){
+    }
+    // public function getallEvents(){
+    //     try {
+    //            $id=$this->request->get();
+    //            $studentachivement=new ModelsEvents();
+    //            $resdata =$studentachivement->getall();
+    //            $this->response->sendStatus(200);
+    //            $this->response->setContent($resdata);
+    //         } catch (Exception $e) {
+    //         echo 'Error Message: ' . $e->getMessage();
+    //     } 
+    // }
+
+    public function getallEvents() {
         try {
-               $id=$this->request->get();
-               $studentachivement=new ModelsEvents();
-               $resdata =$studentachivement->getall();
-               $this->response->sendStatus(200);
-               $this->response->setContent($resdata);
-            } catch (Exception $e) {
-            echo 'Error Message: ' . $e->getMessage();
-        } 
+            $eventsModel = new ModelsEvents();
+            $first = isset($_GET['first']) ? intval($_GET['first']) : 0;
+            $rows = isset($_GET['rows']) ? intval($_GET['rows']) : 10;
+            $globalfilter = isset($_GET['globalfilter']) ? $_GET['globalfilter'] : '';
+            
+            $colfilter = [];
+            if (isset($_GET['colfilter'])) {
+                foreach ($_GET['colfilter'] as $column => $filterData) {
+                    if (is_array($filterData)) {
+                        foreach ($filterData as $operator => $values) {
+                            if ($operator === '$in' && is_array($values)) {
+                                $colfilter[$column] = $values;
+                            }
+                        }
+                    }
+                }
+            }
+    
+            $columns = ['EventName','Image','Date', 'Status'];
+            
+            // Use the model's method to get events with their associated games
+            $allEvents = $eventsModel->getAll();
+    
+            // Apply global filter
+            $filteredEvents = $allEvents;
+            if (!empty($globalfilter)) {
+                $filteredEvents = array_filter($allEvents, function($event) use ($globalfilter, $columns) {
+                    foreach ($columns as $column) {
+                        if (stripos($event[$column], $globalfilter) !== false) {
+                            return true;
+                        }
+                    }
+                    return false;
+                });
+            }
+    
+            // Apply column filters
+            if (!empty($colfilter)) {
+                $filteredEvents = array_filter($filteredEvents, function($event) use ($colfilter) {
+                    foreach ($colfilter as $column => $value) {
+                        if (is_array($value)) {
+                            if (!in_array($event[$column], $value)) {
+                                return false;
+                            }
+                        } else {
+                            if ($event[$column] != $value) {
+                                return false;
+                            }
+                        }
+                    }
+                    return true;
+                });
+            }
+    
+            // Calculate total length
+            $totalLength = count($filteredEvents);
+    
+            // Apply pagination
+            $filteredEvents = array_slice($filteredEvents, $first, $rows);
+    
+            $this->response->sendStatus(200);
+            $this->response->setContent([
+                'resdata' => $filteredEvents,
+                'totallength' => $totalLength
+            ]);
+    
+        } catch (Exception $e) {
+            $this->response->sendStatus(500);
+            $this->response->setContent([
+                'error' => $e->getMessage()
+            ]);
+        }
+    }
+
+    public function getFilterEvents() {
+        try {
+            $field = isset($_POST['field']) ? $_POST['field'] : (isset($_GET['field']) ? $_GET['field'] : '');
+            if (empty($field)) {
+                $this->response->sendStatus(400);
+                $this->response->setContent(['message' => 'Field parameter is required']);
+                return;
+            }
+            $query = "SELECT DISTINCT $field FROM " . DB_PREFIX . "events";
+            $result = $this->db->query($query);
+            if ($result->num_rows > 0) {
+                $distinctValues = [];
+                foreach ($result->rows as $row) {
+                    $distinctValues[] = $row[$field];
+                }
+                $this->response->sendStatus(200);
+                $this->response->setContent([$field => $distinctValues]);
+            } else {
+                $this->response->sendStatus(200);
+                $this->response->setContent([$field => []]);
+            }
+    
+        } catch (Exception $e) {
+            $this->response->sendStatus(500);
+            $this->response->setContent(['message' => 'An error occurred', 'error' => $e->getMessage()]);
+        }
     }
 
     public function saveEvents() {

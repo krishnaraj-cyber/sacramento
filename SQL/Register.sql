@@ -1,6 +1,6 @@
 USE sacra_mento;
 
-CREATE TABLE sacra_Register (
+CREATE TABLE sacra_register (
     id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
     Reg_No TEXT,
     First_Name TEXT DEFAULT NULL,

@@ -27,7 +27,7 @@ class ModelsEvents extends Model {
     //     return $query->rows;
     // }
 
-    public function getAll() {
+    public function getAll($filters = []) {
         $query = $this->db->query("SELECT * FROM " . DB_PREFIX . "events");
         $events = $query->rows;
     
