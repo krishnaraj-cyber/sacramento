@@ -5,7 +5,7 @@ function AboutSection(props) {
     const { boardmem, isLoading } = props;
     return (
         <>
-            <section className="bg-[url('/assets/images/Main/Main-section.png')]   space-y-20   md:py-20 md:pt-0  lg:pt-20 md:mb-0     w-full">
+            <section className="bg-[url('/assets/images/Main/Main-section.png')] bg-cover  space-y-20  md:py-20 md:pt-0  lg:pt-20 md:mb-0 w-full">
                 <div className='max-w-[60rem] px-5 mx-auto space-y-7 md:text-base text-sm'>
                     <div>
                         <p className=" text-2xl  concert-one-regular text-center  md:text-4xl text-[#E91E31]">WHAT WE DO</p>

@@ -33,24 +33,18 @@ function FinancialPage() {
     };
   }, []);
   useEffect(() => { fetchSponsors(); }, [fetchSponsors]);
-
-
   const groupedData = data.reduce((acc, item) => {
     acc[item.Year] = acc[item.Year] || [];
     acc[item.Year].push(item);
     return acc;
   }, {});
-
-
   const toggleYear = (year) => {
     setOpenYear(openYear === year ? null : year);
   };
-
-
   return (
     <>
       <AboutUs title="FINANCIAL SUMMARY" />
-      <FinancialSummary   data={data} isLoading={isLoading} openYear={openYear} groupedData={groupedData} toggleYear={toggleYear} />
+      <FinancialSummary data={data} isLoading={isLoading} openYear={openYear} groupedData={groupedData} toggleYear={toggleYear} />
       <SponsorSwiper />
     </>
   )
