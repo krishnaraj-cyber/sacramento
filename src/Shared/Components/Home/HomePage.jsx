@@ -21,7 +21,6 @@ function HomePage(props) {
       Activities: event.Activities,
       Image: event.Image,
     }));
-  console.log(sponsors)
   return (
     <>
       <section className="  bg-[url('/assets/images/Hero-Section/secc.png')] bg-cover w-full bg-no-repeat lg:my-0 my-10 flex items-center justify-center min-h-[100vh]">
@@ -126,9 +125,8 @@ function HomePage(props) {
                 </div>
               )}
             </div>
-
             <div className="col-span-2 md:space-y-7   ">
-              <h2 className="     md:text-3xl  text-xl  font-bold  text-center  text-[#E91E31]  archivo-black-regular">
+              <h2 className="     md:text-2xl  text-xl  font-bold  text-center  text-[#E91E31]  archivo-black-regular">
                 OUR SPONSORS
               </h2>
               <section className="flex flex-col items-center relative  py-5  px-5  2xl:h-[735px]  xl:h-[600px] lg:h-[600px] cursor-pointer">

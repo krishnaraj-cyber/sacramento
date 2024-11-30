@@ -36,7 +36,6 @@ function Approuter() {
                     <Route path='/gallery-view/:Year' element={<ViewGalleryPage />} />
                     <Route path="/laws" element={<ByLawsPage />} />
                     <Route path="/forms/:id" element={<FormPage />} />
-                    {/* <Route path="/register/:id" element={<RegistrationPage />} /> */}
                     <Route path="/register" element={<RegistrationPage />} />
                 </Route>
                 <Route path="/payment-page" element={<Payments />} />

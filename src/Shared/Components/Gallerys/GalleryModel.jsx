@@ -8,7 +8,6 @@ import apiurl from '../../services/apiendpoint/apiendpoint';
 
 export default function GalleryModel(props) {
     const {setVisible,Visible, ModelData} = props;
-
     const GalleryData = ModelData.Image.split(',').map(items=>({
       src: `${apiurl()}/${items}`,
       width: 3840,

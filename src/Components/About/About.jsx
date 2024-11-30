@@ -2,7 +2,6 @@ import React, { useCallback, useEffect, useState } from 'react'
 import { getallBoardmembers } from '../../Admin/shared/services/apiboardmembers/apiboardmembers';
 import Aboutt from '../../Shared/Components/About/Aboutt';
 function About() {
-
   const [boardmem, setBoardmem] = useState([]);
   const[isLoading , setIsLoading] = useState(false);
   const fetchBoardmem = useCallback(async () => {

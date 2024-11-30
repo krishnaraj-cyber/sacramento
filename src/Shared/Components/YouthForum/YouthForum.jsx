@@ -2,7 +2,6 @@ import React from 'react'
 import apiurl from '../../services/apiendpoint/apiendpoint';
 function YouthForum(props) {
     const { forum, isLoading } = props;
-
     const skeleton = forum?.length || 5;
     return (
         <>

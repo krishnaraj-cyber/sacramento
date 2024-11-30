@@ -10,7 +10,6 @@ import apiurl from "../../services/apiendpoint/apiendpoint";
 function SponsorSwiper() {
   const [sponsors, setSponsors] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
-
   const fetchSponsors = useCallback(async () => {
     let isMounted = true;
     setIsLoading(true);
@@ -33,7 +32,6 @@ function SponsorSwiper() {
   useEffect(() => {
     fetchSponsors();
   }, [fetchSponsors]);
-
   return (
     <>
       <div className="max-w-[80rem] px-5 lg:px-0 w-full  mx-auto md:my-20 my-10 space-y-5">

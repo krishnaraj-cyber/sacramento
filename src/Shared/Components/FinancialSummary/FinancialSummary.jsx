@@ -2,8 +2,6 @@ import React from 'react';
 
 function FinancialSummary(props) {
   const { openYear, groupedData, toggleYear, isLoading } = props;
-
-
   if (isLoading) {
     return (
       <div className="w-full max-w-4xl mx-auto my-6 px-5">
@@ -32,11 +30,9 @@ function FinancialSummary(props) {
       </div>
     );
   }
-
   return (
     <div className="w-full max-w-4xl mx-auto my-6 px-5 space-y-5">
-         <p className="concert-one-regular text-center md:text-4xl text-2xl text-[#E52E3D] uppercase">Years</p>
-
+      <p className="concert-one-regular text-center md:text-4xl text-2xl text-[#E52E3D] uppercase">Years</p>
       {Object.keys(groupedData)
         .sort((a, b) => b - a)
         .map((year) => (

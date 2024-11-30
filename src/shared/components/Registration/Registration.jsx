@@ -1,5 +1,5 @@
-import moment from 'moment-timezone';
-import React, { useEffect } from 'react'
+
+import React  from 'react'
 import apiurl from '../../services/apiendpoint/apiendpoint';
 
 export default function Registration(props) {

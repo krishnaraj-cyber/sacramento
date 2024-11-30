@@ -5,8 +5,6 @@ import apiurl from '../../services/apiendpoint/apiendpoint';
 
 function Form(props) {
     const { activeSection, handleVolunteerSubmit, handleVolunteerChange, eventdetails, volunteerData, isLoading, eventImag } = props;
-    console.log(eventdetails)
-
     return (
         <>
             <div>
@@ -108,7 +106,7 @@ function Form(props) {
                         </div>
                     </section>
                 )}
-            </div >
+            </div>
         </>
     )
 }

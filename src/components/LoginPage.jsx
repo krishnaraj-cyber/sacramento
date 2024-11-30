@@ -14,9 +14,7 @@ export default function LoginPage() {
 
     const handlelogin = async (e) => {
         e.preventDefault();
-   
         const res = await apilogin(formdata);
-
         if (res.message === "Successful login") {
             if(location?.state?.status=="checkoutlogin"){
                 navigate('/checkout')

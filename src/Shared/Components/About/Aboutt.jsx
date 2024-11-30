@@ -52,7 +52,6 @@ function Aboutt(props) {
                                 </div>
                             ))
                         :
-
                         boardmem.map((item, index) => (
                             <div key={index} className="text-center w-full">
                                 <img className='  md:w-72 border-2 border-[#0571BC] rounded-t-xl w-full ' src={`${apiurl()}/${item.Image}`} />

@@ -4,8 +4,6 @@ import apiurl from '../../services/apiendpoint/apiendpoint';
 
 export default function ViewGallery(props) {
     const { OpenModel, Images } = props;
-
-    const param = useParams()
     return (
         <>
             <section className=' '>

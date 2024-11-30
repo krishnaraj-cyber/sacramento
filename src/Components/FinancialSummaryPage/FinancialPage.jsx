@@ -8,16 +8,16 @@ function FinancialPage() {
   const [data, setData] = useState([]);
   const [openYear, setOpenYear] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
-
   const fetchSponsors = useCallback(async () => {
     let isMounted = true;
     setIsLoading(true);
     try {
       const response = await getallFinancialsum();
       if (isMounted) {
-        setData(response.resdata);
-        if (response.length > 0) {
-          const sortedYears = [...new Set(response.map(item => item.Year))].sort((a, b) => b - a);
+        const financialData = response.resdata;
+        setData(financialData);
+        if (financialData.length > 0) {
+          const sortedYears = [...new Set(financialData.map(item => item.Year))].sort((a, b) => b - a);
           setOpenYear(sortedYears[0]);
         }
       }

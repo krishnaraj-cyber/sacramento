@@ -74,7 +74,6 @@ function Home() {
     };
   }, []);
   useEffect(() => { fetchSponsors(); }, [fetchSponsors]);
-
   const fetchBoardmem = useCallback(async () => {
     let isMounted = true;
     setIsLoading(true);
@@ -93,7 +92,6 @@ function Home() {
     };
   }, []);
   useEffect(() => { fetchBoardmem(); }, [fetchBoardmem]);
-
   const fetchGallery = useCallback(async () => {
     let isMounted = true;
     setIsLoading(true);

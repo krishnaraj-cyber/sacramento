@@ -5,12 +5,8 @@ import SponsorSwiper from '../../Shared/Components/SponsorSwiper/SponsorSwiper';
 import AboutUs from '../../Shared/Components/About/AboutUs';
 import moment from 'moment-timezone';
 function GalleryPage() {
-
   const [gallery, setGallery] = useState([]);
-  const [years, setYears] = useState([]);
-  const [groupedData, setGroupedData] = useState({});
   const [isLoading, setIsLoading] = useState(false);
-
   const fetchGallery = useCallback(async () => {
     try {
       setIsLoading(true);
@@ -31,12 +27,9 @@ function GalleryPage() {
       setIsLoading(false);
     }
   }, []);
-
   useEffect(() => {
     fetchGallery();
   }, [fetchGallery]);
-
-
   return (
     <>
       <AboutUs title="GALLERY" />

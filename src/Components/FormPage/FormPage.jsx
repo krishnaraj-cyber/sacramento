@@ -19,7 +19,6 @@ function FormPage() {
     const [eventdetails, setEventDetails] = useState([]);
     const geteventbyID = useCallback(async () => {
         const Event = await getuniquevaluebyfield({ id: param.id });
-        console.log(Event)
         setEventDetails(Event);
     }, []);
     var isMounted = true;
@@ -29,10 +28,6 @@ function FormPage() {
         }
         return () => (isMounted = false);
     }, [param.id])
-
-
-
-
     const [formData, setFormData] = useState({
         firstName: '',
         lastName: '',
@@ -54,7 +49,6 @@ function FormPage() {
             setActiveSection(location.state.section);
         }
     }, [location.state]);
-
     const handleRegisterChange = (e) => {
         const { name, value, type, checked } = e.target;
         setFormData((prevData) => ({
@@ -82,7 +76,6 @@ function FormPage() {
     const handleVolunteerSubmit = async (e) => {
         e.preventDefault();
         setIsLoading(true);
-
         setTimeout(() => {
             setIsLoading(false);
             alert('Volunteer form submitted successfully!');
@@ -95,7 +88,6 @@ function FormPage() {
             });
         }, 2000);
     };
-
     const fetchEvent = useCallback(async () => {
         let isMounted = true;
         try {

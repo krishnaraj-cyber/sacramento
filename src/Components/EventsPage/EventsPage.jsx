@@ -8,7 +8,6 @@ function EventsPage() {
 
   const [event, setEvent] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
-
   const fetchEvent = useCallback(async () => {
     let isMounted = true;
     setIsLoading(true);
@@ -27,7 +26,6 @@ function EventsPage() {
     };
   }, []);
   useEffect(() => { fetchEvent(); }, [fetchEvent]);
-
   return (
     <>
       <AboutUs title="EVENTS" />

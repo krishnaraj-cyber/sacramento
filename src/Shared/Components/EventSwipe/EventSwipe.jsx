@@ -7,7 +7,7 @@ import { Navigation, Pagination, Autoplay } from 'swiper/modules';
 import { Link } from 'react-router-dom';
 import apiurl from '../../services/apiendpoint/apiendpoint';
 function EventSwipe(props) {
-    const { mobileNextRef, mobilePrevRef, event , isLoading } = props;
+    const { mobileNextRef, mobilePrevRef, event, isLoading } = props;
     return (
         <>
             <section className=' max-w-[80rem] mx-auto  my-10 md:my-20 '>
@@ -67,11 +67,6 @@ function EventSwipe(props) {
                                                 <img src={`${apiurl()}/${sponsor.Image}`} className="w-full rounded-lg h-full object-cover" />
                                                 <div className="absolute inset-0 bg-black rounded-lg bg-opacity-50 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                                                     <div className='flex justify-center items-center h-full gap-3 flex-wrap '>
-                                                        {/* <Link to='/forms'>
-                                                    <div className="flex items-center justify-center h-full">
-                                                        <button className="text-[#E91E31] hover:bg-[#E91E31] hover:text-white duration-200 bg-white px-4 py-2 concert-one-regular rounded">Apply Now</button>
-                                                    </div>
-                                                </Link> */}
                                                         {sponsor.Poster_Type === "Registration Form" && (
                                                             <>
                                                                 <Link to={`/register?id=${sponsor.id}&type=volunteer`}>

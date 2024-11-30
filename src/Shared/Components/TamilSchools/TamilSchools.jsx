@@ -1,7 +1,6 @@
 import React from 'react';
 const VideoGallery = (props) => {
     const { currentVideo, TamilSchool, handleVideoClick } = props;
-
     return (
         <div className="max-w-[70rem] mx-auto px-5 my-10 space-y-5 ">
             <div className="cursor-pointer">

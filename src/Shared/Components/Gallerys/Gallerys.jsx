@@ -3,7 +3,6 @@ import apiurl from '../../../Shared/services/apiendpoint/apiendpoint'
 import { Link } from 'react-router-dom'
 import moment from 'moment-timezone'
 function Gallerys({ gallery, isLoading }) {
-
     const skeletonCount = gallery.length || 4;
     return (
         <>
