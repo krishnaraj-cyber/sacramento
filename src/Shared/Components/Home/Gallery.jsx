@@ -71,7 +71,7 @@ function Gallery(props) {
                   }}
                   navigation={{ nextEl: '.swiper-button-nextdea', prevEl: '.swiper-button-prevdea' }}
                   modules={[Pagination, Navigation, Autoplay]} className="w-full  " >
-                  {gallery.map((sponsor, index) => (
+                  {gallery?.map((sponsor, index) => (
                     <SwiperSlide key={index} className="">
                       <Link to='/gallery'>
                         <div className='cursor-pointer  hover:scale-95 duration-200'>

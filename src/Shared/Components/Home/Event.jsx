@@ -66,7 +66,7 @@ function Event(props) {
                                         },
                                     }}
                                     navigation={{ nextEl: '.swiper-button-nextdeals', prevEl: '.swiper-button-prevdeals' }} modules={[Pagination, Navigation, Autoplay]} className="w-full "  >
-                                    {event.map((sponsor, index) => (
+                                    {event?.map((sponsor, index) => (
                                         <SwiperSlide key={index} className="flex justify-center ">
                                             <div className="relative group cursor-pointer">
                                                 <img src={`${apiurl()}/${sponsor.Image}`} className="w-full rounded-lg h-full object-cover" />

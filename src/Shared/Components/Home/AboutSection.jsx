@@ -59,7 +59,7 @@ function AboutSection(props) {
                                             <div className="w-60 h-12 bg-gray-300 mx-auto mt-2 rounded-bl-lg rounded-br-lg"></div>
                                         </div>
                                     ))
-                                : boardmem.slice(0, 3).map((item, index) => (
+                                : boardmem?.slice(0, 3).map((item, index) => (
                                     <div key={index} className="      ">
                                         <img className='  mx-auto border-2 rounded-tr-xl rounded-tl-xl w-60' src={`${apiurl()}/${item.Image}`} />
                                         <div className='border   mx-3 md:text-base text-sm  rounded-bl-lg rounded-br-lg bg-[#FFE134]'>

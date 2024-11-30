@@ -13,8 +13,8 @@ import apiurl from "../../services/apiendpoint/apiendpoint";
 function HomePage(props) {
   const { sponsors, event, isLoading } = props;
   const activeEvents = event
-    .filter((event) => event.Status === "Active")
-    .map((event) => ({
+    ?.filter((event) => event.Status === "Active")
+    ?.map((event) => ({
       id: event.id,
       Eventname: event.Eventname,
       Date: event.Date,
@@ -32,7 +32,7 @@ function HomePage(props) {
                   <div className="grid grid-cols-1 gap-6">
                     {Array(1)
                       .fill(0)
-                      .map((_, index) => (
+                      ?.map((_, index) => (
                         <div key={index} className="flex flex-wrap md:flex-nowrap items-center gap-5 pb-10 animate-pulse">
                           <div className="w-96 h-96 rounded-2xl bg-gray-300"></div>
                           <div className="flex flex-col space-y-3">
@@ -69,7 +69,7 @@ function HomePage(props) {
                       },
                     }}
                     modules={[Pagination, Navigation, Autoplay]} className="w-full" >
-                    {activeEvents.map((item, index) => (
+                    {activeEvents?.map((item, index) => (
                       <SwiperSlide key={index}>
                         <div className="flex flex-wrap md:flex-nowrap md:justify-start justify-center  items-center gap-5 cursor-pointer pb-10">
                           <img className="rounded-2xl border-4 max-w-[500px] border-[#0670bd]" src={`${apiurl()}/${item.Image}`} alt={item.Eventname} />
@@ -152,7 +152,7 @@ function HomePage(props) {
                     modules={[Pagination, Navigation, Autoplay]} className="w-full mx-auto"  >
                     {Array(3)
                       .fill(0)
-                      .map((_, index) => (
+                      ?.map((_, index) => (
                         <SwiperSlide key={index} className="animate-pulse flex flex-col justify-center items-center">
                           <div className="grid   lg:grid-cols-1 gap-6 w-full">
                             <div key={index} className="animate-pulse flex flex-col  justify-center    "  >
@@ -189,7 +189,7 @@ function HomePage(props) {
                     }}
                     modules={[Pagination, Navigation, Autoplay]}
                     className="w-full max-w-5xl"  >
-                    {sponsors.map((sponsor, index) => (
+                    {sponsors?.map((sponsor, index) => (
                       <SwiperSlide key={index} className="flex justify-center items-center mx-auto "  >
                         <div className="flex items-center justify-center">
                           <div className="mx-auto">
@@ -211,8 +211,8 @@ function HomePage(props) {
                         </div>
                       </SwiperSlide>
                     ))}
-                    {sponsors.length < 4 &&
-                      sponsors.map((sponsor, index) => (
+                    {sponsors?.length < 4 &&
+                      sponsors?.map((sponsor, index) => (
                         <SwiperSlide key={`duplicate-${index}`} className="flex justify-center items-center"  >
                           <div className="flex items-center justify-center">
                             <div className="mx-auto">

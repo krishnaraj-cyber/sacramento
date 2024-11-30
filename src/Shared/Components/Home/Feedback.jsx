@@ -62,7 +62,7 @@ function Feedback(props) {
                                 </div>
                             </div>
                             <div className="flex lg:gap-0 gap-4 mb-4 justify-evenly flex-wrap overflow-x-auto md:overflow-visible scrollbar-hide">
-                                {statuses.map((status, index) => (
+                                {statuses?.map((status, index) => (
                                     <button key={index} onClick={() => handleStatusClick(status)}
                                         className={`px-4 py-2 rounded-md whitespace-nowrap font-semibold hover:bg-[#0571BC] hover:text-white text-sm ${activeStatus === status ? 'bg-[#0571BC] text-white' : 'bg-[#FFE134]'}`} >
                                         {status}
