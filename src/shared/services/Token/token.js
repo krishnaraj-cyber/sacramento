@@ -20,7 +20,7 @@ const settoken=(token)=>{
 }
 
 const logout = () => {
-
+ return localStorage.removeItem(tokenkey);
 }
 
 const getuserdetails = () => {

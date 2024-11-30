@@ -41,15 +41,18 @@ export default function Topbar() {
                   as="button"
                   size="sm"
                   className="transition-transform "
-                  src="https://i.pravatar.cc/150?u=a042581f4e29026704d"
+                  src="/assets/images/Header/profile.png"
                 />
               </DropdownTrigger>
               <DropdownMenu aria-label="Profile Actions" variant="flat">
-                <DropdownItem key="profile" className="gap-2 h-14">
-                  <p className="font-semibold">Signed in as</p>
-                  <p className="font-semibold">{getuserdetails()?.Email}</p>
+                <DropdownItem key="profile" className="gap-2 h-14 ">
+                  <div className="flex items-center gap-2">
+                     <p className="font-semibold">Signed in as</p>
+                  <p className="">{getuserdetails()?.Name?.charAt(0).toUpperCase() + getuserdetails()?.Name?.slice(1).toLowerCase()}</p>
+                  </div>
+                 
                 </DropdownItem>
-                <DropdownItem key="logout" onPress={logout}>
+                <DropdownItem key="logout" onPress={logout} className="text-center hover:!text-white bg-gray-200 hover:!bg-red-600 font-semibold">
                   Log Out
                 </DropdownItem>
               </DropdownMenu>
