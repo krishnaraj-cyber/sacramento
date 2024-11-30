@@ -176,7 +176,6 @@ export default function Addandeditform(props) {
 
 
                     { formdata?.Poster_Type == "Registration Form" && <>
-                    {console.log(formdata)}
                         { formdata.Games && formdata?.Games.length !=0 && formdata?.Games.map((items, index) => (
                             <div className='lg:col-span-2' key={index}>
                                 {console.log(formdata.Games)}
