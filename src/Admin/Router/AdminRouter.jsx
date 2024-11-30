@@ -11,6 +11,7 @@ import FinancialSummary from "../components/FinancialSummary";
 import YouthForum from "../components/YouthForum";
 import Volunteer from "../components/Volunteer";
 import Donation from "../components/Donation";
+import Whatwedo from "../components/Home/Whatwedo";
 
 
 const AdminRouter = () => {
@@ -28,6 +29,7 @@ const AdminRouter = () => {
             <Route path="/boardmembers" element={<Boardmembers />} />
             <Route path="/financial" element={<FinancialSummary />} />
             <Route path="/youthforum" element={<YouthForum />} />
+            <Route path="/sections" element={<Whatwedo />} />
             <Route path="/" element={<Navigate to="/admin/dashboard" />} />
           </Route>
       </Routes>
