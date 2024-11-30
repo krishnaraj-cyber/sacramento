@@ -125,7 +125,7 @@ function HomePage(props) {
                 </div>
               )}
             </div>
-            <div className="col-span-2 md:space-y-7   ">
+            <div className="col-span-2 md:space-y-7  md:mt-0 mt-10 ">
               <h2 className="     md:text-2xl  text-xl  font-bold  text-center  text-[#E91E31]  archivo-black-regular">
                 OUR SPONSORS
               </h2>
