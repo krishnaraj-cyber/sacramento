@@ -14,7 +14,7 @@ export default function Dashboard() {
 
     const getallGallery = useCallback(async () => {
         const res = await getallBoardmembers({});
-        setBoard(res.totallength);
+        setBoard(res.resdata);
       }, []);    
       useEffect(() => {
         if (isMounted) {
@@ -25,7 +25,7 @@ export default function Dashboard() {
 
       const getallGallery2 = useCallback(async () => {
         const res = await getallYouthForum({});
-        setYouth(res.totallength);
+        setYouth(res.resdata);
       }, []);
       useEffect(() => {
         if (isMounted) {
@@ -36,7 +36,7 @@ export default function Dashboard() {
 
       const getallGallery3 = useCallback(async () => {
         const res = await getallSponsors({});
-        setSponsor(res.totallength);
+        setSponsor(res.resdata);
       }, []);
       useEffect(() => {
         if (isMounted) {

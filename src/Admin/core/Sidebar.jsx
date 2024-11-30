@@ -32,60 +32,100 @@ export default function Sidebar() {
         <nav className="flex flex-col flex-wrap w-full p-6 hs-accordion-group" data-hs-accordion-always-open>
           <ul className="space-y-2">
             <li>
-              <NavLink to={'/admin/dashboard'} className={({ isActive }) => (`flex items-center gap-x-3.5 py-2.5 px-2.5 ${isActive ? 'bg-gradient-to-tr from-primary to-primary text-white shadow' : 'bg-white shadow'} text-sm text-slate-700 rounded-lg hover:bg-[#19569326] hover:shadow`)}>
+              <div className="p-0.5 hover:bg-gradient-to-l to-70% via-30%  from-[#e81e32] via-black/50 to-white rounded-xl">
+              <div className="bg-white rounded-[10px]">
+              <NavLink to={'/admin/dashboard'} className={({ isActive }) => (`flex items-center gap-x-3.5 py-2.5 px-2.5 ${isActive ? ' bg-gradient-to-br from-[#e7e361] to-[#fffedc] font-medium shadow' : 'bg-white shadow'} bg-white text-sm text-slate-700 rounded-[10px] hover:shadow`)}>
                 <i className="fi fi-rr-dashboard"></i>
                 Dashboard
               </NavLink>
+              </div>
+              </div>
             </li>
            
             <li>
-              <NavLink to={'/admin/boardmembers'} className={({ isActive }) => (`flex items-center gap-x-3.5 py-2.5 px-2.5 ${isActive ? ' bg-gradient-to-tr from-primary to-primary text-white shadow' : 'bg-white shadow'} text-sm rounded-lg hover:bg-[#19569326] hover:shadow`)}>
+            <div className="p-0.5 hover:bg-gradient-to-l to-70% via-30%  from-[#e81e32] via-black/50 to-white rounded-xl">
+            <div className="bg-white rounded-[10px]">
+              <NavLink to={'/admin/boardmembers'} className={({ isActive }) => (`flex items-center gap-x-3.5 py-2.5 px-2.5 ${isActive ? '  bg-gradient-to-br from-[#e7e361] to-[#fffedc] font-medium shadow' : 'bg-white shadow'} text-sm rounded-lg hover:shadow`)}>
                 <i className="fi fi-sr-users-alt"></i> Board Members
               </NavLink>
+              </div>
+              </div>
             </li>
              <li>
-              <NavLink to={'/admin/youthforum'} className={({ isActive }) => (`flex items-center gap-x-3.5 py-2.5 px-2.5 ${isActive ? ' bg-gradient-to-tr from-primary to-primary text-white shadow' : 'bg-white shadow'} text-sm rounded-lg hover:bg-[#19569326] hover:shadow`)}>
+             <div className="p-0.5 hover:bg-gradient-to-l to-70% via-30%  from-[#e81e32] via-black/50 to-white rounded-xl">
+             <div className="bg-white rounded-[10px]">
+              <NavLink to={'/admin/youthforum'} className={({ isActive }) => (`flex items-center gap-x-3.5 py-2.5 px-2.5 ${isActive ? '  bg-gradient-to-br from-[#e7e361] to-[#fffedc] font-medium shadow' : 'bg-white shadow'} text-sm rounded-lg hover:shadow`)}>
               <i className="fi fi-sr-users-alt"></i> Youth Forum
               </NavLink>
+              </div>
+              </div>
             </li>
               <li>
-              <NavLink to={'/admin/sponsors'} className={({ isActive }) => (`flex items-center gap-x-3.5 py-2.5 px-2.5 ${isActive ? ' bg-gradient-to-tr from-primary to-primary text-white shadow' : 'bg-white shadow'} text-sm rounded-lg hover:bg-[#19569326] hover:shadow`)}>
+              <div className="p-0.5 hover:bg-gradient-to-l to-70% via-30%  from-[#e81e32] via-black/50 to-white rounded-xl">
+              <div className="bg-white rounded-[10px]">
+              <NavLink to={'/admin/sponsors'} className={({ isActive }) => (`flex items-center gap-x-3.5 py-2.5 px-2.5 ${isActive ? '  bg-gradient-to-br from-[#e7e361] to-[#fffedc] font-medium shadow' : 'bg-white shadow'} text-sm rounded-lg hover:shadow`)}>
               <i className="fa-solid fa-handshake"></i> Sponsors
               </NavLink>
+              </div>
+              </div>
             </li> 
             <li>
-              <NavLink to={'/admin/event'} className={({ isActive }) => (`flex items-center gap-x-3.5 py-2.5 px-2.5 ${isActive ? ' bg-gradient-to-tr from-primary to-primary text-white shadow' : 'bg-white shadow'} text-sm rounded-lg hover:bg-[#19569326] hover:shadow`)}>
+            <div className="p-0.5 hover:bg-gradient-to-l to-70% via-30%  from-[#e81e32] via-black/50 to-white rounded-xl">
+            <div className="bg-white rounded-[10px]">
+              <NavLink to={'/admin/event'} className={({ isActive }) => (`flex items-center gap-x-3.5 py-2.5 px-2.5 ${isActive ? '  bg-gradient-to-br from-[#e7e361] to-[#fffedc] font-medium shadow' : 'bg-white shadow'} text-sm rounded-lg hover:shadow`)}>
               <i className="fa-solid fa-calendar-days"></i> Event
               </NavLink>
+              </div>
+              </div>
             </li>
 
              <li>
-              <NavLink to={'/admin/register'} className={({ isActive }) => (`flex items-center gap-x-3.5 py-2.5 px-2.5 ${isActive ? ' bg-gradient-to-tr from-primary to-primary text-white shadow' : 'bg-white shadow'} text-sm rounded-lg hover:bg-[#19569326] hover:shadow`)}>
+             <div className="p-0.5 hover:bg-gradient-to-l to-70% via-30%  from-[#e81e32] via-black/50 to-white rounded-xl">
+             <div className="bg-white rounded-[10px]">
+              <NavLink to={'/admin/register'} className={({ isActive }) => (`flex items-center gap-x-3.5 py-2.5 px-2.5 ${isActive ? '  bg-gradient-to-br from-[#e7e361] to-[#fffedc] font-medium shadow' : 'bg-white shadow'} text-sm rounded-lg hover:shadow`)}>
               <i class="fa-regular fa-id-card"></i> Register
               </NavLink>
+              </div>
+              </div>
             </li>
 
             <li>
-              <NavLink to={'/admin/volunteer'} className={({ isActive }) => (`flex items-center gap-x-3.5 py-2.5 px-2.5 ${isActive ? ' bg-gradient-to-tr from-primary to-primary text-white shadow' : 'bg-white shadow'} text-sm rounded-lg hover:bg-[#19569326] hover:shadow`)}>
+            <div className="p-0.5 hover:bg-gradient-to-l to-70% via-30%  from-[#e81e32] via-black/50 to-white rounded-xl">
+            <div className="bg-white rounded-[10px]">
+              <NavLink to={'/admin/volunteer'} className={({ isActive }) => (`flex items-center gap-x-3.5 py-2.5 px-2.5 ${isActive ? '  bg-gradient-to-br from-[#e7e361] to-[#fffedc] font-medium shadow' : 'bg-white shadow'} text-sm rounded-lg hover:shadow`)}>
                 <i className="fi fi-rr-box-open-full"></i> Volunteer
               </NavLink>
+              </div>
+              </div>
             </li>
 
             <li>
-              <NavLink to={'/admin/donation'} className={({ isActive }) => (`flex items-center gap-x-3.5 py-2.5 px-2.5 ${isActive ? ' bg-gradient-to-tr from-primary to-primary text-white shadow' : 'bg-white shadow'} text-sm rounded-lg hover:bg-[#19569326] hover:shadow`)}>
+            <div className="p-0.5 hover:bg-gradient-to-l to-70% via-30%  from-[#e81e32] via-black/50 to-white rounded-xl">
+            <div className="bg-white rounded-[10px]">
+              <NavLink to={'/admin/donation'} className={({ isActive }) => (`flex items-center gap-x-3.5 py-2.5 px-2.5 ${isActive ? '  bg-gradient-to-br from-[#e7e361] to-[#fffedc] font-medium shadow' : 'bg-white shadow'} text-sm rounded-lg hover:shadow`)}>
               <i class="fa-solid fa-circle-dollar-to-slot"></i> Donations
               </NavLink>
+              </div>
+              </div>
             </li>
 
             <li>
-              <NavLink to={'/admin/financial'} className={({ isActive }) => (`flex items-center gap-x-3.5 py-2.5 px-2.5 ${isActive ? ' bg-gradient-to-tr from-primary to-primary text-white shadow' : 'bg-white shadow'} text-sm rounded-lg hover:bg-[#19569326] hover:shadow`)}>
+            <div className="p-0.5 hover:bg-gradient-to-l to-70% via-30%  from-[#e81e32] via-black/50 to-white rounded-xl">
+            <div className="bg-white rounded-[10px]">
+              <NavLink to={'/admin/financial'} className={({ isActive }) => (`flex items-center gap-x-3.5 py-2.5 px-2.5 ${isActive ? '  bg-gradient-to-br from-[#e7e361] to-[#fffedc] font-medium shadow' : 'bg-white shadow'} text-sm rounded-lg hover:shadow`)}>
               <i className="fa-solid fa-coins"></i> Financial Summary
               </NavLink>
+              </div>
+              </div>
             </li> 
             <li>
-              <NavLink to={'/admin/gallery'} className={({ isActive }) => (`flex items-center gap-x-3.5 py-2.5 px-2.5 ${isActive ? ' bg-gradient-to-tr from-primary to-primary text-white shadow' : 'bg-white shadow'} text-sm rounded-lg hover:bg-[#19569326] hover:shadow`)}>
+            <div className="p-0.5 hover:bg-gradient-to-l to-70% via-30%  from-[#e81e32] via-black/50 to-white rounded-xl">
+            <div className="bg-white rounded-[10px]">
+              <NavLink to={'/admin/gallery'} className={({ isActive }) => (`flex items-center gap-x-3.5 py-2.5 px-2.5 ${isActive ? '  bg-gradient-to-br from-[#e7e361] to-[#fffedc] font-medium shadow' : 'bg-white shadow'} text-sm rounded-lg hover:shadow`)}>
               <i className="fa-solid fa-images"></i>Gallery
               </NavLink>
+              </div>
+              </div>
             </li>
            
           </ul>
