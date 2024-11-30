@@ -9,6 +9,7 @@ export default function RegistrationPage(prpos) {
     const [EventData, setEventData] = useState({});
     const [isLoading, setIsLoading] = useState(false);
     const [formdata, setFormdata] = useState({});
+    const [success, setSuccess] = useState(false);
     const location = useLocation();
     const queryParams = new URLSearchParams(location.search);
     const id = queryParams.get('id');
@@ -42,46 +43,55 @@ export default function RegistrationPage(prpos) {
     }
     const handlesave = async (e) => {
         e.preventDefault();
-        if (type === "volunteer") {
-            var formatData = { ...formdata, Poster_Type: "Volunteer" };
-            delete formatData._id;
-            var res = await saveRegisterForm(formatData);
-        }
-        else if (formdata.Poster_Type == "RSVP") {
-            if (formdata.Peyment == "Yes") {
-                if (formdata.Guest_Count == "Age Wise") {
-                    var totalAmount = ((formdata.Fees_Adults * 1) * formdata.Adults) + ((formdata.Fees_Kids * 1) * formdata.Kids) + ((formdata.Fees_Under5 * 1) * formdata.Babes);
-                    var formatData = { ...formdata, Entry_Fees: totalAmount };
-                    delete formatData.id;
-                    localStorage.setItem('registerData', JSON.stringify(formatData));
-                    var res = await saveRegisterForm(formatData);  
+        try {
+            if (type === "volunteer") {
+                var formatData = { ...formdata, Poster_Type: "Volunteer" };
+                delete formatData._id;
+                var res = await saveRegisterForm(formatData);
+            }
+            else if (formdata.Poster_Type == "RSVP") {
+                if (formdata.Peyment == "Yes") {
+                    if (formdata.Guest_Count == "Age Wise") {
+                        var totalAmount = ((formdata.Fees_Adults * 1) * formdata.Adults) + ((formdata.Fees_Kids * 1) * formdata.Kids) + ((formdata.Fees_Under5 * 1) * formdata.Babes);
+                        var formatData = { ...formdata, Entry_Fees: totalAmount };
+                        delete formatData.id;
+                        localStorage.setItem('registerData', JSON.stringify(formatData));
+                        var res = await saveRegisterForm(formatData);
+                    }
+                    else {
+                        var totalAmount = ((formdata.Entry_Fees * 1) * formdata.Number_Guests);
+                        var formatData = { ...formdata, Entry_Fees: totalAmount };
+                        delete formatData.id;
+                        localStorage.setItem('registerData', JSON.stringify(formatData));
+                        var res = await saveRegisterForm(formatData);
+                    }
                 }
                 else {
-                    var totalAmount = ((formdata.Entry_Fees * 1) * formdata.Number_Guests);
-                    var formatData = { ...formdata, Entry_Fees: totalAmount };
+                    var formatData = { ...formdata, Entry_Fees: "Free" };
                     delete formatData.id;
-                    localStorage.setItem('registerData', JSON.stringify(formatData));
                     var res = await saveRegisterForm(formatData);
                 }
             }
             else {
-                var formatData = { ...formdata, Entry_Fees: "Free" };
+                var formatData = formdata;
                 delete formatData.id;
-                var res = await saveRegisterForm(formatData);
+                localStorage.setItem('registerData', JSON.stringify(formatData))
+                var res = await saveRegisterForm(formatData)
             }
-        }
-        else {
-            var formatData = formdata;
-            delete formatData.id;
-            localStorage.setItem('registerData', JSON.stringify(formatData))
-            var res = await saveRegisterForm(formatData)
-        }
-        res.message == "Registered Successfully" ? toast.success("Registered Successfully") : toast.error("Registered Failed")
-    }
+            res.message == "Registered Successfully"
 
+            if (res.message === "Registered Successfully") {
+                setSuccess(true);
+            } else {
+                toast.error("Registration Failed");
+            }
+        } catch (error) {
+            console.error("Error saving data:", error);
+        }
+    };
     return (
         <>
-            <Registration isLoading={isLoading} type={type} EventData={EventData} formdata={formdata} handlechange={handlechange} handlesave={handlesave} />
+            <Registration isLoading={isLoading} type={type} success={success} EventData={EventData} formdata={formdata} handlechange={handlechange} handlesave={handlesave} />
         </>
     )
 }
