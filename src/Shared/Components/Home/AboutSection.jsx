@@ -15,7 +15,8 @@ function AboutSection(props) {
                             <div key={index} className={`bg-[#E91E31] text-center p-2 md:px-10 text-white font-semibold ${index % 2 === 0 ? 'rounded-tl-3xl rounded-bl-3xl' : 'rounded-tr-3xl rounded-br-3xl'}`}>
                                 <p className='w-32 mx-auto flex justify-center items-center '>{contents.content}</p>
                             </div>
-                        ))}
+                        ))
+                        }
                     </div>
                 </div>
                 <div className=' max-w-[60rem]  mx-auto px-5'>
@@ -39,7 +40,8 @@ function AboutSection(props) {
                                             <p className="vietnam text-sm"> {item.Designation}</p>
                                         </div>
                                     </div>
-                                ))}
+                                ))
+                            }
                         </div>
                         <div>
                             <div className='text-center'>

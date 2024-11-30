@@ -47,21 +47,58 @@ function Home() {
       setCustomAmount(value);
     }
   };
-  useEffect(() => {
-    if (activeStatus === 'Custom Amount') {
-      customInputRef.current?.focus();
-    }
-  }, [activeStatus]);
-  const fetchData = useCallback(async (apiCall, setter) => {
+  // useEffect(() => {
+  //   if (activeStatus === 'Custom Amount') {
+  //     customInputRef.current?.focus();
+  //   }
+  // }, [activeStatus]);
+  // const fetchData = useCallback(async (apiCall, setter) => {
+  //   let isMounted = true;
+  //   setIsLoading(true);
+  //   try {
+  //     const response = await apiCall();
+  //     if (isMounted) {
+  //       setter(response.resdata);
+  //     }
+  //   } catch (error) {
+  //     console.error('Error fetching data:', error);
+  //   } finally {
+  //     if (isMounted) {
+  //       setIsLoading(false);
+  //     }
+  //   }
+  //   return () => {
+  //     isMounted = false;
+  //   };
+  // }, []);
+  // useEffect(() => {
+  //   fetchData(getallSponsors, setSponsors);
+  // }, [fetchData]);
+  // useEffect(() => {
+  //   fetchData(getallBoardmembers, setBoardmem);
+  // }, [fetchData]);
+  // useEffect(() => {
+  //   fetchData(getallGallerys, setGallery);
+  // }, [fetchData]);
+  // useEffect(() => {
+  //   fetchData(getallEvents, setEvent);
+  // }, [fetchData]);
+  
+  // useEffect(() =>{
+  //   fetchData(getallAbout , setAbout);
+  // }, [fetchData]);
+
+
+
+
+  const fetchSponsors = useCallback(async () => {
     let isMounted = true;
     setIsLoading(true);
     try {
-      const response = await apiCall();
-      if (isMounted) {
-        setter(response.resdata);
-      }
+      const response = await getallSponsors();
+      if (isMounted) { setSponsors(response.resdata); }
     } catch (error) {
-      console.error('Error fetching data:', error);
+      console.error('Error fetching sponsors:', error);
     } finally {
       if (isMounted) {
         setIsLoading(false);
@@ -71,22 +108,62 @@ function Home() {
       isMounted = false;
     };
   }, []);
-  useEffect(() => {
-    fetchData(getallSponsors, setSponsors);
-  }, [fetchData]);
-  useEffect(() => {
-    fetchData(getallBoardmembers, setBoardmem);
-  }, [fetchData]);
-  useEffect(() => {
-    fetchData(getallGallerys, setGallery);
-  }, [fetchData]);
-  useEffect(() => {
-    fetchData(getallEvents, setEvent);
-  }, [fetchData]);
-  // useEffect(() =>{
-  //   fetchData(getallAbout , setAbout);
-  // }, [fetchData]);
+  useEffect(() => { fetchSponsors(); }, [fetchSponsors]);
+  const fetchBoardmem = useCallback(async () => {
+    let isMounted = true;
+    setIsLoading(true);
+    try {
+      const response = await getallBoardmembers();
+      if (isMounted) { setBoardmem(response.resdata); }
+    } catch (error) {
+      console.error('Error fetching sponsors:', error);
+    } finally {
+      if (isMounted) {
+        setIsLoading(false);
+      }
+    }
+    return () => {
+      isMounted = false;
+    };
+  }, []);
+  useEffect(() => { fetchBoardmem(); }, [fetchBoardmem]);
+  const fetchGallery = useCallback(async () => {
+    let isMounted = true;
+    setIsLoading(true);
+    try {
+      const response = await getallGallerys();
+      if (isMounted) { setGallery(response.resdata); }
+    } catch (error) {
+      console.error('Error fetching sponsors:', error);
+    } finally {
+      if (isMounted) {
+        setIsLoading(false);
+      }
+    }
+    return () => {
+      isMounted = false;
+    };
+  }, []);
+  useEffect(() => { fetchGallery(); }, [fetchGallery]);
 
+  const fetchEvent = useCallback(async () => {
+    let isMounted = true;
+    setIsLoading(true);
+    try {
+      const response = await getallEvents();
+      if (isMounted) { setEvent(response.resdata); }
+    } catch (error) {
+      console.error('Error fetching sponsors:', error);
+    } finally {
+      if (isMounted) {
+        setIsLoading(false);
+      }
+    }
+    return () => {
+      isMounted = false;
+    };
+  }, []);
+  useEffect(() => { fetchEvent(); }, [fetchEvent]);
   return (
     <>
       <HomePage sponsors={sponsors} isLoading={isLoading} setSponsors={setSponsors} event={event} />

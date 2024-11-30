@@ -16,7 +16,7 @@ export default function Registration(props) {
                             <img className='rounded-xl w-52' src={`${apiurl()}/${EventData?.Image}`} alt="" />
                         )}
                     </div>
-                    <div className='  '>
+                    <div className=' '>
                         <div className="mb-10    mx-auto  flex justify-center items-center   text-black  bg-no-repeat  relative"   >
                             <div className="absolute   rounded-lg"></div>
                             <div className="relative z-10 text-center space-y-2 ">
@@ -183,7 +183,7 @@ export default function Registration(props) {
                                             </div>
                                             <input type="text" name="Team_Name" value={formdata?.Team_Name} onChange={handlechange} className="w-full px-4 py-2 border rounded-md outline-none" required />
                                         </div>
-
+                                     
                                         {formdata?.Participant_Type == "Custom Team" && <>
                                             <div className="mb-2">
                                                 <div className="mb-2">
