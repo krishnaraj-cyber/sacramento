@@ -1,4 +1,3 @@
-
 import React from 'react'
 import apiurl from '../../services/apiendpoint/apiendpoint';
 import { Link } from 'react-router-dom';
@@ -84,7 +83,6 @@ export default function Registration(props) {
                                 </div>
                                 <input type="email" name="Email" value={formdata?.Email} onChange={handlechange} className="w-full px-4 py-2 border rounded-md outline-none" required />
                             </div>
-
                             <div className="mb-2">
                                 <div className="mb-2">
                                     <label>Phone Number <span className='text-[#ef4444]'>*</span></label>
