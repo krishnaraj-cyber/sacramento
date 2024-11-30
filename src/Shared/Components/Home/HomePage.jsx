@@ -90,7 +90,7 @@ function HomePage(props) {
                               <span className="text-[#E91E31] md:text-base text-sm">{item.Date.split('T')[0]}</span>
                             </p>
                             <p className="concert-one-regular text-[#0470BC] text-xl">Date Duration:</p>
-                            <div className=" flex justify-center">
+                            <div className=" flex md:justify-start justify-center">
                               <CountdownTimer date={item.Date} />
                             </div>
                           </div>
