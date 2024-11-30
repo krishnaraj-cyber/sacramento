@@ -38,9 +38,7 @@ export default function Registration(props) {
                                     {isLoading ? (
                                         <div className="w-52 h-10 bg-gray-300 animate-pulse rounded-xl"></div>
                                     ) : (
-                                        <>
-                                            <p>{EventData?.Date}</p>
-                                            <p>{EventData?.Event_Time}</p>
+                                        <>     <p>{EventData?.Date}</p>     <p>{EventData?.Event_Time}</p>
                                         </>
                                     )}
                                 </div>

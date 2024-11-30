@@ -68,17 +68,11 @@ function HomePage(props) {
                         slidesPerView: 1,
                       },
                     }}
-                    modules={[Pagination, Navigation, Autoplay]}
-                    className="w-full"
-                  >
+                    modules={[Pagination, Navigation, Autoplay]} className="w-full" >
                     {activeEvents.map((item, index) => (
                       <SwiperSlide key={index}>
                         <div className="flex flex-wrap md:flex-nowrap md:justify-start justify-center  items-center gap-5 cursor-pointer pb-10">
-                          <img
-                            className="rounded-2xl border-4 max-w-[500px] border-[#0670bd]"
-                            src={`${apiurl()}/${item.Image}`}
-                            alt={item.Eventname}
-                          />
+                          <img className="rounded-2xl border-4 max-w-[500px] border-[#0670bd]" src={`${apiurl()}/${item.Image}`} alt={item.Eventname} />
                           <div className="md:space-y-5 space-y-3  ">
                             <p className="concert-one-regular md:text-2xl text-base text-white w-fit px-3 rounded-md bg-[#0470BC]">
                               UPCOMING EVENT
@@ -96,7 +90,9 @@ function HomePage(props) {
                               <span className="text-[#E91E31] md:text-base text-sm">{item.Date.split('T')[0]}</span>
                             </p>
                             <p className="concert-one-regular text-[#0470BC] text-xl">Date Duration:</p>
-                            <CountdownTimer date={item.Date} />
+                            <div className=" flex justify-center">
+                              <CountdownTimer date={item.Date} />
+                            </div>
                           </div>
                         </div>
                       </SwiperSlide>
@@ -126,7 +122,7 @@ function HomePage(props) {
               )}
             </div>
             <div className="col-span-2 md:space-y-7  md:mt-0 mt-10 ">
-              <h2 className="     md:text-2xl  text-xl  font-bold  text-center  text-[#E91E31]  archivo-black-regular">
+              <h2 className="md:text-2xl  text-xl  font-bold  text-center  text-[#E91E31]  archivo-black-regular">
                 OUR SPONSORS
               </h2>
               <section className="flex flex-col items-center relative  py-5  px-5  2xl:h-[735px]  xl:h-[600px] lg:h-[600px] cursor-pointer">

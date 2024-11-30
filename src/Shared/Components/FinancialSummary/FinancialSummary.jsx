@@ -1,5 +1,4 @@
 import React from 'react';
-
 function FinancialSummary(props) {
   const { openYear, groupedData, toggleYear, isLoading } = props;
   if (isLoading) {
