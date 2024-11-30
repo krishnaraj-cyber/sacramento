@@ -1,5 +1,5 @@
 <?php
-require './API/Models/testimonial.php';
+require './API/Models/Testimonial.php';
 use Auth\Authentication;
 use Models\ModelsTestimonial;
 use MVC\Controller;

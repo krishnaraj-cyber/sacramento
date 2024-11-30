@@ -13,6 +13,7 @@ require './API/Controllers/ApiYouthForum.php';
 require './API/Controllers/ApiRegister.php';
 require './API/Controllers/ApiVolunteer.php';
 require './API/Controllers/ApiDonation.php';
+require './API/Controllers/Home/ApiWhatwedo.php';
 
 use Controller\APILoginController;
 //login or authentication
@@ -116,5 +117,13 @@ $router->delete('/sacra_mento/api/deletevolunteer', function(){(new ControllersV
 $router->post('/sacra_mento/api/getallfilterdonations', function(){(new ControllersDonation)->getAllFilterDonation();}); //dashboard filter
 $router->get('/sacra_mento/api/getfilterdonation', function(){(new ControllersDonation)->getFilteredDonation();});
 $router->delete('/sacra_mento/api/deletedonation', function(){(new ControllersDonation)->deleteDonation();});
+
+//Home > What we do
+$router->get('/sacra_mento/api/getwhatwedosbyid', function(){(new ControllersWhatwedo)->getWhatwedobyid();});
+$router->get('/sacra_mento/api/getallwhatwedos', function(){(new ControllersWhatwedo)->getallWhatwedo();});
+$router->post('/sacra_mento/api/getallfilterwhatwedo', function(){(new ControllersWhatwedo)->getFilterSummary();});
+$router->post('/sacra_mento/api/savewhatwedo', function(){(new ControllersWhatwedo)->saveWhatwedo();});
+$router->post('/sacra_mento/api/editwhatwedo', function(){(new ControllersWhatwedo)->updateWhatwedo();});
+$router->delete('/sacra_mento/api/deletewhatwedo', function(){(new ControllersWhatwedo)->deleteWhatwedo();});
 
 ?>

@@ -42,6 +42,7 @@ class Controller {
     }
 
     public function send($status = 200, $msg) {
+        echo $status,$msg;
         $this->response->setHeader(sprintf('HTTP/1.1 ' . $status . ' %s' , $this->response->getStatusCodeText($status)));
         $this->response->setContent($msg);
     }

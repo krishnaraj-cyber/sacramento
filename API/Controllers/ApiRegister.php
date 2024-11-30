@@ -229,25 +229,103 @@ class ControllersRegister extends Controller {
 
  
 
-    public function saveRegister()
-    {
-        try {      
-            $reqdata = $_SERVER['CONTENT_TYPE'] === 'application/json' ? json_decode(file_get_contents("php://input"), true) : $_POST;
-            if (!$reqdata) {
-                echo json_encode(["error" => "Invalid or missing input data"]);
-                return;
-            }
+    // public function saveRegister()
+    // {
+    //     try {      
+    //         $reqdata = $_SERVER['CONTENT_TYPE'] === 'application/json' ? json_decode(file_get_contents("php://input"), true) : $_POST;
+    //         if (!$reqdata) {
+    //             echo json_encode(["error" => "Invalid or missing input data"]);
+    //             return;
+    //         }
 
               
-                $message="Registered Successfully";
+    //             $message="Registered Successfully";
 
-                 $notification=new ModelsRegister();
-                 $reqdata =$notification->save($reqdata);
-                 $resdata = [$reqdata,'message'=>$message];
-                 $this->response->sendStatus(200);
-                 $this->response->setContent($resdata);
+    //              $notification=new ModelsRegister();
+    //              $reqdata =$notification->save($reqdata);
+    //              $resdata = [$reqdata,'message'=>$message];
+    //              $this->response->sendStatus(200);
+    //              $this->response->setContent($resdata);
+    //     } catch (Exception $e) {
+    //         echo 'Error Message: ' . $e->getMessage();
+    //     }
+    // }
+
+    public function saveRegister()
+    {
+        try {
+            // Determine input source
+            if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+                // Check if it's JSON content type
+                if (isset($_SERVER['CONTENT_TYPE']) && 
+                    strpos($_SERVER['CONTENT_TYPE'], 'application/json') !== false) {
+                    // Parse raw JSON input
+                    $jsonInput = file_get_contents('php://input');
+                    
+                    // Debug logging
+                    error_log('Raw JSON Input: ' . $jsonInput);
+                    
+                    // Decode JSON input
+                    $reqdata = json_decode($jsonInput, true);
+                    
+                    // Check for JSON decoding errors
+                    if (json_last_error() !== JSON_ERROR_NONE) {
+                        http_response_code(400);
+                        echo json_encode([
+                            'error' => 'Invalid JSON',
+                            'json_error' => json_last_error_msg(),
+                            'status' => false
+                        ]);
+                        return;
+                    }
+                } else {
+                    // Fallback to $_POST if not JSON
+                    $reqdata = $_POST;
+                }
+            } else {
+                // Handle non-POST requests
+                http_response_code(405);
+                echo json_encode([
+                    'error' => 'Method Not Allowed',
+                    'status' => false
+                ]);
+                return;
+            }
+    
+            // Validate input
+            if (!is_array($reqdata) || empty($reqdata)) {
+                http_response_code(400);
+                echo json_encode([
+                    'error' => 'Invalid or missing input data',
+                    'status' => false
+                ]);
+                return;
+            }
+    
+            // Process registration
+            $message = "Registered Successfully";
+            $notification = new ModelsRegister();
+            $savedData = $notification->save($reqdata);
+    
+            // Prepare response
+            $resdata = [
+                 $savedData,
+                'message' => $message
+            ];
+    
+            // Send JSON response
+            header('Content-Type: application/json');
+            echo json_encode($resdata);
+            http_response_code(200);
+    
         } catch (Exception $e) {
-            echo 'Error Message: ' . $e->getMessage();
+            // Error handling
+            http_response_code(500);
+            echo json_encode([
+                'error' => $e->getMessage(),
+                'trace' => $e->getTraceAsString(),
+                'status' => false
+            ]);
         }
     }
 

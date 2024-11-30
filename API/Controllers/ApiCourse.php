@@ -1,5 +1,5 @@
 <?php
-require './API/Models/course.php';
+require './API/Models/Course.php';
 use Auth\Authentication;
 use Models\ModelsCourse;
 use MVC\Controller;

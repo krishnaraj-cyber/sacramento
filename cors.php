@@ -1,8 +1,8 @@
 <?php
     $allowedOrigins = array(
         'http://192.168.29.62:5173', 
-        'http://192.168.29.174:5173', 
-        'previewportal.site' 
+        'http://192.168.29.174:5173',
+        // 'https://previewportal.site' 
         
     );
     if (isset($_SERVER['HTTP_ORIGIN']) && in_array($_SERVER['HTTP_ORIGIN'], $allowedOrigins)) {
