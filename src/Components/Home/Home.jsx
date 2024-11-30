@@ -24,17 +24,14 @@ function Home() {
     firstName: "",
     email: "",
   });
-
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
   };
-
   const handleSubmit = (e) => {
     e.preventDefault();
 
   };
-
   const handleStatusClick = (status) => {
     if (status === 'Custom Amount') {
       setActiveStatus('Custom Amount');
@@ -43,7 +40,6 @@ function Home() {
       setCustomAmount('');
     }
   };
-
   const handleCustomAmountChange = (e) => {
     const value = e.target.value;
     if (/^\d*$/.test(value)) {
@@ -55,15 +51,16 @@ function Home() {
       customInputRef.current?.focus();
     }
   }, [activeStatus]);
-
-  const fetchSponsors = useCallback(async () => {
+  const fetchData = useCallback(async (apiCall, setter) => {
     let isMounted = true;
     setIsLoading(true);
     try {
-      const response = await getallSponsors();
-      if (isMounted) { setSponsors(response.resdata); }
+      const response = await apiCall();
+      if (isMounted) {
+        setter(response.resdata);
+      }
     } catch (error) {
-      console.error('Error fetching sponsors:', error);
+      console.error('Error fetching data:', error);
     } finally {
       if (isMounted) {
         setIsLoading(false);
@@ -73,64 +70,18 @@ function Home() {
       isMounted = false;
     };
   }, []);
-  useEffect(() => { fetchSponsors(); }, [fetchSponsors]);
-
-  const fetchBoardmem = useCallback(async () => {
-    let isMounted = true;
-    setIsLoading(true);
-    try {
-      const response = await getallBoardmembers();
-      if (isMounted) { setBoardmem(response.resdata); }
-    } catch (error) {
-      console.error('Error fetching sponsors:', error);
-    } finally {
-      if (isMounted) {
-        setIsLoading(false);
-      }
-    }
-    return () => {
-      isMounted = false;
-    };
-  }, []);
-  useEffect(() => { fetchBoardmem(); }, [fetchBoardmem]);
-
-  const fetchGallery = useCallback(async () => {
-    let isMounted = true;
-    setIsLoading(true);
-    try {
-      const response = await getallGallerys();
-      if (isMounted) { setGallery(response.resdata); }
-    } catch (error) {
-      console.error('Error fetching sponsors:', error);
-    } finally {
-      if (isMounted) {
-        setIsLoading(false);
-      }
-    }
-    return () => {
-      isMounted = false;
-    };
-  }, []);
-  useEffect(() => { fetchGallery(); }, [fetchGallery]);
-
-  const fetchEvent = useCallback(async () => {
-    let isMounted = true;
-    setIsLoading(true);
-    try {
-      const response = await getallEvents();
-      if (isMounted) { setEvent(response.resdata); }
-    } catch (error) {
-      console.error('Error fetching sponsors:', error);
-    } finally {
-      if (isMounted) {
-        setIsLoading(false);
-      }
-    }
-    return () => {
-      isMounted = false;
-    };
-  }, []);
-  useEffect(() => { fetchEvent(); }, [fetchEvent]);
+  useEffect(() => {
+    fetchData(getallSponsors, setSponsors);
+  }, [fetchData]);
+  useEffect(() => {
+    fetchData(getallBoardmembers, setBoardmem);
+  }, [fetchData]);
+  useEffect(() => {
+    fetchData(getallGallerys, setGallery);
+  }, [fetchData]);
+  useEffect(() => {
+    fetchData(getallEvents, setEvent);
+  }, [fetchData]);
 
   return (
     <>

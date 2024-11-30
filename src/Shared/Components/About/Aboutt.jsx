@@ -51,9 +51,8 @@ function Aboutt(props) {
                                     <div className="w-60 h-12 bg-gray-300 mx-auto mt-2 rounded-bl-lg rounded-br-lg"></div>
                                 </div>
                             ))
-                        :
 
-                        boardmem.map((item, index) => (
+                        : boardmem.map((item, index) => (
                             <div key={index} className="text-center w-full">
                                 <img className='  md:w-72 border-2 border-[#0571BC] rounded-t-xl w-full ' src={`${apiurl()}/${item.Image}`} />
                                 <div className='  flex flex-col justify-center items-center mx-2  h-24  rounded-bl-lg  rounded-br-lg bg-[#0571BC]'>

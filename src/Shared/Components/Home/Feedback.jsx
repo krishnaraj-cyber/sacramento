@@ -1,8 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom';
-import { useNavigate } from 'react-router-dom';
 function Feedback(props) {
-    const { activeStatus, customInputRef, handleCustomAmountChange, event, handleInputChange, isModalOpen, formData, handleSubmit, customAmount, statuses, handleDonateNow, handleModalClose, setIsModalOpen, handleStatusClick, } = props;
+    const { activeStatus, customInputRef, handleCustomAmountChange, customAmount, statuses, handleStatusClick, } = props;
     const donationAmount = activeStatus === "Custom Amount" ? customAmount : activeStatus.replace("$", "");
 
     return (
@@ -63,7 +62,7 @@ function Feedback(props) {
                                 </div>
                             </div>
                             <div className="flex lg:gap-0 gap-4 mb-4 justify-evenly flex-wrap overflow-x-auto md:overflow-visible scrollbar-hide">
-                                {statuses.map((status,index) => (
+                                {statuses.map((status, index) => (
                                     <button key={index} onClick={() => handleStatusClick(status)}
                                         className={`px-4 py-2 rounded-md whitespace-nowrap font-semibold hover:bg-[#0571BC] hover:text-white text-sm ${activeStatus === status ? 'bg-[#0571BC] text-white' : 'bg-[#FFE134]'}`} >
                                         {status}
@@ -71,20 +70,13 @@ function Feedback(props) {
                                 ))}
                             </div>
                             <div className="md:text-left text-center">
-                                 
-                                     
-                                         
-                                            <Link  to={`/register?&type=Donation&amount=${donationAmount}`}>
-                                                <button className="bg-[#0571BC] text-[#FFE134] md:ml-4 hover:bg-[#FFE134] hover:text-[#0571BC] duration-200 p-2 md:text-xl rounded-md concert-one-regular">
-                                                    DONATE NOW
-                                                </button>
-                                            </Link>
-                                         
-                                     
-                               
+                                <Link to={`/register?&type=Donation&amount=${donationAmount}`}>
+                                    <button className="bg-[#0571BC] text-[#FFE134] md:ml-4 hover:bg-[#FFE134] hover:text-[#0571BC] duration-200 p-2 md:text-xl rounded-md concert-one-regular">
+                                        DONATE NOW
+                                    </button>
+                                </Link>
                             </div>
                         </div>
-
                     </div>
                 </div>
             </section>

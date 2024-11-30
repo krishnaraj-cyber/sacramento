@@ -7,7 +7,7 @@ import { Navigation, Pagination, Autoplay } from 'swiper/modules';
 import { Link } from 'react-router-dom';
 import apiurl from '../../services/apiendpoint/apiendpoint';
 function Gallery(props) {
-  const { mobileNextStepRef, mobilePreviousRef, gallery, isLoading } = props;
+  const { gallery, isLoading } = props;
   return (
     <>
       <section className=' max-w-[90rem] mx-auto   md:my-20  my-10'>
@@ -39,9 +39,7 @@ function Gallery(props) {
                     nextEl: '.swiper-button-nextdea',
                     prevEl: '.swiper-button-prevdea',
                   }}
-                  modules={[Pagination, Navigation, Autoplay]}
-                  className="w-full"
-                >
+                  modules={[Pagination, Navigation, Autoplay]} className="w-full"  >
                   {Array(3)
                     .fill(0)
                     .map((_, index) => (
@@ -90,12 +88,10 @@ function Gallery(props) {
                 </Swiper>
               )}
               <div
-                ref={mobileNextStepRef}
                 className="absolute  right-0   top-1/2  rotate-90  cursor-pointer"  >
                 <img className=" swiper-button-nextdea px-2 w-14" src="/assets/images/Hero-Section/Top.png" alt="Previous" />
               </div>
               <div
-                ref={mobilePreviousRef}
                 className="absolute  left-0 top-1/2   rotate-90 cursor-pointer">
                 <img className=" swiper-button-prevdea px-2 w-14" src="/assets/images/Hero-Section/Bottom.png" alt="Next" />
               </div>

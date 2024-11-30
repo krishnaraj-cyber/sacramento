@@ -6,54 +6,62 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
 @media (max-width: 644px) and (min-width: 425px) {
-  .fit{
+  .fit {
     height: 500px;
   }
 }
-body{
-    font-family: "Poppins", sans-serif;
+
+body {
+  font-family: "Poppins", sans-serif;
 }
+
 html {
-    scroll-behavior: smooth;
+  scroll-behavior: smooth;
 }
+
 .text-outline-yellow {
   text-shadow: 2px 2px 0 #FFD700, -2px -2px 0 #FFD700, 2px -2px 0 #FFD700, -2px 2px 0 #FFD700;
 }
+
 .text-outline-white {
   text-shadow: 2px 2px 0 #fff, -2px -2px 0 #fff, 2px -2px 0 #fff, -2px 2px 0 #fff;
 }
+
 .concert-one-regular {
   font-family: "Concert One", sans-serif;
-  
+
   font-weight: 400;
   font-style: normal;
 }
+
 .vietnam {
-  font-family: "Be Vietnam Pro", sans-serif;  
+  font-family: "Be Vietnam Pro", sans-serif;
   font-weight: 400;
   font-style: normal;
 }
+
 .baumans-regular {
   font-family: "Baumans", system-ui;
   font-weight: 500;
   font-style: normal;
 }
 
-.sponsor-clip-path{
+.sponsor-clip-path {
   clip-path: polygon(20% 0%, 80% 0%, 100% 100%, 0% 100%);
 }
+
 .swiper {
   width: 100%;
   height: 100%;
 }
+
 .swiper-slide {
   display: flex;
   justify-content: center;
   align-items: center;
 }
-
- 
 
 .polygon-clip {
   clip-path: none;
@@ -63,4 +71,11 @@ html {
   .polygon-clip {
     clip-path: polygon(0 0, 100% 0, 91% 100%, 0% 100%);
   }
+}
+
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
 }

@@ -47,9 +47,6 @@ function VideoSwiper() {
                     </div>
                 </section>
             </div>
-
-
-
         </>
     )
 }

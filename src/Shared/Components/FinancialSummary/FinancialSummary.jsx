@@ -1,12 +1,10 @@
 import React from 'react';
-
 function FinancialSummary(props) {
   const { openYear, groupedData, toggleYear, isLoading } = props;
-
-
   if (isLoading) {
     return (
       <div className="w-full max-w-4xl mx-auto my-6 px-5">
+        <p className="concert-one-regular text-center md:text-4xl text-2xl text-[#E52E3D] uppercase">Years</p>
         <div className="animate-pulse">
           <table className="w-full table-auto border-collapse border border-gray-200">
             <thead>
@@ -17,7 +15,7 @@ function FinancialSummary(props) {
               </tr>
             </thead>
             <tbody>
-              {Array(5)
+              {Array(3)
                 .fill(0)
                 .map((_, index) => (
                   <tr key={index} className="hover:bg-gray-100 text-sm font-semibold text-gray-500">
@@ -32,11 +30,9 @@ function FinancialSummary(props) {
       </div>
     );
   }
-
   return (
     <div className="w-full max-w-4xl mx-auto my-6 px-5 space-y-5">
-         <p className="concert-one-regular text-center md:text-4xl text-2xl text-[#E52E3D] uppercase">Years</p>
-
+      <p className="concert-one-regular text-center md:text-4xl text-2xl text-[#E52E3D] uppercase">Years</p>
       {Object.keys(groupedData)
         .sort((a, b) => b - a)
         .map((year) => (

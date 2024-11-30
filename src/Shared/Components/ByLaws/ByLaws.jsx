@@ -3,7 +3,6 @@ import '@react-pdf-viewer/core/lib/styles/index.css';
 import '@react-pdf-viewer/default-layout/lib/styles/index.css';
 
 function ByLaws(props) {
-
     const { defaultLayoutPluginInstance } = props;
     return (
         <section className="max-w-[70rem] mx-auto my-10 px-5">

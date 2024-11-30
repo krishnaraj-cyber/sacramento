@@ -1,9 +1,10 @@
-import moment from 'moment-timezone';
-import React, { useEffect } from 'react'
+import React from 'react'
 import apiurl from '../../services/apiendpoint/apiendpoint';
+import { Link } from 'react-router-dom';
 
 export default function Registration(props) {
-    const { EventData, formdata, handlechange, handlesave, loading, type, isLoading } = props;
+    const { EventData, formdata, handlechange, handlesave, loading, type, isLoading, success } = props;
+
     return (
         <>
             <section className='  relative  max-w-[95rem]  md:mt-20 md:my-0 mt-20 px-5 mx-auto  '>
@@ -37,9 +38,7 @@ export default function Registration(props) {
                                     {isLoading ? (
                                         <div className="w-52 h-10 bg-gray-300 animate-pulse rounded-xl"></div>
                                     ) : (
-                                        <>
-                                            <p>{EventData?.Date}</p>
-                                            <p>{EventData?.Event_Time}</p>
+                                        <>     <p>{EventData?.Date}</p>     <p>{EventData?.Event_Time}</p>
                                         </>
                                     )}
                                 </div>
@@ -82,12 +81,11 @@ export default function Registration(props) {
                                 </div>
                                 <input type="email" name="Email" value={formdata?.Email} onChange={handlechange} className="w-full px-4 py-2 border rounded-md outline-none" required />
                             </div>
-
                             <div className="mb-2">
                                 <div className="mb-2">
                                     <label>Phone Number <span className='text-[#ef4444]'>*</span></label>
                                 </div>
-                                <input type="text" name="Phone_Number" value={formdata?.Phone_Number} onChange={handlechange} className="w-full px-4 py-2 border rounded-md outline-none" required />
+                                <input type="number" name="Phone_Number" value={formdata?.Phone_Number} onChange={handlechange} className="w-full px-4 py-2 border rounded-md outline-none" required />
                             </div>
                             {formdata?.Poster_Type === "Donation" && type !== "volunteer" && (<>
                                 <div className="mb-2">
@@ -215,6 +213,25 @@ export default function Registration(props) {
                                 Submit
                             </button>
                         </div>
+                        {success && (
+                            <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
+                                <div className="bg-white rounded-lg shadow-lg p-6 text-center w-80">
+                                    <div className="flex justify-center items-center mb-4">
+                                        <div className="bg-secondary text-white rounded-full p-3">
+                                            <svg className="w-6 h-6" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                                                <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7"></path>
+                                            </svg>
+                                        </div>
+                                    </div>
+                                    <h2 className="text-lg font-bold text-secondary mb-2">SUCCESS</h2>
+                                    <p className="text-gray-700 mb-4">Registered successfully  </p>
+                                    <Link to='/'>
+                                        <button className="px-4 py-2 bg-secondary text-white rounded-md"   >
+                                            Continue
+                                        </button>
+                                    </Link>
+                                </div>
+                            </div>)}
                     </form>
                 </div>
             </div>

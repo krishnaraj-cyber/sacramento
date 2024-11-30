@@ -8,7 +8,6 @@ import { Link } from 'react-router-dom';
 import apiurl from '../../services/apiendpoint/apiendpoint';
 function Event(props) {
     const { event, isLoading } = props;
-
     return (
         <>
             <section className=' max-w-[90rem] mx-auto  my-10 md:my-20 ' >
@@ -16,7 +15,7 @@ function Event(props) {
                     <div className='md:space-y-10 space-y-5'>
                         <h2 className="text-2xl font-bold text-center text-[#8F000D] md:text-4xl  concert-one-regular">EVENTS</h2>
                         <section className="flex flex-col items-center relative  px-14 ">
-                            {isLoading ? (   
+                            {isLoading ? (
                                 <Swiper
                                     slidesPerView={1}
                                     spaceBetween={30}
@@ -107,7 +106,6 @@ function Event(props) {
                     </div>
                 </div>
                 <div id="scrfeed_backsec">
-
                 </div>
             </section>
 
