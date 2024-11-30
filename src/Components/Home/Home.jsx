@@ -4,6 +4,7 @@ import AboutSection from '../../Shared/Components/Home/AboutSection'
 import Feedback from '../../Shared/Components/Home/Feedback'
 import Gallery from '../../Shared/Components/Home/Gallery'
 import Event from '../../Shared/Components/Home/Event'
+import { about } from '../../assets/Json/Abouttt';
 import { getallSponsors } from '../../Admin/shared/services/apisponsor/apisponsor'
 import { getallBoardmembers } from '../../Admin/shared/services/apiboardmembers/apiboardmembers'
 import { getallGallerys } from '../../Admin/shared/services/apigallery/apigallery'
@@ -82,11 +83,14 @@ function Home() {
   useEffect(() => {
     fetchData(getallEvents, setEvent);
   }, [fetchData]);
+  // useEffect(() =>{
+  //   fetchData(getallAbout , setAbout);
+  // }, [fetchData]);
 
   return (
     <>
       <HomePage sponsors={sponsors} isLoading={isLoading} setSponsors={setSponsors} event={event} />
-      <AboutSection isLoading={isLoading} boardmem={boardmem} />
+      <AboutSection about={about} isLoading={isLoading} boardmem={boardmem} />
       <Gallery gallery={gallery} isLoading={isLoading} />
       <Event event={event} isLoading={isLoading} />
       <Feedback isModalOpen={isModalOpen} event={event} setIsModalOpen={setIsModalOpen} formData={formData} handleSubmit={handleSubmit} handleInputChange={handleInputChange} activeStatus={activeStatus} customInputRef={customInputRef} handleStatusClick={handleStatusClick} handleCustomAmountChange={handleCustomAmountChange} customAmount={customAmount} setActiveStatus={setActiveStatus} statuses={statuses} />

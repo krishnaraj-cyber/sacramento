@@ -28,7 +28,7 @@ function HomePage(props) {
           <div className="grid lg:grid-cols-7 grid-cols-1 md:gap-10 items-center">
             <div className="space-y-6 lg:col-span-5 max-w-[90rem]">
               {isLoading ? (
-                <div className=" ">
+                <div className="">
                   <div className="grid grid-cols-1 gap-6">
                     {Array(1)
                       .fill(0)
