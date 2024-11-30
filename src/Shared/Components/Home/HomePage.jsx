@@ -34,7 +34,7 @@ function HomePage(props) {
                       .fill(0)
                       .map((_, index) => (
                         <div key={index} className="flex flex-wrap md:flex-nowrap items-center gap-5 pb-10 animate-pulse">
-                          <div className="w-96 h-96    rounded-2xl bg-gray-300"></div>
+                          <div className="w-96 h-96 rounded-2xl bg-gray-300"></div>
                           <div className="flex flex-col space-y-3">
                             <div className=" w-40 h-10 bg-gray-300 rounded"></div>
                             <div className=" w-64 h-10  bg-gray-300 rounded"></div>
