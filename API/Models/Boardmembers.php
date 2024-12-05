@@ -16,6 +16,12 @@ class ModelsBoardmembers extends Model {
         $query = $this->db->query("SELECT * FROM " . DB_PREFIX . "boardmembers $whereClause");
         return $query->rows;
     }
+
+    public function getByStatus() {
+        $query = $this->db->query("SELECT * FROM " . DB_PREFIX . "boardmembers WHERE Status = 'Active'");
+        return $query->rows;
+    }
+
     public function save($data) {
         $array_keys =implode(",", array_keys($data));
         $array_values = "'".implode("','", array_values($data))."'";

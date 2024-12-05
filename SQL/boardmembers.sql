@@ -7,6 +7,7 @@ CREATE TABLE sacra_boardmembers(
     Name TEXT,
     Image TEXT,
     Designation TEXT,
+    Year TEXT,
     Status VARCHAR(50) DEFAULT 'Inactive',
     created_date timestamp default now(), 
     updated_date timestamp default now() on update now() 

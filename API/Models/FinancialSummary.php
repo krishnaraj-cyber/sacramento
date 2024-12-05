@@ -20,6 +20,11 @@ class ModelsFinancialSummary extends Model {
         $query = $this->db->query("SELECT * FROM " . DB_PREFIX . "financialsummary $whereClause");
         return $query->rows;
     }
+
+    public function getByStatus() {
+        $query = $this->db->query("SELECT * FROM " . DB_PREFIX . "financialsummary WHERE Status = 'Active'");
+        return $query->rows;
+    }
     
     public function save($data) {
         $keys = implode(",", array_keys($data));

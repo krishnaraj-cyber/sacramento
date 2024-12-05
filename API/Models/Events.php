@@ -20,12 +20,7 @@ class ModelsEvents extends Model {
     
         return $result;
     }
-    
-    
-    // public function getAll() {
-    //     $query = $this->db->query("SELECT * FROM " . DB_PREFIX . "Events");
-    //     return $query->rows;
-    // }
+
 
     public function getAll($filters = []) {
         $query = $this->db->query("SELECT * FROM " . DB_PREFIX . "events");
@@ -41,14 +36,20 @@ class ModelsEvents extends Model {
         return $events;
     }
     
+    public function getByStatus($filters = []) {
+        $query = $this->db->query("SELECT * FROM " . DB_PREFIX . "events WHERE Status = 'Active'");
+        $events = $query->rows;
     
-    // public function save($data) {
-    //     $keys = implode(",", array_keys($data));
-    //     $values = "'" . implode("','", array_values($data)) . "'";
-    //     $query = $this->db->query("INSERT INTO " . DB_PREFIX . "Events ($keys) VALUES ($values)");
-    //     $id = $this->db->getLastId();
-    //     return $this->lastRecord($id);
-    // }
+        if (!empty($events)) {
+            foreach ($events as &$event) {
+                $eventId = (int)$event['id'];
+                $gamesQuery = $this->db->query("SELECT * FROM " . DB_PREFIX . "events_game WHERE id = $eventId");
+                $event['Games'] = $gamesQuery->rows;
+            }
+        }
+        return $events;
+    }
+
 
     public function save($data) {
         $eventData = [

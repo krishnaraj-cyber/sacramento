@@ -15,20 +15,14 @@ class ControllersEvents extends Controller {
             echo 'Error Message: ' . $e->getMessage();
         } 
     }
-    // public function getallEvents(){
-    //     try {
-    //            $id=$this->request->get();
-    //            $studentachivement=new ModelsEvents();
-    //            $resdata =$studentachivement->getall();
-    //            $this->response->sendStatus(200);
-    //            $this->response->setContent($resdata);
-    //         } catch (Exception $e) {
-    //         echo 'Error Message: ' . $e->getMessage();
-    //     } 
-    // }
 
     public function getallEvents() {
         try {
+            if (Authentication::verifyJWT() === "Unauthorized") {
+                http_response_code(401);
+                echo json_encode(["error" => "Unauthorized"]);
+                return;
+            } else {
             $eventsModel = new ModelsEvents();
             $first = isset($_GET['first']) ? intval($_GET['first']) : 0;
             $rows = isset($_GET['rows']) ? intval($_GET['rows']) : 10;
@@ -48,11 +42,7 @@ class ControllersEvents extends Controller {
             }
     
             $columns = ['EventName','Image','Date', 'Status'];
-            
-            // Use the model's method to get events with their associated games
             $allEvents = $eventsModel->getAll();
-    
-            // Apply global filter
             $filteredEvents = $allEvents;
             if (!empty($globalfilter)) {
                 $filteredEvents = array_filter($allEvents, function($event) use ($globalfilter, $columns) {
@@ -64,8 +54,6 @@ class ControllersEvents extends Controller {
                     return false;
                 });
             }
-    
-            // Apply column filters
             if (!empty($colfilter)) {
                 $filteredEvents = array_filter($filteredEvents, function($event) use ($colfilter) {
                     foreach ($colfilter as $column => $value) {
@@ -82,19 +70,69 @@ class ControllersEvents extends Controller {
                     return true;
                 });
             }
-    
-            // Calculate total length
             $totalLength = count($filteredEvents);
-    
-            // Apply pagination
             $filteredEvents = array_slice($filteredEvents, $first, $rows);
-    
             $this->response->sendStatus(200);
             $this->response->setContent([
                 'resdata' => $filteredEvents,
                 'totallength' => $totalLength
             ]);
-    
+        }
+        } catch (Exception $e) {
+            $this->response->sendStatus(500);
+            $this->response->setContent([
+                'error' => $e->getMessage()
+            ]);
+        }
+    }
+
+    public function getEventByStatus() {
+        try {
+            $faculties = new ModelsEvents();
+            $first = isset($_GET['first']) ? intval($_GET['first']) : 0;
+            $rows = isset($_GET['rows']) ? intval($_GET['rows']) : 10; 
+            $globalfilter = isset($_GET['globalfilter']) ? $_GET['globalfilter'] : ''; 
+            $colfilter = [];
+            if (isset($_GET['colfilter'])) {
+                foreach ($_GET['colfilter'] as $column => $filterData) {
+                    if (is_array($filterData)) {
+                        foreach ($filterData as $operator => $values) {
+                            if ($operator === '$in' && is_array($values)) {
+                                $colfilter[$column] = $values;
+                            }
+                        }
+                    }
+                }
+            } 
+            $activeMembers = $faculties->getByStatus(); 
+            if (!empty($globalfilter)) {
+                $columns = ['EventName','Image','Date'];  
+                $activeMembers = array_filter($activeMembers, function ($member) use ($globalfilter, $columns) {
+                    foreach ($columns as $column) {
+                        if (stripos($member[$column], $globalfilter) !== false) {
+                            return true;
+                        }
+                    }
+                    return false;
+                });
+            } 
+            if (!empty($colfilter)) {
+                $activeMembers = array_filter($activeMembers, function ($member) use ($colfilter) {
+                    foreach ($colfilter as $column => $values) {
+                        if (!in_array($member[$column], $values)) {
+                            return false;
+                        }
+                    }
+                    return true;
+                });
+            } 
+            $totalLength = count($activeMembers); 
+            $paginatedMembers = array_slice($activeMembers, $first, $rows); 
+            $this->response->sendStatus(200);
+            $this->response->setContent([
+                'resdata' => $paginatedMembers,
+                'totallength' => $totalLength
+            ]);
         } catch (Exception $e) {
             $this->response->sendStatus(500);
             $this->response->setContent([
@@ -137,7 +175,7 @@ class ControllersEvents extends Controller {
                 http_response_code(401);
                 echo json_encode(["error" => "Unauthorized"]);
                 return;
-            }
+            } else {
     
             $reqdata = $_SERVER['CONTENT_TYPE'] === 'application/json' ? json_decode(file_get_contents("php://input"), true) : $_POST;
             if (!$reqdata) {
@@ -162,7 +200,7 @@ class ControllersEvents extends Controller {
     
             $this->response->sendStatus(200);
             $this->response->setContent($resdata);
-    
+         }
         } catch (Exception $e) {
             echo 'Error Message: ' . $e->getMessage();
         }

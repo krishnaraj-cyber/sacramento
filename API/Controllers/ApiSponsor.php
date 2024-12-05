@@ -15,25 +15,14 @@ class ControllersSponsor extends Controller {
             echo 'Error Message: ' . $e->getMessage();
         } 
     }
-    // public function getallsponsor(){
-    //     try {
-    //             $id=$this->request->get();
-    //             $blog=new ModelsSponsor();
-    //             $resdata =$blog->getall();
-    //             if($resdata) {
-    //             $this->response->sendStatus(200);
-    //             $this->response->setContent($resdata);
-    //         } else {
-    //             $this->response->sendStatus(404);
-    //             $this->response->setContent(['message' => 'No sponsors found']);
-    //         }
-    //         } catch (Exception $e) {
-    //         echo 'Error Message: ' . $e->getMessage();
-    //     } 
-    // }
 
     public function getallsponsor() {
         try {
+            if (Authentication::verifyJWT() === "Unauthorized") {
+                http_response_code(401);
+                echo json_encode(["error" => "Unauthorized"]);
+                return;
+            } else {
             $faculties = new ModelsSponsor();
             $first = isset($_GET['first']) ? intval($_GET['first']) : 0;
             $rows = isset($_GET['rows']) ? intval($_GET['rows']) : 10;
@@ -104,7 +93,62 @@ class ControllersSponsor extends Controller {
                 'resdata' => $resdata,
                 'totallength' => $totalLength
             ]);
-    
+            }
+        } catch (Exception $e) {
+            $this->response->sendStatus(500);
+            $this->response->setContent([
+                'error' => $e->getMessage()
+            ]);
+        }
+    }
+
+    public function getSponsorByStatus() {
+        try {
+            $faculties = new ModelsSponsor();
+            $first = isset($_GET['first']) ? intval($_GET['first']) : 0;
+            $rows = isset($_GET['rows']) ? intval($_GET['rows']) : 10; 
+            $globalfilter = isset($_GET['globalfilter']) ? $_GET['globalfilter'] : ''; 
+            $colfilter = [];
+            if (isset($_GET['colfilter'])) {
+                foreach ($_GET['colfilter'] as $column => $filterData) {
+                    if (is_array($filterData)) {
+                        foreach ($filterData as $operator => $values) {
+                            if ($operator === '$in' && is_array($values)) {
+                                $colfilter[$column] = $values;
+                            }
+                        }
+                    }
+                }
+            } 
+            $activeMembers = $faculties->getByStatus(); 
+            if (!empty($globalfilter)) {
+                $columns = ['Category'];  
+                $activeMembers = array_filter($activeMembers, function ($member) use ($globalfilter, $columns) {
+                    foreach ($columns as $column) {
+                        if (stripos($member[$column], $globalfilter) !== false) {
+                            return true;
+                        }
+                    }
+                    return false;
+                });
+            } 
+            if (!empty($colfilter)) {
+                $activeMembers = array_filter($activeMembers, function ($member) use ($colfilter) {
+                    foreach ($colfilter as $column => $values) {
+                        if (!in_array($member[$column], $values)) {
+                            return false;
+                        }
+                    }
+                    return true;
+                });
+            } 
+            $totalLength = count($activeMembers); 
+            $paginatedMembers = array_slice($activeMembers, $first, $rows); 
+            $this->response->sendStatus(200);
+            $this->response->setContent([
+                'resdata' => $paginatedMembers,
+                'totallength' => $totalLength
+            ]);
         } catch (Exception $e) {
             $this->response->sendStatus(500);
             $this->response->setContent([
@@ -141,37 +185,13 @@ class ControllersSponsor extends Controller {
         }
     }
 
-    // public function savesponsor()
-    // {
-    //     try {
-    //        $verify = Authentication::verifyJWT();
-    //        if ($verify == "Unauthorized") {
-    //            http_response_code(401);
-    //            echo json_encode(array("error" => "Unauthorized"));
-    //        } else {
-      
-    //             $postdata = file_get_contents("php://input");
-    //             $reqdata = json_decode($postdata, true);
-                                
-
-    //              $blog=new ModelsSponsor();
-    //              $resdata =$blog->save($reqdata);
-    //              $this->response->sendStatus(200);
-    //              $this->response->setContent($resdata);
-    //        }
-            
-    //     } catch (Exception $e) {
-    //         echo 'Error Message: ' . $e->getMessage();
-    //     }
-    // }
-
     public function savesponsor() {
         try {
             if (Authentication::verifyJWT() === "Unauthorized") {
                 http_response_code(401);
                 echo json_encode(["error" => "Unauthorized"]);
                 return;
-            }
+            } else {
     
             $reqdata = $_SERVER['CONTENT_TYPE'] === 'application/json' ? json_decode(file_get_contents("php://input"), true) : $_POST;
             if (!$reqdata) {
@@ -196,7 +216,7 @@ class ControllersSponsor extends Controller {
     
             $this->response->sendStatus(200);
             $this->response->setContent($resdata);
-    
+            }
         } catch (Exception $e) {
             echo 'Error Message: ' . $e->getMessage();
         }

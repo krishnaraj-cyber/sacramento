@@ -21,6 +21,11 @@ class ModelsGallery extends Model {
         return $query->rows;
     }
 
+    public function getByStatus() {
+        $query = $this->db->query("SELECT * FROM " . DB_PREFIX . "gallery WHERE Status = 'Active'");
+        return $query->rows;
+    }
+
     public function save($data) {
         $validColumns = ['EventName', 'Year', 'Status', 'Image']; 
         $filteredData = array_intersect_key($data, array_flip($validColumns));
