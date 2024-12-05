@@ -1,19 +1,11 @@
 import moment from 'moment-timezone';
 import { Dialog } from 'primereact/dialog';
-import { Editor } from 'primereact/editor';
-import { useEffect, useRef } from 'react';
 import ReactQuill from 'react-quill';
-import apiurl from '../../../../shared/services/apiendpoint/apiendpoint';
+import apiurl from '../../../../Shared/services/apiendpoint/apiendpoint';
 
 export default function Addandeditform(props) {
     const { visible, setVisible, handlesave, handlechange, loading, formdata,setFormdata, handleupdate ,setDataUrl, AddGame, removeGame, handlechangeGames,dataUrl} = props;
   
-    // const quillRef = useRef(null);
-
-    // useEffect(() => {
-    //   const quillInstance = quillRef.current.getEditor();
-    //   console.log(quillInstance.getContents());
-    // }, [formdata?.Description]);
   
     const modules = {
         toolbar: [
@@ -182,28 +174,28 @@ export default function Addandeditform(props) {
                                 <div className='grid grid-cols-1 lg:grid-cols-2 gap-3'>
                                 
                                     <div className='text-xl font-bold'>
-                                        <span className=''>Subevent</span> {index+1}
+                                        <span className=''>Sub-Event</span> {index+1}
                                     </div>
                                     <div className='text-end'>
                                         <button type="button" onClick={(e)=> removeGame(e,index)} className=" px-2 py-1 text-sm text-white bg-danger-600 border rounded-md text-center" > <i className="fa-solid fa-trash"></i></button>
                                     </div>
                                     <div className="mb-2">
                                         <div className="mb-2">
-                                            <label>Subevent Name</label>
+                                            <label>Sub-Event Name</label>
                                         </div>
                                         <input type="text" name="Game_Title" value={items?.Game_Title} onChange={(event)=>handlechangeGames(event,index)} className="w-full px-4 py-2 border rounded-md outline-none" required />
                                     </div>
 
                                     <div className="mb-2">
                                         <div className="mb-2">
-                                            <label>Subevent Type</label>
+                                            <label>Sub-Event Type</label>
                                         </div>
                                         {/* <input type="text" name="Participant_Type" value={formdata?.Participant_Type} onChange={handlechange} className="w-full px-4 py-2 border rounded-md outline-none" required /> */}
                                         <select name="Participant_Type" value={items?.Participant_Type} onChange={(event)=>handlechangeGames(event,index)} className="w-full px-4 py-2 border rounded-md outline-none" required>
                                             <option value="">Select Type</option>
                                             <option value="Fixed Team">Fixed Team</option>
                                             <option value="Custom Team">Custom Team</option>
-                                            <option value="Induvidual">Induvidual</option>
+                                            <option value="Induvidual">Individual</option>
                                         </select>
                                     </div>
 

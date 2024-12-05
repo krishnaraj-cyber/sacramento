@@ -1,9 +1,17 @@
 import axios from "axios";
 import { gettoken } from "../../../../shared/services/Token/token";
-import apiurl from "../../../../shared/services/apiendpoint/apiendpoint";
+import apiurl from "../../../../Shared/services/apiendpoint/apiendpoint";
 
 export const getallFinancialsum = async (params) => {
   var res = await axios.get(`${apiurl()}/api/getallfinancials`, {
+    params: params,
+    headers: { Authorization: `Bearer ${gettoken()}` }
+  });
+  return res.data;
+};
+
+export const getFinancialByStatus = async (params) => {
+  var res = await axios.get(`${apiurl()}/api/getfinancialbystatus`, {
     params: params,
   });
   return res.data;

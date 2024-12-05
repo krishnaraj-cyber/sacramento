@@ -1,9 +1,16 @@
 import axios from "axios";
-import apiurl from "../../../../shared/services/apiendpoint/apiendpoint";
 import { gettoken } from "../../../../shared/services/Token/token";
+import apiurl from "../../../../Shared/services/apiendpoint/apiendpoint";
 
 export const getallWhatwedo = async (params) => {
   var res = await axios.get(`${apiurl()}/api/getallwhatwedos`, {
+    params: params,
+    headers: { Authorization: `Bearer ${gettoken()}` }
+  });
+  return res.data;
+};
+export const getWhatwedoByStatus = async (params) => {
+  var res = await axios.get(`${apiurl()}/api/getwhatwedobystatus`, {
     params: params,
   });
   return res.data;

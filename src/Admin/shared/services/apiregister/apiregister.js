@@ -1,6 +1,6 @@
 import axios from "axios";
 import { gettoken } from "../../../../shared/services/Token/token";
-import apiurl from "../../../../shared/services/apiendpoint/apiendpoint";
+import apiurl from "../../../../Shared/services/apiendpoint/apiendpoint";
 
 
 export const getallregister = async(params)=>{

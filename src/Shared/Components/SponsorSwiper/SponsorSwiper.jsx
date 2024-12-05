@@ -5,7 +5,7 @@ import "swiper/css/navigation";
 import "swiper/css/pagination";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination, Autoplay } from "swiper/modules";
-import { getallSponsors } from "../../../Admin/shared/services/apisponsor/apisponsor";
+import { getSponsorByStatus } from "../../../Admin/shared/services/apisponsor/apisponsor";
 import apiurl from "../../services/apiendpoint/apiendpoint";
 function SponsorSwiper() {
   const [sponsors, setSponsors] = useState([]);
@@ -14,7 +14,7 @@ function SponsorSwiper() {
     let isMounted = true;
     setIsLoading(true);
     try {
-      const response = await getallSponsors();
+      const response = await getSponsorByStatus();
       if (isMounted) {
         setSponsors(response.resdata);
       }

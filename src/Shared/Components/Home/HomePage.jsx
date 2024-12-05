@@ -9,18 +9,10 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination, Autoplay } from "swiper/modules";
 import CountdownTimer from "./CountdownTimer";
 import apiurl from "../../services/apiendpoint/apiendpoint";
+import { Link } from "react-router-dom";
 
 function HomePage(props) {
   const { sponsors, event, isLoading } = props;
-  const activeEvents = event
-    ?.filter((event) => event.Status === "Active")
-    ?.map((event) => ({
-      id: event.id,
-      Eventname: event.Eventname,
-      Date: event.Date,
-      Activities: event.Activities,
-      Image: event.Image,
-    }));
   return (
     <>
       <section className="  bg-[url('/assets/images/Hero-Section/secc.png')] bg-cover w-full bg-no-repeat lg:my-0 my-10 flex items-center justify-center min-h-[100vh]">
@@ -49,7 +41,7 @@ function HomePage(props) {
                     }
                   </div>
                 </div>
-              ) : activeEvents && activeEvents.length > 0 ? (
+              ) : event && event.length > 0 ? (
                 <div className="polygon-clip">
                   <Swiper
                     slidesPerView={1}
@@ -70,10 +62,12 @@ function HomePage(props) {
                       },
                     }}
                     modules={[Pagination, Navigation, Autoplay]} className="w-full" >
-                    {activeEvents?.map((item, index) => (
+                    {event?.map((item, index) => (
                       <SwiperSlide key={index}>
-                        <div className="flex flex-wrap md:flex-nowrap md:justify-start justify-center  items-center gap-5 cursor-pointer pb-10">
-                          <img className="rounded-2xl border-4 max-w-[500px] border-[#0670bd]" src={`${apiurl()}/${item.Image}`} alt={item.Eventname} />
+                        <div className="flex flex-wrap md:flex-nowrap md:justify-start justify-center  items-center gap-5 cursor-default pb-10">
+                          <Link to={`/register?id=${item.id}`} >
+                          <img className="rounded-2xl border-4 min-w-[350px] w-[350px] lg:w-[400px] object-contain border-[#0670bd]" src={`${apiurl()}/${item.Image}`} alt={item.Eventname} />
+                          </Link>
                           <div className="md:space-y-5 space-y-3  ">
                             <p className="concert-one-regular md:text-2xl text-base text-white w-fit px-3 rounded-md bg-[#0470BC]">
                               UPCOMING EVENT
@@ -86,10 +80,11 @@ function HomePage(props) {
                             <p className="font-bold text-[#FFD900] md:text-2xl text-base bg-[#0470BC] w-fit md:p-2 p-1 rounded-md">
                               {item.Activities}
                             </p>
+                            {item.Poster_Type != 'Donation' &&
                             <p className="concert-one-regular text-[#0470BC] text-xl">
                               Registration Deadline:{' '}
                               <span className="text-[#E91E31] md:text-base text-sm">{item.Date.split('T')[0]}</span>
-                            </p>
+                            </p> }
                             <p className="concert-one-regular text-[#0470BC] text-xl">Date Duration:</p>
                             <div className=" flex md:justify-start justify-center">
                               <CountdownTimer date={item.Date} />

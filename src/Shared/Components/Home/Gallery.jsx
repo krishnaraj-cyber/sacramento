@@ -75,8 +75,8 @@ function Gallery(props) {
                     <SwiperSlide key={index} className="">
                       <Link to='/gallery'>
                         <div className='cursor-pointer  hover:scale-95 duration-200'>
-                          <div className="flex items-center space-x-4">
-                            <img src={`${apiurl()}/${sponsor.Image.split(',')[0]}`} className="bg-no-repeat mx-auto w-full " />
+                          <div className="flex items-center space-x-4  bg-[#EBE8A2] rounded-t-2xl">
+                            <img src={`${apiurl()}/${sponsor.Image.split(',')[0]}`} className="bg-no-repeat mx-auto w-full rounded-2xl" />
                           </div>
                           <div className='text-center border rounded-br-2xl rounded-bl-2xl p-2 relative bottom-1  -z-10 text-[#504C00] font-bold md:text-2xl text-base bg-[#EBE8A2]'>
                             {sponsor.Year}

@@ -2,7 +2,7 @@ import React, { useCallback, useEffect, useState } from 'react'
 import FinancialSummary from '../../Shared/Components/FinancialSummary/FinancialSummary'
 import AboutUs from '../../Shared/Components/About/AboutUs';
 import SponsorSwiper from '../../Shared/Components/SponsorSwiper/SponsorSwiper';
-import { getallFinancialsum } from '../../Admin/shared/services/apifinancialsummary/apifinancialsummary';
+import { getFinancialByStatus } from '../../Admin/shared/services/apifinancialsummary/apifinancialsummary';
 
 function FinancialPage() {
   const [data, setData] = useState([]);
@@ -12,7 +12,7 @@ function FinancialPage() {
     let isMounted = true;
     setIsLoading(true);
     try {
-      const response = await getallFinancialsum();
+      const response = await getFinancialByStatus();
       if (isMounted) {
         const financialData = response.resdata;
         setData(financialData);

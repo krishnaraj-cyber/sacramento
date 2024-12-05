@@ -1,9 +1,14 @@
 import axios from "axios";
 import { gettoken } from "../../../../shared/services/Token/token";
-import apiurl from "../../../../shared/services/apiendpoint/apiendpoint";
+import apiurl from "../../../../Shared/services/apiendpoint/apiendpoint";
 
 export const getallYouthForum = async (params) => {
-  var res = await axios.get(`${apiurl()}/api/getallyouthforums`, { params: params });
+  var res = await axios.get(`${apiurl()}/api/getallyouthforums`, { params: params ,headers: { Authorization: `Bearer ${gettoken()}` } });
+  return res.data;
+};
+
+export const getYouthByStatus = async (params) => {
+  var res = await axios.get(`${apiurl()}/api/getyouthbystatus`, { params: params });
   return res.data;
 };
 

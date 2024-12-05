@@ -34,7 +34,7 @@ export default function Volunteer() {
     setLoading(true);
     const res = await getfiltervolunteer({first, rows, globalfilter,  colfilter });
     setLoading(false);
-    setTabledata(res.resdata);
+    setTabledata(res.resdata.sort((a, b) => b.id - a.id));
     setTotalRecords(res?.totallength);
   }, [first, rows, globalfilter, colfilter]);
 

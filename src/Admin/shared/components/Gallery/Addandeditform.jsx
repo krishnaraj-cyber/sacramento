@@ -1,7 +1,7 @@
 import moment from 'moment-timezone';
 import { Dialog } from 'primereact/dialog';
 import { ProgressBar } from 'primereact/progressbar';
-import apiurl from '../../../../shared/services/apiendpoint/apiendpoint';
+import apiurl from '../../../../Shared/services/apiendpoint/apiendpoint';
 
 export default function Addandeditform(props) {
     const { visible, setVisible, handlesave, handlechange, loading, formdata,setFormdata, handleupdate, dataUrl, setDataUrl, AddGame, removeGame, progress} = props;
@@ -35,8 +35,9 @@ export default function Addandeditform(props) {
                             ) : (
                                 <div className="flex flex-col items-center justify-center pt-4 pb-5">
                                     <i className="fi fi-sr-mode-landscape"></i>
-                                    <p className="mb-2 text-sm text-gray-500 dark:text-gray-400">
-                                        <span className="font-semibold">Click to upload</span>
+                                    <p className="mb-2 text-sm text-gray-500 dark:text-gray-400 flex flex-col items-center">
+                                        <span className="font-semibold ">Click to select</span>
+                                        <span className="font-semibold ">Multiple Images</span>
                                     </p>
                                     <input type="file" name="Image" multiple onChange={(e) => handlechange(e, "Image")} className="hidden" />
                                 </div>

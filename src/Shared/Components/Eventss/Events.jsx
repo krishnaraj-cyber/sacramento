@@ -8,6 +8,7 @@ import 'swiper/swiper-bundle.css';
 import 'swiper/css/pagination';
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination, Autoplay } from "swiper/modules";
+import { Link } from 'react-router-dom';
 function Events(props) {
   const { event, isLoading } = props;
   const activeEvents = event
@@ -26,6 +27,7 @@ function Events(props) {
         <div className=' bg-[#0571BC] rounded-lg border-4 py-2 border-[#FFD900] '>
           <Swiper
             spaceBetween={10}
+            speed={1000}
             loop={true}
             slidesPerView={3}
             autoplay={{
@@ -75,18 +77,20 @@ function Events(props) {
                 <div className='  bg-[#0571BC] rounded-lg border-4 py-2  border-[#FFD900] '>
                   {activeEvents.map((item, i) => (
                     <SwiperSlide>
+                       <Link to={`/register?id=${item.id}`} >
                       <div key={i} className='grid md:grid-cols-2 items-center px-5  md:mb-5 mb-10'>
                         <div className='flex gap-4 items-center'>
                           <img src="/assets/images/Main/Calendar.png" alt="" />
                           <div>
                             <p className='concert-one-regular text-white md:text-2xl text-base '>UPCOMING EVENT</p>
-                            <p className='concert-one-regular text-[#FFD900] md:text-xl text-sm'> {item.Eventname}</p>
+                            <p className='concert-one-regular text-[#FFD900] md:text-xl text-sm'> {item.Eventname}{' '}{item.Date && `( ${item.Date.split('T')[0]} )`} </p>
                           </div>
                         </div>
                         <div className='md:ml-auto'>
                           <CountdownTimer date={item.Date} bgColor="#fff" textColor="#E91E31" texColor="#FFD900" justify={'justify-center'} />
                         </div>
                       </div>
+                      </Link>
                     </SwiperSlide>
                   ))}
                 </div>

@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import apiurl from '../../services/apiendpoint/apiendpoint';
 function AboutSection(props) {
     const { boardmem, isLoading, about } = props;
+
     return (
         <>
             <section className="bg-[url('/assets/images/Main/Main-section.png')] bg-cover  space-y-20  md:py-20 pb-10 md:pt-0   lg:pt-20 md:mb-0 w-full">
@@ -11,12 +12,11 @@ function AboutSection(props) {
                         <p className=" text-2xl  concert-one-regular text-center  md:text-4xl text-[#E91E31]">WHAT WE DO</p>
                     </div>
                     <div className="grid grid-cols-2  gap-4">
-                        {about.map((contents, index) => (
+                        {about?.map((contents, index) => (
                             <div key={index} className={`bg-[#E91E31] text-center p-2 md:px-10 text-white font-semibold ${index % 2 === 0 ? 'rounded-tl-3xl rounded-bl-3xl' : 'rounded-tr-3xl rounded-br-3xl'}`}>
-                                <p className='w-32 mx-auto flex justify-center items-center '>{contents.content}</p>
+                                <p className='w-32 mx-auto flex justify-center items-center '>{contents.Content}</p>
                             </div>
-                        ))
-                        }
+                        )) }
                     </div>
                 </div>
                 <div className=' max-w-[60rem]  mx-auto px-5'>
@@ -32,9 +32,9 @@ function AboutSection(props) {
                                             <div className="w-60 h-12 bg-gray-300 mx-auto mt-2 rounded-bl-lg rounded-br-lg"></div>
                                         </div>
                                     ))
-                                : boardmem?.slice(0, 3).map((item, index) => (
+                                : boardmem ?.slice(0, 3).map((item, index) => (
                                     <div key={index} className="      ">
-                                        <img className='  mx-auto border-2 rounded-tr-xl rounded-tl-xl w-60' src={`${apiurl()}/${item.Image}`} />
+                                        <img className='  mx-auto border-2 rounded-tr-xl rounded-tl-xl w-60 object-contain' src={`${apiurl()}/${item.Image}`} />
                                         <div className='border   mx-3 md:text-base text-sm  rounded-bl-lg rounded-br-lg bg-[#FFE134]'>
                                             <p className="text-[#E91E31] md:text-lg text-base baumans-regular "> {item.Name}</p>
                                             <p className="vietnam text-sm"> {item.Designation}</p>

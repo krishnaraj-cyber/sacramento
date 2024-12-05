@@ -7,8 +7,8 @@ import { MultiSelect } from 'primereact/multiselect';
 import { Button } from 'primereact/button';
 import moment from 'moment-timezone';
 import { SortOrder } from 'primereact/api';
-import apiurl from '../../../../shared/services/apiendpoint/apiendpoint';
 import { getFilterOptions } from '../../services/apievent/apievent';
+import apiurl from '../../../../Shared/services/apiendpoint/apiendpoint';
 
 const Tableview = (props) =>{
   const {tabledata,editfrom,handledelete,cusfilter,onPage,handleBulkMail,first,rows, page, filtervalues, loading}=props

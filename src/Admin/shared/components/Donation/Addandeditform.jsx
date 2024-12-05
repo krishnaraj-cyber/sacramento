@@ -7,12 +7,6 @@ import ReactQuill from 'react-quill';
 export default function Addandeditform(props) {
     const { visible, setVisible, handlesave, handlechange, loading, formdata, handleupdate , AddGame, removeGame, handlechangeGames} = props;
   
-    // const quillRef = useRef(null);
-
-    // useEffect(() => {
-    //   const quillInstance = quillRef.current.getEditor();
-    // }, [formdata?.Description]);
-  
     const modules = {
       toolbar: [
         [{ 'header': '1'}, {'header': '2'}, { 'font': [] }],

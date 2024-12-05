@@ -33,7 +33,7 @@ export default function Donation() {
   const getallevent = useCallback(async () => {
     setLoading(true);
     const res = await getfilterdonation({first, rows, globalfilter,  colfilter });
-    setTabledata(res.resdata);
+    setTabledata(res.resdata.sort((a, b) => b.id - a.id));
     setTotalRecords(res?.totallength);
     setLoading(false);
   }, [first, rows, globalfilter, colfilter]);

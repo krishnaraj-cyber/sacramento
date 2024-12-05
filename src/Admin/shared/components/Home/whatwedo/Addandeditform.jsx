@@ -1,4 +1,3 @@
-import moment from 'moment-timezone';
 import { Dialog } from 'primereact/dialog';
 import { ProgressBar } from 'primereact/progressbar';
 
@@ -15,12 +14,6 @@ export default function Addandeditform(props) {
             <form onSubmit={!formdata?.id ? handlesave : handleupdate}>
                
                 <div className="grid grid-cols-1  gap-3 mb-3">
-                    {/* <div className="mb-2">
-                        <div className="mb-2">
-                            <label>Title</label>
-                        </div>
-                        <input type="text" name="Title" value={formdata?.Title} onChange={handlechange} className="w-full px-4 py-2 border rounded-md outline-none" required />
-                    </div> */}
 
                     <div className="mb-2">
                         <div className="mb-2">
@@ -28,6 +21,16 @@ export default function Addandeditform(props) {
                         </div>
                         <textarea type="" name="Content" value={formdata?.Content} onChange={handlechange} className="w-full px-4 py-2 min-h-32 border rounded-md outline-none" required />
                     </div>
+                    <div className="mb-2">
+                        <div className="mb-2">
+                            <label>Status</label>
+                        </div>
+                        <select name="Status" value={formdata?.Status} onChange={handlechange} className="w-full px-4 py-2 border rounded-md outline-none" required>
+                            <option value="">Select Type</option>
+                            <option value="Active">Active</option>
+                            <option value="Inactive">Inactive</option>
+                        </select>
+                    </div>  
                 </div>
                 <div className="mb-2">
                     <button type="submit" className="w-full px-4 py-2 text-white bg-secondary border rounded-md" >

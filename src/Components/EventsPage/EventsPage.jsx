@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect, useState } from 'react'
 import Events from '../../Shared/Components/Eventss/Events'
 import EventSwipe from '../../Shared/Components/EventSwipe/EventSwipe'
-import { getallEvents } from '../../Admin/shared/services/apievent/apievent'
+import { getEventByStatus } from '../../Admin/shared/services/apievent/apievent'
 import SponsorSwiper from '../../Shared/Components/SponsorSwiper/SponsorSwiper';
 import AboutUs from '../../Shared/Components/About/AboutUs';
 function EventsPage() {
@@ -12,7 +12,7 @@ function EventsPage() {
     let isMounted = true;
     setIsLoading(true);
     try {
-      const response = await getallEvents();
+      const response = await getEventByStatus();
       if (isMounted) { setEvent(response.resdata); }
     } catch (error) {
       console.error('Error fetching sponsors:', error);

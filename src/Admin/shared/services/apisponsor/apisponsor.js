@@ -1,9 +1,14 @@
 import axios from "axios";
 import { gettoken } from "../../../../shared/services/Token/token";
-import apiurl from "../../../../shared/services/apiendpoint/apiendpoint";
+import apiurl from "../../../../Shared/services/apiendpoint/apiendpoint";
 
 export const getallSponsors = async (params) => {
-  var res = await axios.get(`${apiurl()}/api/getallsponsors`, { params: params });
+  var res = await axios.get(`${apiurl()}/api/getallsponsors`, { params: params, headers: { Authorization: `Bearer ${gettoken()}` } });
+  return res.data;
+};
+
+export const getSponsorByStatus = async (params) => {
+  var res = await axios.get(`${apiurl()}/api/getsponsorbystatus`, { params: params });
   return res.data;
 };
 

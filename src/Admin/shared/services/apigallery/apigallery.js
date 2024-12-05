@@ -1,9 +1,17 @@
 import axios from "axios";
 import { gettoken } from "../../../../shared/services/Token/token";
-import apiurl from "../../../../shared/services/apiendpoint/apiendpoint";
+import apiurl from "../../../../Shared/services/apiendpoint/apiendpoint";
 
 export const getallGallerys = async (params) => {
   var res = await axios.get(`${apiurl()}/api/getallgallery`, {
+    params: params,
+    headers: { Authorization: `Bearer ${gettoken()}` }
+  });
+  return res.data;
+};
+
+export const getGalleryByStatus = async (params) => {
+  var res = await axios.get(`${apiurl()}/api/getgallerybystatus`, {
     params: params,
   });
   return res.data;

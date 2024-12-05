@@ -31,10 +31,9 @@ export default function Register() {
 
   const getallevent = useCallback(async () => {
     setLoading(true);
-    // const res = await getallregister({ first, rows, globalfilter, colfilter });
     const res = await getfilterregister({first, rows, globalfilter,  colfilter });
     setLoading(false);
-    setTabledata(res.resdata);
+    setTabledata(res.resdata.sort((a, b) => b.id - a.id));
     setTotalRecords(res?.totallength);
   }, [first, rows, globalfilter, colfilter]);
 

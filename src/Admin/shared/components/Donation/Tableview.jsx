@@ -5,8 +5,8 @@ import { Column } from 'primereact/column';
 import { MultiSelect } from 'primereact/multiselect';
 import { Button } from 'primereact/button';
 import moment from 'moment-timezone';
-import apiurl from '../../../../shared/services/apiendpoint/apiendpoint';
 import { getFilterOptions } from '../../services/apiregister/apidonation';
+import apiurl from '../../../../Shared/services/apiendpoint/apiendpoint';
 
 const Tableview = (props) =>{
 

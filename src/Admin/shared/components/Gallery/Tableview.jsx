@@ -5,9 +5,8 @@ import { Column } from 'primereact/column';
 import { MultiSelect } from 'primereact/multiselect';
 import { Button } from 'primereact/button';
 import moment from 'moment-timezone';
-// import { getFilterOptions } from '../../services/apigallery/apigallery';
-import apiurl from '../../../../shared/services/apiendpoint/apiendpoint';
 import { getFilterOptions } from '../../services/apigallery/apigallery';
+import apiurl from '../../../../Shared/services/apiendpoint/apiendpoint';
 
 const Tableview = (props) =>{
   const {tabledata,editfrom,handledelete,cusfilter,onPage,first,rows, page, filtervalues, loading}=props
@@ -79,7 +78,7 @@ const Tableview = (props) =>{
 
   const columns = [
     {field: 'EventName', header: 'Event Name',filter:true, width : "120px"},
-    {field: 'Year', header: 'Date',filter:true,width : "100px"},
+    {field: 'Year', header: 'Date',filter:true,width : "100px", sortable: true,},
     {field: 'Status', header: 'Status',filter:true,width : "120px"},
   ];
 
@@ -91,7 +90,7 @@ const Tableview = (props) =>{
           <Column header="Image" body={image} style={{ minWidth: "150px" }} />
           {columns.map((col, i) => (
             <Column key={i} field={col.field} header={col.header} style={{ minWidth: col.width }}
-            filter={col.filter} filterElement={Filter(col)} showFilterMenuOptions={false} showApplyButton={false} showClearButton={false} showFilterMatchModes={false} 
+            filter={col.filter} sortable={col.sortable} filterElement={Filter(col)} showFilterMenuOptions={false} showApplyButton={false} showClearButton={false} showFilterMatchModes={false} 
             body={(rowData,meta) => { if(col.format =="Date"){ return moment(rowData[meta.field]).format("YYYY-MM-DD")} else if(col.format == "HTML"){return <div dangerouslySetInnerHTML={{ __html: rowData[meta.field] }} />} else {return rowData[meta.field]}} }  />
           ))}
         </DataTable>

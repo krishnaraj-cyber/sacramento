@@ -33,7 +33,7 @@ export default function Event() {
     setLoading(true);
     const res = await getallEvents({ first, rows, globalfilter, colfilter });
     setLoading(false);
-    setTabledata(res.resdata);
+    setTabledata(res.resdata.sort((a, b) => b.id - a.id));
     setTotalRecords(res.totallength);
   }, [first, rows, globalfilter, colfilter]);
 
@@ -60,25 +60,13 @@ export default function Event() {
         toast.error("Only JPG, JPEG, and PNG formats are allowed.");
         return;
       }
-      const img = new Image();
       const reader = new FileReader();
       reader.onload = (event) => {
-        img.src = event.target.result;
-        img.onload = () => {
-          const aspectRatio = img.width / img.height;
-          const acceptableAspectRatio = 3 / 4;
-          const tolerance = 0.01;
-
-          if (Math.abs(aspectRatio - acceptableAspectRatio) > tolerance) {
-            toast.error("Image must have a 3:4 aspect ratio.");
-            return;
-          }
           setFormdata({ ...formdata, [e.target.name]: filesArray });
           setDataUrl({
             src: event.target.result,
             length: e.target.files.length,
           });
-        };
       };
       reader.readAsDataURL(file);
     } else if (e.target && !e.target.files) {

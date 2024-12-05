@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useState } from 'react'
 import YouthForum from '../../Shared/Components/YouthForum/YouthForum'
-import { getallYouthForum } from '../../Admin/shared/services/apiyouthforum/apiyouthforum';
+import { getYouthByStatus } from '../../Admin/shared/services/apiyouthforum/apiyouthforum';
 import SponsorSwiper from '../../Shared/Components/SponsorSwiper/SponsorSwiper';
 import AboutUs from '../../Shared/Components/About/AboutUs';
 function YouthPage() {
@@ -12,7 +12,7 @@ function YouthPage() {
     let isMounted = true;
     setIsLoading(true);
     try {
-      const response = await getallYouthForum();
+      const response = await getYouthByStatus();
       if (isMounted) { setForum(response.resdata); }
     } catch (error) {
       console.error('Error fetching sponsors:', error);
