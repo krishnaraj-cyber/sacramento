@@ -28,7 +28,7 @@ function HomePage(props) {
           <div className="grid lg:grid-cols-7 grid-cols-1 md:gap-10 items-center">
             <div className="space-y-6 lg:col-span-5 max-w-[90rem]">
               {isLoading ? (
-                <div className=" ">
+                <div className="">
                   <div className="grid grid-cols-1 gap-6">
                     {Array(1)
                       .fill(0)
@@ -45,7 +45,8 @@ function HomePage(props) {
                             <div className=" w-56 h-10 bg-gray-300 rounded"></div>
                           </div>
                         </div>
-                      ))}
+                      ))
+                    }
                   </div>
                 </div>
               ) : activeEvents && activeEvents.length > 0 ? (
@@ -102,18 +103,18 @@ function HomePage(props) {
               ) : (
                 <div className="text-[#5c0000] max-w-[1000px] text-justify">
                   <h1 className="  md:text-4xl text-2xl font-bold py-2">ABOUT US</h1>
-                  <p className="py-2 md:text-xl ">
+                  <p style={{ lineHeight: '1.6' }} className="py-2 md:text-xl leading-10">
                     Sacramento Tamil Mandrum has been serving the Tamil-speaking Community of Greater Sacramento and surrounding
                     areas for about 20 years successfully. Come and explore the world of rich Tamil heritage, culture and
                     traditions along with us in this journey.
                   </p>
-                  <p className="py-2  md:text-xl ">
+                  <p style={{ lineHeight: '1.6' }} className="py-2  md:text-xl ">
                     We are a non-profit, non-religious and non-political organization devoted to supporting Tamil Culture in the
                     Sacramento region. Our goals are to promote better understanding of Tamil Language, and enlighten the younger
                     generation about Tamil culture. To aid this cause, Mandrum regularly organizes cultural events in the Greater
                     Sacramento area and requesting the community for its support.
                   </p>
-                  <p className="py-2  md:text-xl ">
+                  <p style={{ lineHeight: '1.6' }} className="py-2  md:text-xl  ">
                     The beauty of Tamil is kept vibrantly alive and active by Tamil Mandrum volunteers in Sacramento. You are never
                     left alone. Your cultural heritage and the affinity towards your language always surrounds you, irrespective of
                     the technology and the fast moving things around you.
