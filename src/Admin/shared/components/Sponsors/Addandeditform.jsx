@@ -54,6 +54,12 @@ export default function Addandeditform(props) {
                     </div>
                     <div className="mb-2">
                         <div className="mb-2">
+                            <label>URL</label>
+                        </div>
+                        <input type="text" name="URL" value={formdata?.URL} onChange={handlechange} className="w-full px-4 py-2 border rounded-md outline-none" required />
+                    </div>
+                    <div className="mb-2">
+                        <div className="mb-2">
                             <label>Status</label>
                         </div>
                         <select name="Status" value={formdata?.Status} onChange={handlechange} className="w-full px-4 py-2 border rounded-md outline-none" required>

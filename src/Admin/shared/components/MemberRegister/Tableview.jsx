@@ -5,8 +5,8 @@ import { Column } from 'primereact/column';
 import { MultiSelect } from 'primereact/multiselect';
 import { Button } from 'primereact/button';
 import moment from 'moment-timezone';
-import { getFilterOptions } from '../../services/apisponsor/apisponsor';
 import apiurl from '../../../../Shared/services/apiendpoint/apiendpoint';
+import { getFilterOptions } from '../../services/apimemberregister/apimemberregister';
 
 const Tableview = (props) =>{
   const {tabledata,editfrom,handledelete,cusfilter,onPage,first,rows, page, filtervalues, loading}=props
@@ -34,10 +34,10 @@ const Tableview = (props) =>{
   const image = (rowData,meta) => {
     return (
       <>
-         {rowData.Image&&rowData.Image?
-          (<div className="flex gap-4 ">
-            <img src={`${apiurl()}/${rowData['Image']}`}  className='rounded-lg h-[100px] w-[150px] object-cover' />
-          </div> ):( <div className="flex gap-4 "><img src="/assets/images/Gallery/noimg.png" alt="No image available" className="rounded-lg h-[100px] w-[150px] object-cover" /></div> )
+        {rowData.Image&&
+          <div className="flex gap-4 ">
+            <img src={`${apiurl()}/${rowData['Image']}`}  className='rounded-xl h-[100px] w-[150px] object-cover' />
+          </div> 
         }
       </>
     )
@@ -75,9 +75,14 @@ const Tableview = (props) =>{
   );
 
   const columns = [
-    {field: 'Category', header: 'Category',filter:true,width : "200px"},
-    {field: 'URL', header: 'URL',filter:true,width : "200px"},
-    {field: 'Status', header: 'Status',filter:true, width : "120px"},
+    {field: 'First_Name', header: 'First Name', filter:true,width : "200px"},
+    {field: 'Last_Name', header: 'Last Name', filter:true,width : "200px"},
+    {field: 'Email', header: 'Email', filter:true,width : "200px"},
+    {field: 'Phone_Number', header: 'Contact', filter:true,width : "200px"},
+    {field: 'Location', header: 'Location', filter:true, width : "120px"},
+    // {field: 'Notify_stm', header: 'Status', filter:true, width : "120px"},
+    // {field: 'Contact_for_stm', header: 'Status', filter:true, width : "120px"},
+    {field: 'Register_spouse', header: 'Spouse Register', filter:true, width : "120px"},
   ];
 
   return(
@@ -85,7 +90,6 @@ const Tableview = (props) =>{
       <div >
         <DataTable value={tabledata}scrollable scrollHeight="575px" loading={loading} className='!text-sm' stateStorage="session" stateKey="dt-state-demo-local" > 
           <Column header="Action" body={actionbotton} style={{ minWidth: "80px" }} />
-          <Column header="Image" body={image} style={{ minWidth: "150px" }} />
           {columns.map((col, i) => (
             <Column key={i} field={col.field} header={col.header} style={{ minWidth: col.width }}
             filter={col.filter} filterElement={Filter(col)} showFilterMenuOptions={false} showApplyButton={false} showClearButton={false} showFilterMatchModes={false} 

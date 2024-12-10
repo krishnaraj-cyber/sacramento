@@ -12,6 +12,7 @@ import YouthForum from "../components/YouthForum";
 import Volunteer from "../components/Volunteer";
 import Donation from "../components/Donation";
 import Whatwedo from "../components/Home/Whatwedo";
+import MemberRegister from "../components/MemberRegisterr";
 
 
 const AdminRouter = () => {
@@ -30,6 +31,7 @@ const AdminRouter = () => {
             <Route path="/financial" element={<FinancialSummary />} />
             <Route path="/youthforum" element={<YouthForum />} />
             <Route path="/sections" element={<Whatwedo />} />
+            <Route path="/memreg" element={<MemberRegister />} />
             <Route path="/" element={<Navigate to="/admin/dashboard" />} />
           </Route>
       </Routes>

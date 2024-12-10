@@ -64,6 +64,7 @@ function HomePage(props) {
                     modules={[Pagination, Navigation, Autoplay]} className="w-full" >
                     {event?.map((item, index) => (
                       <SwiperSlide key={index}>
+                        {console.log(item.Date)}
                         <div className="flex flex-wrap md:flex-nowrap md:justify-start justify-center  items-center gap-5 cursor-default pb-10">
                           <Link to={`/register?id=${item.id}`} >
                           <img className="rounded-2xl border-4 min-w-[350px] w-[350px] lg:w-[400px] object-contain border-[#0670bd]" src={`${apiurl()}/${item.Image}`} alt={item.Eventname} />
@@ -75,7 +76,7 @@ function HomePage(props) {
                             <p className="md:text-2xl text-lg text-[#E91E31] font-semibold">சாக்ரமெண்டோ தமிழ் மன்றம்</p>
                             <p className="text-[#0470BC] font-semibold text-xl">நடத்தும்</p>
                             <p className="font-bold text-[#0470BC] xl:text-5xl lg:text-3xl text-2xl text-outline-yellow">
-                              {item.Eventname}
+                              {item.Eventname} {item.Poster_Type != 'Donation' && <span className="xl:text-4xl">({item.Date.split('T')[0]})</span> }
                             </p>
                             <p className="font-bold text-[#FFD900] md:text-2xl text-base bg-[#0470BC] w-fit md:p-2 p-1 rounded-md">
                               {item.Activities}
@@ -187,6 +188,7 @@ function HomePage(props) {
                     className="w-full max-w-5xl"  >
                     {sponsors?.map((sponsor, index) => (
                       <SwiperSlide key={index} className="flex justify-center items-center mx-auto "  >
+                        <a href={sponsor.URL} target="_blank" rel="noopener noreferrer">
                         <div className="flex items-center justify-center">
                           <div className="mx-auto">
                             <div
@@ -205,6 +207,7 @@ function HomePage(props) {
                             />
                           </div>
                         </div>
+                        </a>
                       </SwiperSlide>
                     ))}
                     {sponsors?.length < 4 &&

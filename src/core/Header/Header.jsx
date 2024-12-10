@@ -88,7 +88,10 @@ function Header() {
                 Tamil Schools
               </Link>
             </div>
-            <div onClick={handleDonateClick} className="bg-[#0470BC] px-5 py-7 lg:block hidden text-white font-bold cursor-pointer">Donate</div>
+            {/* <div onClick={handleDonateClick} className="bg-[#0470BC] px-5 py-7 lg:block hidden text-white font-bold cursor-pointer">Donate</div> */}
+            <Link to='/memberregister' className='hidden lg:block'>
+            <div className="bg-[#0470BC] px-5 py-7 lg:block hidden text-white font-bold cursor-pointer">Register</div>
+            </Link>
           </div>
         </header>
       </div>
@@ -138,6 +141,9 @@ function Header() {
           <Link to="/tamil-schools" className={`block text-lg hover:underline ${isActive('/tamil-schools') ? 'text-white' : 'text-[#f4e316]'}`} onClick={handleLinkClick}   >
             Tamil Schools
           </Link>
+          <Link to='/memberregister' className={` text-lg p-2 px-5 rounded-xl bg-[#f4e316] inline-block ${isActive('/tamil-schools') ? 'text-[#f4e316]' : 'text-[#0470BC]'}`} onClick={handleLinkClick}  >
+            Register
+            </Link>
         </nav>
       </div>
       <div className="h-[2.5rem]"></div>

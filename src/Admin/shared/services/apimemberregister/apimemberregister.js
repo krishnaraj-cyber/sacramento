@@ -1,34 +1,30 @@
 import axios from "axios";
-
 import { gettoken } from "../../../../shared/services/Token/token";
 import apiurl from "../../../../Shared/services/apiendpoint/apiendpoint";
 
-export const getallBoardmembers = async (params) => {
-  var res = await axios.get(`${apiurl()}/api/getallBoardmembers`, {
+export const getallMemberRegister = async (params) => {
+  var res = await axios.get(`${apiurl()}/api/getallregmems`, {
     params: params,
-    headers: {Authorization: `Bearer ${gettoken()}` }
+    headers: { Authorization: `Bearer ${gettoken()}` }
   });
   return res.data;
 };
 
-export const getBoardmemByStatus = async (datas) => {
-  var res = await axios.get(`${apiurl()}/api/getboardmembystatus`, { params: datas });
-  return res.data;
-};
-
-export const getUniqueYears = async () => {
-  var res = await axios.get(`${apiurl()}/api/getuniqueyear`);
+export const getMemberRegisterByStatus = async (params) => {
+  var res = await axios.get(`${apiurl()}/api/getregmembystatus`, {
+    params: params,
+  });
   return res.data;
 };
 
 export const getuniquevaluebyfield = async (params) => {
-  var res = await axios.get(`${apiurl()}/api/gallery/getBoardmembersbyid`, {
+  var res = await axios.get(`${apiurl()}/api/getregmembyid`, {
     params: params,
   });
   return res.data;
 };
 
-export const saveBoardmembers = async (datas, onUploadProgress) => {
+export const saveMemberRegister = async (datas, onUploadProgress) => {
   try {
     const formData = new FormData();
     for (const key in datas) {
@@ -42,8 +38,8 @@ export const saveBoardmembers = async (datas, onUploadProgress) => {
       }
     }
 
-    var res = await axios.post(`${apiurl()}/api/uploadBoardmembers`, formData, {
-      headers: { Authorization: `Bearer ${gettoken()}` },
+    var res = await axios.post(`${apiurl()}/api/uploadregmem`, formData, {
+    //   headers: { Authorization: `Bearer ${gettoken()}` },
       onUploadProgress,
     });
     return res.data;
@@ -52,7 +48,7 @@ export const saveBoardmembers = async (datas, onUploadProgress) => {
   }
 };
 
-export const updateBoardmembers = async (datas) => {
+export const updateMemberRegister = async (datas) => {
   const formData = new FormData();
   for (const key in datas) {
     if (key === "Image" && Array.isArray(datas[key])) {
@@ -63,7 +59,7 @@ export const updateBoardmembers = async (datas) => {
   }
 
   try {
-    const res = await axios.post(`${apiurl()}/api/editBoardmembers`, formData, {
+    const res = await axios.post(`${apiurl()}/api/editregmem`, formData, {
       params: { id: datas.id },
       headers: { Authorization: `Bearer ${gettoken()}` },
     });
@@ -75,7 +71,7 @@ export const updateBoardmembers = async (datas) => {
 
 export const getFilterOptions = async (data) => {
   var res = await axios.post(
-    `${apiurl()}/api/getfilterboard?field=${data}`,
+    `${apiurl()}/api/getallfilterregmem?field=${data}`,
     {
       //  params:{ field: data },
      headers: {Authorization: `Bearer ${gettoken()}` } }
@@ -84,8 +80,9 @@ export const getFilterOptions = async (data) => {
   return res.data;
 };
 
-export const deleteBoardmembers = async (id) => {
-  var res = await axios.delete(`${apiurl()}/api/deleteBoardmembers?id=${id}`, {
+
+export const deleteMemberRegister = async (id) => {
+  var res = await axios.delete(`${apiurl()}/api/deleteregmem?id=${id}`, {
     headers: { Authorization: `Bearer ${gettoken()}` },
   });
   return res.data;

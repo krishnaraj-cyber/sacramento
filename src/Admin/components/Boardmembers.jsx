@@ -11,6 +11,7 @@ import {
   saveBoardmembers,
   updateBoardmembers,
 } from "../shared/services/apiboardmembers/apiboardmembers";
+import { Toast } from "primereact/toast";
 
 export default function Sponsors() {
   const [totalRecords, setTotalRecords] = useState(0);
@@ -59,7 +60,10 @@ export default function Sponsors() {
     if (e.target && e.target.files) {
       const filesArray = Array.from(e.target.files);
       const file = filesArray[0];
-      if (!file) return;
+      if (!file) {
+        toast.send("Please select an image.");
+        return;
+      }
       const validTypes = ["image/jpeg", "image/jpg", "image/png"];
       if (!validTypes.includes(file.type)) {
         toast.error("Only JPG, JPEG, and PNG formats are allowed.");
@@ -106,8 +110,11 @@ export default function Sponsors() {
 
   const handlesave = async (e) => {
     e.preventDefault();
+    if(formdata.Image == null){
+      toast("⚠ Please Upload an Image to continue")
+      return;
+    }
     setLoading(true);
-
     await saveBoardmembers(formdata, (progressEvent) => {
       const percentCompleted = Math.round(
         (progressEvent.loaded * 100) / progressEvent.total
@@ -135,6 +142,10 @@ export default function Sponsors() {
 
   const handleupdate = async (e) => {
     e.preventDefault();
+    if(formdata.Image == null){
+      toast("⚠ Please Upload an Image to continue")
+      return;
+    }
     setLoading(true);
     await updateBoardmembers(formdata);
     toast.success("Sucessfully updated");

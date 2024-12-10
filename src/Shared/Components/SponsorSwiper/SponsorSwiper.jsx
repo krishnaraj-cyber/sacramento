@@ -34,7 +34,7 @@ function SponsorSwiper() {
   }, [fetchSponsors]);
   return (
     <>
-      <div className="max-w-[80rem] px-5 lg:px-0 w-full  mx-auto md:my-20 my-10 space-y-5">
+      <div className="max-w-[80rem] px-5 w-full 2xl:px-0  mx-auto md:my-20 my-10 space-y-5">
         <h2 className=" text-2xl md:text-4xl font-bold text-center text-red-600  concert-one-regular">
           OUR SPONSORS
         </h2>
@@ -115,7 +115,7 @@ function SponsorSwiper() {
                       </div>
                       <img
                         src={`${apiurl()}/${sponsor.Image}`}
-                        className="bg-no-repeat mx-auto"
+                        className="bg-no-repeat w-full   mx-auto"
                         alt={`Sponsor ${index + 1}`}
                       />
                     </div>

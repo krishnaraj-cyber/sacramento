@@ -7,6 +7,7 @@ function AboutSection(props) {
     return (
         <>
             <section className="bg-[url('/assets/images/Main/Main-section.png')] bg-cover  space-y-20  md:py-20 pb-10 md:pt-0   lg:pt-20 md:mb-0 w-full">
+            {about?.length > 0 &&
                 <div className='max-w-[60rem] px-5 mx-auto space-y-7 md:text-base text-sm'>
                     <div>
                         <p className=" text-2xl  concert-one-regular text-center  md:text-4xl text-[#E91E31]">WHAT WE DO</p>
@@ -14,11 +15,11 @@ function AboutSection(props) {
                     <div className="grid grid-cols-2  gap-4">
                         {about?.map((contents, index) => (
                             <div key={index} className={`bg-[#E91E31] text-center p-2 md:px-10 text-white font-semibold ${index % 2 === 0 ? 'rounded-tl-3xl rounded-bl-3xl' : 'rounded-tr-3xl rounded-br-3xl'}`}>
-                                <p className='w-32 mx-auto flex justify-center items-center '>{contents.Content}</p>
+                                <p className='w-14 sm:w-48 lg:w-56 mx-auto flex justify-center items-center '>{contents.Content}</p>
                             </div>
                         )) }
                     </div>
-                </div>
+                </div> }
                 <div className=' max-w-[60rem]  mx-auto px-5'>
                     <div className='bg-[#0571BC] space-y-6 rounded-2xl p-5 '>
                         <p className="text-[#FFE134] text-center md:text-4xl text-2xl concert-one-regular" >BOARD MEMBERS</p>

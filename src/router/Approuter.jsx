@@ -17,6 +17,7 @@ import Payments from "../Components/Payment/Payments";
 import ViewGalleryPage from "../Components/GalleryPage/ViewGalleryPage";
 import RegistrationPage from "../Components/RegistrationPage";
 import ScrollToTop from "./ScrollToTop";
+import MemberRegister from "../Components/MemberRegister/MemberRegister";
 
 
 function Approuter() {
@@ -37,6 +38,7 @@ function Approuter() {
                     <Route path="/laws" element={<ByLawsPage />} />
                     <Route path="/forms/:id" element={<FormPage />} />
                     <Route path="/register" element={<RegistrationPage />} />
+                    <Route path="/memberregister" element={<MemberRegister />} />   
                 </Route>
                 <Route path="/payment-page" element={<Payments />} />
                 <Route path='/login' element={<LoginPage />} />

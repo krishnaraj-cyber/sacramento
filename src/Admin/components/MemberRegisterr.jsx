@@ -2,17 +2,12 @@ import React, { useCallback, useEffect, useState } from "react";
 import Tablepagination from "../shared/others/Tablepagination";
 import toast from "react-hot-toast";
 import { ConfirmDialog, confirmDialog } from "primereact/confirmdialog";
-import {
-  deleteEvents,
-  getallEvents,
-  saveEvents,
-  updateEvents,
-} from "../shared/services/apievent/apievent";
-import Tableheadpanel from "../shared/components/Event/Tableheadpanel";
-import Tableview from "../shared/components/Event/Tableview";
-import Addandeditform from "../shared/components/Event/Addandeditform";
+import { deleteMemberRegister, getallMemberRegister, saveMemberRegister, updateMemberRegister } from "../shared/services/apimemberregister/apimemberregister";
+import Tableview from "../shared/components/MemberRegister/Tableview";
+import Addandeditform from "../shared/components/MemberRegister/Addandeditform";
+import Tableheadpanel from "../shared/components/MemberRegister/Tableheadpanel";
 
-export default function Event() {
+export default function MemberRegister() {
   const [totalRecords, setTotalRecords] = useState(0);
   const [page, setPage] = useState(1);
   const [first, setFirst] = useState(0);
@@ -31,9 +26,14 @@ export default function Event() {
 
   const getallGallery = useCallback(async () => {
     setLoading(true);
-    const res = await getallEvents({ first, rows, globalfilter, colfilter });
+    const res = await getallMemberRegister({
+      first,
+      rows,
+      globalfilter,
+      colfilter,
+    });
     setLoading(false);
-    setTabledata(res.resdata.sort((a, b) => b.id - a.id));
+    setTabledata(res.resdata);
     setTotalRecords(res.totallength);
   }, [first, rows, globalfilter, colfilter]);
 
@@ -53,34 +53,30 @@ export default function Event() {
   const handlechange = (e, name) => {
     if (e.target && e.target.files) {
       const filesArray = Array.from(e.target.files);
-      const file = filesArray[0];
-      if (!file) return;
-      const validTypes = ["image/jpeg", "image/jpg", "image/png"];
-      if (!validTypes.includes(file.type)) {
-        toast.error("Only JPG, JPEG, and PNG formats are allowed.");
-        return;
-      }
+      setFormdata({ ...formdata, [e.target.name]: filesArray });
+
+      const file = e.target.files[0];
       const reader = new FileReader();
-      reader.onload = (event) => {
-          setFormdata({ ...formdata, [e.target.name]: filesArray });
-          setDataUrl({
-            src: event.target.result,
-            length: e.target.files.length,
-          });
+
+      reader.onloadend = () => {
+        setDataUrl({ src: reader.result, length: e.target.files.length });
       };
-      reader.readAsDataURL(file);
+
+      if (file) {
+        reader.readAsDataURL(file);
+      }
     } else if (e.target && !e.target.files) {
       setFormdata({ ...formdata, [e.target.name]: e.target.value });
     } else {
-      setFormdata({ ...formdata, [name]: e });
+      const filesArray = e;
+      setFormdata({ ...formdata, [name]: filesArray });
     }
   };
 
-  const handlechangeGames = (event, index) => {
+  const handlechangeGames = (value, index) => {
     const updatedProducts = [...formdata.Games];
-    updatedProducts[index][event.target.name] = event.target.value;
+    updatedProducts[index][value.target.name] = value.target.value;
     setFormdata({ ...formdata, Games: updatedProducts });
-    
   };
 
   const cusfilter = (field, value) => {
@@ -90,12 +86,9 @@ export default function Event() {
 
   const handlesave = async (e) => {
     e.preventDefault();
-    if(formdata.Image == null){
-      toast("⚠ Please Upload an Image to continue")
-      return;
-    }
     setLoading(true);
-    await saveEvents(formdata, (progressEvent) => {
+
+    await saveMemberRegister(formdata, (progressEvent) => {
       const percentCompleted = Math.round(
         (progressEvent.loaded * 100) / progressEvent.total
       );
@@ -111,7 +104,7 @@ export default function Event() {
   };
 
   const newform = () => {
-    setFormdata({Games :[{}]});
+    setFormdata({});
     setVisible(true);
   };
 
@@ -122,12 +115,8 @@ export default function Event() {
 
   const handleupdate = async (e) => {
     e.preventDefault();
-    if(formdata.Image == null){
-      toast("⚠ Please Upload an Image to continue")
-      return;
-    }
     setLoading(true);
-    await updateEvents(formdata);
+    await updateMemberRegister(formdata);
     toast.success("Sucessfully updated");
     getallGallery();
     setVisible(false);
@@ -145,7 +134,7 @@ export default function Event() {
       rejectClassName: "p-2 outline-none border-0",
       accept: async () => {
         try {
-          await deleteEvents(id);
+          await deleteMemberRegister(id);
           toast.success("Successfully deleted");
           getallGallery();
         } catch (error) {

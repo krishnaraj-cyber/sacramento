@@ -4,8 +4,7 @@ import SponsorSwiper from '../SponsorSwiper/SponsorSwiper';
 import apiurl from '../../services/apiendpoint/apiendpoint';
 
 function Aboutt(props) {
-    const { boardmem, isLoading } = props;
-    const activeBoardmem = boardmem.filter(boardmem => boardmem.Status === 'Active');
+    const { boardmem, isLoading , uniqueBoardmemYear , setYear , year} = props;
     return (
         <>
             <section>
@@ -42,6 +41,14 @@ function Aboutt(props) {
                 </div>
             </section>
             <section className='max-w-[90rem] mx-auto px-5 my-20'>
+                <div>
+                    <div className='bg-gray-50 flex justify-center overflow-y-auto gap-2 p-1 w-fit mx-auto rounded-xl border mb-5'>
+                        {uniqueBoardmemYear?.map((yr , i ) => (
+                        <div key={yr.Year || i} onClick={() => setYear(yr.Year)}   className={ `${yr.Year === year ? 'bg-gray-200 font-semibold' : ''} text-gray-500 select-none p-2 px-5 rounded-xl cursor-pointer hover:opacity-70 active:scale-90 duration-300 ease-out`}>{yr.Year} </div>
+                        
+                        ))}
+                    </div>
+                </div>
                 <div className='grid lg:grid-cols-5 md:grid-cols-3 grid-cols-2 justify-center items-center  md:gap-10 gap-5  '>
                     {isLoading
                         ? Array(2)
@@ -52,7 +59,7 @@ function Aboutt(props) {
                                     <div className="w-60 h-12 bg-gray-300 mx-auto mt-2 rounded-bl-lg rounded-br-lg"></div>
                                 </div>
                             ))
-                        : activeBoardmem.map((item, index) => (
+                        : boardmem?.map((item, index) => (
                             <div key={index} className="text-center w-full">
                                 <img className='  md:w-72 border-2 border-[#0571BC] rounded-t-xl w-full ' src={`${apiurl()}/${item.Image}`} />
                                 <div className='  flex flex-col justify-center items-center mx-2  h-24  rounded-bl-lg  rounded-br-lg bg-[#0571BC]'>

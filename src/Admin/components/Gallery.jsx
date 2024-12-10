@@ -101,8 +101,11 @@ export default function Gallery() {
 
   const handlesave = async (e) => {
     e.preventDefault();
+    if(formdata.Image == null){
+      toast("⚠ Please Upload an Image to continue")
+      return;
+    }
     setLoading(true);
-
     await saveGallerys(formdata, (progressEvent) => {
       const percentCompleted = Math.round(
         (progressEvent.loaded * 100) / progressEvent.total
@@ -130,6 +133,10 @@ export default function Gallery() {
 
   const handleupdate = async (e) => {
     e.preventDefault();
+    if(formdata.Image == null){
+      toast("⚠ Please Upload an Image to continue")
+      return;
+    }
     setLoading(true);
     await updateGallerys(formdata, (progressEvent) => {
       const percentCompleted = Math.round(

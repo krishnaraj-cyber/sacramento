@@ -11,7 +11,7 @@ export default function Addandeditform(props) {
         setDataUrl(null)
     }
     return (
-        <Dialog header={!formdata?.id ? "Add Sponsor" : "Update Sponsor"} visible={visible} onHide={() =>closeModel() } className="!w-full lg:!w-[40rem]">
+        <Dialog header={!formdata?.id ? "Add Summary" : "Update Summary"} visible={visible} onHide={() =>closeModel() } className="!w-full lg:!w-[40rem]">
             <form onSubmit={!formdata?.id ? handlesave : handleupdate}>
                
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-3 mb-3">
@@ -57,7 +57,7 @@ export default function Addandeditform(props) {
                 <div className="mb-2">
                     <button type="submit" className="w-full px-4 py-2 text-white bg-secondary border rounded-md" >
                         {loading && <span className="animate-spin text-xl inline-block size-4 border-[3px] border-current border-t-transparent text-white rounded-full" role="status" aria-label="loading"></span>} 
-                        {!formdata?.id ? "Add Sponsor" : "Update Sponsor"}
+                        {!formdata?.id ? "Add Summary" : "Update Summary"}
                     </button>
                 </div>
             </form>

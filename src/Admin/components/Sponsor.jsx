@@ -89,8 +89,11 @@ export default function Sponsors() {
 
   const handlesave = async (e) => {
     e.preventDefault();
+    if(formdata.Image == null){
+      toast("⚠ Please Upload an Image to continue")
+      return;
+    }
     setLoading(true);
-
     await saveSponsors(formdata, (progressEvent) => {
       const percentCompleted = Math.round(
         (progressEvent.loaded * 100) / progressEvent.total
@@ -118,6 +121,10 @@ export default function Sponsors() {
 
   const handleupdate = async (e) => {
     e.preventDefault();
+    if(formdata.Image == null){
+      toast("⚠ Please Upload an Image to continue")
+      return;
+    }
     setLoading(true);
     await updateSponsors(formdata);
     toast.success("Sucessfully updated");
