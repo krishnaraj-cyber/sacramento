@@ -1,14 +1,14 @@
 <?php
-require './API/Models/Sponsor.php';
+require './API/Models/MemberRegister.php';
 use Auth\Authentication;
-use Models\ModelsSponsor;
+use Models\ModelsMemberRegister;
 use MVC\Controller;
-class ControllersSponsor extends Controller {
-    public function getSponsorbyid(){
+class ControllersMemberRegister extends Controller {
+    public function getMemberRegisterbyid(){
         try {
                $id=$this->request->get('id');
-               $blog=new ModelsSponsor();
-               $resdata =$blog->lastrecord($id);
+               $notification=new ModelsMemberRegister();
+               $resdata =$notification->lastrecord($id);
                $this->response->sendStatus(200);
                $this->response->setContent($resdata);
             } catch (Exception $e) {
@@ -16,14 +16,14 @@ class ControllersSponsor extends Controller {
         } 
     }
 
-    public function getallsponsor() {
+    public function getallMemberRegister() {
         try {
-            if (Authentication::verifyJWT() === "Unauthorized") {
+            $verify = Authentication::verifyJWT();
+            if ($verify == "Unauthorized") {
                 http_response_code(401);
-                echo json_encode(["error" => "Unauthorized"]);
-                return;
+                echo json_encode(array("error" => "Unauthorized"));
             } else {
-            $faculties = new ModelsSponsor();
+            $faculties = new ModelsMemberRegister();
             $first = isset($_GET['first']) ? intval($_GET['first']) : 0;
             $rows = isset($_GET['rows']) ? intval($_GET['rows']) : 10;
             $globalfilter = isset($_GET['globalfilter']) ? $_GET['globalfilter'] : '';
@@ -40,7 +40,7 @@ class ControllersSponsor extends Controller {
                 }
             }
     
-            $columns = ['Category','URL','Status'];
+            $columns = ['Firsr_Name', 'Email','Phone_Number','Location','Notify_stm','Contact_for_stm','Register_spouse'];
             $globalFilterQuery = '';
             if (!empty($globalfilter)) {
                 $globalFilterConditions = [];
@@ -75,7 +75,7 @@ class ControllersSponsor extends Controller {
                 $filterQuery = "WHERE $additionalFilterQuery";
             }
     
-            $totalCountQuery = "SELECT COUNT(*) as total FROM " . DB_PREFIX . "sponsor $filterQuery";
+            $totalCountQuery = "SELECT COUNT(*) as total FROM " . DB_PREFIX . "memberregister $filterQuery";
             $totalCountResult = $this->db->query($totalCountQuery);
             
             if (!$totalCountResult || !isset($totalCountResult->row['total'])) {
@@ -83,7 +83,7 @@ class ControllersSponsor extends Controller {
             }
             
             $totalLength = $totalCountResult->row['total'];
-            $dataQuery = "SELECT * FROM " . DB_PREFIX . "sponsor $filterQuery LIMIT $first, $rows";
+            $dataQuery = "SELECT * FROM " . DB_PREFIX . "memberregister $filterQuery LIMIT $first, $rows";
             $dataResult = $this->db->query($dataQuery);
             
             $resdata = $dataResult->rows;
@@ -93,7 +93,7 @@ class ControllersSponsor extends Controller {
                 'resdata' => $resdata,
                 'totallength' => $totalLength
             ]);
-            }
+        }
         } catch (Exception $e) {
             $this->response->sendStatus(500);
             $this->response->setContent([
@@ -102,9 +102,9 @@ class ControllersSponsor extends Controller {
         }
     }
 
-    public function getSponsorByStatus() {
+    public function getMemberRegisterByStatus() {
         try {
-            $faculties = new ModelsSponsor();
+            $faculties = new ModelsMemberRegister();
             $first = isset($_GET['first']) ? intval($_GET['first']) : 0;
             $rows = isset($_GET['rows']) ? intval($_GET['rows']) : 10; 
             $globalfilter = isset($_GET['globalfilter']) ? $_GET['globalfilter'] : ''; 
@@ -122,7 +122,7 @@ class ControllersSponsor extends Controller {
             } 
             $activeMembers = $faculties->getByStatus(); 
             if (!empty($globalfilter)) {
-                $columns = ['Category','URL'];  
+                $columns = ['Firsr_Name', 'Email','Phone_Number','Location','Notify_stm','Contact_for_stm','Register_spouse'];  
                 $activeMembers = array_filter($activeMembers, function ($member) use ($globalfilter, $columns) {
                     foreach ($columns as $column) {
                         if (stripos($member[$column], $globalfilter) !== false) {
@@ -156,8 +156,8 @@ class ControllersSponsor extends Controller {
             ]);
         }
     }
-    
-    public function getFilterSponsor() {
+
+    public function getFilterMemberRegister() {
         try {
             $field = isset($_POST['field']) ? $_POST['field'] : (isset($_GET['field']) ? $_GET['field'] : '');
             if (empty($field)) {
@@ -165,7 +165,7 @@ class ControllersSponsor extends Controller {
                 $this->response->setContent(['message' => 'Field parameter is required']);
                 return;
             }
-            $query = "SELECT DISTINCT $field FROM " . DB_PREFIX . "sponsor";
+            $query = "SELECT DISTINCT $field FROM " . DB_PREFIX . "memberregister";
             $result = $this->db->query($query);
             if ($result->num_rows > 0) {
                 $distinctValues = [];
@@ -185,45 +185,31 @@ class ControllersSponsor extends Controller {
         }
     }
 
-    public function savesponsor() {
+    public function saveMemberRegister()
+    {
         try {
-            if (Authentication::verifyJWT() === "Unauthorized") {
-                http_response_code(401);
-                echo json_encode(["error" => "Unauthorized"]);
-                return;
-            } else {
-    
+      
             $reqdata = $_SERVER['CONTENT_TYPE'] === 'application/json' ? json_decode(file_get_contents("php://input"), true) : $_POST;
             if (!$reqdata) {
                 echo json_encode(["error" => "Invalid or missing input data"]);
                 return;
             }
-
-            if (!empty($_FILES['Image']['tmp_name'])) {
-                $folderName = 'Upload/sponsor';
-                if (!file_exists($folderName)) mkdir($folderName, 0777, true);
-                $destination = "$folderName/" . time() . '_' . $_FILES['Image']['name'];
-                move_uploaded_file($_FILES['Image']['tmp_name'], $destination);
-                $reqdata['Image'] = $destination;
-            } elseif (isset($reqdata['Image'])) {
-                $reqdata['Image'] = $reqdata['Image'];
-            } else {
-                $reqdata['Image'] = '';
-            }
-    
-            $faculties = new ModelsSponsor();
-            $resdata = $faculties->save($reqdata);
-    
-            $this->response->sendStatus(200);
-            $this->response->setContent($resdata);
-            }
+                $message = "Registered Successfully";
+                 $notification=new ModelsMemberRegister();
+                 $resdata =$notification->save($reqdata);
+                 $this->response->sendStatus(200);
+                 $saveddata = [
+                    $resdata,
+                    'message' => $message
+                 ];
+                 $this->response->setContent($saveddata);
+            
         } catch (Exception $e) {
             echo 'Error Message: ' . $e->getMessage();
         }
     }
-    
-    
-    public function updatesponsor() {
+
+    public function updateMemberRegister() {
         try {
             $verify = Authentication::verifyJWT();
             if ($verify == "Unauthorized") {
@@ -232,29 +218,20 @@ class ControllersSponsor extends Controller {
                 return;
             }
             $reqdata = $_POST;
-            $files = $_FILES;
+
+            error_log(print_r($_POST, true));
+            error_log(print_r($_FILES, true));
+            error_log(print_r($_GET, true));
     
             if (empty($reqdata)) {
                 throw new Exception("No data provided for update.");
-            }
-    
-            if (!empty($_FILES['Image']['tmp_name'])) {
-                $folderName = 'Upload/sponsor';
-                if (!file_exists($folderName)) mkdir($folderName, 0777, true);
-                $destination = "$folderName/" . time() . '_' . $_FILES['Image']['name'];
-                move_uploaded_file($_FILES['Image']['tmp_name'], $destination);
-                $reqdata['Image'] = $destination;
-            } elseif (isset($reqdata['Image'])) {
-                $reqdata['Image'] = $reqdata['Image'];
-            } else {
-                $reqdata['Image'] = '';
             }
     
             $id = $_GET['id'] ?? null;
             if (!$id) {
                 throw new Exception("Missing ID parameter.");
             }
-            $resdata = (new ModelsSponsor)->update($reqdata, $id);
+            $resdata = (new ModelsMemberRegister)->update($reqdata, $id);
             $this->response->sendStatus(200);
             $this->response->setContent($resdata);
         } catch (Exception $e) {
@@ -262,25 +239,23 @@ class ControllersSponsor extends Controller {
             echo json_encode(["error" => $e->getMessage()]);
         }
     }
-
-
-    public function deletesponsor(){
+    
+    public function deleteMemberRegister(){
         try {
            $verify = Authentication::verifyJWT();
            if ($verify == "Unauthorized") {
                http_response_code(401);
                echo json_encode(array("error" => "Unauthorized"));
-           }  if (isset($_GET['id'])) {
-            error_log("Deleting sponsor with ID: " . $_GET['id']);
-            $blog = new ModelsSponsor();
-            $blog->Delete($_GET['id']);
-            $this->response->sendStatus(200);
-            $this->response->setContent("Deleted successfully");
-        } else {
-            error_log("ID parameter missing in request");
-            $this->response->sendStatus(400);
-            echo json_encode(["error" => "ID parameter missing"]);
-        }
+           } else {
+           
+                $reqdata = $this->request->input();
+                $notification=new ModelsMemberRegister();
+            
+        
+                $notification->Delete($_GET['id']);
+                $this->response->sendStatus(200);
+                $this->response->setContent('Deleted successfully');
+           }
             
         } catch (Exception $e) {
             echo 'Error Message: ' . $e->getMessage();

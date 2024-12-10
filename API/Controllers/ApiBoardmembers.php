@@ -110,25 +110,69 @@ public function getallBoardmembers() {
     }
 }
 
+// public function getBoardmemByStatus() {
+//     try {
+//         $faculties = new ModelsBoardmembers();
+//         $first = isset($_GET['first']) ? intval($_GET['first']) : 0;
+//         $rows = isset($_GET['rows']) ? intval($_GET['rows']) : 10; 
+//         $globalfilter = isset($_GET['globalfilter']) ? $_GET['globalfilter'] : ''; 
+//         $colfilter = [];
+//         if (isset($_GET['colfilter'])) {
+//             foreach ($_GET['colfilter'] as $column => $filterData) {
+//                 if (is_array($filterData)) {
+//                     foreach ($filterData as $operator => $values) {
+//                         if ($operator === '$in' && is_array($values)) {
+//                             $colfilter[$column] = $values;
+//                         }
+//                     }
+//                 }
+//             }
+//         } 
+//         $activeMembers = $faculties->getByStatus(); 
+//         if (!empty($globalfilter)) {
+//             $columns = ['Name', 'Designation', 'Year'];  
+//             $activeMembers = array_filter($activeMembers, function ($member) use ($globalfilter, $columns) {
+//                 foreach ($columns as $column) {
+//                     if (stripos($member[$column], $globalfilter) !== false) {
+//                         return true;
+//                     }
+//                 }
+//                 return false;
+//             });
+//         } 
+//         if (!empty($colfilter)) {
+//             $activeMembers = array_filter($activeMembers, function ($member) use ($colfilter) {
+//                 foreach ($colfilter as $column => $values) {
+//                     if (!in_array($member[$column], $values)) {
+//                         return false;
+//                     }
+//                 }
+//                 return true;
+//             });
+//         } 
+//         $totalLength = count($activeMembers); 
+//         $paginatedMembers = array_slice($activeMembers, $first, $rows); 
+//         $this->response->sendStatus(200);
+//         $this->response->setContent([
+//             'resdata' => $paginatedMembers,
+//             'totallength' => $totalLength
+//         ]);
+//     } catch (Exception $e) {
+//         $this->response->sendStatus(500);
+//         $this->response->setContent([
+//             'error' => $e->getMessage()
+//         ]);
+//     }
+// }
+
 public function getBoardmemByStatus() {
     try {
         $faculties = new ModelsBoardmembers();
+        $year = isset($_GET['Year']) ? $_GET['Year'] : null;
         $first = isset($_GET['first']) ? intval($_GET['first']) : 0;
         $rows = isset($_GET['rows']) ? intval($_GET['rows']) : 10; 
         $globalfilter = isset($_GET['globalfilter']) ? $_GET['globalfilter'] : ''; 
-        $colfilter = [];
-        if (isset($_GET['colfilter'])) {
-            foreach ($_GET['colfilter'] as $column => $filterData) {
-                if (is_array($filterData)) {
-                    foreach ($filterData as $operator => $values) {
-                        if ($operator === '$in' && is_array($values)) {
-                            $colfilter[$column] = $values;
-                        }
-                    }
-                }
-            }
-        } 
-        $activeMembers = $faculties->getByStatus(); 
+        $activeMembers = $faculties->getByStatus($year);
         if (!empty($globalfilter)) {
             $columns = ['Name', 'Designation', 'Year'];  
             $activeMembers = array_filter($activeMembers, function ($member) use ($globalfilter, $columns) {
@@ -140,6 +184,18 @@ public function getBoardmemByStatus() {
                 return false;
             });
         } 
+        $colfilter = [];
+        if (isset($_GET['colfilter'])) {
+            foreach ($_GET['colfilter'] as $column => $filterData) {
+                if (is_array($filterData)) {
+                    foreach ($filterData as $operator => $values) {
+                        if ($operator === '$in' && is_array($values)) {
+                            $colfilter[$column] = $values;
+                        }
+                    }
+                }
+            }
+        }
         if (!empty($colfilter)) {
             $activeMembers = array_filter($activeMembers, function ($member) use ($colfilter) {
                 foreach ($colfilter as $column => $values) {
@@ -150,8 +206,17 @@ public function getBoardmemByStatus() {
                 return true;
             });
         } 
+        $uniqueMembers = [];
+        foreach ($activeMembers as $member) {
+            $uniqueKey = $member['Name'] . '|' . $member['Designation'];
+            if (!isset($uniqueMembers[$uniqueKey])) {
+                $uniqueMembers[$uniqueKey] = $member;
+            }
+        }
+        $activeMembers = array_values($uniqueMembers);
         $totalLength = count($activeMembers); 
         $paginatedMembers = array_slice($activeMembers, $first, $rows); 
+        
         $this->response->sendStatus(200);
         $this->response->setContent([
             'resdata' => $paginatedMembers,
@@ -165,6 +230,14 @@ public function getBoardmemByStatus() {
     }
 }
 
+public function fetchUniqueYears() {
+        $model = new ModelsBoardmembers(); 
+        $result = $model->getUniqueYear();
+        $this->response->sendStatus(200);
+        $this->response->setContent([
+            'resdata' => $result
+        ]);
+}
 
 
 public function getFilterBoard() {

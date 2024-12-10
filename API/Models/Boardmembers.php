@@ -17,8 +17,17 @@ class ModelsBoardmembers extends Model {
         return $query->rows;
     }
 
-    public function getByStatus() {
-        $query = $this->db->query("SELECT * FROM " . DB_PREFIX . "boardmembers WHERE Status = 'Active'");
+    public function getByStatus($year = null) {
+        $sql = "SELECT * FROM " . DB_PREFIX . "boardmembers WHERE Status = 'Active'";
+        if ($year !== null) {
+            $sql .= " AND Year = '" . $this->db->escape($year) . "'";
+        }
+        $query = $this->db->query($sql);
+        return $query->rows;
+    }
+
+    public function getUniqueYear(){
+        $query = $this->db->query("SELECT DISTINCT Year FROM " . DB_PREFIX . "boardmembers WHERE Status = 'Active'");
         return $query->rows;
     }
 

@@ -254,21 +254,12 @@ class ControllersRegister extends Controller {
     public function saveRegister()
     {
         try {
-            // Determine input source
             if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-                // Check if it's JSON content type
                 if (isset($_SERVER['CONTENT_TYPE']) && 
                     strpos($_SERVER['CONTENT_TYPE'], 'application/json') !== false) {
-                    // Parse raw JSON input
                     $jsonInput = file_get_contents('php://input');
-                    
-                    // Debug logging
                     error_log('Raw JSON Input: ' . $jsonInput);
-                    
-                    // Decode JSON input
                     $reqdata = json_decode($jsonInput, true);
-                    
-                    // Check for JSON decoding errors
                     if (json_last_error() !== JSON_ERROR_NONE) {
                         http_response_code(400);
                         echo json_encode([
@@ -279,11 +270,9 @@ class ControllersRegister extends Controller {
                         return;
                     }
                 } else {
-                    // Fallback to $_POST if not JSON
                     $reqdata = $_POST;
                 }
             } else {
-                // Handle non-POST requests
                 http_response_code(405);
                 echo json_encode([
                     'error' => 'Method Not Allowed',
@@ -291,8 +280,6 @@ class ControllersRegister extends Controller {
                 ]);
                 return;
             }
-    
-            // Validate input
             if (!is_array($reqdata) || empty($reqdata)) {
                 http_response_code(400);
                 echo json_encode([
@@ -301,13 +288,9 @@ class ControllersRegister extends Controller {
                 ]);
                 return;
             }
-    
-            // Process registration
             $message = "Registered Successfully";
             $notification = new ModelsRegister();
             $savedData = $notification->save($reqdata);
-    
-            // Prepare response
             $resdata = [
                  $savedData,
                 'message' => $message
