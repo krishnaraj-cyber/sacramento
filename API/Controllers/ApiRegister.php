@@ -103,7 +103,7 @@ class ControllersRegister extends Controller {
         }
     }
     
-    public function getAllFilterRegister() { //for dashbooard filter
+    public function getAllFilterRegister() { 
         try {
             $field = isset($_POST['field']) ? $_POST['field'] : (isset($_GET['field']) ? $_GET['field'] : '');
             if (empty($field)) {
@@ -133,18 +133,19 @@ class ControllersRegister extends Controller {
 
 
     public function getFilteredbyPoster() {
-        try {
+        try { 
             $verify = Authentication::verifyJWT();
             if ($verify == "Unauthorized") {
                 http_response_code(401);
                 echo json_encode(array("error" => "Unauthorized"));
                 return;
             }
-    
+     
             $first = isset($_GET['first']) ? intval($_GET['first']) : 0;
             $rows = isset($_GET['rows']) ? intval($_GET['rows']) : 10;
             $globalfilter = isset($_GET['globalfilter']) ? $_GET['globalfilter'] : '';
             $colfilter = [];
+    
             if (isset($_GET['colfilter'])) {
                 foreach ($_GET['colfilter'] as $column => $filterData) {
                     if (is_array($filterData)) {
@@ -158,17 +159,20 @@ class ControllersRegister extends Controller {
                     }
                 }
             }
+     
             if (!isset($colfilter['Poster_Type'])) {
-                $notification = new ModelsRegister();
+                $notification = new ModelsRegister($this->db);
                 $defaultPosterTypes = $notification->getUniquePosterTypes();
                 if (!empty($defaultPosterTypes)) {
                     $colfilter['Poster_Type'] = $defaultPosterTypes;
                 }
             }
+     
             $columns = ['First_Name', 'Last_Name', 'Email', 'Phone_Number', 'Entry_Fees', 'Willingness', 
                         'Number_Guests', 'Adults', 'Kids', 'Babes', 'Game_Title', 'Team_Name', 
                         'Team_Members_Count', 'Disclaimer_Acceptance', 'EventName', 'Poster_Type', 'Status'];
             $globalFilterQuery = '';
+    
             if (!empty($globalfilter)) {
                 $globalFilterConditions = [];
                 foreach ($columns as $column) {
@@ -177,6 +181,7 @@ class ControllersRegister extends Controller {
                 }
                 $globalFilterQuery = "(" . implode(' OR ', $globalFilterConditions) . ")";
             }
+    
             $additionalFilterQuery = '';
             if (!empty($colfilter)) {
                 $additionalConditions = [];
@@ -191,6 +196,7 @@ class ControllersRegister extends Controller {
                 }
                 $additionalFilterQuery = implode(' AND ', $additionalConditions);
             }
+    
             $filterQuery = '';
             if ($globalFilterQuery && $additionalFilterQuery) {
                 $filterQuery = "WHERE $globalFilterQuery AND $additionalFilterQuery";
@@ -199,88 +205,109 @@ class ControllersRegister extends Controller {
             } elseif ($additionalFilterQuery) {
                 $filterQuery = "WHERE $additionalFilterQuery";
             }
-            $totalCountQuery = "SELECT COUNT(*) as total FROM " . DB_PREFIX . "register $filterQuery";
-            $totalCountResult = $this->db->query($totalCountQuery);
-            
-            if (!$totalCountResult || !isset($totalCountResult->row['total'])) {
-                throw new Exception("Failed to fetch total count.");        
-            }
-            
-            $totalLength = $totalCountResult->row['total'];
-            $dataQuery = "SELECT * FROM " . DB_PREFIX . "register $filterQuery LIMIT $first, $rows";
-            $dataResult = $this->db->query($dataQuery);
-            
-            $resdata = $dataResult->rows;
-            
+     
+            $notification = new ModelsRegister($this->db);
+            $totalLength = $notification->getTotalCount($filterQuery);
+            $resdata = $notification->getFilteredData($filterQuery, $first, $rows);
+     
             $this->response->sendStatus(200);
             $this->response->setContent([
                 'resdata' => $resdata,
                 'totallength' => $totalLength
             ]);
     
-        } catch (Exception $e) {
+        } catch (Exception $e) { 
             $this->response->sendStatus(500);
             $this->response->setContent([
                 'error' => $e->getMessage()
             ]);
         }
-    }
-    
+    } 
 
- 
+
 
     // public function saveRegister()
     // {
-    //     try {      
-    //         $reqdata = $_SERVER['CONTENT_TYPE'] === 'application/json' ? json_decode(file_get_contents("php://input"), true) : $_POST;
-    //         if (!$reqdata) {
-    //             echo json_encode(["error" => "Invalid or missing input data"]);
+    //     try {
+    //         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    //             if (isset($_SERVER['CONTENT_TYPE']) && 
+    //                 strpos($_SERVER['CONTENT_TYPE'], 'application/json') !== false) {
+    //                 $jsonInput = file_get_contents('php://input');
+    //                 error_log('Raw JSON Input: ' . $jsonInput);
+    //                 $reqdata = json_decode($jsonInput, true);
+    //                 if (json_last_error() !== JSON_ERROR_NONE) {
+    //                     http_response_code(400);
+    //                     echo json_encode([
+    //                         'error' => 'Invalid JSON',
+    //                         'json_error' => json_last_error_msg(),
+    //                         'status' => false
+    //                     ]);
+    //                     return;
+    //                 }
+    //             } else {
+    //                 $reqdata = $_POST;
+    //             }
+    //         } else {
+    //             http_response_code(405);
+    //             echo json_encode([
+    //                 'error' => 'Method Not Allowed',
+    //                 'status' => false
+    //             ]);
     //             return;
     //         }
+    //         if (!is_array($reqdata) || empty($reqdata)) {
+    //             http_response_code(400);
+    //             echo json_encode([
+    //                 'error' => 'Invalid or missing input data',
+    //                 'status' => false
+    //             ]);
+    //             return;
+    //         }
+    //         $message = "Registered Successfully";
+    //         $notification = new ModelsRegister();
+    //         $savedData = $notification->save($reqdata);
+    //         $resdata = [
+    //              $savedData,
+    //             'message' => $message
+    //         ]; 
 
-              
-    //             $message="Registered Successfully";
-
-    //              $notification=new ModelsRegister();
-    //              $reqdata =$notification->save($reqdata);
-    //              $resdata = [$reqdata,'message'=>$message];
-    //              $this->response->sendStatus(200);
-    //              $this->response->setContent($resdata);
-    //     } catch (Exception $e) {
-    //         echo 'Error Message: ' . $e->getMessage();
+    //         header('Content-Type: application/json');
+    //         echo json_encode($resdata);
+    //         http_response_code(200);
+    
+    //     } catch (Exception $e) { 
+    //         http_response_code(500);
+    //         echo json_encode([
+    //             'error' => $e->getMessage(),
+    //             'trace' => $e->getTraceAsString(),
+    //             'status' => false
+    //         ]);
     //     }
     // }
 
+
     public function saveRegister()
-    {
-        try {
-            if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-                if (isset($_SERVER['CONTENT_TYPE']) && 
-                    strpos($_SERVER['CONTENT_TYPE'], 'application/json') !== false) {
-                    $jsonInput = file_get_contents('php://input');
-                    error_log('Raw JSON Input: ' . $jsonInput);
-                    $reqdata = json_decode($jsonInput, true);
-                    if (json_last_error() !== JSON_ERROR_NONE) {
-                        http_response_code(400);
-                        echo json_encode([
-                            'error' => 'Invalid JSON',
-                            'json_error' => json_last_error_msg(),
-                            'status' => false
-                        ]);
-                        return;
-                    }
-                } else {
-                    $reqdata = $_POST;
+{
+    try {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            if (isset($_SERVER['CONTENT_TYPE']) && strpos($_SERVER['CONTENT_TYPE'], 'application/json') !== false) {
+                $jsonInput = file_get_contents('php://input');
+                $reqdata = json_decode($jsonInput, true);
+
+                if (json_last_error() !== JSON_ERROR_NONE) {
+                    http_response_code(400);
+                    echo json_encode([
+                        'error' => 'Invalid JSON',
+                        'json_error' => json_last_error_msg(),
+                        'status' => false
+                    ]);
+                    return;
                 }
             } else {
-                http_response_code(405);
-                echo json_encode([
-                    'error' => 'Method Not Allowed',
-                    'status' => false
-                ]);
-                return;
+                $reqdata = $_POST;
             }
-            if (!is_array($reqdata) || empty($reqdata)) {
+ 
+            if (!is_array($reqdata) || empty($reqdata) || !isset($reqdata['payment_session_id'])) {
                 http_response_code(400);
                 echo json_encode([
                     'error' => 'Invalid or missing input data',
@@ -288,29 +315,59 @@ class ControllersRegister extends Controller {
                 ]);
                 return;
             }
-            $message = "Registered Successfully";
+ 
+            \Stripe\Stripe::setApiKey('YOUR_STRIPE_SECRET_KEY');
+
+            $sessionId = $reqdata['payment_session_id'];
+            try {
+                $session = \Stripe\Checkout\Session::retrieve($sessionId);
+
+                if ($session->payment_status !== 'paid') {
+                    http_response_code(400);
+                    echo json_encode([
+                        'error' => 'Payment not completed',
+                        'status' => false
+                    ]);
+                    return;
+                }
+            } catch (\Stripe\Exception\ApiErrorException $e) {
+                http_response_code(500);
+                echo json_encode([
+                    'error' => 'Payment verification failed',
+                    'details' => $e->getMessage(),
+                    'status' => false
+                ]);
+                return;
+            }
+ 
             $notification = new ModelsRegister();
             $savedData = $notification->save($reqdata);
+
             $resdata = [
-                 $savedData,
-                'message' => $message
+                'data' => $savedData,
+                'message' => 'Registered Successfully'
             ];
-    
-            // Send JSON response
+
             header('Content-Type: application/json');
             echo json_encode($resdata);
             http_response_code(200);
-    
-        } catch (Exception $e) {
-            // Error handling
-            http_response_code(500);
+        } else {
+            http_response_code(405);
             echo json_encode([
-                'error' => $e->getMessage(),
-                'trace' => $e->getTraceAsString(),
+                'error' => 'Method Not Allowed',
                 'status' => false
             ]);
         }
+    } catch (Exception $e) {
+        http_response_code(500);
+        echo json_encode([
+            'error' => $e->getMessage(),
+            'trace' => $e->getTraceAsString(),
+            'status' => false
+        ]);
     }
+}
+
 
     public function updateRegister() {
         try {
@@ -349,8 +406,6 @@ class ControllersRegister extends Controller {
            
                 $reqdata = $this->request->input();
                 $notification=new ModelsRegister();
-            
-        
                 $notification->Delete($_GET['id']);
                 $this->response->sendStatus(200);
                 $this->response->setContent('Deleted successfully');

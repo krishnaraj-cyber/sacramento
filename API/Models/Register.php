@@ -8,19 +8,36 @@ use PDO;
 
 class ModelsRegister extends Model {
     
-    public function lastRecord($id) {
-        $query = $this->db->query("SELECT * FROM " . DB_PREFIX . "register WHERE id=" . (int)$id);
-        return $query->row;
-    }  
+    public function lastRecord($id) { 
+        $query = $this->db->query("SELECT * FROM " . DB_PREFIX . "register WHERE id = " . (int)$id);
+        $record = $query->row; 
+        if (!empty($record)) {
+            $participantsQuery = $this->db->query("SELECT * FROM " . DB_PREFIX . "register_participants WHERE id = " . (int)$id);
+            $record['Participants'] = $participantsQuery->rows;
+        } else { 
+            $record['Participants'] = [];
+        } 
+        return $record;
+    }
+    
 
     public function lastRecord2($Year) {
         $query = $this->db->query("SELECT * FROM " . DB_PREFIX . "register WHERE Year=" . (int)$Year);
         return $query->row;
     }  
     
-    public function getAll($whereClause = '') {
-        $query = $this->db->query("SELECT * FROM " . DB_PREFIX . "register $whereClause");
-        return $query->rows;
+    public function getAll($filters = []) {
+        $query = $this->db->query("SELECT * FROM " . DB_PREFIX . "register");
+        $events = $query->rows;
+    
+        if (!empty($events)) {
+            foreach ($events as &$event) {
+                $eventId = (int)$event['id'];
+                $gamesQuery = $this->db->query("SELECT * FROM " . DB_PREFIX . "register_participants WHERE id = $eventId");
+                $event['Participant'] = $gamesQuery->rows;
+            }
+        }
+        return $events;
     }
 
     // public function getFiltered($posterType = null) {
@@ -36,16 +53,37 @@ class ModelsRegister extends Model {
     //     return $query->fetchAll(PDO::FETCH_ASSOC);
     // }
 
-    // public function getUniquePosterTypes() {
-    //     $query = $this->db->query("SELECT DISTINCT Poster_Type FROM " . DB_PREFIX . "register");
-    //     return array_column($query->rows, 'Poster_Type');
-    // }
-    
-    
     public function getUniquePosterTypes() {
         $query = $this->db->query("SELECT DISTINCT Poster_Type FROM " . DB_PREFIX . "register WHERE Poster_Type = 'Registration Form'");
-        return array_column($query->rows, 'Poster_Type');
-    } 
+        $posterTypes = [];
+        foreach ($query->rows as $row) {
+            $posterTypes[] = $row['Poster_Type'];
+        }
+        return $posterTypes;
+    }
+    public function getFilteredData($filterQuery, $first, $rows) {
+        $dataQuery = "SELECT * FROM " . DB_PREFIX . "register $filterQuery LIMIT $first, $rows";
+        $dataResult = $this->db->query($dataQuery);
+        $data = $dataResult->rows; 
+        foreach ($data as &$record) {
+            if (isset($record['id'])) {
+                $recordId = (int)$record['id'];
+                $participantsQuery = $this->db->query("SELECT * FROM " . DB_PREFIX . "register_participants WHERE id = $recordId");
+                $record['Participants'] = $participantsQuery->rows;
+            } else {
+                $record['Participants'] = [];
+            }
+        }
+
+        return $data;
+    }
+ 
+    public function getTotalCount($filterQuery) {
+        $countQuery = "SELECT COUNT(*) as total FROM " . DB_PREFIX . "register $filterQuery";
+        $result = $this->db->query($countQuery);
+        return $result->row['total'] ?? 0;
+    }
+    
 
     public function getUniquePosterVolunteer() {
         $query = $this->db->query("SELECT DISTINCT Poster_Type FROM " . DB_PREFIX . "register WHERE Poster_Type = 'Volunteer'");
@@ -139,6 +177,40 @@ class ModelsRegister extends Model {
         $query = "INSERT INTO " . DB_PREFIX . "register ($keys) VALUES ($values)"; 
         $this->db->query($query); 
         $id = $this->db->getLastId(); 
+
+        if (isset($data['Participant']) && is_array($data['Participant']) && !empty($data['Participant'])) {
+            $participantValues = [];
+            
+            foreach ($data['Participant'] as $participant) { 
+                $participantData = [
+                    'id' => $id,  
+                    'Participant_Name' => $this->db->escape($participant['Participant_Name'] ?? ''),
+                    'Selected_Event' => $this->db->escape($participant['Selected_Event'] ?? ''), 
+                    'Age' => $this->db->escape($participant['Age'] ?? '') 
+                ];
+     
+                $participantValues[] = "(" . 
+                    "'" . $participantData['id'] . "', " .
+                    "'" . $participantData['Participant_Name'] . "', " .
+                    "'" . $participantData['Selected_Event'] . "', " .
+                    "'" . $participantData['Age'] . "'" .
+                    ")";
+            }
+     
+            if (!empty($participantValues)) {
+                $participantInsertQuery = "INSERT INTO " . DB_PREFIX . "register_participants " .
+                    "(id, Participant_Name, Selected_Event, Age) VALUES " . 
+                    implode(", ", $participantValues);
+                
+                try {
+                    $this->db->query($participantInsertQuery);
+                    error_log("Participants inserted successfully");
+                } catch (Exception $e) {
+                    error_log("Error inserting participants: " . $e->getMessage()); 
+                }
+            }
+        }
+
         return $this->lastRecord($id); 
     }
     
@@ -169,6 +241,7 @@ class ModelsRegister extends Model {
     
     
     public function delete($id) {
+        $query1 = $this->db->query("DELETE FROM " . DB_PREFIX . "register_participants WHERE id = " . (int)$id);
         $query = $this->db->query("DELETE FROM " . DB_PREFIX . "register WHERE id = " . (int)$id);
         return $id;
     }

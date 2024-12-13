@@ -22,3 +22,14 @@ CREATE TABLE sacra_register (
     created_date TIMESTAMP DEFAULT NOW(),
     updated_date TIMESTAMP DEFAULT NOW() ON UPDATE NOW()
 );
+
+
+
+-- Supporting Table 1
+CREATE TABLE sacra_register_participants (
+    id INT,
+    Participant_Name TEXT,
+    Selected_Event TEXT,
+    Age TEXT,
+    FOREIGN KEY (id) REFERENCES sacra_register(id)
+);

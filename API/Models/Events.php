@@ -80,10 +80,10 @@ class ModelsEvents extends Model {
         if (isset($games) && is_array($games)) {
             $gameValues = [];
             foreach ($games as $game) {
-                $gameValues[] = "(" . (int)$eventId . ", '" . $this->db->escape($game['Game_Title']) . "', '" . $this->db->escape($game['Participant_Type']) . "', '" . $this->db->escape($game['GamePayment'] ?? null) . "', '" . $this->db->escape($game['Payment_Type'] ?? null) . "', '" . $this->db->escape($game['Entry_Fees'] ?? null) . "')";
+                $gameValues[] = "(" . (int)$eventId . ", '" . $this->db->escape($game['Game_Title']) . "', '" . $this->db->escape($game['Participant_Type']) . "', '" . $this->db->escape($game['GamePayment'] ?? null) . "', '" . $this->db->escape($game['Payment_Type'] ?? null) . "', '" . $this->db->escape($game['Entry_Fees'] ?? null) . "', '" . $this->db->escape($game['Adult_Fees'] ?? null) . "', '" . $this->db->escape($game['Kids_Fees'] ?? null) . "', '" . $this->db->escape($game['Under5_Fees'] ?? null) . "', '" . $this->db->escape($game['Fixed_Team_Count'] ?? null) . "')";
             }
             if (!empty($gameValues)) {
-                $gameInsertQuery = "INSERT INTO " . DB_PREFIX . "events_game (id, Game_Title, Participant_Type, GamePayment, Payment_Type, Entry_Fees) VALUES " . implode(", ", $gameValues);
+                $gameInsertQuery = "INSERT INTO " . DB_PREFIX . "events_game (id, Game_Title, Participant_Type, GamePayment, Payment_Type, Entry_Fees, Adult_Fees, Kids_Fees, Under5_Fees, Fixed_Team_Count ) VALUES " . implode(", ", $gameValues);
                 $this->db->query($gameInsertQuery);
             }
         }
@@ -132,10 +132,10 @@ class ModelsEvents extends Model {
         if (isset($games) && is_array($games)) {
             $gameValues = [];
             foreach ($games as $game) {
-                $gameValues[] = "(" . (int)$id . ", '" . $this->db->escape($game['Game_Title']) . "', '" . $this->db->escape($game['Participant_Type']) . "', '" . $this->db->escape($game['GamePayment'] ?? null) . "', '" . $this->db->escape($game['Payment_Type'] ?? null) . "', '" . $this->db->escape($game['Entry_Fees'] ?? null) . "')";
+                $gameValues[] = "(" . (int)$id . ", '" . $this->db->escape($game['Game_Title']) . "', '" . $this->db->escape($game['Participant_Type']) . "', '" . $this->db->escape($game['GamePayment'] ?? null) . "', '" . $this->db->escape($game['Payment_Type'] ?? null) . "', '" . $this->db->escape($game['Entry_Fees'] ?? null) . "', '" . $this->db->escape($game['Adult_Fees'] ?? null) . "', '" . $this->db->escape($game['Kids_Fees'] ?? null) . "', '" . $this->db->escape($game['Under5_Fees'] ?? null) . "', '" . $this->db->escape($game['Fixed_Team_Count'] ?? null) . "')";
             }
             if (!empty($gameValues)) {
-                $gameInsertQuery = "INSERT INTO " . DB_PREFIX . "events_game (id, Game_Title, Participant_Type, GamePayment, Payment_Type, Entry_Fees) VALUES " . implode(", ", $gameValues);
+                $gameInsertQuery = "INSERT INTO " . DB_PREFIX . "events_game (id, Game_Title, Participant_Type, GamePayment, Payment_Type, Entry_Fees, Adult_Fees, Kids_Fees, Under5_Fees, Fixed_Team_Count ) VALUES " . implode(", ", $gameValues);
                 $this->db->query($gameInsertQuery);
             }
         }

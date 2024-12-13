@@ -19,5 +19,9 @@ CREATE TABLE sacra_Events_Game (
     Payment TEXT,
     Payment_Type TEXT,
     Entry_Fees TEXT,
+    Under5_Fees TEXT,
+    Kids_Fees TEXT,
+    Adult_Fees TEXT,
+    Fixed_Team_Count TEXT,
     FOREIGN KEY (id) REFERENCES sacra_Events(id)
 );
