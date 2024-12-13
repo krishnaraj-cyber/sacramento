@@ -10,21 +10,13 @@ import apiurl from "../../services/apiendpoint/apiendpoint";
 function SponsorSwiper() {
   const [sponsors, setSponsors] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
+  let isMounted = true;
+  
   const fetchSponsors = useCallback(async () => {
-    let isMounted = true;
-    setIsLoading(true);
-    try {
-      const response = await getSponsorByStatus();
-      if (isMounted) {
-        setSponsors(response.resdata);
-      }
-    } catch (error) {
-      console.error("Error fetching sponsors:", error);
-    } finally {
-      if (isMounted) {
-        setIsLoading(false);
-      }
-    }
+    setIsLoading(true);  
+      const response = await getSponsorByStatus(); 
+        setSponsors(response.resdata);   
+        setIsLoading(false);  
     return () => {
       isMounted = false;
     };
@@ -45,25 +37,12 @@ function SponsorSwiper() {
               spaceBetween={10}
               loop={true}
               breakpoints={{
-
-                768: {
-                  slidesPerView: 2,
-                  spaceBetween: 20,
-                },
-
-                1024: {
-                  slidesPerView: 3,
-                  spaceBetween: 20,
-                },
+                768: { slidesPerView: 2, spaceBetween: 20, },
+                1024: { slidesPerView: 3, spaceBetween: 20, },
               }}
-              autoplay={{
-                delay: 3000,
-                disableOnInteraction: false,
-              }}
+              autoplay={{ delay: 3000, disableOnInteraction: false, }}
               modules={[Pagination, Navigation, Autoplay]} className="w-full mx-auto"  >
-              {Array(3)
-                .fill(0)
-                .map((_, index) => (
+              {Array(3).fill(0).map((_, index) => (
                   <SwiperSlide key={index} className="animate-pulse flex flex-col">
                     <div className="sponsor-clip-path w-40 h-5 bg-gray-400"></div>
                     <div className="w-96 h-44 bg-gray-300"></div>
@@ -75,23 +54,11 @@ function SponsorSwiper() {
               slidesPerView={1}
               spaceBetween={10}
               loop={true}
-              autoplay={{
-                delay: 3000,
-                disableOnInteraction: false,
-              }}
+              autoplay={{ delay: 3000, disableOnInteraction: false, }}
               breakpoints={{
-                0: {
-                  slidesPerView: 1,
-                  spaceBetween: 10,
-                },
-                768: {
-                  slidesPerView: 2,
-                  spaceBetween: 15,
-                },
-                1024: {
-                  slidesPerView: 3,
-                  spaceBetween: 20,
-                },
+                0: { slidesPerView: 1, spaceBetween: 10, },
+                768: { slidesPerView: 2, spaceBetween: 15, },
+                1024: { slidesPerView: 3, spaceBetween: 20, },
               }}
               navigation={{
                 nextEl: ".swiper-button-nextdeal",

@@ -16,8 +16,7 @@ const handlesave = async (e) => {
     e.preventDefault();
     setIsLoading(true)
     var res = await saveMemberRegister(formdata);
-    setIsLoading(false)
-    res.message == "Registered Successfully"
+    setIsLoading(false) 
     if (res.message === "Registered Successfully") {
       setSuccess(true);
     } else {

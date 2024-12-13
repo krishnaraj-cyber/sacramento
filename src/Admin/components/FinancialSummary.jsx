@@ -5,12 +5,7 @@ import { ConfirmDialog, confirmDialog } from "primereact/confirmdialog";
 import Tableheadpanel from "../shared/components/FinancialSummary/Tableheadpanel";
 import Tableview from "../shared/components/FinancialSummary/Tableview";
 import Addandeditform from "../shared/components/FinancialSummary/Addandeditform";
-import {
-  deleteFinancialsum,
-  getallFinancialsum,
-  saveFinancialsum,
-  updateFinancialsum,
-} from "../shared/services/apifinancialsummary/apifinancialsummary";
+import { deleteFinancialsum, getallFinancialsum, saveFinancialsum, updateFinancialsum, } from "../shared/services/apifinancialsummary/apifinancialsummary";
 
 export default function FinancialSummary() {
   const [totalRecords, setTotalRecords] = useState(0);
@@ -31,12 +26,7 @@ export default function FinancialSummary() {
 
   const getallGallery = useCallback(async () => {
     setLoading(true);
-    const res = await getallFinancialsum({
-      first,
-      rows,
-      globalfilter,
-      colfilter,
-    });
+    const res = await getallFinancialsum({ first, rows, globalfilter, colfilter, });
     setLoading(false);
     setTabledata(res.resdata);
     setTotalRecords(res.totallength);

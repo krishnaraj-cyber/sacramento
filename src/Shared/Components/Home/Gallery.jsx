@@ -25,24 +25,16 @@ function Gallery(props) {
                     disableOnInteraction: false,
                   }}
                   breakpoints={{
-                    0: {
-                      slidesPerView: 1,
-                    },
-                    768: {
-                      slidesPerView: 2,
-                    },
-                    1024: {
-                      slidesPerView: 3,
-                    },
+                    0: { slidesPerView: 1, },
+                    768: { slidesPerView: 2, },
+                    1024: { slidesPerView: 3, },
                   }}
                   navigation={{
                     nextEl: '.swiper-button-nextdea',
                     prevEl: '.swiper-button-prevdea',
                   }}
                   modules={[Pagination, Navigation, Autoplay]} className="w-full"  >
-                  {Array(3)
-                    .fill(0)
-                    .map((_, index) => (
+                  {Array(3).fill(0).map((_, index) => (
                       <SwiperSlide key={index} className="animate-pulse flex flex-col items-center">
                         <div className="w-full h-64 bg-gray-300 rounded-t-lg"></div>
                         <div className="w-full h-10  bg-gray-500  rounded-b-lg "></div>
@@ -59,15 +51,9 @@ function Gallery(props) {
                     disableOnInteraction: false,
                   }}
                   breakpoints={{
-                    0: {
-                      slidesPerView: 1,
-                    },
-                    768: {
-                      slidesPerView: 2,
-                    },
-                    1024: {
-                      slidesPerView: 3,
-                    },
+                    0: { slidesPerView: 1, },
+                    768: { slidesPerView: 2, },
+                    1024: { slidesPerView: 3, },
                   }}
                   navigation={{ nextEl: '.swiper-button-nextdea', prevEl: '.swiper-button-prevdea' }}
                   modules={[Pagination, Navigation, Autoplay]} className="w-full  " >

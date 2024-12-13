@@ -26,12 +26,7 @@ export default function Whatwedo() {
 
   const getallGallery = useCallback(async () => {
     setLoading(true);
-    const res = await getallWhatwedo({
-      first,
-      rows,
-      globalfilter,
-      colfilter,
-    });
+    const res = await getallWhatwedo({ first, rows, globalfilter, colfilter, });
     setLoading(false);
     setTabledata(res.resdata);
     setTotalRecords(res.totallength);
@@ -53,15 +48,12 @@ export default function Whatwedo() {
   const handlechange = (e, name) => {
     if (e.target && e.target.files) {
       const filesArray = Array.from(e.target.files);
-      setFormdata({ ...formdata, [e.target.name]: filesArray });
-
+      setFormdata({ ...formdata, [e.target.name]: filesArray }); 
       const file = e.target.files[0];
-      const reader = new FileReader();
-
+      const reader = new FileReader(); 
       reader.onloadend = () => {
         setDataUrl({ src: reader.result, length: e.target.files.length });
-      };
-
+      }; 
       if (file) {
         reader.readAsDataURL(file);
       }

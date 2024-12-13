@@ -9,9 +9,7 @@ function YouthForum(props) {
                 <div>
                     <div className='grid lg:grid-cols-5 md:grid-cols-3 justify-items-center items-center justify-self-center   grid-cols-2 gap-5 lg:gap-10' >
                         {isLoading ? (
-                            Array(skeleton)
-                                .fill(0)
-                                .map((_, index) => (
+                            Array(skeleton).fill(0).map((_, index) => (
                                     <div key={index} className="animate-pulse flex  gap-5  "  >
                                         <div className="w-44 h-44 rounded-2xl bg-gray-300  "></div>
                                     </div>

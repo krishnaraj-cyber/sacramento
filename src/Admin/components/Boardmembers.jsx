@@ -10,8 +10,7 @@ import {
   getallBoardmembers,
   saveBoardmembers,
   updateBoardmembers,
-} from "../shared/services/apiboardmembers/apiboardmembers";
-import { Toast } from "primereact/toast";
+} from "../shared/services/apiboardmembers/apiboardmembers"; 
 
 export default function Sponsors() {
   const [totalRecords, setTotalRecords] = useState(0);
@@ -32,12 +31,7 @@ export default function Sponsors() {
 
   const getallGallery = useCallback(async () => {
     setLoading(true);
-    const res = await getallBoardmembers({
-      first,
-      rows,
-      globalfilter,
-      colfilter,
-    });
+    const res = await getallBoardmembers({ first, rows, globalfilter, colfilter, });
     setLoading(false);
     setTabledata(res.resdata);
     setTotalRecords(res.totallength);

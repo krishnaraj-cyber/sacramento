@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import apiurl from '../../services/apiendpoint/apiendpoint';
-function AboutSection(props) {
+export default  function AboutSection(props) {
     const { boardmem, isLoading, about } = props;
 
     return (
@@ -25,9 +25,7 @@ function AboutSection(props) {
                         <p className="text-[#FFE134] text-center md:text-4xl text-2xl concert-one-regular" >BOARD MEMBERS</p>
                         <div className='flex justify-evenly flex-wrap gap-6 text-center'>
                             {isLoading
-                                ? Array(2)
-                                    .fill(0)
-                                    .map((_, index) => (
+                                ? Array(2).fill(0).map((_, index) => (
                                         <div key={index} className="animate-pulse">
                                             <div className="w-60 h-60 bg-gray-300 rounded-tr-xl rounded-tl-xl mx-auto"></div>
                                             <div className="w-60 h-12 bg-gray-300 mx-auto mt-2 rounded-bl-lg rounded-br-lg"></div>
@@ -56,5 +54,4 @@ function AboutSection(props) {
             </section>
         </>
     )
-}
-export default AboutSection
+} 

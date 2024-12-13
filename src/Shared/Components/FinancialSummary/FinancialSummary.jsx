@@ -15,9 +15,7 @@ function FinancialSummary(props) {
               </tr>
             </thead>
             <tbody>
-              {Array(3)
-                .fill(0)
-                .map((_, index) => (
+              {Array(3).fill(0).map((_, index) => (
                   <tr key={index} className="hover:bg-gray-100 text-sm font-semibold text-gray-500">
                     <td className="border px-4 py-2 bg-gray-300 h-10"></td>
                     <td className="border px-4 py-2 bg-gray-300 h-10"></td>

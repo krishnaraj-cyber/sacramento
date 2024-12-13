@@ -67,8 +67,7 @@ export default function Addandeditform(props) {
                             <label>Location</label>
                         </div>
                         <input type="text" name="Event_Location" value={formdata?.Event_Location} onChange={handlechange} className="w-full px-4 py-2 border rounded-md outline-none" required />
-                    </div> */}
-
+                    </div> */} 
 
                     { formdata?.Poster_Type == "RSVP" && <>
                         <div className="mb-2">

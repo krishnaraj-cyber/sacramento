@@ -5,12 +5,7 @@ import { ConfirmDialog, confirmDialog } from "primereact/confirmdialog";
 import Tableheadpanel from "../shared/components/Gallery/Tableheadpanel";
 import Tableview from "../shared/components/Gallery/Tableview";
 import Addandeditform from "../shared/components/Gallery/Addandeditform";
-import {
-  deleteGallerys,
-  getallGallerys,
-  saveGallerys,
-  updateGallerys,
-} from "../shared/services/apigallery/apigallery";
+import { deleteGallerys, getallGallerys, saveGallerys, updateGallerys, } from "../shared/services/apigallery/apigallery";
 
 export default function Gallery() {
   const [totalRecords, setTotalRecords] = useState(0);

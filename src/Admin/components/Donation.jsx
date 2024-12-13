@@ -1,14 +1,7 @@
 import { useCallback, useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import { ConfirmDialog, confirmDialog } from "primereact/confirmdialog";
-import {
-  deleteregister,
-  getallregister,
-  getfilterregister,
-  getuniquevaluebyfield,
-  saveRegisterForm,
-  updateregisters,
-} from "../shared/services/apiregister/apiregister";
+import { deleteregister, getallregister, getfilterregister, getuniquevaluebyfield, saveRegisterForm, updateregisters, } from "../shared/services/apiregister/apiregister";
 import Tablepagination from "../shared/others/Tablepagination";
 import Addandeditform from "../shared/components/Donation/Addandeditform";
 import Tableheadpanel from "../shared/components/Donation/Tableheadpanel";

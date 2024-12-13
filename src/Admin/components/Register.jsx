@@ -20,6 +20,8 @@ export default function Register() {
   const [first, setFirst] = useState(0);
   const [rows, setRows] = useState(10);
   const [visible, setVisible] = useState(false);
+  const [view, setView] = useState(false);
+  const [uniquedata, setUniqueData] = useState([]);
   const [formdata, setFormdata] = useState({ Games: [{}] });
   const [loading, setLoading] = useState(false);
   const [tabledata, setTabledata] = useState([]);
@@ -108,6 +110,12 @@ export default function Register() {
     setLoading(false);
   };
 
+  const handleview = async (id) => { 
+    setView(true);
+    const res = await getuniquevaluebyfield(id); 
+    setUniqueData(res) ;
+  };
+  
   const handledelete = (id) => {
     confirmDialog({
       message: "Do you want to delete this record?",
@@ -159,6 +167,10 @@ export default function Register() {
           filtervalues={filtervalues}
           loading={loading}
           handleBulkMail={handleBulkMail}
+          handleview={handleview}
+          view={view}
+          setView={setView}
+          uniquedata={uniquedata}
         />
 
         <Tablepagination

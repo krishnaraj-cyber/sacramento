@@ -20,15 +20,9 @@ function EventSwipe(props) {
                                     spaceBetween={30}
                                     loop={true}
                                     breakpoints={{
-                                        0: {
-                                            slidesPerView: 1,
-                                        },
-                                        768: {
-                                            slidesPerView: 2,
-                                        },
-                                        1024: {
-                                            slidesPerView: 4,
-                                        },
+                                        0: { slidesPerView: 1, },
+                                        768: { slidesPerView: 2, },
+                                        1024: { slidesPerView: 4, },
                                     }}
                                     navigation={{
                                         nextEl: '.swiper-button-nextdeals',
@@ -36,9 +30,7 @@ function EventSwipe(props) {
                                     }}
                                     modules={[Pagination, Navigation, Autoplay]}
                                     className="w-full"   >
-                                    {Array(4)
-                                        .fill(0)
-                                        .map((_, index) => (
+                                    {Array(4).fill(0).map((_, index) => (
                                             <SwiperSlide key={index} className="flex justify-center">
                                                 <div className="animate-pulse relative group cursor-pointer">
                                                     <div className="w-full h-96 bg-gray-300 rounded-lg"></div>

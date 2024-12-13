@@ -10,6 +10,7 @@ function Aboutt(props) {
             <section>
                 <AboutUs title="BOARD MEMBERS" />
             </section>
+
             <section className='max-w-[70rem] mx-auto px-5'>
                 <div className='border-b-4 border-b-[#E91E31]  md:text-lg text-sm bg-[#0571BC] md:p-5 p-3 text-white  my-10 rounded-lg space-y-5'>
                     <p className="text-outline-white text-[#E91E31] md:text-5xl text-2xl text-center concert-one-regular font-bold ">Trustees and Board of Directors</p>
@@ -40,6 +41,7 @@ function Aboutt(props) {
                     </div>
                 </div>
             </section>
+
             <section className='max-w-[90rem] mx-auto px-5 my-20'>
                 <div>
                     <div className='bg-gray-50 flex justify-center overflow-y-auto gap-2 p-1 w-fit mx-auto rounded-xl border mb-5'>
@@ -71,6 +73,7 @@ function Aboutt(props) {
                     }
                 </div>
             </section>
+            
             <section>
                 <SponsorSwiper />
             </section>

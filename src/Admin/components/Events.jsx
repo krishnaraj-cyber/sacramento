@@ -2,12 +2,7 @@ import React, { useCallback, useEffect, useState } from "react";
 import Tablepagination from "../shared/others/Tablepagination";
 import toast from "react-hot-toast";
 import { ConfirmDialog, confirmDialog } from "primereact/confirmdialog";
-import {
-  deleteEvents,
-  getallEvents,
-  saveEvents,
-  updateEvents,
-} from "../shared/services/apievent/apievent";
+import { deleteEvents, getallEvents, saveEvents, updateEvents, } from "../shared/services/apievent/apievent";
 import Tableheadpanel from "../shared/components/Event/Tableheadpanel";
 import Tableview from "../shared/components/Event/Tableview";
 import Addandeditform from "../shared/components/Event/Addandeditform";

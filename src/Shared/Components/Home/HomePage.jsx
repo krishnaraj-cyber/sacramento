@@ -22,9 +22,7 @@ function HomePage(props) {
               {isLoading ? (
                 <div className="">
                   <div className="grid grid-cols-1 gap-6">
-                    {Array(1)
-                      .fill(0)
-                      ?.map((_, index) => (
+                    {Array(1).fill(0)?.map((_, index) => (
                         <div key={index} className="flex flex-wrap md:flex-nowrap items-center gap-5 pb-10 animate-pulse">
                           <div className="w-96 h-96 rounded-2xl bg-gray-300"></div>
                           <div className="flex flex-col space-y-3">
@@ -51,20 +49,13 @@ function HomePage(props) {
                     pagination={{ clickable: true }}
                     autoplay={{ delay: 3000, disableOnInteraction: false, reverseDirection: true }}
                     breakpoints={{
-                      0: {
-                        slidesPerView: 1,
-                      },
-                      768: {
-                        slidesPerView: 1,
-                      },
-                      1024: {
-                        slidesPerView: 1,
-                      },
+                      0: { slidesPerView: 1, },
+                      768: { slidesPerView: 1, },
+                      1024: { slidesPerView: 1, },
                     }}
                     modules={[Pagination, Navigation, Autoplay]} className="w-full" >
                     {event?.map((item, index) => (
                       <SwiperSlide key={index}>
-                        {console.log(item.Date)}
                         <div className="flex flex-wrap md:flex-nowrap md:justify-start justify-center  items-center gap-5 cursor-default pb-10">
                           <Link to={`/register?id=${item.id}`} >
                           <img className="rounded-2xl border-4 min-w-[350px] w-[350px] lg:w-[400px] object-contain border-[#0670bd]" src={`${apiurl()}/${item.Image}`} alt={item.Eventname} />
@@ -129,27 +120,13 @@ function HomePage(props) {
                     spaceBetween={10}
                     loop={true}
                     breakpoints={{
-                      0: {
-                        slidesPerView: 1,
-                        direction: "horizontal"
-                      },
-                      768: {
-                        slidesPerView: 2,
-                        direction: "horizontal"
-                      },
-                      1024: {
-                        slidesPerView: 3,
-                        direction: "vertical"
-                      },
+                      0: { slidesPerView: 1, direction: "horizontal" },
+                      768: { slidesPerView: 2, direction: "horizontal" },
+                      1024: { slidesPerView: 3, direction: "vertical" },
                     }}
-                    autoplay={{
-                      delay: 3000,
-                      disableOnInteraction: false,
-                    }}
+                    autoplay={{ delay: 3000, disableOnInteraction: false, }}
                     modules={[Pagination, Navigation, Autoplay]} className="w-full mx-auto"  >
-                    {Array(3)
-                      .fill(0)
-                      ?.map((_, index) => (
+                    {Array(3).fill(0)?.map((_, index) => (
                         <SwiperSlide key={index} className="animate-pulse flex flex-col justify-center items-center">
                           <div className="grid   lg:grid-cols-1 gap-6 w-full">
                             <div key={index} className="animate-pulse flex flex-col  justify-center    "  >
@@ -167,18 +144,9 @@ function HomePage(props) {
                     slidesPerView={3}
                     autoplay={{ delay: 3000, disableOnInteraction: false, reverseDirection: true }}
                     breakpoints={{
-                      0: {
-                        slidesPerView: 1,
-                        direction: "horizontal"
-                      },
-                      768: {
-                        slidesPerView: 2,
-                        direction: "horizontal"
-                      },
-                      1024: {
-                        slidesPerView: 3,
-                        direction: "vertical"
-                      },
+                      0: { slidesPerView: 1, direction: "horizontal" },
+                      768: { slidesPerView: 2, direction: "horizontal" },
+                      1024: { slidesPerView: 3, direction: "vertical" },
                     }}
                     navigation={{
                       nextEl: ".swiper-button-nexx",

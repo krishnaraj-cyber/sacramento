@@ -15,15 +15,9 @@ function VideoSwiper() {
                         slidesPerView={1}
                         loop={true}
                         breakpoints={{
-                            0: {
-                                slidesPerView: 1,
-                            },
-                            768: {
-                                slidesPerView: 1,
-                            },
-                            1024: {
-                                slidesPerView: 1,
-                            },
+                            0: { slidesPerView: 1, },
+                            768: { slidesPerView: 1, },
+                            1024: { slidesPerView: 1, },
                         }}
                         navigation={{ nextEl: '.swiper-video-nextdeal', prevEl: '.swiper-video-prevdeal' }}
                         modules={[Pagination, Navigation, Autoplay]}

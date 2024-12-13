@@ -2,7 +2,7 @@ import { Outlet } from "react-router-dom";
 import Topbar from "./Topbar";
 import Sidebar from "./Sidebar";
 
-const Adminmain = () => {
+export default function Adminmain () {
   return (
     <>
       <Topbar />
@@ -13,4 +13,3 @@ const Adminmain = () => {
     </>
   );
 };
-export default Adminmain;

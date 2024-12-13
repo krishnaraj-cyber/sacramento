@@ -30,25 +30,12 @@ function Events(props) {
             speed={1000}
             loop={true}
             slidesPerView={3}
-            autoplay={{
-              delay: 3000,
-              disableOnInteraction: false,
-            }}
-            pagination={{
-              clickable: true,
-            }}
-
+            autoplay={{ delay: 3000, disableOnInteraction: false, }}
+            pagination={{ clickable: true, }}
             breakpoints={{
-              0: {
-                slidesPerView: 1,
-              },
-              768: {
-                slidesPerView: 1,
-
-              },
-              1024: {
-                slidesPerView: 1,
-              },
+              0: { slidesPerView: 1, },
+              768: { slidesPerView: 1,},
+              1024: { slidesPerView: 1,},
             }}
             navigation={{
               nextEl: ".swiper-button-nexx",
@@ -62,15 +49,13 @@ function Events(props) {
             className="w-full max-w-5xl  py-10"  >
             {isLoading ? (
               <div className="w-full flex gap-5">
-                {Array(1)
-                  .fill(0)
-                  .map((_, index) => (
+                {Array(1).fill(0).map((_, index) => (
                     <SwiperSlide key={index}>
                       <div className="animate-pulse flex flex-col gap-4 w-full px-5">
                         <div className="bg-gray-300 h-20 rounded-md w-full"></div>
                       </div>
                     </SwiperSlide>
-                  ))}
+                ))}
               </div>
             ) : (
               activeEvents && activeEvents.length > 0 && (

@@ -6,7 +6,7 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Pagination, Autoplay } from 'swiper/modules';
 import { Link } from 'react-router-dom';
 import apiurl from '../../services/apiendpoint/apiendpoint';
-function Event(props) {
+export default function Event(props) {
     const { event, isLoading } = props;
     return (
         <>
@@ -21,15 +21,9 @@ function Event(props) {
                                     spaceBetween={30}
                                     loop={true}
                                     breakpoints={{
-                                        0: {
-                                            slidesPerView: 1,
-                                        },
-                                        768: {
-                                            slidesPerView: 2,
-                                        },
-                                        1024: {
-                                            slidesPerView: 4,
-                                        },
+                                        0: {slidesPerView: 1, },
+                                        768: { slidesPerView: 2, },
+                                        1024: { slidesPerView: 4,},
                                     }}
                                     navigation={{
                                         nextEl: '.swiper-button-nextdeals',
@@ -55,15 +49,9 @@ function Event(props) {
                                     spaceBetween={30}
                                     loop={true}
                                     breakpoints={{
-                                        0: {
-                                            slidesPerView: 1,
-                                        },
-                                        768: {
-                                            slidesPerView: 2,
-                                        },
-                                        1024: {
-                                            slidesPerView: 4,
-                                        },
+                                        0: { slidesPerView: 1,},
+                                        768: { slidesPerView: 2, },
+                                        1024: { slidesPerView: 4, },
                                     }}
                                     navigation={{ nextEl: '.swiper-button-nextdeals', prevEl: '.swiper-button-prevdeals' }} modules={[Pagination, Navigation, Autoplay]} className="w-full "  >
                                     {event?.map((sponsor, index) => (
@@ -112,4 +100,4 @@ function Event(props) {
         </>
     )
 }
-export default Event
+

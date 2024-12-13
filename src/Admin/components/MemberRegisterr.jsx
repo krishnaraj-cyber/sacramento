@@ -26,12 +26,7 @@ export default function MemberRegister() {
 
   const getallGallery = useCallback(async () => {
     setLoading(true);
-    const res = await getallMemberRegister({
-      first,
-      rows,
-      globalfilter,
-      colfilter,
-    });
+    const res = await getallMemberRegister({ first, rows, globalfilter, colfilter, });
     setLoading(false);
     setTabledata(res.resdata);
     setTotalRecords(res.totallength);
