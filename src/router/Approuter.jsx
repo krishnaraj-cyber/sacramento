@@ -18,6 +18,8 @@ import ViewGalleryPage from "../Components/GalleryPage/ViewGalleryPage";
 import RegistrationPage from "../Components/RegistrationPage";
 import ScrollToTop from "./ScrollToTop";
 import MemberRegister from "../Components/MemberRegister/MemberRegister";
+import PaymentSuccess from "../Shared/Components/PaymentPage/PaymentPage";
+import PaymentFail from "../Components/PaymentFail";
 
 
 function Approuter() {
@@ -39,6 +41,8 @@ function Approuter() {
                     <Route path="/forms/:id" element={<FormPage />} />
                     <Route path="/register" element={<RegistrationPage />} />
                     <Route path="/memberregister" element={<MemberRegister />} />   
+                    <Route path="/success" element={<PaymentSuccess />} />
+                    <Route path="/cancel" element={<PaymentFail />} />
                 </Route>
                 <Route path="/payment-page" element={<Payments />} />
                 <Route path='/login' element={<LoginPage />} />

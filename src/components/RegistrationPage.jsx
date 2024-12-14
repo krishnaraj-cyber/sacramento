@@ -1,9 +1,10 @@
 import React, { useCallback, useEffect, useState } from "react";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { geteventbyid } from "../shared/services/apiregistration/apiregistration";
-import { saveRegisterForm } from "../Admin/shared/services/apiregister/apiregister";
+import { saveRegisterForm, saveRegisterFormfree } from "../Admin/shared/services/apiregister/apiregister";
 import toast from "react-hot-toast";
 import Registration from "../Shared/Components/Registration/Registration";
+import { createPaymentSession } from "../Shared/services/apipayment/apipayment";
 
 export default function RegistrationPage(prpos) {
   const [EventData, setEventData] = useState({});
@@ -45,86 +46,70 @@ export default function RegistrationPage(prpos) {
     }
   };
 
+
   const handlesave = async (e) => {
     e.preventDefault();
     try {
-      if (type === "volunteer") {
-        var formatData = { ...formdata, Poster_Type: "Volunteer" };
-        delete formatData.id;
-        var res = await saveRegisterForm(formatData);
+        let formatData;
+        let totalAmount = 0;
 
-      } else if (formdata.Poster_Type == "RSVP") {
-        if (formdata.Peyment == "Yes") {
-          if (formdata.Guest_Count == "Age Wise") {
-            var totalAmount = formdata.Fees_Adults * 1 * formdata.Adults + formdata.Fees_Kids * 1 * formdata.Kids + formdata.Fees_Under5 * 1 * formdata.Babes;
-            var formatData = { ...formdata, Entry_Fees: totalAmount };
-            delete formatData.id;
-            localStorage.setItem("registerData", JSON.stringify(formatData));
-            var res = await saveRegisterForm(formatData);
-          } else {
-            var totalAmount = formdata.Entry_Fees * 1 * formdata.Number_Guests;
-            var formatData = { ...formdata, Entry_Fees: totalAmount };
-            delete formatData.id;
-            localStorage.setItem("registerData", JSON.stringify(formatData));
-            var res = await saveRegisterForm(formatData);
-          }
-        } else {
-          var formatData = { ...formdata, Entry_Fees: "Free" };
-          delete formatData.id;
-          var res = await saveRegisterForm(formatData);
-        }
-      } //above are pre
-
-      else if (formdata.Poster_Type === "Registration Form") {
-        const participants = formdata?.Participant || [];
-        const games = formdata?.Games || [];
-        let totalAmount = 0; 
-        participants.forEach((participant) => {
-          const selectedGame = games.find( (game) => game.Game_Title === participant.Selected_Event ); 
-
-          if (selectedGame.GamePayment === "Yes") {
-
-            if ( selectedGame.Participant_Type === "Custom Team" && selectedGame.Payment_Type === "Individual" ) {
-              totalAmount += parseFloat(selectedGame.Entry_Fees || 0) * parseFloat(formdata.Team_Members_Count || 0);
-
-            } else if (selectedGame.Participant_Type === "Individual") {
-              const age = parseInt(participant.Age || 0);
-              if (age < 5) {
-                totalAmount += parseFloat(selectedGame.Under5_Fees || 0);
-              } else if (age >= 18) {
-                totalAmount += parseFloat(selectedGame.Adult_Fees || 0);
-              } else {
-                totalAmount += parseFloat(selectedGame.Kids_Fees || 0);
-              }
-
+        if (type === "volunteer") {
+            formatData = { ...formdata, Poster_Type: "Volunteer", Entry_Fees: "Free" };
+        } else if (formdata.Poster_Type === "RSVP") {
+            if (formdata.Peyment === "Yes") {
+                totalAmount = formdata.Guest_Count === "Age Wise"
+                    ? formdata.Fees_Adults * formdata.Adults +
+                      formdata.Fees_Kids * formdata.Kids +
+                      formdata.Fees_Under5 * formdata.Babes
+                    : formdata.Entry_Fees * formdata.Number_Guests;
+                formatData = { ...formdata, Entry_Fees: totalAmount };
             } else {
-              totalAmount += parseFloat(selectedGame.Entry_Fees || 0);
+                formatData = { ...formdata, Entry_Fees: "Free" };
             }
-          }
-        });
+        } else if (formdata.Poster_Type === "Registration Form") {
+            const participants = formdata?.Participant || [];
+            const games = formdata?.Games || [];
 
-        const formatData = {
-          ...formdata,
-          Entry_Fees: totalAmount > 0 ? totalAmount : "Free",
-        };
-        delete formatData.id;
-        var res = await saveRegisterForm(formatData);
+            participants.forEach((participant) => {
+                const selectedGame = games.find(game => game.Game_Title === participant.Selected_Event);
+                if (selectedGame?.GamePayment === "Yes") {
+                    if (selectedGame.Participant_Type === "Custom Team" && selectedGame.Payment_Type === "Individual") {
+                        totalAmount += parseFloat(selectedGame.Entry_Fees || 0) * parseFloat(formdata.Team_Members_Count || 0);
+                    } else if (selectedGame.Participant_Type === "Individual") {
+                        const age = parseInt(participant.Age || 0);
+                        if (age < 5) totalAmount += parseFloat(selectedGame.Under5_Fees || 0);
+                        else if (age >= 18) totalAmount += parseFloat(selectedGame.Adult_Fees || 0);
+                        else totalAmount += parseFloat(selectedGame.Kids_Fees || 0);
+                    } else {
+                        totalAmount += parseFloat(selectedGame.Entry_Fees || 0);
+                    }
+                }
+            });
 
-      } else { // below are pre
-        var formatData = formdata;
+            formatData = { ...formdata, Entry_Fees: totalAmount > 0 ? totalAmount : "Free" };
+        } else {
+            formatData = { ...formdata, Entry_Fees: "Free" };
+        }
+
         delete formatData.id;
         localStorage.setItem("registerData", JSON.stringify(formatData));
-        var res = await saveRegisterForm(formatData);
-      }
-      if (res?.message === "Registered Successfully") {
-        setSuccess(true);
-      } else {
-        toast.error("Registration Failed");
-      }
+        console.log(totalAmount)
+        if (totalAmount > 0) { 
+            await createPaymentSession(formatData.Entry_Fees, formatData);
+        } else { 
+            const res = await saveRegisterFormfree(formatData);
+            if (res?.message === "Registered Successfully") {
+                setSuccess(true);
+            } else {
+                toast.error("Registration Failed");
+            }
+        }
     } catch (error) {
-      console.error("Error saving data:", error);
+        console.error("Error saving data:", error);
     }
-  };
+};
+
+
 
   const handlechangeGames = (event, index) => {
     const updatedParticipants = [...formdata?.Participant];

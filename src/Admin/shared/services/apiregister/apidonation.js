@@ -15,13 +15,7 @@ export const getfilterdonation = async(params)=>{  //act as get all
 
 
 export const getFilterOptions = async (data) => {      //act as dashboard filter
-   var res = await axios.post(
-     `${apiurl()}/api/getallfilterdonations?field=${data}`,
-     {
-       //  params:{ field: data },
-      headers: {Authorization: `Bearer ${gettoken()}` } }
-     
-   );
+   var res = await axios.post( `${apiurl()}/api/getallfilterdonations?field=${data}`, {  headers: {Authorization: `Bearer ${gettoken()}`}});
    return res.data;
  };
  

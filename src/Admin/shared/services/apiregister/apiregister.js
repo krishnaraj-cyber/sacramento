@@ -18,16 +18,14 @@ export const getuniquevaluebyfield = async(params)=>{
    return res.data;
 }
 
-export const saveRegisterForm=async(datas)=>{
-   try {
-      var res=await axios.post(`${apiurl()}/api/uploadregister`,datas
-      // ,{ headers: {"Authorization" : `Bearer ${gettoken()}`}}
-   );
-      return res.data;
-   }
-   catch(err){
-      console.log(err);
-   }
+export const saveRegisterFormfree=async(datas)=>{ 
+      var res=await axios.post(`${apiurl()}/api/uploadregisterfree`,datas  );
+      return res.data; 
+}
+
+export const saveRegisterForm=async(datas)=>{ 
+      var res=await axios.post(`${apiurl()}/api/uploadregister`,datas );
+      return res.data; 
 }
 
 export const updateregisters=async(datas)=>{
@@ -36,13 +34,9 @@ export const updateregisters=async(datas)=>{
 }
 
 export const getFilterOptions = async (data) => {
-   var res = await axios.post(
-     `${apiurl()}/api/getallfilterregisters?field=${data}`,
-     {
+   var res = await axios.post( `${apiurl()}/api/getallfilterregisters?field=${data}`, {
        //  params:{ field: data },
-      headers: {Authorization: `Bearer ${gettoken()}` } }
-     
-   );
+      headers: {Authorization: `Bearer ${gettoken()}` } } );
    return res.data;
  };
  

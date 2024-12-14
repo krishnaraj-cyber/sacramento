@@ -290,6 +290,7 @@ export default function Registration(props) {
                                 </div>
                             </div>
                         )}
+                        
                     </form>
                 </div> 
             </div>

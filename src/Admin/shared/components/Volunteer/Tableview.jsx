@@ -73,13 +73,13 @@ const Tableview = (props) =>{
 
   const columns = [
     {field: 'Reg_ID', header: 'Reg_ID',width : "180px"},
+    {field: 'Eventname', header: 'Title',width : "200px"},
     {field: 'First_Name', header: 'First Name',width : "150px"},
     {field: 'Last_Name', header: 'Last Name',width : "150px"},
     {field: 'Email', header: 'Email ID',width : "150px"},
     {field: 'Phone_Number', header: 'Phone Number', width : "120px"},
     {field: 'Registration_Date', header: 'Reg Date',width : "120px", format: "Date"},
-    {field: 'Eventname', header: 'Title',width : "200px"},
-    {field: 'Game_Title', header: 'Game Title',width : "200px"},
+    // {field: 'Game_Title', header: 'Game Title',width : "200px"},
   ];
 
   return(
