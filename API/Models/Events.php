@@ -23,7 +23,7 @@ class ModelsEvents extends Model {
 
 
     public function getAll($filters = []) {
-        $query = $this->db->query("SELECT * FROM " . DB_PREFIX . "events");
+        $query = $this->db->query("SELECT * FROM " . DB_PREFIX . "events ORDER BY id DESC");
         $events = $query->rows;
     
         if (!empty($events)) {

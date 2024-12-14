@@ -16,9 +16,15 @@ require './API/Controllers/ApiDonation.php';
 require './API/Controllers/ApiMemberReegister.php';
 require './API/Controllers/Home/ApiWhatwedo.php';
 
+// require './API/Controllers/ApiPayment.php';
+
 use Controller\APILoginController;
 //login or authentication
 $router->post('/sacra_mento/api/login', function(){(new APILoginController)->AdminLogin();});
+
+//payment
+$router->post('/sacra_mento/api/create-payment-session', function(){(new ControllersRegister)->createPaymentSession();});
+
 // currentaffairs
 $router->get('/sacra_mento/api/getallcurrentaffairs', function(){(new ControllersCurrentAffairs)->getallcurrentaffairs();});
 $router->post('/sacra_mento/api/getallcurrentaffairsbydate', function(){(new ControllersCurrentAffairs)->getcurrentaffairsbydate();});
@@ -122,6 +128,7 @@ $router->get('/sacra_mento/api/getallregisters', function(){(new ControllersRegi
 $router->post('/sacra_mento/api/getallfilterregisters', function(){(new ControllersRegister)->getAllFilterRegister();});
 $router->get('/sacra_mento/api/getfilterregister', function(){(new ControllersRegister)->getFilteredbyPoster();});
 $router->post('/sacra_mento/api/uploadregister', function(){(new ControllersRegister)->saveRegister();});
+$router->post('/sacra_mento/api/uploadregisterfree', function(){(new ControllersRegister)->saveRegisterfree();});
 $router->post('/sacra_mento/api/editregister', function(){(new ControllersRegister)->updateRegister();});
 $router->delete('/sacra_mento/api/deleteregister', function(){(new ControllersRegister)->deleteRegister();});
 

@@ -91,7 +91,7 @@ class ControllersGallery extends Controller {
             }
             
             $totalLength = $totalCountResult->row['total'];
-            $dataQuery = "SELECT * FROM " . DB_PREFIX . "gallery $filterQuery LIMIT $first, $rows";
+            $dataQuery = "SELECT * FROM " . DB_PREFIX . "gallery $filterQuery ORDER BY id DESC LIMIT $first, $rows";
             $dataResult = $this->db->query($dataQuery);
             
             $resdata = $dataResult->rows;

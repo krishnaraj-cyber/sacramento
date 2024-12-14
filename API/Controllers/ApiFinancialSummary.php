@@ -40,7 +40,7 @@ class ControllersFinancialSummary extends Controller {
                 }
             }
     
-            $columns = ['Name', 'Expenses','Income','Year', 'Status'];
+            $columns = ['EventName', 'Expenses','Income','Year', 'Status'];
             $globalFilterQuery = '';
             if (!empty($globalfilter)) {
                 $globalFilterConditions = [];
@@ -83,7 +83,7 @@ class ControllersFinancialSummary extends Controller {
             }
             
             $totalLength = $totalCountResult->row['total'];
-            $dataQuery = "SELECT * FROM " . DB_PREFIX . "financialsummary $filterQuery LIMIT $first, $rows";
+            $dataQuery = "SELECT * FROM " . DB_PREFIX . "financialsummary $filterQuery ORDER BY id DESC LIMIT $first, $rows";
             $dataResult = $this->db->query($dataQuery);
             
             $resdata = $dataResult->rows;

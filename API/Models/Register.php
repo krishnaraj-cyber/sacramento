@@ -62,7 +62,7 @@ class ModelsRegister extends Model {
         return $posterTypes;
     }
     public function getFilteredData($filterQuery, $first, $rows) {
-        $dataQuery = "SELECT * FROM " . DB_PREFIX . "register $filterQuery LIMIT $first, $rows";
+        $dataQuery = "SELECT * FROM " . DB_PREFIX . "register $filterQuery ORDER BY id DESC LIMIT $first, $rows";
         $dataResult = $this->db->query($dataQuery);
         $data = $dataResult->rows; 
         foreach ($data as &$record) {

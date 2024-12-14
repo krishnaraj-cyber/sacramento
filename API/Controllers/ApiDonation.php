@@ -41,7 +41,7 @@ class ControllersDonation extends Controller {
                 }
             }
     
-            $columns = ['First_Name','Last_Name','Email','Phone_Number','Entry_Fees','Willingness','Number_Guests','Adults','Kids','Babes','Game_Title','Team_Name','Team_Members_Count','Disclaimer_Acceptance','EventName','Poster_Type','Status'];
+            $columns = ['First_Name','Last_Name','Email','Phone_Number','Entry_Fees','Reg_ID','Willingness','Number_Guests','Adults','Kids','Babes','Game_Title','Team_Name','Team_Members_Count','Disclaimer_Acceptance','EventName','Poster_Type','Status'];
             $globalFilterQuery = '';
             if (!empty($globalfilter)) {
                 $globalFilterConditions = [];
@@ -167,7 +167,7 @@ class ControllersDonation extends Controller {
             }
             $columns = ['First_Name', 'Last_Name', 'Email', 'Phone_Number', 'Entry_Fees', 'Willingness', 
                         'Number_Guests', 'Adults', 'Kids', 'Babes', 'Game_Title', 'Team_Name', 
-                        'Team_Members_Count', 'Disclaimer_Acceptance', 'EventName', 'Poster_Type', 'Status'];
+                        'Team_Members_Count', 'Disclaimer_Acceptance', 'EventName', 'Poster_Type','Reg_ID' ];
             $globalFilterQuery = '';
             if (!empty($globalfilter)) {
                 $globalFilterConditions = [];
@@ -207,7 +207,7 @@ class ControllersDonation extends Controller {
             }
             
             $totalLength = $totalCountResult->row['total'];
-            $dataQuery = "SELECT * FROM " . DB_PREFIX . "register $filterQuery LIMIT $first, $rows";
+            $dataQuery = "SELECT * FROM " . DB_PREFIX . "register $filterQuery ORDER BY id DESC LIMIT $first, $rows";
             $dataResult = $this->db->query($dataQuery);
             
             $resdata = $dataResult->rows;

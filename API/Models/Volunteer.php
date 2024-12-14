@@ -169,6 +169,7 @@ class ModelsVolunteer extends Model {
     
     
     public function delete($id) {
+        $query1 = $this->db->query("DELETE FROM " . DB_PREFIX . "register_participants WHERE id = " . (int)$id);
         $query = $this->db->query("DELETE FROM " . DB_PREFIX . "register WHERE id = " . (int)$id);
         return $id;
     }

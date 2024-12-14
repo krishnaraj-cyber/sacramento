@@ -41,7 +41,7 @@ class ControllersRegister extends Controller {
                 }
             }
     
-            $columns = ['First_Name','Last_Name','Email','Phone_Number','Entry_Fees','Willingness','Number_Guests','Adults','Kids','Babes','Game_Title','Team_Name','Team_Members_Count','Disclaimer_Acceptance','EventName','Poster_Type','Status'];
+            $columns = ['First_Name','Last_Name','Email','Phone_Number','Entry_Fees','Willingness','Number_Guests','Adults','Kids','Babes','Game_Title','Team_Name','Team_Members_Count','Disclaimer_Acceptance','EventName','Poster_Type','Reg_ID','Status'];
             $globalFilterQuery = '';
             if (!empty($globalfilter)) {
                 $globalFilterConditions = [];
@@ -170,7 +170,7 @@ class ControllersRegister extends Controller {
      
             $columns = ['First_Name', 'Last_Name', 'Email', 'Phone_Number', 'Entry_Fees', 'Willingness', 
                         'Number_Guests', 'Adults', 'Kids', 'Babes', 'Game_Title', 'Team_Name', 
-                        'Team_Members_Count', 'Disclaimer_Acceptance', 'EventName', 'Poster_Type', 'Status'];
+                        'Team_Members_Count', 'Disclaimer_Acceptance', 'EventName', 'Poster_Type','Reg_ID'];
             $globalFilterQuery = '';
     
             if (!empty($globalfilter)) {
@@ -226,64 +226,105 @@ class ControllersRegister extends Controller {
 
 
 
-    // public function saveRegister()
-    // {
-    //     try {
-    //         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    //             if (isset($_SERVER['CONTENT_TYPE']) && 
-    //                 strpos($_SERVER['CONTENT_TYPE'], 'application/json') !== false) {
-    //                 $jsonInput = file_get_contents('php://input');
-    //                 error_log('Raw JSON Input: ' . $jsonInput);
-    //                 $reqdata = json_decode($jsonInput, true);
-    //                 if (json_last_error() !== JSON_ERROR_NONE) {
-    //                     http_response_code(400);
-    //                     echo json_encode([
-    //                         'error' => 'Invalid JSON',
-    //                         'json_error' => json_last_error_msg(),
-    //                         'status' => false
-    //                     ]);
-    //                     return;
-    //                 }
-    //             } else {
-    //                 $reqdata = $_POST;
-    //             }
-    //         } else {
-    //             http_response_code(405);
-    //             echo json_encode([
-    //                 'error' => 'Method Not Allowed',
-    //                 'status' => false
-    //             ]);
-    //             return;
-    //         }
-    //         if (!is_array($reqdata) || empty($reqdata)) {
-    //             http_response_code(400);
-    //             echo json_encode([
-    //                 'error' => 'Invalid or missing input data',
-    //                 'status' => false
-    //             ]);
-    //             return;
-    //         }
-    //         $message = "Registered Successfully";
-    //         $notification = new ModelsRegister();
-    //         $savedData = $notification->save($reqdata);
-    //         $resdata = [
-    //              $savedData,
-    //             'message' => $message
-    //         ]; 
+    public function saveRegisterfree()
+    {
+        try {
+            if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+                if (isset($_SERVER['CONTENT_TYPE']) && 
+                    strpos($_SERVER['CONTENT_TYPE'], 'application/json') !== false) {
+                    $jsonInput = file_get_contents('php://input');
+                    error_log('Raw JSON Input: ' . $jsonInput);
+                    $reqdata = json_decode($jsonInput, true);
+                    if (json_last_error() !== JSON_ERROR_NONE) {
+                        http_response_code(400);
+                        echo json_encode([
+                            'error' => 'Invalid JSON',
+                            'json_error' => json_last_error_msg(),
+                            'status' => false
+                        ]);
+                        return;
+                    }
+                } else {
+                    $reqdata = $_POST;
+                }
+            } else {
+                http_response_code(405);
+                echo json_encode([
+                    'error' => 'Method Not Allowed',
+                    'status' => false
+                ]);
+                return;
+            }
+            if (!is_array($reqdata) || empty($reqdata)) {
+                http_response_code(400);
+                echo json_encode([
+                    'error' => 'Invalid or missing input data',
+                    'status' => false
+                ]);
+                return;
+            }
+            $message = "Registered Successfully";
+            $notification = new ModelsRegister();
+            $savedData = $notification->save($reqdata);
+            $resdata = [
+                 $savedData,
+                'message' => $message
+            ]; 
 
-    //         header('Content-Type: application/json');
-    //         echo json_encode($resdata);
-    //         http_response_code(200);
+            header('Content-Type: application/json');
+            echo json_encode($resdata);
+            http_response_code(200);
     
-    //     } catch (Exception $e) { 
-    //         http_response_code(500);
-    //         echo json_encode([
-    //             'error' => $e->getMessage(),
-    //             'trace' => $e->getTraceAsString(),
-    //             'status' => false
-    //         ]);
-    //     }
-    // }
+        } catch (Exception $e) { 
+            http_response_code(500);
+            echo json_encode([
+                'error' => $e->getMessage(),
+                'trace' => $e->getTraceAsString(),
+                'status' => false
+            ]);
+        }
+    }
+
+
+    public function createPaymentSession()
+    {
+        try {
+            if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+                $input = json_decode(file_get_contents('php://input'), true);
+    
+                if (empty($input['Amount'])) {
+                    http_response_code(400);
+                    echo json_encode(['error' => 'Missing payment amount']);
+                    return;
+                }
+    
+                \Stripe\Stripe::setApiKey('sk_test_51PZgSgRsjTnsPyMfnRmGlfRNirfcSOdLWjlTjdYZEvIiLF2ioOU00m4qHQFPI6srmbYf3l1ttUl1q3bhzcVsHo7N00xXm2rO6l');
+    
+                $session = \Stripe\Checkout\Session::create([
+                    'payment_method_types' => ['card'],
+                    'line_items' => [[
+                        'price_data' => [
+                            'currency' => 'usd',
+                            'product_data' => ['name' => $input['Title'] ?? 'Event Registration'],
+                            'unit_amount' => intval($input['Amount'] * 100), // Convert to cents
+                        ],
+                        'quantity' => 1,
+                    ]],
+                    'mode' => 'payment',
+                    'success_url' => 'http://192.168.29.62:5173/success?session_id={CHECKOUT_SESSION_ID}',
+                    'cancel_url' => 'http://192.168.29.62:5173/cancel',
+                ]);
+    
+                echo json_encode(['url' => $session->url]);
+            } else {
+                http_response_code(405);
+                echo json_encode(['error' => 'Method not allowed']);
+            }
+        } catch (\Stripe\Exception\ApiErrorException $e) {
+            http_response_code(500);
+            echo json_encode(['error' => $e->getMessage()]);
+        }
+    }
 
 
     public function saveRegister()
@@ -316,7 +357,7 @@ class ControllersRegister extends Controller {
                 return;
             }
  
-            \Stripe\Stripe::setApiKey('YOUR_STRIPE_SECRET_KEY');
+            \Stripe\Stripe::setApiKey('sk_test_51PZgSgRsjTnsPyMfnRmGlfRNirfcSOdLWjlTjdYZEvIiLF2ioOU00m4qHQFPI6srmbYf3l1ttUl1q3bhzcVsHo7N00xXm2rO6l');
 
             $sessionId = $reqdata['payment_session_id'];
             try {
@@ -344,7 +385,7 @@ class ControllersRegister extends Controller {
             $savedData = $notification->save($reqdata);
 
             $resdata = [
-                'data' => $savedData,
+                'resdata' => $savedData,
                 'message' => 'Registered Successfully'
             ];
 

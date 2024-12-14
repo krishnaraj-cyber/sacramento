@@ -40,7 +40,7 @@ class ControllersMemberRegister extends Controller {
                 }
             }
     
-            $columns = ['Firsr_Name', 'Email','Phone_Number','Location','Notify_stm','Contact_for_stm','Register_spouse'];
+            $columns = ['First_Name', 'Email','Phone_Number','Location','Notify_stm','Contact_for_stm','Register_spouse'];
             $globalFilterQuery = '';
             if (!empty($globalfilter)) {
                 $globalFilterConditions = [];
@@ -83,7 +83,7 @@ class ControllersMemberRegister extends Controller {
             }
             
             $totalLength = $totalCountResult->row['total'];
-            $dataQuery = "SELECT * FROM " . DB_PREFIX . "memberregister $filterQuery LIMIT $first, $rows";
+            $dataQuery = "SELECT * FROM " . DB_PREFIX . "memberregister $filterQuery ORDER BY id DESC LIMIT $first, $rows";
             $dataResult = $this->db->query($dataQuery);
             
             $resdata = $dataResult->rows;

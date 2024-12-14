@@ -41,13 +41,13 @@ class ControllersEvents extends Controller {
                 }
             }
     
-            $columns = ['EventName','Image','Date', 'Status'];
+            $columns = ['Eventname','Image','Date','Activities', 'Status'];
             $allEvents = $eventsModel->getAll();
             $filteredEvents = $allEvents;
             if (!empty($globalfilter)) {
-                $filteredEvents = array_filter($allEvents, function($event) use ($globalfilter, $columns) {
-                    foreach ($columns as $column) {
-                        if (stripos($event[$column], $globalfilter) !== false) {
+                $filteredEvents = array_filter($allEvents, function ($event) use ($globalfilter, $columns) {
+                    foreach ($columns as $column) { 
+                        if (isset($event[$column]) && stripos((string)$event[$column], $globalfilter) !== false) {
                             return true;
                         }
                     }
