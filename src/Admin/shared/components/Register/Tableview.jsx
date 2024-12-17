@@ -101,15 +101,15 @@ const Tableview = (props) => {
   };
 
   const columns = [
-    { field: "Eventname", header: "Title", filter: true, width: "200px" },
+    { field: "Eventname", header: "Event Name", filter: true, width: "200px" },
     { field: "Reg_ID", header: "Reg_ID", filter: true, width: "180px" },
-    { field: "Registration_Date", header: "Reg Date", width: "120px", format: "Date", },
+    { field: "created_at", header: "Reg Date", width: "120px",filter:true,  },
     { field: "First_Name", header: "First Name", filter: true, width: "150px" },
     { field: "Last_Name", header: "Last Name", filter: true, width: "150px" },
     { field: "Email", header: "Email ID", filter: true, width: "150px" },
     { field: "Phone_Number", header: "Phone Number", filter: true, width: "120px", },
-    { field: "Payment_id", header: "Payment ID", width: "120px" },
-    { field: "Payment_Status", header: "Payment Status", filter: true, width: "120px", },
+    { field: "payment_intent_id", header: "Payment ID", width: "120px" },
+    { field: "payment_status", header: "Payment Status", filter: true, width: "120px", },
     { field: "Entry_Fees", header: "Entry Fees", filter: true, width: "120px" },
     // { field: "Team_Name", header: "Team Name", filter: true, width: "200px" },
     // {field: gametitles, header: 'Game Title',filter:true,width : "200px"},
@@ -136,7 +136,7 @@ const Tableview = (props) => {
             stateKey="dt-state-demo-local"
           >
             <Column header="Action" body={actionbotton}  style={{ minWidth: "80px" }} />
-            <Column header="Events" body={gametitles} style={{ minWidth: "150px" }} />
+            <Column header="Contest" body={gametitles} style={{ minWidth: "150px" }} />
             {columns.map((col, i) => (
               <Column
                 key={i}

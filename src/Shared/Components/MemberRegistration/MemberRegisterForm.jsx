@@ -98,7 +98,7 @@ export default function MemberRegisterForm( props ) {
                             
                         </div>
                         <div className="mt-4 text-center my-5">
-                            <button type="submit" className=" px-4 py-2 text-white bg-secondary border rounded-md" >
+                            <button type="submit" className=" px-4 py-2 hover:rounded-3xl active:scale-90 duration-300 text-white bg-secondary border rounded-md" >
                                 {isLoading && <span className="animate-spin text-xl inline-block size-4 border-[3px] border-current border-t-transparent text-white rounded-full" role="status" aria-label="loading"></span>}
                                 Submit
                             </button>

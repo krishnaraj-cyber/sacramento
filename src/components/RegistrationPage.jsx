@@ -5,6 +5,7 @@ import { saveRegisterForm, saveRegisterFormfree } from "../Admin/shared/services
 import toast from "react-hot-toast";
 import Registration from "../Shared/Components/Registration/Registration";
 import { createPaymentSession } from "../Shared/services/apipayment/apipayment";
+import Swal from "sweetalert2";
 
 export default function RegistrationPage(prpos) {
   const [EventData, setEventData] = useState({});
@@ -77,7 +78,7 @@ export default function RegistrationPage(prpos) {
                         totalAmount += parseFloat(selectedGame.Entry_Fees || 0) * parseFloat(formdata.Team_Members_Count || 0);
                     } else if (selectedGame.Participant_Type === "Individual") {
                         const age = parseInt(participant.Age || 0);
-                        if (age < 5) totalAmount += parseFloat(selectedGame.Under5_Fees || 0);
+                        if (age < 6) totalAmount += parseFloat(selectedGame.Under5_Fees || 0);
                         else if (age >= 18) totalAmount += parseFloat(selectedGame.Adult_Fees || 0);
                         else totalAmount += parseFloat(selectedGame.Kids_Fees || 0);
                     } else {
@@ -87,6 +88,10 @@ export default function RegistrationPage(prpos) {
             });
 
             formatData = { ...formdata, Entry_Fees: totalAmount > 0 ? totalAmount : "Free" };
+        } else if (formdata.Poster_Type === "Donation"){
+          totalAmount = formdata.Entry_Fees ; 
+          formatData = { ...formdata, Entry_Fees: totalAmount > 0 ? totalAmount : "Free", 
+                                      Eventname: formdata?.Eventname ? formdata.Eventname : "Donation" };
         } else {
             formatData = { ...formdata, Entry_Fees: "Free" };
         }
@@ -95,6 +100,15 @@ export default function RegistrationPage(prpos) {
         localStorage.setItem("registerData", JSON.stringify(formatData));
         console.log(totalAmount)
         if (totalAmount > 0) { 
+           Swal.fire({
+                      title: "Processing...",
+                      text: "Please wait while we are processing.",
+                      allowEscapeKey: false,
+                      allowOutsideClick: false,
+                      didOpen: () => {
+                        Swal.showLoading(); 
+                      },
+                    });
             await createPaymentSession(formatData.Entry_Fees, formatData);
         } else { 
             const res = await saveRegisterFormfree(formatData);

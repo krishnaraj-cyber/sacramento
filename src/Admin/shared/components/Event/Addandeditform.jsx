@@ -17,12 +17,15 @@ export default function Addandeditform(props) {
         { indent: "-1" },
         { indent: "+1" },
       ],
+      [{ align: [] }],[{ color: [] }],
       ["link", "image", "video"],
       ["clean"],
     ],
   };
 
   const formats = ["header","font","size","bold","italic","underline","strike","blockquote","list","bullet","indent","link","image","video",  ];
+
+  
 
   return (
     <Dialog header={!formdata?.id ? "Add Event" : "Update Event"} visible={visible} onHide={() => setVisible(false)} className="!w-full lg:!w-[40rem]" >
@@ -67,11 +70,11 @@ export default function Addandeditform(props) {
 
           <div className="mb-2">
             <div className="mb-2">
-              <label>Event Type</label>
+              <label>Register Type</label>
             </div>
             <select name="Poster_Type" value={formdata?.Poster_Type} onChange={handlechange} className="w-full px-4 py-2 border rounded-md outline-none" required >
               <option value="">Select Type</option>
-              <option value="RSVP">RSVP</option>
+              {/* <option value="RSVP">RSVP</option> */}
               <option value="Registration Form">Registration Form</option>
               <option value="Donation">Donation</option>
             </select>
@@ -206,8 +209,8 @@ export default function Addandeditform(props) {
                         <select name="Participant_Type" value={items?.Participant_Type} onChange={(event) => handlechangeGames(event, index)} className="w-full px-4 py-2 border rounded-md outline-none" required >
                           <option value="">Select Type</option>
                           <option value="Fixed Team">Fixed Team</option>
-                          <option value="Custom Team">Custom Team</option>
-                          <option value="Individual">Individual</option>
+                          <option value="Custom Team">Custom </option>
+                          <option value="Individual">Individual (Age Wise)</option>
                         </select>
                       </div>
 
@@ -232,21 +235,21 @@ export default function Addandeditform(props) {
                               <select name="Payment_Type" value={items?.Payment_Type} onChange={(event) => handlechangeGames(event, index) } className="w-full px-4 py-2 border rounded-md outline-none" required >
                                 <option value="">Select Type</option>
                                 <option value="Team">Team</option>
-                                <option value="Individual">Individual</option>
+                                <option value="Individual">Per head</option>
                               </select>
                             </div>
                           )}
                           {items?.Participant_Type != "Individual" && (
                             <>
                               <div className="mb-2">
-                                <div className="mb-2">
-                                  <label>Entry Fees</label>
+                                <div className="mb-2"> 
+                                  <label>Entry Fees {items.Participant_Type == "Custom Team" && items.Payment_Type == "Individual" && "( per head)"}</label>
                                 </div>
                                 <input type="text" name="Entry_Fees" value={items?.Entry_Fees} onChange={(event) => handlechangeGames(event, index) } className="w-full px-4 py-2 border rounded-md outline-none" required />
                               </div>
                             </>
                           )}
-                          {items?.Participant_Type == "Fixed Team" && (
+                          {/* {items?.Participant_Type == "Fixed Team" && (
                             <>
                               <div className="mb-2">
                                 <div className="mb-2">
@@ -255,26 +258,26 @@ export default function Addandeditform(props) {
                                 <input type="text" name="Fixed_Team_Count" value={items?.Fixed_Team_Count} onChange={(event) => handlechangeGames(event, index) } className="w-full px-4 py-2 border rounded-md outline-none" required />
                               </div>
                             </>
-                          )}
+                          )} */}
                           {items?.Participant_Type == "Individual" && (
                             <>
                               <div className="mb-2">
                                 <div className="mb-2">
-                                  <label>Fees for Adults</label>
+                                  <label>Fees (18+ Adults)</label>
                                 </div>
                                 <input type="text" name="Adult_Fees" value={items?.Adult_Fees} onChange={(event) => handlechangeGames(event, index) } className="w-full px-4 py-2 border rounded-md outline-none" required />
                               </div>
 
                               <div className="mb-2">
                                 <div className="mb-2">
-                                  <label>Fees for Kids</label>
+                                  <label>Fees (Under 18 Kids)</label>
                                 </div>
                                 <input type="text" name="Kids_Fees" value={items?.Kids_Fees} onChange={(event) => handlechangeGames(event, index) } className="w-full px-4 py-2 border rounded-md outline-none" required />
                               </div>
 
                               <div className="mb-2">
                                 <div className="mb-2">
-                                  <label>Fees For Under 5 Years</label>
+                                  <label>Fees (Under 5)</label>
                                 </div>
                                 <input type="text" name="Under5_Fees" value={items?.Under5_Fees} onChange={(event) => handlechangeGames(event, index) } className="w-full px-4 py-2 border rounded-md outline-none" required />
                               </div>

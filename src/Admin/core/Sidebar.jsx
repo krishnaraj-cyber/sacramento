@@ -93,7 +93,7 @@ export default function Sidebar() {
              <div className="p-0.5 hover:bg-gradient-to-l to-70% via-30%  from-[#e81e32] via-black/50 to-white rounded-xl">
              <div className="bg-white rounded-[10px]">
               <NavLink to={'/admin/register'} className={({ isActive }) => (`flex items-center gap-x-3.5 py-2.5 px-2.5 ${isActive ? '  bg-gradient-to-br from-[#e7e361] to-[#fffedc] font-medium shadow' : 'bg-white shadow'} text-sm rounded-lg hover:shadow`)}>
-              <i class="fa-regular fa-id-card"></i> Event Register
+              <i class="fa-regular fa-id-card"></i> Event Registration
               </NavLink>
               </div>
               </div>

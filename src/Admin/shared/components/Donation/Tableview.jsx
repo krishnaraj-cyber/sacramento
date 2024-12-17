@@ -78,7 +78,7 @@ const Tableview = (props) =>{
     {field: 'Phone_Number', header: 'Phone Number', width : "120px",filter:true},
     {field: 'Registration_Date', header: 'Donation Date',width : "120px", format: "Date"},
     {field: 'Eventname', header: 'Title',width : "200px",filter:true},
-    {field: 'Entry_Fees', header: 'Title',width : "200px",filter:true},
+    {field: 'Entry_Fees', header: 'Amount',width : "200px",filter:true},
   ];
 
   return(

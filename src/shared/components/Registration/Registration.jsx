@@ -178,18 +178,20 @@ export default function Registration(props) {
                                 const selectedGame = Array.isArray(formdata?.Games) && formdata.Games.find( (game) => game.Game_Title === items?.Selected_Event );
                                 return(<>
                             <div className='lg:col-span-2' key={index}>
-                                <div className='grid grid-cols-1 lg:grid-cols-2 gap-3'> 
-
-                                    <div className='text-xl font-bold'>
-                                        <span className=""> {selectedGame?.Participant_Type == "Individual" ? `Participant ${index + 1}` : `Participant` } </span> 
+                                {/* <div className='grid grid-cols-1 lg:grid-cols-2 gap-3'>  */}
+                                <div className=''> 
+                                    <div className='flex gap-2 items-center my-1'>
+                                        <div className='text-xl font-bold'>
+                                            <span className=""> Entry {index + 1} </span> 
+                                        </div> 
+                                        <div className='text-end'>
+                                            <button type="button" onClick={(e)=> removeGame(e,index)} className={` ${index >= 1 ? 'block' : 'hidden'} px-2 py-1 text-sm text-white bg-danger-600 border rounded-md text-center ml-auto `} > <i className="fa-solid fa-trash"></i></button>
+                                        </div> 
                                     </div>
-                                    <div className='text-end'>
-                                        <button type="button" onClick={(e)=> removeGame(e,index)} className={` ${index >= 1 ? 'block' : 'hidden'} px-2 py-1 text-sm text-white bg-danger-600 border rounded-md text-center ml-auto `} > <i className="fa-solid fa-trash"></i></button>
-                                    </div> 
-
-                                    <div className="mb-2">
+                                <div className='flex gap-2 *:w-full sm:*:max-w-[50%] flex-wrap sm:flex-nowrap'>
+                                    <div className="mb-2 ">
                                         <div className="mb-2">
-                                            <label>Choose Event <span className='text-[#ef4444]'>*</span></label>
+                                            <label className='whitespace-nowrap'>Choose Event <span className='text-[#ef4444]'>*</span></label>
                                         </div>
                                         <select name="Selected_Event" value={items?.Selected_Event} onChange={(event)=>handlechangeGames(event,index)} className="w-full px-4 py-2 border rounded-md outline-none" required>
                                             <option key="-1" value="">Select Type</option>
@@ -197,32 +199,33 @@ export default function Registration(props) {
                                                 <option role='button' key={index} value={items.Game_Title}>{items.Game_Title}</option>
                                             ))}
                                         </select>
-                                    </div> 
+                                    </div>  
 
+                                    {selectedGame &&
                                     <div className="mb-2">
                                         <div className="mb-2">
-                                            <label> Participant / Team Name</label>
+                                            <label className='whitespace-nowrap'>{selectedGame?.Participant_Type == "Individual" ? "Participant Name" : "Team Name"}<span className='text-[#ef4444]'>*</span></label>
                                         </div>
                                         <input type="text" name="Participant_Name" value={items?.Participant_Name} onChange={(event)=>handlechangeGames(event,index)} className="w-full px-4 py-2 border rounded-md outline-none" required />
-                                    </div>
+                                    </div>}
 
                                     {selectedGame?.Participant_Type === "Individual" && ( <>
                                     <div className="mb-2">
                                         <div className="mb-2">
-                                            <label>Age 
+                                            <label className='whitespace-nowrap'>Age  
                                                 <span className='relative group'>{' '}<i class="fa-solid fa-circle-info cursor-pointer"></i>
                                                     <div className={`absolute bottom-5 left-5 *:whitespace-nowrap  rounded-lg hidden group-hover:block bg-white border p-2 select-none`}>
                                                     {formdata?.Games.filter(game => game.Game_Title === items?.Selected_Event).length > 0 ? (
                                                         formdata?.Games.filter(game => game.Game_Title === items?.Selected_Event).map(filteredGame => (
                                                             <div key={filteredGame.id}>
                                                             <p className="text-sm text-gray-600">
-                                                                Fees for Under 5: ${filteredGame.Under5_Fees || 'N/A'}
+                                                                Fees(18+ Adults): ${filteredGame.Under5_Fees || 'N/A'}
                                                             </p>
                                                             <p className="text-sm text-gray-600">
-                                                                Fees for Kids: ${filteredGame.Kids_Fees || 'N/A'}
+                                                                Fees(Under 18 Kids): ${filteredGame.Kids_Fees || 'N/A'}
                                                             </p>
                                                             <p className="text-sm text-gray-600">
-                                                                Fees for Adults: ${filteredGame.Adult_Fees || 'N/A'}
+                                                                Fees(Under 5): ${filteredGame.Adult_Fees || 'N/A'}
                                                             </p>
                                                             </div>
                                                         ))
@@ -230,25 +233,25 @@ export default function Registration(props) {
                                                         <p className="text-sm text-gray-600">Please select Event to View</p>
                                                     )}
                                                     </div> 
-                                                </span>
+                                                </span>{' '}<span className='text-[#ef4444]'>*</span>
                                             </label>
                                         </div>
                                         <input type="number" name="Age" value={items?.Age} onChange={(event)=>handlechangeGames(event,index)} className="w-full px-4 py-2 border rounded-md outline-none" required />
                                     </div>  
                                     </>)} 
 
-                                    { selectedGame?.Participant_Type == "Custom Team" &&  selectedGame?.Payment_Type == "Individual"  && 
+                                    { selectedGame?.Participant_Type == "Custom Team"  && 
                                     <div className="mb-2">
                                         <div className="mb-2">
-                                            <label> Number of Teammates </label>
+                                            <label className='whitespace-nowrap'> Number of Teammates <span className='text-[#ef4444]'>*</span></label>
                                         </div>
                                         <input type="text" name="Team_Members_Count" value={formdata?.Team_Members_Count} onChange={handlechange} className="w-full px-4 py-2 border rounded-md outline-none" required />
                                     </div>} 
-                                    
+                                    </div>                                    
                                 </div>      
                             </div> 
 
-                            { selectedGame?.Participant_Type == "Individual" && (
+                            {/* { selectedGame?.Participant_Type == "Individual" && (
                             <div className="lg:col-span-2 text-end">
                                 <button type="button"  onClick={AddGame}  className="px-4 py-2 text-white bg-secondary border rounded-md text-center"  >
                                 <span className="block md:hidden">
@@ -256,15 +259,44 @@ export default function Registration(props) {
                                 </span>
                                 <span className="hidden md:block">+ Add Participant</span>
                                 </button>
-                            </div> )} 
+                            </div> )}  */}
                         </> )
 
                         })}
+                        { formdata?.Games.some(
+                            (game) => game.Participant_Type === "Individual"
+                        ) && (
+                            <div className="lg:col-span-2 text-end mt-4">
+                            <button
+                                type="button"
+                                onClick={AddGame}
+                                className="px-4 py-2 text-white bg-secondary border rounded-md text-center"
+                            >
+                                <span className="block md:hidden">
+                                <i className="fa-solid fa-plus"></i>
+                                </span>
+                                <span className="hidden md:block">+ Add Entry</span>
+                            </button>
+                            </div>
+                        )
+                        }
+
+                            <div className="mb-2 lg:col-span-2">
+                                <div  >
+                                    <label className='  text-md font-bold'>Disclaimer :</label>
+                                </div>
+                                {/* <input type="text" name="Disclaimer" value={formdata?.Disclaimer} onChange={handlechange} className="w-full px-4 py-2 border rounded-md outline-none" required /> */}
+                                <div className='text-justify' dangerouslySetInnerHTML={{ __html: formdata['Disclaimer'] }} />
+                                <div className="flex items-center  mt-3">
+                                    <input type="checkbox" name='Disclaimer_Acceptance' checked={formdata?.Disclaimer_Acceptance} className="shrink-0   me-2 border-gray-200 rounded text-blue-600 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-800 dark:border-neutral-700 dark:checked:bg-blue-500 dark:checked:border-blue-500 dark:focus:ring-offset-gray-800" id="hs-checked-checkbox" required />
+                                    <label htmlFor="hs-checked-checkbox" className="text-md select-none">I Agree <span className='text-[#ef4444]'>*</span></label>
+                                </div>
+                            </div>
                          </> }
                        
                         </div>
                         <div className="mt-4 text-center my-5">
-                            <button type="submit" className=" px-4 py-2 text-white bg-secondary border rounded-md" >
+                            <button type="submit" className=" px-4 py-2 rounded-md hover:rounded-3xl active:scale-90 duration-300 text-white bg-secondary border" >
                                 {loading && <span className="animate-spin text-xl inline-block size-4 border-[3px] border-current border-t-transparent text-white rounded-full" role="status" aria-label="loading"></span>}
                                 Submit
                             </button>
