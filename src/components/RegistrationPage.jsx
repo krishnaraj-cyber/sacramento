@@ -7,11 +7,12 @@ import Registration from "../Shared/Components/Registration/Registration";
 import { createPaymentSession } from "../Shared/services/apipayment/apipayment";
 import Swal from "sweetalert2";
 
-export default function RegistrationPage(prpos) {
+export default function RegistrationPage(props) {
   const [EventData, setEventData] = useState({});
   const [isLoading, setIsLoading] = useState(false);
   const [formdata, setFormdata] = useState({ Participant: [{}] });
   const [success, setSuccess] = useState(false);
+  const navigate = useNavigate();
   const location = useLocation();
   const queryParams = new URLSearchParams(location.search);
   const id = queryParams.get("id");
@@ -53,19 +54,22 @@ export default function RegistrationPage(prpos) {
     try {
         let formatData;
         let totalAmount = 0;
-
+        const currentYear = new Date().getFullYear();
+        const us_time = new Date()
+        const date = us_time.toLocaleTimeString('en-US', { timeZone: 'America/New_York', hour12: true });;
+        console.log(date)
         if (type === "volunteer") {
-            formatData = { ...formdata, Poster_Type: "Volunteer", Entry_Fees: "Free" };
+            formatData = { ...formdata, Poster_Type: "Volunteer", Entry_Fees: "Free", Registered_Year: currentYear ,created_at:date };
         } else if (formdata.Poster_Type === "RSVP") {
-            if (formdata.Peyment === "Yes") {
+            if (formdata.Payment === "Yes") {
                 totalAmount = formdata.Guest_Count === "Age Wise"
                     ? formdata.Fees_Adults * formdata.Adults +
                       formdata.Fees_Kids * formdata.Kids +
                       formdata.Fees_Under5 * formdata.Babes
                     : formdata.Entry_Fees * formdata.Number_Guests;
-                formatData = { ...formdata, Entry_Fees: totalAmount };
+                formatData = { ...formdata, Entry_Fees: totalAmount, Registered_Year: currentYear,created_at:date  };
             } else {
-                formatData = { ...formdata, Entry_Fees: "Free" };
+                formatData = { ...formdata, Entry_Fees: "Free" , Registered_Year: currentYear,created_at:date };
             }
         } else if (formdata.Poster_Type === "Registration Form") {
             const participants = formdata?.Participant || [];
@@ -87,13 +91,13 @@ export default function RegistrationPage(prpos) {
                 }
             });
 
-            formatData = { ...formdata, Entry_Fees: totalAmount > 0 ? totalAmount : "Free" };
+            formatData = { ...formdata, Entry_Fees: totalAmount > 0 ? totalAmount : "Free", Registered_Year: currentYear,created_at:date  };
         } else if (formdata.Poster_Type === "Donation"){
           totalAmount = formdata.Entry_Fees ; 
           formatData = { ...formdata, Entry_Fees: totalAmount > 0 ? totalAmount : "Free", 
-                                      Eventname: formdata?.Eventname ? formdata.Eventname : "Donation" };
+                                      Eventname: formdata?.Eventname ? formdata.Eventname : "Donation" , Registered_Year: currentYear,created_at:date };
         } else {
-            formatData = { ...formdata, Entry_Fees: "Free" };
+            formatData = { ...formdata, Entry_Fees: "Free" , Registered_Year: currentYear,created_at:date };
         }
 
         delete formatData.id;
@@ -111,9 +115,25 @@ export default function RegistrationPage(prpos) {
                     });
             await createPaymentSession(formatData.Entry_Fees, formatData);
         } else { 
+          Swal.fire({
+            title: "Processing...",
+            text: "Please wait while we are processing.",
+            allowEscapeKey: false,
+            allowOutsideClick: false,
+            didOpen: () => {
+              Swal.showLoading(); 
+            },
+          });
             const res = await saveRegisterFormfree(formatData);
             if (res?.message === "Registered Successfully") {
-                setSuccess(true);
+                Swal.fire({
+                              title: "Success!",
+                              text: "Registration successful.",
+                              icon: "success",
+                              timer: 3000,  
+                              showConfirmButton: false,
+                            });
+                            setTimeout(() => navigate("/"), 3000);
             } else {
                 toast.error("Registration Failed");
             }

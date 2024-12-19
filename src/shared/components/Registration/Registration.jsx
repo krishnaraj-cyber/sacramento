@@ -1,18 +1,20 @@
 import { Link } from 'react-router-dom'; 
 import apiurl from '../../services/apiendpoint/apiendpoint'; 
+import QRCode from 'react-qr-code';
+import { useLocation } from 'react-router-dom';
 
 export default function Registration(props) {
     const { EventData, formdata, handlechange, handlesave, loading, type, isLoading, success, handlechangeGames, removeGame, AddGame } = props;
 
-    const indivparticipant = formdata?.Games?.some( game => game.Participant_Type === "Individual" )
-    const team = formdata?.Games?.some( game => game.Participant_Type != "Individual" )
-    const customteam = formdata?.Games?.some( game => game.Participant_Type == "Custom Team" && game.Payment_Type == "Individual" )
+    const location = useLocation();
+    const fullUrl = window.location.href;
+
     
 
     return (
         <>
-            <section className='  relative  max-w-[95rem]  md:mt-20 md:my-0 mt-20 px-5 mx-auto  '>
-                <div className='flex items-center flex-wrap justify-center gap-4'>
+            <section className='  relative  max-w-screen-lg  md:mt-20 md:my-0 mt-20 px-5 lg:px-0 mx-auto  '>
+                <div className='flex items-center flex-wrap md:flex-nowrap justify-center lg:justify-between gap-4 my-3'>
                     <div>
                         {isLoading ? (
                             <div className="w-52 h-72 bg-gray-300 animate-pulse rounded-xl"></div>
@@ -21,7 +23,7 @@ export default function Registration(props) {
                         )}
                     </div>
                     <div className=' '>
-                        <div className="mb-10    mx-auto  flex justify-center items-center   text-black  bg-no-repeat  relative"   >
+                        <div className="lg:mb-10    mx-auto  flex justify-center items-center   text-black  bg-no-repeat  relative"   >
                             <div className="absolute   rounded-lg"></div>
                             <div className="relative z-10 text-center space-y-2 ">
                                 <div className=" md:text-3xl text-base concert-one-regular font-bold ">
@@ -49,10 +51,19 @@ export default function Registration(props) {
                             </div>
                         </div>
                     </div>
+                    <div>
+                    <QRCode
+                        size={256}
+                        style={{ height: "auto", maxWidth: "150px", width: "100%" }}
+                        className='m-3'
+                        value={fullUrl}
+                        viewBox={`0 0 256 256`}
+                    />
+                    </div>
                 </div>
             </section>
 
-            <div className='md:max-w-[95rem]   w-full mx-auto px-4'>
+            <div className='max-w-screen-lg   w-full mx-auto px-4 lg:px-0'>
                 {formdata['Description'] &&
                     <div className='mb-5'>
                         <>
@@ -67,7 +78,7 @@ export default function Registration(props) {
                 }
                 <div>
                     <form onSubmit={handlesave} >
-                        <div className="grid grid-cols-1 gap-5 lg:grid-cols-2">
+                        <div className="grid grid-cols-1 gap-5 md:grid-cols-2">
                             <div className="mb-2">
                                 <div className="mb-2">
                                     <label>First Name <span className='text-[#ef4444]'>*</span></label>
@@ -135,6 +146,7 @@ export default function Registration(props) {
                                         </div>
                                         <select name="Adults" value={formdata?.Adults} onChange={handlechange} className="w-full px-4 py-2 border rounded-md outline-none" required>
                                             <option value="">Select Type</option>
+                                            <option value="0">0</option>
                                             <option value="1">1</option>
                                             <option value="2">2</option>
                                             <option value="3">3</option>
@@ -177,7 +189,7 @@ export default function Registration(props) {
                             { formdata.Participant && formdata?.Participant.length !=0 && formdata?.Participant.map((items, index) => {
                                 const selectedGame = Array.isArray(formdata?.Games) && formdata.Games.find( (game) => game.Game_Title === items?.Selected_Event );
                                 return(<>
-                            <div className='lg:col-span-2' key={index}>
+                            <div className='md:col-span-2' key={index}>
                                 {/* <div className='grid grid-cols-1 lg:grid-cols-2 gap-3'>  */}
                                 <div className=''> 
                                     <div className='flex gap-2 items-center my-1'>
@@ -235,8 +247,18 @@ export default function Registration(props) {
                                                     </div> 
                                                 </span>{' '}<span className='text-[#ef4444]'>*</span>
                                             </label>
-                                        </div>
-                                        <input type="number" name="Age" value={items?.Age} onChange={(event)=>handlechangeGames(event,index)} className="w-full px-4 py-2 border rounded-md outline-none" required />
+                                         </div>
+                                      
+                                        {/* <input type="number" name="Age" value={items?.Age} onChange={(event)=>handlechangeGames(event,index)} className="w-1/4 px-4 py-2 border rounded-md outline-none" required />  */}
+                                        <select name="Age" value={items?.Age || ""} onChange={(event) => handlechangeGames(event, index)} className="w-full px-4 py-2 border rounded-md outline-none" required >
+                                            <option value="" >Select Age Group</option>
+                                            <option value="4">5 and below</option>
+                                            <option value="12">Between 5 and 18</option>
+                                            <option value="25">18 and above</option>
+                                        </select>
+
+
+
                                     </div>  
                                     </>)} 
 
@@ -249,39 +271,22 @@ export default function Registration(props) {
                                     </div>} 
                                     </div>                                    
                                 </div>      
-                            </div> 
-
-                            {/* { selectedGame?.Participant_Type == "Individual" && (
-                            <div className="lg:col-span-2 text-end">
-                                <button type="button"  onClick={AddGame}  className="px-4 py-2 text-white bg-secondary border rounded-md text-center"  >
-                                <span className="block md:hidden">
-                                    <i className="fa-solid fa-plus"></i>
-                                </span>
-                                <span className="hidden md:block">+ Add Participant</span>
-                                </button>
-                            </div> )}  */}
+                            </div>  
                         </> )
 
                         })}
-                        { formdata?.Games.some(
-                            (game) => game.Participant_Type === "Individual"
-                        ) && (
-                            <div className="lg:col-span-2 text-end mt-4">
-                            <button
-                                type="button"
-                                onClick={AddGame}
-                                className="px-4 py-2 text-white bg-secondary border rounded-md text-center"
-                            >
+                        { formdata?.Games.some( (game) => game.Participant_Type === "Individual" ) && (
+                            <div className="md:col-span-2 text-end mt-4">
+                            <button type="button" onClick={AddGame} className="px-4 py-2 text-white bg-secondary border rounded-md text-center" >
                                 <span className="block md:hidden">
                                 <i className="fa-solid fa-plus"></i>
                                 </span>
                                 <span className="hidden md:block">+ Add Entry</span>
                             </button>
                             </div>
-                        )
-                        }
+                        )}
 
-                            <div className="mb-2 lg:col-span-2">
+                            <div className="mb-2 md:col-span-2">
                                 <div  >
                                     <label className='  text-md font-bold'>Disclaimer :</label>
                                 </div>

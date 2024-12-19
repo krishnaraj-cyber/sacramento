@@ -44,13 +44,12 @@ function HomePage(props) {
                   <Swiper
                     slidesPerView={1}
                     loop={true}
-                    speed={1500}
-                    spaceBetween={10}
+                    speed={1500} 
                     pagination={{ clickable: true }}
                     autoplay={{ delay: 3000, disableOnInteraction: false, reverseDirection: true }}
                     breakpoints={{
                       0: { slidesPerView: 1, },
-                      768: { slidesPerView: 1, },
+                      768: { slidesPerView: 1,spaceBetween:10 },
                       1024: { slidesPerView: 1, },
                     }}
                     modules={[Pagination, Navigation, Autoplay]} className="w-full" >
@@ -58,7 +57,7 @@ function HomePage(props) {
                       <SwiperSlide key={index}>
                         <div className="flex flex-wrap md:flex-nowrap md:justify-start justify-center  items-center gap-5 cursor-default pb-10">
                           <Link to={`/register?id=${item.id}`} >
-                          <img className="rounded-2xl border-4 min-w-[350px] w-[350px] lg:w-[400px] object-contain border-[#0670bd]" src={`${apiurl()}/${item.Image}`} alt={item.Eventname} />
+                          <img className="rounded-2xl border-4 min-w-[250px] w-[300px] md:w-[350px] lg:w-[400px] object-contain border-[#0670bd]" src={`${apiurl()}/${item.Image}`} alt={item.Eventname} />
                           </Link>
                           <div className="md:space-y-5 space-y-3  ">
                             <p className="concert-one-regular md:text-2xl text-base text-white w-fit px-3 rounded-md bg-[#0470BC]">

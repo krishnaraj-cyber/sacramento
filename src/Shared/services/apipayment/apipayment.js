@@ -20,20 +20,4 @@ export const createPaymentSession = async (amount, registerData) => {
     }
 };
 
-// const handlePaymentSuccess = async () => {
-//     const registerData = JSON.parse(localStorage.getItem("registerPaymentData"));
-//     const sessionId = new URLSearchParams(window.location.search).get("session_id");
-
-//     if (registerData && sessionId) {
-//         registerData.payment_session_id = sessionId;
-
-//         const res = await saveRegisterForm(registerData);
-//         if (res?.message === "Registered Successfully") {
-//             setSuccess(true);
-//             localStorage.removeItem("registerPaymentData");
-//         } else {
-//             toast.error("Registration Failed");
-//         }
-//     }
-// };
 

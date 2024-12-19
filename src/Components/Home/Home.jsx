@@ -9,6 +9,7 @@ import { getBoardmemByStatus } from "../../Admin/shared/services/apiboardmembers
 import { getallGallerys, getGalleryByStatus, } from "../../Admin/shared/services/apigallery/apigallery";
 import { getEventByStatus } from "../../Admin/shared/services/apievent/apievent";
 import { getWhatwedoByStatus } from "../../Admin/shared/services/Home/apiwhatwedo";
+import { sendFeedback } from "../../Shared/services/apifeedback/apifeedback";
 
 export default function Home() {
   const [sponsors, setSponsors] = useState([]);
@@ -22,10 +23,7 @@ export default function Home() {
   const customInputRef = useRef(null);
   const statuses = ["$10", "$25", "$50", "$100", "$250", "Custom Amount"];
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [formData, setFormData] = useState({
-    firstName: "",
-    email: "",
-  });
+  const [formData, setFormData] = useState({    Name: "", Email: "", Event_Name: "", Feedback: "",});
 
   let isMounted = true;
 
@@ -53,13 +51,31 @@ export default function Home() {
     }, [fetchSponsors]); 
 
 
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
+  const handleInputChange = (e , name) => { 
+    setFormData({ ...formData,  [e.target.name]: e.target.value});
+    console.log(formData)
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmitfeedback = async(e) => {
     e.preventDefault();
+    Swal.fire({
+              title: "Sending...",
+              text: "Please wait while the mail process.",
+              allowEscapeKey: false,
+              allowOutsideClick: false,
+              didOpen: () => {
+                Swal.showLoading(); 
+              },
+            });
+    await sendFeedback(formData)
+    setFormData({ Name: "", Email: "", Event_Name: "", Feedback: "" });
+    Swal.fire({
+              title: "Success!",
+              text: "Feedback sent successfully.",
+              icon: "success",
+              timer: 3000,  
+              showConfirmButton: false,
+            });
   };
 
   const handleStatusClick = (status) => {
@@ -96,7 +112,7 @@ export default function Home() {
         event={event}
         setIsModalOpen={setIsModalOpen}
         formData={formData}
-        handleSubmit={handleSubmit}
+        handleSubmitfeedback={handleSubmitfeedback}
         handleInputChange={handleInputChange}
         activeStatus={activeStatus}
         customInputRef={customInputRef}

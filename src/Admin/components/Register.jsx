@@ -152,7 +152,7 @@ export default function Register() {
   return (
     <div>
       <div className="bg-white border rounded-xl">
-        <Tableheadpanel newform={newform} setglobalfilter={setglobalfilter} />
+        <Tableheadpanel newform={newform} setglobalfilter={setglobalfilter} filtervalues={filtervalues} cusfilter={cusfilter} formdata={formdata} />
 
         <Tableview
           tabledata={tabledata}

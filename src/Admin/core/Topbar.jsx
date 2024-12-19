@@ -21,7 +21,7 @@ export default function Topbar() {
         </div> */}
         <div className="flex items-center w-full ms-auto justify-between sm:gap-x-3 sm:order-3 lg:rounded-xl lg:border lg:p-5">
           <div>
-            <Link to='/'><i class="fa-solid fa-house text-2xl text-gray-500" ></i></Link>
+            <Link to='/' className="lg:block hidden"><i class="fa-solid fa-house text-2xl text-gray-500" ></i></Link>
           <img src="/assets/images/Logo/logoo.png" alt="logo" className="object-cover w-36 block lg:hidden" />
           </div>
           <div className="flex flex-row items-center justify-end gap-2">

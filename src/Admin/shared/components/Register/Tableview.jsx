@@ -189,7 +189,7 @@ const Tableview = (props) => {
                           <td>{data.Participant_Name}</td>
                           <td>{data.Selected_Event}</td> 
                           
-                          <td className="text-center">{data?.Age?.length > 0 ? `${data.Age}`:`Team` }</td> 
+                          <td className="text-center">{data?.Age?.length > 0 ? `${data.Age <= 5 ? "Child (5 and below)" : data.Age > 18 ? "Adult (18 and above)" : "Kid (between 5 and 18)"}`:`Team` }</td> 
                         </tr>
                       ))}
                   </tbody>

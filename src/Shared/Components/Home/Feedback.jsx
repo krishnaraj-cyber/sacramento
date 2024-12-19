@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom';
 function Feedback(props) {
-    const { activeStatus, customInputRef, handleCustomAmountChange, customAmount, statuses, handleStatusClick, } = props;
+    const { activeStatus, customInputRef, handleCustomAmountChange, customAmount, statuses, handleStatusClick, formData , handleSubmitfeedback, handleInputChange} = props;
     const donationAmount = activeStatus === "Custom Amount" ? customAmount : activeStatus.replace("$", "");
 
     return (
@@ -12,26 +12,26 @@ function Feedback(props) {
                         <p className="text-center text-[#E91E31] md:text-4xl text-2xl   concert-one-regular font-bold">FEEDBACK</p>
                     </div>
                     <div className="space-y-5">
-                        <form onSubmit={(e) => { e.preventDefault(); const formData = new FormData(e.target); const data = Object.fromEntries(formData.entries()); }}    >
+                        <form onSubmit={handleSubmitfeedback} >
                             <div className="grid md:grid-cols-3 gap-4">
                                 <div>
                                     <label htmlFor="name" className="text-lg">Name *</label>
-                                    <input id="name" name="name" className="w-full rounded-md p-2" type="text" required />
+                                    <input id="name" name="Name" value={formData.Name} onChange={handleInputChange} className="w-full rounded-md p-2" type="text" required />
                                 </div>
                                 <div>
                                     <label htmlFor="email" className="text-lg">Email *</label>
-                                    <input id="email" name="email" className="w-full rounded-md p-2" type="email" required />
+                                    <input id="email" name="Email" value={formData.Email} onChange={handleInputChange} className="w-full rounded-md p-2" type="email" required />
                                 </div>
                                 <div>
-                                    <label htmlFor="eventName" className="text-lg">Event Name *</label>
-                                    <input id="eventName" name="eventName" className="w-full rounded-md p-2" type="text" required />
+                                    <label htmlFor="eventName" className="text-lg">Event Name </label>
+                                    <input id="eventName" name="Event_Name" value={formData.Event_Name} onChange={handleInputChange} className="w-full rounded-md p-2" type="text"  />
                                     <p className="text-sm mt-2 italic">Enter an event name (Example: Summer Picnic) or type General</p>
                                 </div>
                             </div>
                             <div className="grid items-center md:grid-cols-8 grid-cols-1  ">
                                 <div className="flex flex-col md:col-span-7 ">
-                                    <label htmlFor="feedback" className="text-lg">Feedback</label>
-                                    <input id="feedback" name="feedback" className=" p-2 rounded-md" />
+                                    <label htmlFor="feedback" className="text-lg">Feedback *</label>
+                                    <textarea id="feedback" name="Feedback" value={formData.Feedback} onChange={handleInputChange} className="p-2 rounded-md resize-none overflow-auto max-h-[300px]" rows="1" onInput={(e) => { e.target.style.height = "auto"; e.target.style.height = `${e.target.scrollHeight}px`;  }} /> 
                                 </div>
                                 <div className='md:ml-auto  md:col-span-1  text-center'>
                                     <button type="submit" className="bg-[#E91E31] hover:text-[#E91E31] mt-7 py-2 px-5    concert-one-regular hover:bg-white duration-200 text-white rounded-md"   >
