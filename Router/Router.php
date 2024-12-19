@@ -15,6 +15,7 @@ require './API/Controllers/ApiVolunteer.php';
 require './API/Controllers/ApiDonation.php';
 require './API/Controllers/ApiMemberReegister.php';
 require './API/Controllers/Home/ApiWhatwedo.php';
+require './API/Controllers/Home/ApiFeedback.php';
 
 // require './API/Controllers/ApiPayment.php';
 
@@ -24,6 +25,9 @@ $router->post('/sacra_mento/api/login', function(){(new APILoginController)->Adm
 
 //payment
 $router->post('/sacra_mento/api/create-payment-session', function(){(new ControllersRegister)->createPaymentSession();});
+
+//Feedback
+$router->post('/sacra_mento/api/sendfeedback', function(){(new ControllersFeedback)->sendFeedback();});
 
 // currentaffairs
 $router->get('/sacra_mento/api/getallcurrentaffairs', function(){(new ControllersCurrentAffairs)->getallcurrentaffairs();});

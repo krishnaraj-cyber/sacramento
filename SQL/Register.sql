@@ -19,6 +19,8 @@ CREATE TABLE sacra_register (
     Poster_Type TEXT DEFAULT NULL,
     Team_Members_Count TEXT DEFAULT NULL,
     Disclaimer_Acceptance TEXT DEFAULT NULL,
+    payment_intent_id TEXT DEFAULT NULL,
+    payment_status TEXT DEFAULT NULL,
     created_date TIMESTAMP DEFAULT NOW(),
     updated_date TIMESTAMP DEFAULT NOW() ON UPDATE NOW()
 );

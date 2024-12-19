@@ -1,5 +1,6 @@
 <?php
-require './API/Models/Register.php';
+require './API/Models/Register.php'; 
+require_once './EmailService.php';
 use Auth\Authentication;
 use Models\ModelsRegister;
 use MVC\Controller;
@@ -111,15 +112,32 @@ class ControllersRegister extends Controller {
                 $this->response->setContent(['message' => 'Field parameter is required']);
                 return;
             }
-            $query = "SELECT DISTINCT $field FROM " . DB_PREFIX . "register WHERE Poster_Type = 'Registration Form'";
+
+            // $query = "SELECT DISTINCT $field FROM " . DB_PREFIX . "register WHERE Poster_Type = 'Registration Form'";
+            if ($field === 'Selected_Event') { 
+                $query = "SELECT DISTINCT rp.Selected_Event 
+                          FROM " . DB_PREFIX . "register AS r
+                          JOIN " . DB_PREFIX . "register_participants AS rp 
+                          ON r.id = rp.id
+                          WHERE r.Poster_Type = 'Registration Form'";
+            } else { 
+                $query = "SELECT DISTINCT $field 
+                          FROM " . DB_PREFIX . "register 
+                          WHERE Poster_Type = 'Registration Form'";
+            }
+
             $result = $this->db->query($query);
             if ($result->num_rows > 0) {
                 $distinctValues = [];
                 foreach ($result->rows as $row) {
+                if ($field === 'Selected_Event') {
+                    $distinctValues[] = $row['Selected_Event'];
+                } else {
                     $distinctValues[] = $row[$field];
                 }
+            }
                 $this->response->sendStatus(200);
-                $this->response->setContent([$field => $distinctValues]);
+                $this->response->setContent([$field => array_values(array_unique(array_filter($distinctValues)))]);
             } else {
                 $this->response->sendStatus(200);
                 $this->response->setContent([$field => []]);
@@ -266,6 +284,12 @@ class ControllersRegister extends Controller {
             $message = "Registered Successfully";
             $notification = new ModelsRegister();
             $savedData = $notification->save($reqdata);
+
+            if ($savedData) {
+                $emailService = new EmailService();
+                $emailService->sendRegistrationEmail($reqdata);
+            }
+
             $resdata = [
                  $savedData,
                 'message' => $message
@@ -371,6 +395,33 @@ class ControllersRegister extends Controller {
                     ]);
                     return;
                 }
+
+                  // Extract payment details
+                $paymentIntentId = $session->payment_intent;
+                $customerId = $session->customer;
+ 
+                $paymentIntent = \Stripe\PaymentIntent::retrieve($paymentIntentId);
+
+                $paymentDetails = [
+                    'session_id' => $sessionId,
+                    'payment_intent_id' => $paymentIntentId,
+                    'customer_id' => $customerId,
+                    'amount_received' => $paymentIntent->amount_received / 100,  
+                    'currency' => $paymentIntent->currency,
+                    'payment_method' => $paymentIntent->payment_method,
+                    'status' => $paymentIntent->status,
+                    'created' => date('Y-m-d H:i:s', $paymentIntent->created)
+                ];
+ 
+                // http_response_code(200);
+                // echo json_encode([
+                //     'message' => 'Payment verified successfully',
+                //     'payment_details' => $paymentDetails,
+                //     'status' => true
+                // ]);
+                $reqdata['payment_intent_id'] = $paymentIntentId;
+                $reqdata['payment_status'] = $paymentIntent->status;
+
             } catch (\Stripe\Exception\ApiErrorException $e) {
                 http_response_code(500);
                 echo json_encode([
@@ -384,8 +435,14 @@ class ControllersRegister extends Controller {
             $notification = new ModelsRegister();
             $savedData = $notification->save($reqdata);
 
+            if ($savedData) {
+                $emailService = new EmailService();
+                $emailService->sendRegistrationEmail($reqdata, $paymentDetails);
+            }
+
             $resdata = [
                 'resdata' => $savedData,
+                'payment_details' => $paymentDetails,
                 'message' => 'Registered Successfully'
             ];
 
@@ -398,7 +455,7 @@ class ControllersRegister extends Controller {
                 'error' => 'Method Not Allowed',
                 'status' => false
             ]);
-        }
+        }  
     } catch (Exception $e) {
         http_response_code(500);
         echo json_encode([

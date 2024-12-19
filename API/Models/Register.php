@@ -115,7 +115,9 @@ class ModelsRegister extends Model {
             'Poster_Type', 
             'Game_Title', 
             'Team_Members_Count', 
-            'Disclaimer_Acceptance'
+            'Disclaimer_Acceptance',
+            'payment_intent_id',
+            'payment_status',
         ];
     
         $filteredData = array_filter( 
@@ -146,6 +148,9 @@ class ModelsRegister extends Model {
                 break; 
             case 'Donation': 
                 $prefix = 'SACDON'; 
+                break; 
+            case 'RSVP': 
+                $prefix = 'SACRSVP'; 
                 break; 
             default: 
                 error_log("Invalid Poster_Type: " . $posterType);
