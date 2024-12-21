@@ -10,6 +10,7 @@ import { Navigation, Pagination, Autoplay } from "swiper/modules";
 import CountdownTimer from "./CountdownTimer";
 import apiurl from "../../services/apiendpoint/apiendpoint";
 import { Link } from "react-router-dom";
+import moment from "moment-timezone";
 
 function HomePage(props) {
   const { sponsors, event, isLoading } = props;
@@ -66,7 +67,7 @@ function HomePage(props) {
                             <p className="md:text-2xl text-lg text-[#E91E31] font-semibold">சாக்ரமெண்டோ தமிழ் மன்றம்</p>
                             <p className="text-[#0470BC] font-semibold text-xl">நடத்தும்</p>
                             <p className="font-bold text-[#0470BC] xl:text-5xl lg:text-3xl text-2xl text-outline-yellow">
-                              {item.Eventname} {item.Poster_Type != 'Donation' && <span className="xl:text-4xl">({item.Date.split('T')[0]})</span> }
+                              {item.Eventname} {item.Poster_Type != 'Donation' && <span className="xl:text-4xl">({moment(item?.Date).format("MM-DD-YYYY")})</span> }
                             </p>
                             <p className="font-bold text-[#FFD900] md:text-2xl text-base bg-[#0470BC] w-fit md:p-2 p-1 rounded-md">
                               {item.Activities}
@@ -74,7 +75,7 @@ function HomePage(props) {
                             {item.Poster_Type != 'Donation' &&
                             <p className="concert-one-regular text-[#0470BC] text-xl">
                               Registration Deadline:{' '}
-                              <span className="text-[#E91E31] md:text-base text-sm">{item.Date.split('T')[0]}</span>
+                              <span className="text-[#E91E31] md:text-base text-sm">{moment(item?.Reg_Deadline).format("MM-DD-YYYY")}</span>
                             </p> }
                             <p className="concert-one-regular text-[#0470BC] text-xl">Date Duration:</p>
                             <div className=" flex md:justify-start justify-center">

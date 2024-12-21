@@ -54,6 +54,7 @@ export default function RegistrationPage(props) {
     try {
         let formatData;
         let totalAmount = 0;
+        let totalofflineAmount = 0;
         const currentYear = new Date().getFullYear();
         const us_time = new Date()
         const date = us_time.toLocaleTimeString('en-US', { timeZone: 'America/New_York', hour12: true });;
@@ -75,11 +76,11 @@ export default function RegistrationPage(props) {
             const participants = formdata?.Participant || [];
             const games = formdata?.Games || [];
 
-            participants.forEach((participant) => {
+            participants.forEach((participant) => {  
                 const selectedGame = games.find(game => game.Game_Title === participant.Selected_Event);
                 if (selectedGame?.GamePayment === "Yes") {
                     if (selectedGame.Participant_Type === "Custom Team" && selectedGame.Payment_Type === "Individual") {
-                        totalAmount += parseFloat(selectedGame.Entry_Fees || 0) * parseFloat(formdata.Team_Members_Count || 0);
+                        totalAmount += parseFloat(selectedGame.Entry_Fees || 0) * parseFloat(participants.Team_Members_Count || 0);
                     } else if (selectedGame.Participant_Type === "Individual") {
                         const age = parseInt(participant.Age || 0);
                         if (age < 6) totalAmount += parseFloat(selectedGame.Under5_Fees || 0);
@@ -89,9 +90,21 @@ export default function RegistrationPage(props) {
                         totalAmount += parseFloat(selectedGame.Entry_Fees || 0);
                     }
                 }
+                if (selectedGame?.GamePayment === "offlinepay") {
+                    if (selectedGame.Participant_Type === "Custom Team" && selectedGame.Payment_Type === "Individual") {
+                        totalofflineAmount += parseFloat(selectedGame.Entry_Fees || 0) * parseFloat(participants.Team_Members_Count || 0);
+                    } else if (selectedGame.Participant_Type === "Individual") {
+                        const age = parseInt(participant.Age || 0);
+                        if (age < 6) totalofflineAmount += parseFloat(selectedGame.Under5_Fees || 0);
+                        else if (age >= 18) totalofflineAmount += parseFloat(selectedGame.Adult_Fees || 0);
+                        else totalofflineAmount += parseFloat(selectedGame.Kids_Fees || 0);
+                    } else {
+                        totalofflineAmount += parseFloat(selectedGame.Entry_Fees || 0);
+                    }
+                }
             });
 
-            formatData = { ...formdata, Entry_Fees: totalAmount > 0 ? totalAmount : "Free", Registered_Year: currentYear,created_at:date  };
+            formatData = { ...formdata, Entry_Fees: totalAmount > 0 ? totalAmount : totalofflineAmount > 0 ? totalofflineAmount : "Free", Registered_Year: currentYear,created_at:date  };
         } else if (formdata.Poster_Type === "Donation"){
           totalAmount = formdata.Entry_Fees ; 
           formatData = { ...formdata, Entry_Fees: totalAmount > 0 ? totalAmount : "Free", 

@@ -96,6 +96,13 @@ export default function Addandeditform(props) {
 
           <div className="mb-2">
             <div className="mb-2">
+              <label>Registration Deadline</label>
+            </div>
+            <input type="date" name="Reg_Deadline" value={formdata?.Reg_Deadline ? moment(formdata?.Reg_Deadline).format("YYYY-MM-DD") : "" } onChange={handlechange} className="w-full px-4 py-2 border rounded-md outline-none" required  />
+          </div>
+
+          <div className="mb-2">
+            <div className="mb-2">
               <label>Activities</label>
             </div>
             <input type="text" name="Activities" value={formdata?.Activities} onChange={handlechange} className="w-full px-4 py-2 border rounded-md outline-none" required />
@@ -221,11 +228,12 @@ export default function Addandeditform(props) {
                         <select name="GamePayment" value={items?.GamePayment} onChange={(event) => handlechangeGames(event, index)} className="w-full px-4 py-2 border rounded-md outline-none" required >
                           <option value="">Select Type</option>
                           <option value="Yes">Yes</option>
+                          <option value="offlinepay">Yes (Offline)</option>
                           <option value="Free">No</option>
                         </select>
                       </div>
 
-                      {items?.GamePayment == "Yes" && (
+                      {(items?.GamePayment === "Yes" || items?.GamePayment === "offlinepay") && (
                         <>
                           {items?.Participant_Type == "Custom Team" && (
                             <div className="mb-2">
@@ -265,21 +273,21 @@ export default function Addandeditform(props) {
                                 <div className="mb-2">
                                   <label>Fees (18+ Adults)</label>
                                 </div>
-                                <input type="text" name="Adult_Fees" value={items?.Adult_Fees} onChange={(event) => handlechangeGames(event, index) } className="w-full px-4 py-2 border rounded-md outline-none" required />
+                                <input type="number" name="Adult_Fees" value={items?.Adult_Fees} onChange={(event) => handlechangeGames(event, index) } className="w-full px-4 py-2 border rounded-md outline-none" required />
                               </div>
 
                               <div className="mb-2">
                                 <div className="mb-2">
                                   <label>Fees (Under 18 Kids)</label>
                                 </div>
-                                <input type="text" name="Kids_Fees" value={items?.Kids_Fees} onChange={(event) => handlechangeGames(event, index) } className="w-full px-4 py-2 border rounded-md outline-none" required />
+                                <input type="number" name="Kids_Fees" value={items?.Kids_Fees} onChange={(event) => handlechangeGames(event, index) } className="w-full px-4 py-2 border rounded-md outline-none" required />
                               </div>
 
                               <div className="mb-2">
                                 <div className="mb-2">
                                   <label>Fees (Under 5)</label>
                                 </div>
-                                <input type="text" name="Under5_Fees" value={items?.Under5_Fees} onChange={(event) => handlechangeGames(event, index) } className="w-full px-4 py-2 border rounded-md outline-none" required />
+                                <input type="number" name="Under5_Fees" value={items?.Under5_Fees} onChange={(event) => handlechangeGames(event, index) } className="w-full px-4 py-2 border rounded-md outline-none" required />
                               </div>
                             </>
                           )}

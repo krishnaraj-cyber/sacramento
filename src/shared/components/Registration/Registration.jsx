@@ -214,61 +214,80 @@ export default function Registration(props) {
                                     </div>  
 
                                     {selectedGame &&
-                                    <div className="mb-2">
-                                        <div className="mb-2">
-                                            <label className='whitespace-nowrap'>{selectedGame?.Participant_Type == "Individual" ? "Participant Name" : "Team Name"}<span className='text-[#ef4444]'>*</span></label>
+                                    <div  className='flex gap-2'>
+                                        <div className="mb-2 w-full">
+                                            <div className="mb-2">
+                                                <label className='whitespace-nowrap'>{selectedGame?.Participant_Type == "Individual" ? "Participant Name" : "Team Name"}<span className='text-[#ef4444]'>*</span></label>
+                                            </div>
+                                            <input type="text" name="Participant_Name" value={items?.Participant_Name} onChange={(event)=>handlechangeGames(event,index)} className="w-full px-4 py-2 border rounded-md outline-none" required />
                                         </div>
-                                        <input type="text" name="Participant_Name" value={items?.Participant_Name} onChange={(event)=>handlechangeGames(event,index)} className="w-full px-4 py-2 border rounded-md outline-none" required />
+                                        {selectedGame?.Participant_Type === "Fixed Team" && <div className='mb-2 mt-8 border px-4 py-2 min-w-20 text-center rounded-md whitespace-nowrap'>$ {selectedGame?.Entry_Fees}</div> }
+                                        
                                     </div>}
 
                                     {selectedGame?.Participant_Type === "Individual" && ( <>
-                                    <div className="mb-2">
-                                        <div className="mb-2">
-                                            <label className='whitespace-nowrap'>Age  
-                                                <span className='relative group'>{' '}<i class="fa-solid fa-circle-info cursor-pointer"></i>
-                                                    <div className={`absolute bottom-5 left-5 *:whitespace-nowrap  rounded-lg hidden group-hover:block bg-white border p-2 select-none`}>
-                                                    {formdata?.Games.filter(game => game.Game_Title === items?.Selected_Event).length > 0 ? (
-                                                        formdata?.Games.filter(game => game.Game_Title === items?.Selected_Event).map(filteredGame => (
-                                                            <div key={filteredGame.id}>
-                                                            <p className="text-sm text-gray-600">
-                                                                Fees(18+ Adults): ${filteredGame.Under5_Fees || 'N/A'}
-                                                            </p>
-                                                            <p className="text-sm text-gray-600">
-                                                                Fees(Under 18 Kids): ${filteredGame.Kids_Fees || 'N/A'}
-                                                            </p>
-                                                            <p className="text-sm text-gray-600">
-                                                                Fees(Under 5): ${filteredGame.Adult_Fees || 'N/A'}
-                                                            </p>
-                                                            </div>
-                                                        ))
-                                                        ) : (
-                                                        <p className="text-sm text-gray-600">Please select Event to View</p>
-                                                    )}
-                                                    </div> 
-                                                </span>{' '}<span className='text-[#ef4444]'>*</span>
-                                            </label>
-                                         </div>
-                                      
-                                        {/* <input type="number" name="Age" value={items?.Age} onChange={(event)=>handlechangeGames(event,index)} className="w-1/4 px-4 py-2 border rounded-md outline-none" required />  */}
-                                        <select name="Age" value={items?.Age || ""} onChange={(event) => handlechangeGames(event, index)} className="w-full px-4 py-2 border rounded-md outline-none" required >
-                                            <option value="" >Select Age Group</option>
-                                            <option value="4">5 and below</option>
-                                            <option value="12">Between 5 and 18</option>
-                                            <option value="25">18 and above</option>
-                                        </select>
-
-
-
-                                    </div>  
+                                    <div className='flex gap-2'>
+                                        <div className="mb-2 w-full">
+                                            <div className="mb-2">
+                                                <label className='whitespace-nowrap'>Age  
+                                                    <span className='relative group'>{' '}<i class="fa-solid fa-circle-info cursor-pointer"></i>
+                                                        <div className={`absolute bottom-5 left-5 *:whitespace-nowrap  rounded-lg hidden group-hover:block bg-white border p-2 select-none`}>
+                                                        {formdata?.Games.filter(game => game.Game_Title === items?.Selected_Event).length > 0 ? (
+                                                            formdata?.Games.filter(game => game.Game_Title === items?.Selected_Event).map(filteredGame => (
+                                                                <div key={filteredGame.id}>
+                                                                <p className="text-sm text-gray-600">
+                                                                    Fees(18+ Adults): ${filteredGame.Under5_Fees || 'N/A'}
+                                                                </p>
+                                                                <p className="text-sm text-gray-600">
+                                                                    Fees(Under 18 Kids): ${filteredGame.Kids_Fees || 'N/A'}
+                                                                </p>
+                                                                <p className="text-sm text-gray-600">
+                                                                    Fees(Under 5): ${filteredGame.Adult_Fees || 'N/A'}
+                                                                </p>
+                                                                </div>
+                                                            ))
+                                                            ) : (
+                                                            <p className="text-sm text-gray-600">Please select Event to View</p>
+                                                        )}
+                                                        </div> 
+                                                    </span>{' '}<span className='text-[#ef4444]'>*</span>
+                                                </label>
+                                            </div>
+                                        
+                                            {/* <input type="number" name="Age" value={items?.Age} onChange={(event)=>handlechangeGames(event,index)} className="w-1/4 px-4 py-2 border rounded-md outline-none" required />  */}
+                                            <select name="Age" value={items?.Age || ""} onChange={(event) => handlechangeGames(event, index)} className="w-full px-4 py-2 border rounded-md outline-none" required >
+                                                <option value="" >Select Age Group</option>
+                                                <option value="4">5 and below</option>
+                                                <option value="12">Between 5 and 18</option>
+                                                <option value="25">18 and above</option>
+                                            </select>     
+                                        </div> 
+                                        {items?.Age&& 
+                                        <div className='mb-2 mt-8 border px-4 py-2 min-w-20 text-center rounded-md whitespace-nowrap'>  
+                                        $ <span>{items?.Age&& ( (items?.Age<5) ? selectedGame.Under5_Fees : (items?.Age>5 && items?.Age<18) ? selectedGame.Kids_Fees : (items?.Age>18) ? selectedGame.Adult_Fees : '' )}</span> 
+                                         </div> }
+                                    </div>
                                     </>)} 
 
                                     { selectedGame?.Participant_Type == "Custom Team"  && 
-                                    <div className="mb-2">
+                                    <div className='flex gap-2'>
+                                    <div className="mb-2 w-full">
                                         <div className="mb-2">
                                             <label className='whitespace-nowrap'> Number of Teammates <span className='text-[#ef4444]'>*</span></label>
                                         </div>
-                                        <input type="text" name="Team_Members_Count" value={formdata?.Team_Members_Count} onChange={handlechange} className="w-full px-4 py-2 border rounded-md outline-none" required />
-                                    </div>} 
+                                        <input type="number" name="Team_Members_Count" value={items?.Team_Members_Count} onChange={(event) => handlechangeGames(event, index)} className="w-full px-4 py-2 border rounded-md outline-none" required />
+                                    </div>
+                                    {items?.Team_Members_Count && (selectedGame?.Participant_Type == "Custom Team" && selectedGame?.Payment_Type === 'Individual' ) && 
+                                    <div className='mb-2 mt-8 border px-4 py-2 min-w-20 text-center rounded-md whitespace-nowrap'>$ 
+                                    <span>{ Number(items?.Team_Members_Count)*Number(selectedGame?.Entry_Fees)}</span>
+                                    </div>
+                                    }
+                                    {(selectedGame?.Participant_Type == "Custom Team" && selectedGame?.Payment_Type === 'Team' ) &&
+                                    <div className='mb-2 mt-8 border px-4 py-2 min-w-20 text-center rounded-md whitespace-nowrap'>$  
+                                     <span>{ Number(selectedGame?.Entry_Fees)}</span>
+                                    </div> }
+                                    </div>
+                                    } 
                                     </div>                                    
                                 </div>      
                             </div>  
@@ -276,15 +295,47 @@ export default function Registration(props) {
 
                         })}
                         { formdata?.Games.some( (game) => game.Participant_Type === "Individual" ) && (
-                            <div className="md:col-span-2 text-end mt-4">
+                            <div className="md:col-span-2 text-end mt-4 flex flex-row-reverse justify-between items-center">
                             <button type="button" onClick={AddGame} className="px-4 py-2 text-white bg-secondary border rounded-md text-center" >
                                 <span className="block md:hidden">
                                 <i className="fa-solid fa-plus"></i>
                                 </span>
                                 <span className="hidden md:block">+ Add Entry</span>
                             </button>
+
+                            
+                        <div className="total-fee mt-6 font-bold">
+                        <strong>Total:</strong> $
+                        {formdata?.Participant.reduce((total, participant) => {
+                        const selectedGame = Array.isArray(formdata?.Games) &&
+                            formdata.Games.find((game) => game.Game_Title === participant?.Selected_Event);
+
+                        if (!selectedGame) return total;
+
+                        const agefee = participant?.Age <= 5
+                            ? Number(selectedGame.Under5_Fees)
+                            : participant?.Age > 5 && participant?.Age < 18
+                            ? Number(selectedGame.Kids_Fees)
+                            : participant?.Age >= 18
+                            ? Number(selectedGame.Adult_Fees)
+                            : 0;
+ 
+                        const cus_indi = selectedGame?.Participant_Type === "Custom Team" && selectedGame?.Payment_Type === 'Individual'
+                        ? (participant?.Team_Members_Count ? Number(participant.Team_Members_Count) : 0) * Number(selectedGame?.Entry_Fees)
+                        : 0;
+                    
+
+                        const cus_team = (selectedGame?.Participant_Type === "Custom Team" && selectedGame?.Payment_Type === 'Team') || (selectedGame?.Participant_Type === "Fixed Team" )
+                            ? Number(selectedGame?.Entry_Fees)
+                            : 0; 
+ 
+                        return total + agefee + cus_indi + cus_team ;
+                    }, 0)}
+
+                        </div>
                             </div>
                         )}
+                    
 
                             <div className="mb-2 md:col-span-2">
                                 <div  >
