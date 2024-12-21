@@ -32,6 +32,7 @@ CREATE TABLE sacra_register_participants (
     id INT,
     Participant_Name TEXT,
     Selected_Event TEXT,
+    Team_Members_Count TEXT,
     Age TEXT,
     FOREIGN KEY (id) REFERENCES sacra_register(id)
 );

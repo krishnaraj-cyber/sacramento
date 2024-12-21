@@ -114,7 +114,7 @@ class ModelsRegister extends Model {
             'Eventname', 
             'Poster_Type', 
             'Game_Title', 
-            'Team_Members_Count', 
+            // 'Team_Members_Count', 
             'Disclaimer_Acceptance',
             'payment_intent_id',
             'payment_status',
@@ -191,6 +191,7 @@ class ModelsRegister extends Model {
                     'id' => $id,  
                     'Participant_Name' => $this->db->escape($participant['Participant_Name'] ?? ''),
                     'Selected_Event' => $this->db->escape($participant['Selected_Event'] ?? ''), 
+                    'Team_Members_Count' => $this->db->escape($participant['Team_Members_Count'] ?? ''), 
                     'Age' => $this->db->escape($participant['Age'] ?? '') 
                 ];
      
@@ -198,13 +199,14 @@ class ModelsRegister extends Model {
                     "'" . $participantData['id'] . "', " .
                     "'" . $participantData['Participant_Name'] . "', " .
                     "'" . $participantData['Selected_Event'] . "', " .
+                    "'" . $participantData['Team_Members_Count'] . "', " .
                     "'" . $participantData['Age'] . "'" .
                     ")";
             }
      
             if (!empty($participantValues)) {
                 $participantInsertQuery = "INSERT INTO " . DB_PREFIX . "register_participants " .
-                    "(id, Participant_Name, Selected_Event, Age) VALUES " . 
+                    "(id, Participant_Name, Selected_Event,Team_Members_Count, Age) VALUES " . 
                     implode(", ", $participantValues);
                 
                 try {
