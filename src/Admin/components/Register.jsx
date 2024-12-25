@@ -119,13 +119,22 @@ export default function Register() {
         }, {});
         
         if (Array.isArray(item.Participants) && item.Participants.length > 0) {
+          const getAgeCategory = (age) => {
+            const numAge = Number(age);
+            if (isNaN(numAge)) return "";
+            if (numAge <= 5 && numAge >= 1) return "Child (under 5)";
+            if (numAge > 5 && numAge <= 17 ) return "Kid (between 5 and 17)";
+            if (numAge > 17)return "Adult (18 and above)";
+            return "Team"
+          };
+        
           return acc.concat(
             item.Participants.map((participant, pIndex) => ({
               ...baseRow,
               "S.No": acc.length + pIndex + 1,
               "Participant Name": participant.Participant_Name || "",
               "Selected Event": participant.Selected_Event || "",
-              "Age": participant.Age || ""
+              "Age": getAgeCategory(participant.Age)
             }))
           );
         }

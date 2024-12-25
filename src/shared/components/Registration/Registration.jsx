@@ -304,8 +304,8 @@ export default function Registration(props) {
                             </button>
 
                             
-                        <div className="total-fee mt-6 font-bold">
-                        <strong>Total:</strong> $
+                        <div className="total-fee mt-6 font-bold text-2xl text-lime-600">
+                        <strong className=''>Total:</strong> $
                         {formdata?.Participant.reduce((total, participant) => {
                         const selectedGame = Array.isArray(formdata?.Games) &&
                             formdata.Games.find((game) => game.Game_Title === participant?.Selected_Event);
