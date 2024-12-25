@@ -57,7 +57,7 @@ export default function RegistrationPage(props) {
         let totalofflineAmount = 0;
         const currentYear = new Date().getFullYear();
         const us_time = new Date()
-        const date = us_time.toLocaleTimeString('en-US', { timeZone: 'America/New_York', hour12: true });;
+        const date = us_time.toLocaleString('en-US', { timeZone: 'America/New_York', hour12: true });;
         console.log(date)
         if (type === "volunteer") {
             formatData = { ...formdata, Poster_Type: "Volunteer", Entry_Fees: "Free", Registered_Year: currentYear ,created_at:date };
@@ -80,7 +80,7 @@ export default function RegistrationPage(props) {
                 const selectedGame = games.find(game => game.Game_Title === participant.Selected_Event);
                 if (selectedGame?.GamePayment === "Yes") {
                     if (selectedGame.Participant_Type === "Custom Team" && selectedGame.Payment_Type === "Individual") {
-                        totalAmount += parseFloat(selectedGame.Entry_Fees || 0) * parseFloat(participants.Team_Members_Count || 0);
+                        totalAmount += parseFloat(selectedGame?.Entry_Fees || 0) * parseFloat(participant?.Team_Members_Count || 0); 
                     } else if (selectedGame.Participant_Type === "Individual") {
                         const age = parseInt(participant.Age || 0);
                         if (age < 6) totalAmount += parseFloat(selectedGame.Under5_Fees || 0);
@@ -92,7 +92,7 @@ export default function RegistrationPage(props) {
                 }
                 if (selectedGame?.GamePayment === "offlinepay") {
                     if (selectedGame.Participant_Type === "Custom Team" && selectedGame.Payment_Type === "Individual") {
-                        totalofflineAmount += parseFloat(selectedGame.Entry_Fees || 0) * parseFloat(participants.Team_Members_Count || 0);
+                        totalofflineAmount += parseFloat(selectedGame?.Entry_Fees) * parseFloat(participant?.Team_Members_Count); 
                     } else if (selectedGame.Participant_Type === "Individual") {
                         const age = parseInt(participant.Age || 0);
                         if (age < 6) totalofflineAmount += parseFloat(selectedGame.Under5_Fees || 0);

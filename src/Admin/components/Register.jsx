@@ -4,6 +4,7 @@ import Tableheadpanel from "../shared/components/Register/Tableheadpanel";
 import Tablepagination from "../shared/others/Tablepagination";
 import Addandeditform from "../shared/components/Register/Addandeditform";
 import toast from "react-hot-toast";
+import * as XLSX from "xlsx";
 import { ConfirmDialog, confirmDialog } from "primereact/confirmdialog";
 import {
   deleteregister,
@@ -45,6 +46,137 @@ export default function Register() {
     }
     return () => (isMounted = false);
   }, [first, rows, globalfilter, colfilter]);
+
+  // const handleDownload = async () => {
+  //   setLoading(true); 
+  //   const allData = await getfilterregister({ first: 0, rows: 100000, globalfilter, colfilter, });  
+  //   setLoading(false);
+  
+  //   if (allData?.resdata) { 
+  //     const columns = [
+  //       { key: "Reg_ID", header: "Reg_ID" },
+  //       { key: "Eventname", header: "Event Name" },
+  //       { key: "Date", header: "Event Date" },
+  //       { key: "First_Name", header: "First Name" },
+  //       { key: "Last_Name", header: "Last Name" },
+  //       { key: "Email", header: "Email" },
+  //       { key: "Phone_Number", header: "Phone_Number" },
+  //       { key: "Entry_Fees", header: "Entry Fees" },
+  //       { key: "created_at", header: "Registered Date" },
+  //     ];
+   
+  //     const transformedData = allData.resdata.map(item => {
+  //       const row = {};
+  //       columns.forEach(col => {
+  //         row[col.header] = item[col.key];
+  //       });
+  //       return row;
+  //     }); 
+
+  //     const worksheet = XLSX.utils.json_to_sheet(transformedData);
+  //     const workbook = XLSX.utils.book_new();
+  //     XLSX.utils.book_append_sheet(workbook, worksheet, "Events");
+   
+  //     XLSX.writeFile(workbook, "EventData.xlsx");
+  //   } else {
+  //     console.error("No data available for download.");
+  //   }
+  // };
+
+
+  const handleDownload = async () => {
+    try {
+      setLoading(true);
+      const allData = await getfilterregister({ first: 0, rows: 100000, globalfilter, colfilter });
+      
+      if (!allData?.resdata?.length) {
+        console.error("No data available for download.");
+        return;
+      }
+  
+      const columns = [
+        { key: "S_No", header: "S.No" },
+        { key: "Reg_ID", header: "Reg_ID" },
+        { key: "Eventname", header: "Event Name" },
+        { key: "Date", header: "Event Date" },
+        { key: "First_Name", header: "First Name" },
+        { key: "Last_Name", header: "Last Name" },
+        { key: "Email", header: "Email" },
+        { key: "Phone_Number", header: "Phone Number" },
+        { key: "Entry_Fees", header: "Entry Fees" },
+        { key: "created_at", header: "Registered Date" },
+        { key: "Participant_Name", header: "Participant Name" },
+        { key: "Selected_Event", header: "Selected Event" },
+        { key: "Age", header: "Age" }
+      ];
+  
+      const transformedData = allData.resdata.reduce((acc, item, index) => {
+        const baseRow = columns.reduce((row, col) => {
+          if (!col.key.startsWith("Participant_")) {
+            row[col.header] = item[col.key] || "";
+          }
+          return row;
+        }, {});
+        
+        if (Array.isArray(item.Participants) && item.Participants.length > 0) {
+          return acc.concat(
+            item.Participants.map((participant, pIndex) => ({
+              ...baseRow,
+              "S.No": acc.length + pIndex + 1,
+              "Participant Name": participant.Participant_Name || "",
+              "Selected Event": participant.Selected_Event || "",
+              "Age": participant.Age || ""
+            }))
+          );
+        }
+        
+        return acc.concat({
+          ...baseRow,
+          "S.No": acc.length + 1
+        });
+      }, []);
+   
+      const worksheet = XLSX.utils.json_to_sheet(transformedData);
+       
+      const range = XLSX.utils.decode_range(worksheet['!ref']);
+      for (let C = range.s.c; C <= range.e.c; ++C) {
+        const address = XLSX.utils.encode_cell({ r: 0, c: C });
+        if (!worksheet[address]) continue;
+        
+        worksheet[address].s = {
+          font: { bold: true },
+          alignment: { vertical: 'center', horizontal: 'center', wrapText: true },
+          border: { 
+            top: { style: 'thin' },
+            bottom: { style: 'thin' },
+            left: { style: 'thin' },
+            right: { style: 'thin' }
+          },
+          fill: {
+            fgColor: { rgb: "EEEEEE" }
+          }
+        };
+      }
+   
+      const columnWidths = columns.map((col) => {
+        const maxLength = Math.max(...transformedData.map((row) => (row[col.header] ? row[col.header].toString().length : 0)));
+        return { wch: Math.min(maxLength + 2, 30) }; 
+      });
+      worksheet["!cols"] = columnWidths;
+   
+      worksheet['!rows'] = [{ hpt: 25 }]; 
+  
+      const workbook = XLSX.utils.book_new();
+      XLSX.utils.book_append_sheet(workbook, worksheet, "Events");
+      
+      XLSX.writeFile(workbook, "EventData.xlsx");
+    } catch (error) {
+      console.error("Error downloading file:", error);
+    } finally {
+      setLoading(false);
+    }
+  };
+  
 
   const onPage = (page) => {
     setPage(page);
@@ -152,7 +284,7 @@ export default function Register() {
   return (
     <div>
       <div className="bg-white border rounded-xl">
-        <Tableheadpanel newform={newform} setglobalfilter={setglobalfilter} filtervalues={filtervalues} cusfilter={cusfilter} formdata={formdata} />
+        <Tableheadpanel newform={newform} setglobalfilter={setglobalfilter} filtervalues={filtervalues} cusfilter={cusfilter} formdata={formdata} handleDownload={handleDownload} />
 
         <Tableview
           tabledata={tabledata}
