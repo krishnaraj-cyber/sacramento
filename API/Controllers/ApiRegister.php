@@ -42,7 +42,7 @@ class ControllersRegister extends Controller {
                 }
             }
     
-            $columns = ['First_Name','Last_Name','Email','Phone_Number','Entry_Fees','Willingness','Number_Guests','Adults','Kids','Babes','Game_Title','Team_Name','Team_Members_Count','Disclaimer_Acceptance','EventName','Poster_Type','Reg_ID','Status'];
+            $columns = ['First_Name','Last_Name','Email','Phone_Number','Entry_Fees','Willingness','Number_Guests','Adults','Kids','Babes','Game_Title','Team_Name','Team_Members_Count','Disclaimer_Acceptance','EventName','Date','Registered_Year','Poster_Type','Reg_ID','Status'];
             $globalFilterQuery = '';
             if (!empty($globalfilter)) {
                 $globalFilterConditions = [];
@@ -188,7 +188,7 @@ class ControllersRegister extends Controller {
      
             $columns = ['First_Name', 'Last_Name', 'Email', 'Phone_Number', 'Entry_Fees', 'Willingness', 
                         'Number_Guests', 'Adults', 'Kids', 'Babes', 'Game_Title', 'Team_Name', 
-                        'Team_Members_Count', 'Disclaimer_Acceptance', 'EventName', 'Poster_Type','Reg_ID'];
+                        'Team_Members_Count', 'Disclaimer_Acceptance', 'EventName','Date','Registered_Year', 'Poster_Type','Reg_ID'];
             $globalFilterQuery = '';
     
             if (!empty($globalfilter)) {

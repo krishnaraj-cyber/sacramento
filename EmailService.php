@@ -71,10 +71,9 @@ function sendRegistrationEmail($reqdata) {
 
             <div style='border-left: 5px solid #4CAF50; padding-left: 20px; margin-bottom: 20px;'>
                 <p><strong>Event Name:</strong> " . htmlspecialchars($reqdata['Eventname']) . "</p>
-                <p><strong>Event Date:</strong> " . htmlspecialchars($reqdata['created_at']) . "</p>
+                <p><strong>Event Date:</strong> " . htmlspecialchars($reqdata['Date']) . "</p>
                 " . (!$isVolunteer ? "
-                <p><strong>Paid Amount:</strong> $" . htmlspecialchars($reqdata['Entry_Fees']) . "</p>
-                <p><strong>Payment Status:</strong> Succeeded</p>
+                <p><strong>Amount:</strong> $" . htmlspecialchars($reqdata['Entry_Fees']) . "</p>
                 " : "") . "
             </div>
 

@@ -112,6 +112,8 @@ class ModelsRegister extends Model {
             'Babes', 
             'Team_Name', 
             'Eventname', 
+            'Date',
+            'Registered_Year',
             'Poster_Type', 
             'Game_Title', 
             // 'Team_Members_Count', 

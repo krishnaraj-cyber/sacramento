@@ -16,6 +16,8 @@ CREATE TABLE sacra_register (
     Event TEXT DEFAULT NULL,
     Team_Name TEXT DEFAULT NULL,
     Eventname TEXT DEFAULT NULL,
+    Date TEXT DEFAULT NULL,
+    Registered_Year TEXT DEFAULT NULL,
     Poster_Type TEXT DEFAULT NULL,
     Team_Members_Count TEXT DEFAULT NULL,
     Disclaimer_Acceptance TEXT DEFAULT NULL,
