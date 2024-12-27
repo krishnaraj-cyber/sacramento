@@ -8,7 +8,7 @@ class ModelsGallery extends Model {
     }
     public function getByYear($year) {
         $year = $this->db->escape($year); 
-        $query = $this->db->query("SELECT * FROM " . DB_PREFIX . "gallery WHERE Year = '" . $year . "'");
+        $query = $this->db->query("SELECT * FROM " . DB_PREFIX . "gallery WHERE Status = 'Active' AND YEAR(Year) = '" . $year . "'");
         return $query->rows;
     }
     public function getTotalRecords() {
