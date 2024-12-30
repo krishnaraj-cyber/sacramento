@@ -14,12 +14,9 @@ function GalleryPage() {
       const response = res.resdata;
       const images = response?.filter((item) => item.Image);
       const uniqueImage = images.filter(
-        (item, index, self) =>
-          index ===
-          self.findIndex(
+        (item, index, self) => index === self.findIndex(
             (t) => moment(t.Year).format('YYYY') === moment(item.Year).format('YYYY')
-          )
-      );
+          )).sort((a, b) => moment(b.Year).format('YYYY') - moment(a.Year).format('YYYY'));
       setGallery(uniqueImage);
     } catch (error) {
       console.error("Error fetching gallery:", error);

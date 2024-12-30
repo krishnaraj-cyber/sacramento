@@ -51,7 +51,7 @@ function Aboutt(props) {
                         ))}
                     </div>
                 </div>
-                <div className='grid lg:grid-cols-5 md:grid-cols-3 grid-cols-2 justify-center items-center  md:gap-10 gap-5  '>
+                <div className='grid lg:grid-cols-5 sm:grid-cols-3 grid-cols-2 justify-center items-center  xl:gap-10 gap-5  '>
                     {isLoading
                         ? Array(2)
                             .fill(0)
@@ -63,7 +63,7 @@ function Aboutt(props) {
                             ))
                         : boardmem?.sort((a, b) => a.Priority - b.Priority).map((item, index) => (
                             <div key={index} className="text-center w-full">
-                                <img className='  md:w-72 border-2 border-[#0571BC] rounded-t-xl w-full ' src={`${apiurl()}/${item.Image}`} />
+                                <img className='border-2 border-[#0571BC] rounded-t-xl w-full h-56 xl:h-64 object-cover object-center' src={`${apiurl()}/${item.Image}`} />
                                 <div className='  flex flex-col justify-center items-center mx-2  h-24  rounded-bl-lg  rounded-br-lg bg-[#0571BC]'>
                                     <p className="  md:text-base text-sm text-[#FFD900]"> {item.Name}</p>
                                     <p className=" text-white  text-xs md:text-sm"> {item.Designation}</p>

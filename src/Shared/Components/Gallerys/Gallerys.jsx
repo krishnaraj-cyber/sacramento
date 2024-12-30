@@ -16,10 +16,9 @@ function Gallerys({ gallery, isLoading }) {
                             ))
                     ) : (
                         gallery.map((item, index) => (
-                            <Link to={`/gallery-view/${moment(item.Year).format('YYYY-MM-DD')}`} key={index} >
-                                {console.log(moment(item.Year).format('YYYY'))}
+                            <Link to={`/gallery-view/${moment(item.Year).format('YYYY-MM-DD')}`} key={index} > 
                                 <div className="relative group  hover:scale-105  duration-200  rounded-2xl ">
-                                    <img src={`${apiurl()}/${item.Image}`} alt="Event" className="w-full h-full object-cover rounded-2xl" />
+                                    <img src={`${apiurl()}/${item?.Image.split(',')[0]}`} alt="Event" className="w-full h-full object-cover rounded-2xl" />
                                     <div className="absolute inset-0 bg-[#0571BC] bg-opacity-50 opacity-0   group-hover:opacity-100 transition-opacity duration-300 rounded-2xl">
                                         <div className="flex items-center justify-center h-full">
                                             <button className='md:text-4xl text-xl text-[#FFE134] concert-one-regular' >{item.Year.split('-')[0]}</button>

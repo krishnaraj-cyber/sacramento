@@ -9,7 +9,7 @@ function AboutUs({ title, Year }) {
           </div>
           {Year && Year != 0 && (
             <div className="translate-y-4 text-center text-white font-semibold text-lg">
-              Events of {Year}
+              Events of {Year.split('-')[0]}
             </div>
           )}
         </div>
