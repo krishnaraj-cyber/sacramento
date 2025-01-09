@@ -80,6 +80,7 @@ const Tableview = (props) =>{
     {field: 'Eventname', header: 'Title' ,filter:true,width : "120px"},
     {field: 'Date', header: 'Event Date',filter:true, format: "Date",width : "120px"},
     {field: 'Activities', header: 'Activities',filter:true, width : "120px"},
+    {field: 'URL', header: 'URL',filter:true, width : "120px"},
     {field: 'Status', header: 'Status',filter:true,width : "120px"}
   ];
 

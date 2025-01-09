@@ -119,6 +119,13 @@ export default function Addandeditform(props) {
             </select>
           </div>
 
+          <div className="mb-2">
+            <div className="mb-2">
+              <label>Registration URL</label>
+            </div>
+            <input type="text" name="URL" value={formdata?.URL} onChange={handlechange} className="w-full px-4 py-2 border rounded-md outline-none"  />
+          </div>
+
           {formdata?.Poster_Type == "RSVP" && (
             <>
               <div className="mb-2">

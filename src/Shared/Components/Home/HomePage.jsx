@@ -57,7 +57,7 @@ function HomePage(props) {
                     {event?.map((item, index) => (
                       <SwiperSlide key={index}>
                         <div className="flex flex-wrap md:flex-nowrap md:justify-start justify-center  items-center gap-5 cursor-default pb-10">
-                          <Link to={`/register?id=${item.id}`} >
+                          <Link to={item?.URL ? item.URL : `/register?id=${item.id}`} target={item.URL && '_blank'} >
                           <img className="rounded-2xl border-4 min-w-[250px] w-[300px] md:w-[350px] lg:w-[400px] object-contain border-[#0670bd]" src={`${apiurl()}/${item.Image}`} alt={item.Eventname} />
                           </Link>
                           <div className="md:space-y-5 space-y-3  ">
@@ -142,7 +142,8 @@ function HomePage(props) {
                     spaceBetween={10}
                     loop={true}
                     slidesPerView={3}
-                    autoplay={{ delay: 3000, disableOnInteraction: false, reverseDirection: true }}
+                    speed={4000}
+                    autoplay={{ delay: 4000, disableOnInteraction: false, reverseDirection: true }}
                     breakpoints={{
                       0: { slidesPerView: 1, direction: "horizontal" },
                       768: { slidesPerView: 2, direction: "horizontal" },
@@ -181,6 +182,7 @@ function HomePage(props) {
                     {sponsors?.length < 4 &&
                       sponsors?.map((sponsor, index) => (
                         <SwiperSlide key={`duplicate-${index}`} className="flex justify-center items-center"  >
+                          <a href={sponsor.URL} target="_blank" rel="noopener noreferrer">
                           <div className="flex items-center justify-center">
                             <div className="mx-auto">
                               <div
@@ -199,6 +201,7 @@ function HomePage(props) {
                               />
                             </div>
                           </div>
+                          </a>
                         </SwiperSlide>
                       ))}
                   </Swiper>

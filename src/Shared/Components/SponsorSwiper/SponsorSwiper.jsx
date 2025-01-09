@@ -53,8 +53,9 @@ function SponsorSwiper() {
             <Swiper
               slidesPerView={1}
               spaceBetween={10}
+              speed={4000}
               loop={true}
-              autoplay={{ delay: 3000, disableOnInteraction: false, }}
+              autoplay={{ delay: 4000, disableOnInteraction: false, }}
               breakpoints={{
                 0: { slidesPerView: 1, spaceBetween: 10, },
                 768: { slidesPerView: 2, spaceBetween: 15, },
@@ -69,6 +70,7 @@ function SponsorSwiper() {
             >
               {sponsors.map((sponsor, index) => (
                 <SwiperSlide key={index} className="flex justify-center cursor-pointer mx-auto">
+                  <a href={sponsor.URL} target="_blank" rel="noopener noreferrer">
                   <div className="flex items-center justify-center">
                     <div className="mx-auto">
                       <div
@@ -87,11 +89,13 @@ function SponsorSwiper() {
                       />
                     </div>
                   </div>
+                  </a>
                 </SwiperSlide>
               ))}
               {sponsors.length < 4 &&
                 sponsors.map((sponsor, index) => (
                   <SwiperSlide key={index} className="flex justify-center">
+                    <a href={sponsor.URL} target="_blank" rel="noopener noreferrer">
                     <div className="flex items-center justify-center">
                       <div className="mx-auto">
                         <div
@@ -111,6 +115,7 @@ function SponsorSwiper() {
                         />
                       </div>
                     </div>
+                    </a>
                   </SwiperSlide>
                 ))}
             </Swiper>
