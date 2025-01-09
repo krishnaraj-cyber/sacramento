@@ -68,6 +68,7 @@ class ModelsEvents extends Model {
             'Fees_Under5' => $data['Fees_Under5'] ?? '',
             'Disclaimer' => $data['Disclaimer'] ?? '',
             'Description' => $data['Description'] ?? '',
+            'URL' => $data['URL'] ?? '',
             'Status' => $data['Status'] ?? 'Inactive', 
         ];
         $eventKeys = implode(",", array_keys($eventData));
@@ -114,6 +115,7 @@ class ModelsEvents extends Model {
             'Fees_Under5' => $data['Fees_Under5'] ?? '',
             'Disclaimer' => $data['Disclaimer'] ?? '',
             'Description' => $data['Description'] ?? '',
+            'URL' => $data['URL'] ?? '',
             'Status' => $data['Status'] ?? 'Inactive', 
         ];
         $cols = [];

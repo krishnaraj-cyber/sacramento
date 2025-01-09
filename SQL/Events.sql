@@ -16,6 +16,7 @@ CREATE TABLE sacra_Events(
     Fees_Under5 TEXT,
     Disclaimer TEXT DEFAULT NULL,
     Description TEXT DEFAULT NULL,
+    URL TEXT DEFAULT NULL,
     Status VARCHAR(50) DEFAULT 'Inactive',
     created_date timestamp default now(), 
     updated_date timestamp default now() on update now() 
