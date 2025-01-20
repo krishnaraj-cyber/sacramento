@@ -57,9 +57,22 @@ function HomePage(props) {
                     {event?.map((item, index) => (
                       <SwiperSlide key={index}>
                         <div className="flex flex-wrap md:flex-nowrap md:justify-start justify-center  items-center gap-5 cursor-default pb-10">
-                          <Link to={item?.URL ? item.URL : `/register?id=${item.id}`} target={item.URL && '_blank'} >
-                          <img className="rounded-2xl border-4 min-w-[250px] w-[300px] md:w-[350px] lg:w-[400px] object-contain border-[#0670bd]" src={`${apiurl()}/${item.Image}`} alt={item.Eventname} />
-                          </Link>
+                          <div>
+                            <Link to={item?.URL ? item.URL : `/register?id=${item.id}`} target={item.URL && '_blank'} >
+                            <img className="rounded-2xl border-4 min-w-[250px] w-[300px] md:w-[350px] lg:w-[400px] object-contain border-[#0670bd]" src={`${apiurl()}/${item.Image}`} alt={item.Eventname} />
+                            </Link>
+                            {item.URL  &&
+                              <div className="relative mt-5 group w-fit text-center mx-auto">
+                              <Link to={item?.URL} target={item.URL && '_blank'} className="">
+                                <button className="flex items-center gap-2 px-6 py-3 text-white rounded-lg shadow-md duration-300 focus:ring-2 focus:ring-[#e81e32] focus:ring-opacity-50 transition-all ease-in-out animate-gradient">
+                                  <span>Click to Register</span>
+                                  <i className="fi fi-rr-arrow-small-right text-xl group-hover:translate-x-1 w-5 h-5 transition-transform duration-300"></i>
+                                </button>
+                              </Link>
+                              </div>
+                            }
+                          </div>
+                          
                           <div className="md:space-y-5 space-y-3  ">
                             <p className="concert-one-regular md:text-2xl text-base text-white w-fit px-3 rounded-md bg-[#0470BC]">
                               UPCOMING EVENT
