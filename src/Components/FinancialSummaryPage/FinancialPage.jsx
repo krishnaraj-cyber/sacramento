@@ -16,8 +16,8 @@ function FinancialPage() {
       if (isMounted) {
         const financialData = response.resdata;
         setData(financialData);
-        if (financialData.length > 0) {
-          const sortedYears = [...new Set(financialData.map(item => item.Year))].sort((a, b) => b - a);
+        if (financialData?.length > 0) {
+          const sortedYears = [...new Set(financialData?.map(item => item.Year))]?.sort((a, b) => b - a);
           setOpenYear(sortedYears[0]);
         }
       }
@@ -33,7 +33,7 @@ function FinancialPage() {
     };
   }, []);
   useEffect(() => { fetchSponsors(); }, [fetchSponsors]);
-  const groupedData = data.reduce((acc, item) => {
+  const groupedData = data?.reduce((acc, item) => {
     acc[item.Year] = acc[item.Year] || [];
     acc[item.Year].push(item);
     return acc;

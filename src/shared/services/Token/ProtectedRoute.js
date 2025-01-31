@@ -1,6 +1,6 @@
 import {useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { getuserdetails, isLoggedIn } from './token';
+import { getuserdetails, isLoggedIn } from './token';  
 
 const ProtectedRoute = ({children, allowedRoles }) => {
   const navigate=useNavigate()

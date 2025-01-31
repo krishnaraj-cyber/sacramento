@@ -12,8 +12,8 @@ import { Link } from 'react-router-dom';
 function Events(props) {
   const { event, isLoading } = props;
   const activeEvents = event
-    .filter(event => event.Status === "Active")
-    .map(event => ({
+    ?.filter(event => event.Status === "Active")
+    ?.map(event => ({
       id: event.id,
       Eventname: event.Eventname,
       Date: event.Date,

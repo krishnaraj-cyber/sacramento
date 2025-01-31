@@ -68,7 +68,7 @@ function SponsorSwiper() {
               modules={[Pagination, Navigation, Autoplay]}
               className=" w-full mx-auto "
             >
-              {sponsors.map((sponsor, index) => (
+              {sponsors?.map((sponsor, index) => (
                 <SwiperSlide key={index} className="flex justify-center cursor-pointer mx-auto">
                   <a href={sponsor.URL} target="_blank" rel="noopener noreferrer">
                   <div className="flex items-center justify-center">
@@ -92,8 +92,8 @@ function SponsorSwiper() {
                   </a>
                 </SwiperSlide>
               ))}
-              {sponsors.length < 4 &&
-                sponsors.map((sponsor, index) => (
+              {sponsors?.length < 4 &&
+                sponsors?.map((sponsor, index) => (
                   <SwiperSlide key={index} className="flex justify-center">
                     <a href={sponsor.URL} target="_blank" rel="noopener noreferrer">
                     <div className="flex items-center justify-center">

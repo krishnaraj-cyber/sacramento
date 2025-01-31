@@ -15,7 +15,7 @@ function FinancialSummary(props) {
               </tr>
             </thead>
             <tbody>
-              {Array(3).fill(0).map((_, index) => (
+              {Array(3)?.fill(0)?.map((_, index) => (
                   <tr key={index} className="hover:bg-gray-100 text-sm font-semibold text-gray-500">
                     <td className="border px-4 py-2 bg-gray-300 h-10"></td>
                     <td className="border px-4 py-2 bg-gray-300 h-10"></td>
@@ -31,9 +31,9 @@ function FinancialSummary(props) {
   return (
     <div className="w-full max-w-4xl mx-auto my-6 px-5 space-y-5">
       <p className="concert-one-regular text-center md:text-4xl text-2xl text-[#E52E3D] uppercase">Years</p>
-      {Object.keys(groupedData)
-        .sort((a, b) => b - a)
-        .map((year) => (
+      {groupedData  && Object.keys(groupedData)
+        ?.sort((a, b) => b - a)
+        ?.map((year) => (
           <div key={year} className="mb-4 border rounded shadow">
             <div className="flex justify-between items-center px-4 py-2 bg-[#f7f7f7] text-[#0670bd] cursor-pointer" onClick={() => toggleYear(year)}    >
               <h3 className="text-lg font-bold">{year}</h3>
@@ -50,7 +50,7 @@ function FinancialSummary(props) {
                     </tr>
                   </thead>
                   <tbody>
-                    {groupedData[year].map((item, index) => (
+                    {groupedData[year]?.map((item, index) => (
                       <tr key={index} className="hover:bg-gray-100 text-sm font-semibold text-gray-500">
                         <td className="border px-4 py-2">{item.EventName}</td>
                         <td className="border px-4 py-2">{item.Expenses}</td>
